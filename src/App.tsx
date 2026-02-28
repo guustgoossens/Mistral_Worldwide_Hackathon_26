@@ -8,9 +8,11 @@ import { QuizPanel } from "@/components/QuizPanel";
 import { AgentStatus } from "@/components/AgentStatus";
 import { useGraph } from "@/hooks/useGraph";
 import { useKuzu } from "@/hooks/useKuzu";
-import { useVoiceAgent } from "@/hooks/useVoiceAgent";
+import { useInterview } from "@/hooks/useInterview";
 import { useKnowledge } from "@/hooks/useKnowledge";
 import type { VizNode } from "@/types/graph";
+
+const PROXY_URL = import.meta.env.VITE_PROXY_URL ?? "http://localhost:3001";
 
 export default function App() {
   const kuzu = useKuzu();
@@ -27,26 +29,19 @@ export default function App() {
     [graphData.nodes, selectNode],
   );
 
-  const voice = useVoiceAgent({
+  const interview = useInterview({
     executeQuery: kuzu.executeQuery,
     highlightNodes,
     setOverlay: setOverlayMode,
     selectNode: selectNodeById,
     flyToNode: (nodeId: string) => graphRef.current?.flyToNode(nodeId),
-    startQuiz: knowledge.startQuiz,
+    proxyUrl: PROXY_URL,
   });
-
-  const handleStartQuiz = useCallback(() => {
-    const targetId = selectedNode?.id ?? "_random";
-    knowledge.startQuiz(targetId);
-  }, [selectedNode, knowledge]);
-
-  const isQuizActive = knowledge.activeQuiz !== null;
 
   return (
     <Layout overlayMode={overlayMode} onOverlayChange={setOverlayMode} sidebar={<SidebarContent />}>
       <Graph3D ref={graphRef} data={graphData} onNodeClick={selectNode} highlightedIds={highlightedIds} />
-      <AgentStatus kuzuReady={kuzu.isReady} voiceStatus={voice.status} />
+      <AgentStatus kuzuReady={kuzu.isReady} voiceStatus={interview.voiceStatus} />
       <NodeDetail node={selectedNode} onClose={() => selectNode(null)} />
       <QuizPanel
         question={knowledge.activeQuiz?.question ?? null}
@@ -56,13 +51,15 @@ export default function App() {
         targetName={knowledge.activeQuiz?.functionName}
       />
       <VoiceControls
-        status={voice.status}
-        isSpeaking={voice.isSpeaking}
-        transcript={voice.transcript}
-        onStart={voice.start}
-        onStop={voice.stop}
-        onStartQuiz={handleStartQuiz}
-        isQuizActive={isQuizActive}
+        interviewState={interview.state}
+        voiceStatus={interview.voiceStatus}
+        isSpeaking={interview.isSpeaking}
+        transcript={interview.transcript}
+        kuzuReady={kuzu.isReady}
+        onPrepare={interview.prepare}
+        onStartInterview={interview.startInterview}
+        onStopInterview={interview.stopInterview}
+        error={interview.error}
       />
     </Layout>
   );
