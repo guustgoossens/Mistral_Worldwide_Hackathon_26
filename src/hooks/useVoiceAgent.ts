@@ -1,19 +1,46 @@
 /**
  * Voice agent hook wrapping ElevenLabs useConversation() + client tools.
- *
- * TODO: Implement:
- * 1. Initialize ElevenLabs conversation with agent ID from env
- * 2. Register client tools (query_graph, highlight_nodes, set_overlay, etc.)
- * 3. Expose start/stop/status + transcript
  */
 
-export function useVoiceAgent() {
-  // TODO: Implement ElevenLabs integration
+import { useState, useCallback } from "react";
+import { useConversation } from "@elevenlabs/react";
+import { createAgentTools } from "@/lib/agent-tools";
+import type { AgentToolDeps } from "@/lib/agent-tools";
+
+export function useVoiceAgent(deps?: AgentToolDeps) {
+  const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; content: string }>>([]);
+
+  const clientTools = deps ? createAgentTools(deps) : undefined;
+
+  const conversation = useConversation({
+    ...(clientTools && { clientTools }),
+    onMessage: ({ message, role }) => {
+      setTranscript((prev) => [...prev, { role, content: message }]);
+    },
+    onError: (error) => {
+      console.error("[useVoiceAgent] Error:", error);
+    },
+  });
+
+  const start = useCallback(async () => {
+    const agentId = import.meta.env.VITE_ELEVENLABS_AGENT_ID;
+    if (!agentId) {
+      console.error("[useVoiceAgent] Missing VITE_ELEVENLABS_AGENT_ID");
+      return;
+    }
+    await conversation.startSession({ agentId, connectionType: "webrtc" });
+  }, [conversation]);
+
+  const stop = useCallback(async () => {
+    await conversation.endSession();
+  }, [conversation]);
+
   return {
-    isConnected: false,
-    isSpeaking: false,
-    transcript: [] as { role: string; content: string }[],
-    start: async () => console.warn("[useVoiceAgent] Not yet implemented"),
-    stop: async () => console.warn("[useVoiceAgent] Not yet implemented"),
+    isConnected: conversation.status === "connected",
+    isSpeaking: conversation.isSpeaking,
+    status: conversation.status as "disconnected" | "connecting" | "connected" | "disconnecting",
+    transcript,
+    start,
+    stop,
   };
 }
