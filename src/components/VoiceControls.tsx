@@ -1,4 +1,4 @@
-import { Mic, MicOff, Loader2, Play, CheckCircle } from "lucide-react";
+import { Mic, MicOff, Loader2, Play, CheckCircle, Brain, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { InterviewState } from "@/hooks/useInterview";
 
@@ -13,6 +13,8 @@ interface VoiceControlsProps {
   onPrepare: () => void;
   onStartInterview: () => void;
   onStopInterview: () => void;
+  onStartQuiz?: () => void;
+  onStopQuiz?: () => void;
   error?: string | null;
 }
 
@@ -25,6 +27,8 @@ export function VoiceControls({
   onPrepare,
   onStartInterview,
   onStopInterview,
+  onStartQuiz,
+  onStopQuiz,
   error,
 }: VoiceControlsProps) {
   const isVoiceConnected = voiceStatus === "connected";
@@ -112,9 +116,38 @@ export function VoiceControls({
       )}
 
       {interviewState === "complete" && (
-        <div className="flex h-14 items-center gap-3 rounded-full bg-green-500/10 border border-green-500/30 px-8">
-          <CheckCircle className="h-5 w-5 text-green-400" />
-          <span className="text-sm text-green-400">Interview Complete</span>
+        <div className="flex items-center gap-3">
+          <div className="flex h-14 items-center gap-3 rounded-full bg-green-500/10 border border-green-500/30 px-8">
+            <CheckCircle className="h-5 w-5 text-green-400" />
+            <span className="text-sm text-green-400">Interview Complete</span>
+          </div>
+          {onStartQuiz && (
+            <button
+              onClick={onStartQuiz}
+              className="flex h-14 items-center gap-2 rounded-full bg-amber-500 px-6 text-sm font-medium text-white shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 transition-all"
+            >
+              <Brain className="h-5 w-5" />
+              Quiz Me
+            </button>
+          )}
+        </div>
+      )}
+
+      {interviewState === "quizzing" && (
+        <div className="flex items-center gap-3">
+          <div className="flex h-14 items-center gap-3 rounded-full bg-amber-500/10 border border-amber-500/30 px-8">
+            <Brain className="h-5 w-5 text-amber-400" />
+            <span className="text-sm text-amber-400">Quizzing...</span>
+          </div>
+          {onStopQuiz && (
+            <button
+              onClick={onStopQuiz}
+              className="flex h-14 items-center gap-2 rounded-full bg-red-500/80 px-6 text-sm font-medium text-white shadow-lg hover:bg-red-500 hover:scale-105 transition-all"
+            >
+              <Square className="h-4 w-4" />
+              Stop Quiz
+            </button>
+          )}
         </div>
       )}
 
@@ -136,7 +169,9 @@ export function VoiceControls({
                   : voiceStatus === "connecting"
                     ? "Connecting..."
                     : "Disconnecting..."
-                : "Thanks for the interview!"}
+                : interviewState === "quizzing"
+                  ? "Test your codebase knowledge"
+                  : "Thanks for the interview!"}
       </p>
     </div>
   );

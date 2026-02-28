@@ -35,7 +35,7 @@ export function useVoiceAgent(deps?: AgentToolDeps) {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       await conversation.startSession({
         agentId,
-        connectionType: "webrtc" as const,
+        connectionType: "websocket" as const,
       });
     } catch (err) {
       console.error("[useVoiceAgent] Failed to start session:", err);
@@ -53,5 +53,6 @@ export function useVoiceAgent(deps?: AgentToolDeps) {
     transcript,
     start,
     stop,
+    sendContextualUpdate: conversation.sendContextualUpdate,
   };
 }

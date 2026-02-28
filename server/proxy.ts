@@ -9,83 +9,8 @@ const DEFAULT_MODEL = "devstral-small-2507";
 /** Pre-computed briefing injected as system message when set. */
 let currentBriefing: string | null = null;
 
-/** Tool definitions — visualization only (no queryGraph/startQuiz). */
-const TOOLS = [
-  {
-    type: "function" as const,
-    function: {
-      name: "highlightNodes",
-      description:
-        "Highlight specific nodes in the 3D graph visualization. Call with IDs from the briefing context.",
-      parameters: {
-        type: "object",
-        properties: {
-          nodeIds: {
-            type: "array",
-            items: { type: "string" },
-            description: "Array of node IDs to highlight",
-          },
-        },
-        required: ["nodeIds"],
-      },
-    },
-  },
-  {
-    type: "function" as const,
-    function: {
-      name: "switchViewMode",
-      description:
-        'Switch the visualization overlay mode. Modes: "structure" (code only), "contributors" (git activity), "knowledge" (understanding depth), "people" (Person nodes).',
-      parameters: {
-        type: "object",
-        properties: {
-          mode: {
-            type: "string",
-            enum: ["structure", "contributors", "knowledge", "people"],
-            description: "The overlay mode to switch to",
-          },
-        },
-        required: ["mode"],
-      },
-    },
-  },
-  {
-    type: "function" as const,
-    function: {
-      name: "flyToNode",
-      description:
-        "Animate the camera to focus on a specific node in the 3D graph.",
-      parameters: {
-        type: "object",
-        properties: {
-          nodeId: {
-            type: "string",
-            description: "The node ID to fly to",
-          },
-        },
-        required: ["nodeId"],
-      },
-    },
-  },
-  {
-    type: "function" as const,
-    function: {
-      name: "showDetailPanel",
-      description:
-        "Open the detail sidebar panel for a specific node to show its full information.",
-      parameters: {
-        type: "object",
-        properties: {
-          nodeId: {
-            type: "string",
-            description: "The node ID to show details for",
-          },
-        },
-        required: ["nodeId"],
-      },
-    },
-  },
-];
+/** No tools for voice — avoids the tool-result round-trip that kills ElevenLabs. */
+const TOOLS: never[] = [];
 
 app.use(cors());
 app.use(express.json({ limit: "5mb" }));
@@ -184,21 +109,29 @@ app.post("/v1/chat/completions", async (req, res) => {
     }
   }
 
-  // Strip ElevenLabs-specific fields and fields we override
-  const { user_id, elevenlabs_extra_body, messages: _msgs, model: _model, stream: _stream, tools: _tools, ...rest } = req.body;
-
   // Allow devstral-2507 for preparation, otherwise use default
   const model = req.body.model === "devstral-2507" ? "devstral-2507" : DEFAULT_MODEL;
   const stream = req.body.stream === false ? false : true;
 
-  console.log(`[proxy] stream=${stream} (raw=${req.body.stream})`);
+  // No tools for voice (avoids round-trip failure). Only pass tools if client explicitly sends them.
+  const tools = ("tools" in req.body && req.body.tools?.length) ? req.body.tools : undefined;
 
-  const body = {
-    ...rest,
+  // Ensure max_tokens is large enough for tool calls + conversation
+  const maxTokens = Math.max(req.body.max_tokens ?? 1024, 1024);
+
+  console.log(`[proxy] stream=${stream} (raw=${req.body.stream}) max_tokens=${maxTokens} (raw=${req.body.max_tokens})`);
+
+  // Build Mistral body explicitly — do NOT spread ...rest to avoid leaking
+  // ElevenLabs-specific fields (conversation_config, metadata, etc.) that Mistral rejects
+  const body: Record<string, unknown> = {
     messages: normalizedMessages,
     model,
     stream,
-    tools: req.body.tools?.length ? req.body.tools : TOOLS,
+    max_tokens: maxTokens,
+    ...(tools && { tools }),
+    ...(req.body.temperature != null && { temperature: req.body.temperature }),
+    ...(req.body.top_p != null && { top_p: req.body.top_p }),
+    ...(req.body.response_format != null && { response_format: req.body.response_format }),
   };
 
   // Log full request body when it contains tool results

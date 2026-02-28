@@ -38,6 +38,16 @@ export default function App() {
     proxyUrl: PROXY_URL,
   });
 
+  const handleStartQuiz = useCallback(() => {
+    interview.startQuizMode();
+    knowledge.startQuiz();
+  }, [interview.startQuizMode, knowledge.startQuiz]);
+
+  const handleStopQuiz = useCallback(() => {
+    knowledge.dismissQuiz();
+    interview.reset();
+  }, [knowledge.dismissQuiz, interview.reset]);
+
   return (
     <Layout overlayMode={overlayMode} onOverlayChange={setOverlayMode} sidebar={<SidebarContent />}>
       <Graph3D ref={graphRef} data={graphData} onNodeClick={selectNode} highlightedIds={highlightedIds} />
@@ -47,7 +57,10 @@ export default function App() {
         question={knowledge.activeQuiz?.question ?? null}
         onAnswer={knowledge.submitAnswer}
         isLoading={knowledge.isLoading}
-        onNextQuestion={() => knowledge.startQuiz("_random")}
+        feedback={knowledge.feedback}
+        sessionStats={knowledge.sessionStats}
+        onNextQuestion={knowledge.nextQuestion}
+        onClose={knowledge.dismissQuiz}
         targetName={knowledge.activeQuiz?.functionName}
       />
       <VoiceControls
@@ -59,6 +72,8 @@ export default function App() {
         onPrepare={interview.prepare}
         onStartInterview={interview.startInterview}
         onStopInterview={interview.stopInterview}
+        onStartQuiz={handleStartQuiz}
+        onStopQuiz={handleStopQuiz}
         error={interview.error}
       />
     </Layout>

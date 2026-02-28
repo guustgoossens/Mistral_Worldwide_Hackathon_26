@@ -13,7 +13,7 @@ import { gatherContext, generateBriefing, composeBriefingPrompt } from "@/lib/br
 import type { BriefingPacket } from "@/lib/briefing";
 import type { OverlayMode } from "@/types/graph";
 
-export type InterviewState = "idle" | "preparing" | "ready" | "interviewing" | "complete";
+export type InterviewState = "idle" | "preparing" | "ready" | "interviewing" | "complete" | "quizzing";
 
 interface UseInterviewDeps {
   executeQuery: (cypher: string) => Promise<unknown[]>;
@@ -88,6 +88,16 @@ export function useInterview(deps: UseInterviewDeps) {
     setState("complete");
   }, [voice]);
 
+  const startQuizMode = useCallback(() => {
+    setState("quizzing");
+  }, []);
+
+  const reset = useCallback(() => {
+    setState("idle");
+    setBriefing(null);
+    setError(null);
+  }, []);
+
   return {
     state,
     briefing,
@@ -95,6 +105,8 @@ export function useInterview(deps: UseInterviewDeps) {
     prepare,
     startInterview,
     stopInterview,
+    startQuizMode,
+    reset,
     // Voice passthrough
     voiceStatus: voice.status,
     transcript: voice.transcript,

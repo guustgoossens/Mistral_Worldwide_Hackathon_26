@@ -88,9 +88,27 @@ async function callMistral(
   }
 }
 
+export interface QuizFeedback {
+  isCorrect: boolean;
+  explanation: string;
+  correctAnswer?: string;
+}
+
+export interface QuizSessionStats {
+  questionNumber: number;
+  correctCount: number;
+  streak: number;
+}
+
 export function useKnowledge(conn?: KuzuConnection) {
   const [scores, setScores] = useState<Map<string, number>>(new Map());
   const [activeQuiz, setActiveQuiz] = useState<ActiveQuiz | null>(null);
+  const [feedback, setFeedback] = useState<QuizFeedback | null>(null);
+  const [sessionStats, setSessionStats] = useState<QuizSessionStats>({
+    questionNumber: 0,
+    correctCount: 0,
+    streak: 0,
+  });
   const [quizHistory, setQuizHistory] = useState<QuizHistoryEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -333,6 +351,11 @@ Rules:
           question,
           context,
         });
+        setFeedback(null);
+        setSessionStats((prev) => ({
+          ...prev,
+          questionNumber: prev.questionNumber + 1,
+        }));
       } catch (err) {
         console.error("[useKnowledge] Failed to start quiz:", err);
       } finally {
@@ -344,7 +367,7 @@ Rules:
 
   /**
    * Submit an answer to the active quiz question.
-   * Evaluates via Mistral, updates KuzuDB, and records history.
+   * Evaluates free-text answers via Mistral, updates KuzuDB, and records history.
    */
   const submitAnswer = useCallback(
     async (answer: string) => {
@@ -355,52 +378,17 @@ Rules:
 
       setIsLoading(true);
       const quiz = activeQuiz;
+      const isSkip = answer.toLowerCase() === "skip";
 
       try {
-        // Determine confidence based on answer
-        // QuizPanel sends "yes" (I know this) or "no" (Not sure)
-        const isConfident = answer.toLowerCase() === "yes";
-
         let result: "correct" | "incorrect";
         let explanation: string;
         let newConfidence: "deep" | "surface" | "none";
 
-        if (isConfident) {
-          // User claims to know it — evaluate further with Mistral if possible
-          try {
-            const evalResponse = await callMistral([
-              {
-                role: "system",
-                content:
-                  "You are evaluating a user's self-assessment of code knowledge. Respond with a JSON object: {\"result\": \"correct\", \"explanation\": \"...\"} or {\"result\": \"needs_verification\", \"explanation\": \"...\"}. Keep explanation under 50 words.",
-              },
-              {
-                role: "user",
-                content: `Question: ${quiz.question}\nFunction context:\n${quiz.context}\nUser's answer: I know this function well.\n\nGiven the context, provide brief encouragement and suggest one deeper aspect they could explore.`,
-              },
-            ]);
-
-            try {
-              // Try to parse as JSON
-              const cleanJson = evalResponse.replace(/```json\n?|\n?```/g, "").trim();
-              const parsed = JSON.parse(cleanJson);
-              result = "correct";
-              explanation = parsed.explanation || "Good — you're familiar with this function.";
-            } catch {
-              // Not JSON — use the raw response as explanation
-              result = "correct";
-              explanation = evalResponse.trim() || "Good — you're familiar with this function.";
-            }
-          } catch {
-            result = "correct";
-            explanation = "Marked as understood.";
-          }
-          newConfidence = "surface"; // Self-reported; upgrade to deep after multiple confirmations
-        } else {
-          // User is not sure
+        if (isSkip) {
+          // User skipped — mark as incorrect, provide explanation
           result = "incorrect";
           newConfidence = "none";
-
           try {
             const helpResponse = await callMistral([
               {
@@ -410,13 +398,45 @@ Rules:
               },
               {
                 role: "user",
-                content: `The user doesn't understand this function well. Please explain it briefly.\n\nFunction context:\n${quiz.context}`,
+                content: `The user skipped this question. Please explain the answer briefly.\n\nQuestion: ${quiz.question}\nFunction context:\n${quiz.context}`,
               },
             ]);
             explanation = helpResponse.trim() || `"${quiz.functionName}" needs further study.`;
           } catch {
             explanation = `Take some time to study "${quiz.functionName}" in ${quiz.filePath}.`;
           }
+        } else {
+          // Evaluate free-text answer via Mistral
+          try {
+            const evalResponse = await callMistral([
+              {
+                role: "system",
+                content: `You are evaluating a quiz answer about code. Respond with ONLY a JSON object (no markdown):
+{"correct": true/false, "explanation": "brief feedback (1-2 sentences)", "correctAnswer": "brief correct answer if wrong"}`,
+              },
+              {
+                role: "user",
+                content: `Question: ${quiz.question}\n\nFunction context:\n${quiz.context}\n\nUser's answer: ${answer}\n\nIs this answer correct? Evaluate whether the user demonstrates understanding of the function.`,
+              },
+            ]);
+
+            try {
+              const cleanJson = evalResponse.replace(/```json\n?|\n?```/g, "").trim();
+              const parsed = JSON.parse(cleanJson);
+              result = parsed.correct ? "correct" : "incorrect";
+              explanation = parsed.explanation || (parsed.correct ? "Good answer!" : "Not quite right.");
+            } catch {
+              // Couldn't parse JSON — check for keywords
+              const lower = evalResponse.toLowerCase();
+              result = lower.includes("correct") && !lower.includes("incorrect") ? "correct" : "incorrect";
+              explanation = evalResponse.trim() || "Answer evaluated.";
+            }
+          } catch {
+            // Mistral call failed — be generous and mark as correct
+            result = "correct";
+            explanation = "Answer recorded (could not verify with AI).";
+          }
+          newConfidence = result === "correct" ? "surface" : "none";
         }
 
         // Check if this is a repeated success — upgrade to deep
@@ -432,13 +452,11 @@ Rules:
 
         // Update UNDERSTANDS edge in KuzuDB
         try {
-          // Try MERGE first (upsert pattern)
           await queryGraph(
             conn,
             `MERGE (p:Person {id: '${DEFAULT_PERSON_ID}'})-[u:UNDERSTANDS]->(f:Function {id: '${esc(quiz.functionId)}'}) SET u.confidence = '${newConfidence}', u.source = 'quiz', u.lastAssessed = '${now}', u.needsRetest = false, u.summary_l1 = '${esc(`${DEFAULT_PERSON_NAME}: ${newConfidence} — ${quiz.functionName}`)}'`,
           );
         } catch {
-          // MERGE on relationships might not be supported — try delete + create
           try {
             await queryGraph(
               conn,
@@ -464,7 +482,6 @@ Rules:
             `CREATE (d:Discussion {id: '${discussionId}', timestamp: '${now}', transcript: '${esc(`Q: ${quiz.question}\nA: ${answer}`)}', summary_l1: '${esc(`Quiz on ${quiz.functionName}: ${result}`)}', quizResult: '${result}', confidenceBefore: '${quiz.functionName}', confidenceAfter: '${newConfidence}'})`,
           );
 
-          // Link Discussion to Person via HAS_PARTICIPANT
           try {
             await queryGraph(
               conn,
@@ -474,7 +491,6 @@ Rules:
             console.warn("[useKnowledge] Failed to create HAS_PARTICIPANT:", err);
           }
 
-          // Link Discussion to Function via ABOUT
           try {
             await queryGraph(
               conn,
@@ -512,8 +528,18 @@ Rules:
         };
         setQuizHistory((prev) => [...prev, historyEntry]);
 
-        // Clear active quiz
-        setActiveQuiz(null);
+        // Set feedback (don't clear activeQuiz — wait for nextQuestion/dismiss)
+        setFeedback({
+          isCorrect: result === "correct",
+          explanation,
+        });
+
+        // Update session stats
+        setSessionStats((prev) => ({
+          questionNumber: prev.questionNumber,
+          correctCount: prev.correctCount + (result === "correct" ? 1 : 0),
+          streak: result === "correct" ? prev.streak + 1 : 0,
+        }));
 
         console.log(
           `[useKnowledge] Quiz result: ${result} for ${quiz.functionName} (confidence: ${newConfidence})`,
@@ -529,13 +555,29 @@ Rules:
     [activeQuiz, conn, quizHistory],
   );
 
+  const dismissQuiz = useCallback(() => {
+    setActiveQuiz(null);
+    setFeedback(null);
+    setSessionStats({ questionNumber: 0, correctCount: 0, streak: 0 });
+  }, []);
+
+  const nextQuestion = useCallback(() => {
+    setFeedback(null);
+    setActiveQuiz(null);
+    startQuiz();
+  }, [startQuiz]);
+
   return {
     scores,
     activeQuiz,
+    feedback,
+    sessionStats,
     quizHistory,
     isLoading,
     startQuiz,
     submitAnswer,
+    dismissQuiz,
+    nextQuestion,
     getQuizCandidates,
   };
 }

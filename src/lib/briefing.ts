@@ -59,22 +59,27 @@ export async function generateBriefing(
 ): Promise<BriefingPacket> {
   const contextStr = JSON.stringify(context, null, 2);
 
-  const systemPrompt = `You are a codebase analyst. Given the following codebase context (files, functions, classes, call graph, imports, contributors), generate 5-8 interview questions to test a developer's understanding of this codebase.
+  const systemPrompt = `You are a JSON API that generates interview questions about codebases. You ONLY output valid JSON, never conversational text. Do not greet, do not explain, do not add any text outside the JSON object.`;
 
-For each question, provide:
-- "question": The question to ask (conversational, suitable for voice)
-- "groundTruth": The correct answer based on the data
-- "relatedNodes": Array of node IDs that relate to this question (format: "file:path" or "fn:path:name" or "class:path:name")
+  const userPrompt = `Analyze this codebase context and generate 5-8 interview questions.
 
-Also provide a "summary": A 2-3 sentence overview of the codebase.
+Codebase context:
+${contextStr}
 
-Respond with valid JSON only, no markdown fences:
+Return a JSON object with this exact structure:
 {
-  "summary": "...",
+  "summary": "2-3 sentence overview of the codebase",
   "questions": [
-    { "question": "...", "groundTruth": "...", "relatedNodes": ["..."] }
+    {
+      "question": "A conversational question suitable for voice, testing understanding of the codebase",
+      "groundTruth": "The correct answer based on the data above",
+      "relatedNodes": ["file:path/to/file.ts", "fn:path/to/file.ts:functionName"]
+    }
   ]
-}`;
+}
+
+Node ID formats: "file:filePath" for files, "fn:filePath:functionName" for functions, "class:filePath:className" for classes.
+Questions should cover: file structure, function relationships (calls), imports, contributor ownership, and architectural patterns.`;
 
   const response = await fetch(`${proxyUrl}/v1/chat/completions`, {
     method: "POST",
@@ -82,9 +87,11 @@ Respond with valid JSON only, no markdown fences:
     body: JSON.stringify({
       model: "devstral-small-2507",
       stream: false,
+      tools: [],
+      response_format: { type: "json_object" },
       messages: [
         { role: "system", content: systemPrompt },
-        { role: "user", content: `Here is the codebase context:\n\n${contextStr}` },
+        { role: "user", content: userPrompt },
       ],
     }),
   });
@@ -98,23 +105,41 @@ Respond with valid JSON only, no markdown fences:
   const rawText = await response.text();
   let content: string;
 
-  if (rawText.trimStart().startsWith("data: ")) {
+  if (rawText.trimStart().startsWith("data:")) {
     // SSE format — extract content from streamed chunks
     console.log("[briefing] Got SSE response, parsing chunks...");
+    console.log("[briefing] Raw response (first 500 chars):", rawText.slice(0, 500));
     let assembled = "";
-    for (const line of rawText.split("\n")) {
-      if (!line.startsWith("data: ") || line === "data: [DONE]") continue;
+    // Split on \r\n or \n to handle both line ending styles
+    for (const line of rawText.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed.startsWith("data:") || trimmed === "data: [DONE]") continue;
+      const jsonStr = trimmed.slice(trimmed.startsWith("data: ") ? 6 : 5);
       try {
-        const parsed = JSON.parse(line.slice(6));
-        const delta = parsed.choices?.[0]?.delta?.content ?? parsed.choices?.[0]?.message?.content ?? "";
+        const parsed = JSON.parse(jsonStr);
+        const delta = parsed.choices?.[0]?.delta?.content
+          ?? parsed.choices?.[0]?.message?.content
+          ?? "";
         assembled += delta;
-      } catch {}
+      } catch (e) {
+        console.log("[briefing] Failed to parse SSE chunk:", jsonStr.slice(0, 100));
+      }
     }
+    console.log("[briefing] Assembled content length:", assembled.length);
     content = assembled;
   } else {
     // Standard JSON response
+    console.log("[briefing] Got JSON response (first 500 chars):", rawText.slice(0, 500));
     const data = JSON.parse(rawText);
     content = data.choices?.[0]?.message?.content ?? "";
+    if (!content) {
+      // Might be a tool_calls response — log it
+      const toolCalls = data.choices?.[0]?.message?.tool_calls;
+      if (toolCalls) {
+        console.warn("[briefing] Mistral returned tool_calls instead of content:", JSON.stringify(toolCalls).slice(0, 300));
+      }
+      console.warn("[briefing] Full message object:", JSON.stringify(data.choices?.[0]?.message).slice(0, 500));
+    }
   }
 
   try {
@@ -145,9 +170,7 @@ export function composeBriefingPrompt(packet: BriefingPacket): string {
     .map(
       (q, i) => `### Question ${i + 1}
 Ask: "${q.question}"
-Ground truth: ${q.groundTruth}
-Related nodes: ${JSON.stringify(q.relatedNodes)}
-When asking this question, call highlightNodes with the related node IDs.`,
+Ground truth: ${q.groundTruth}`,
     )
     .join("\n\n");
 
@@ -165,19 +188,12 @@ You have ${packet.questions.length} pre-prepared questions. Ask them one at a ti
 
 ${questionsBlock}
 
-# Visualization Tools
-- highlightNodes({ nodeIds: [...] }) — highlight relevant nodes when asking a question
-- flyToNode({ nodeId: "..." }) — fly camera to a specific node
-- switchViewMode({ mode: "structure" | "contributors" | "knowledge" | "people" }) — switch overlay
-
-Use these to make the interview visual and engaging. Highlight related nodes before asking each question.
-
 # Flow
 1. Greet the developer briefly and tell them you have ${packet.questions.length} questions about their codebase
-2. Ask Question 1 (highlight related nodes first)
+2. Ask Question 1
 3. Listen to answer, evaluate, give feedback
 4. Continue through all questions
-5. After the last question, give a brief overall assessment
+5. After the last question, give a brief overall assessment and score
 
 # Voice Guidelines
 - Speak naturally — this is a voice conversation
@@ -189,5 +205,6 @@ Use these to make the interview visual and engaging. Highlight related nodes bef
 # Guardrails
 - Stay on topic — this is about the codebase
 - Don't make up information — only use what's in the briefing
-- If asked something outside the briefing, say "That's outside what I prepared, but great question"`;
+- If asked something outside the briefing, say "That's outside what I prepared, but great question"
+- NEVER use tool calls or function calls — just speak naturally`;
 }
