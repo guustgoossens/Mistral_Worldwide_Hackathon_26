@@ -36,6 +36,10 @@
         "globals": "^15.15.0",
         "prettier": "^3.5.0",
         "tailwindcss": "^4.0.0",
+        "tree-sitter": "^0.25.0",
+        "tree-sitter-javascript": "^0.25.0",
+        "tree-sitter-python": "^0.25.0",
+        "tree-sitter-typescript": "^0.23.2",
         "tsx": "^4.19.0",
         "typescript": "^5.7.0",
         "typescript-eslint": "^8.24.0",
@@ -43,6 +47,10 @@
       },
     },
   },
+  "trustedDependencies": [
+    "tree-sitter-python",
+    "tree-sitter-javascript",
+  ],
   "packages": {
     "3d-force-graph": ["3d-force-graph@1.79.1", "", { "dependencies": { "accessor-fn": "1", "kapsule": "^1.16", "three": ">=0.118 <1", "three-forcegraph": "1", "three-render-objects": "^1.35" } }, "sha512-iscIVt4jWjJ11KEEswgOIOWk8Ew4EFKHRyERJXJ0ouycqzHCtWwb9E5imnxS5rYF1f1IESkFNAfB+h3EkU0Irw=="],
 
@@ -764,9 +772,11 @@
 
     "ngraph.random": ["ngraph.random@1.2.0", "", {}, "sha512-4EUeAGbB2HWX9njd6bP6tciN6ByJfoaAvmVL9QTaZSeXrW46eNGA9GajiXiPBbvFqxUWFkEbyo6x5qsACUuVfA=="],
 
-    "node-addon-api": ["node-addon-api@6.1.0", "", {}, "sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA=="],
+    "node-addon-api": ["node-addon-api@8.6.0", "", {}, "sha512-gBVjCaqDlRUk0EwoPNKzIr9KkS9041G/q31IBShPs1Xz6UTA+EXdZADbzqAJQrpDRq71CIMnOP5VMut3SL0z5Q=="],
 
     "node-api-headers": ["node-api-headers@1.8.0", "", {}, "sha512-jfnmiKWjRAGbdD1yQS28bknFM1tbHC1oucyuMPjmkEs+kpiu76aRs40WlTmBmyEgzDM76ge1DQ7XJ3R5deiVjQ=="],
+
+    "node-gyp-build": ["node-gyp-build@4.8.4", "", { "bin": { "node-gyp-build": "bin.js", "node-gyp-build-optional": "optional.js", "node-gyp-build-test": "build-test.js" } }, "sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ=="],
 
     "node-releases": ["node-releases@2.0.27", "", {}, "sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA=="],
 
@@ -924,6 +934,14 @@
 
     "toidentifier": ["toidentifier@1.0.1", "", {}, "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA=="],
 
+    "tree-sitter": ["tree-sitter@0.25.0", "", { "dependencies": { "node-addon-api": "^8.3.0", "node-gyp-build": "^4.8.4" } }, "sha512-PGZZzFW63eElZJDe/b/R/LbsjDDYJa5UEjLZJB59RQsMX+fo0j54fqBPn1MGKav/QNa0JR0zBiVaikYDWCj5KQ=="],
+
+    "tree-sitter-javascript": ["tree-sitter-javascript@0.25.0", "", { "dependencies": { "node-addon-api": "^8.3.1", "node-gyp-build": "^4.8.4" }, "peerDependencies": { "tree-sitter": "^0.25.0" }, "optionalPeers": ["tree-sitter"] }, "sha512-1fCbmzAskZkxcZzN41sFZ2br2iqTYP3tKls1b/HKGNPQUVOpsUxpmGxdN/wMqAk3jYZnYBR1dd/y/0avMeU7dw=="],
+
+    "tree-sitter-python": ["tree-sitter-python@0.25.0", "", { "dependencies": { "node-addon-api": "^8.5.0", "node-gyp-build": "^4.8.4" }, "peerDependencies": { "tree-sitter": "^0.25.0" }, "optionalPeers": ["tree-sitter"] }, "sha512-eCmJx6zQa35GxaCtQD+wXHOhYqBxEL+bp71W/s3fcDMu06MrtzkVXR437dRrCrbrDbyLuUDJpAgycs7ncngLXw=="],
+
+    "tree-sitter-typescript": ["tree-sitter-typescript@0.23.2", "", { "dependencies": { "node-addon-api": "^8.2.2", "node-gyp-build": "^4.8.2", "tree-sitter-javascript": "^0.23.1" }, "peerDependencies": { "tree-sitter": "^0.21.0" }, "optionalPeers": ["tree-sitter"] }, "sha512-e04JUUKxTT53/x3Uq1zIL45DoYKVfHH4CZqwgZhPg5qYROl5nQjV+85ruFzFGZxu+QeFVbRTPDRnqL9UbU4VeA=="],
+
     "tree-sitter-wasms": ["tree-sitter-wasms@0.1.13", "", { "dependencies": { "tree-sitter-wasms": "^0.1.11" } }, "sha512-wT+cR6DwaIz80/vho3AvSF0N4txuNx/5bcRKoXouOfClpxh/qqrF4URNLQXbbt8MaAxeksZcZd1j8gcGjc+QxQ=="],
 
     "ts-api-utils": ["ts-api-utils@2.4.0", "", { "peerDependencies": { "typescript": ">=4.8.4" } }, "sha512-3TaVTaAv2gTiMB35i3FiGJaRfwb3Pyn/j3m/bfAvGe8FB7CF6u+LMYqYlDh7reQf7UNvoTvdfAqHGmPGOSsPmA=="],
@@ -1026,6 +1044,8 @@
 
     "fs-minipass/minipass": ["minipass@3.3.6", "", { "dependencies": { "yallist": "^4.0.0" } }, "sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw=="],
 
+    "kuzu/node-addon-api": ["node-addon-api@6.1.0", "", {}, "sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA=="],
+
     "lru-cache/yallist": ["yallist@3.1.1", "", {}, "sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g=="],
 
     "minizlib/minipass": ["minipass@3.3.6", "", { "dependencies": { "yallist": "^4.0.0" } }, "sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw=="],
@@ -1033,6 +1053,8 @@
     "rc/strip-json-comments": ["strip-json-comments@2.0.1", "", {}, "sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ=="],
 
     "table-layout/array-back": ["array-back@6.2.2", "", {}, "sha512-gUAZ7HPyb4SJczXAMUXMGAvI976JoK3qEx9v1FTmeYuJj0IBiaKttG1ydtGKdkfqWkIkouke7nG8ufGy77+Cvw=="],
+
+    "tree-sitter-typescript/tree-sitter-javascript": ["tree-sitter-javascript@0.23.1", "", { "dependencies": { "node-addon-api": "^8.2.2", "node-gyp-build": "^4.8.2" }, "peerDependencies": { "tree-sitter": "^0.21.1" }, "optionalPeers": ["tree-sitter"] }, "sha512-/bnhbrTD9frUYHQTiYnPcxyHORIw157ERBa6dqzaKxvR/x3PC4Yzd+D1pZIMS6zNg2v3a8BZ0oK7jHqsQo9fWA=="],
 
     "vite/esbuild": ["esbuild@0.25.12", "", { "optionalDependencies": { "@esbuild/aix-ppc64": "0.25.12", "@esbuild/android-arm": "0.25.12", "@esbuild/android-arm64": "0.25.12", "@esbuild/android-x64": "0.25.12", "@esbuild/darwin-arm64": "0.25.12", "@esbuild/darwin-x64": "0.25.12", "@esbuild/freebsd-arm64": "0.25.12", "@esbuild/freebsd-x64": "0.25.12", "@esbuild/linux-arm": "0.25.12", "@esbuild/linux-arm64": "0.25.12", "@esbuild/linux-ia32": "0.25.12", "@esbuild/linux-loong64": "0.25.12", "@esbuild/linux-mips64el": "0.25.12", "@esbuild/linux-ppc64": "0.25.12", "@esbuild/linux-riscv64": "0.25.12", "@esbuild/linux-s390x": "0.25.12", "@esbuild/linux-x64": "0.25.12", "@esbuild/netbsd-arm64": "0.25.12", "@esbuild/netbsd-x64": "0.25.12", "@esbuild/openbsd-arm64": "0.25.12", "@esbuild/openbsd-x64": "0.25.12", "@esbuild/openharmony-arm64": "0.25.12", "@esbuild/sunos-x64": "0.25.12", "@esbuild/win32-arm64": "0.25.12", "@esbuild/win32-ia32": "0.25.12", "@esbuild/win32-x64": "0.25.12" }, "bin": { "esbuild": "bin/esbuild" } }, "sha512-bbPBYYrtZbkt6Os6FiTLCTFxvq4tt3JKall1vRwshA3fdVztsLAatFaZobhkBC8/BrPetoa0oksYoKXoG4ryJg=="],
 
