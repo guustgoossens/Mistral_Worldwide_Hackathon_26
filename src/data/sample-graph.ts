@@ -103,11 +103,11 @@ export async function loadSampleIntoKuzu(conn: any): Promise<void> {
 function nodeInsertCypher(node: VizNode): string | null {
   switch (node.type) {
     case "file":
-      return `CREATE (n:File {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}'})`;
+      return `CREATE (n:File {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}', summary: '', relevance: 0.5})`;
     case "function":
-      return `CREATE (n:Function {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}', startLine: 0, endLine: 0, summary_l1: '${esc(node.summary ?? "")}', summary_l2: '', summary_l3: '', structuralImportance: 0.5})`;
+      return `CREATE (n:Function {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}', startLine: 0, endLine: 0, summary: '${esc(node.summary ?? "")}', relevance: 0.5})`;
     case "class":
-      return `CREATE (n:Class {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}'})`;
+      return `CREATE (n:Class {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}', summary: '', relevance: 0.5})`;
     default:
       return null;
   }
