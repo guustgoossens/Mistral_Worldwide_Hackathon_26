@@ -16,7 +16,7 @@ export default function App() {
   const kuzu = useKuzu();
   const { graphData, overlayMode, setOverlayMode, selectedNode, selectNode, highlightedIds, highlightNodes } =
     useGraph(kuzu);
-  const knowledge = useKnowledge();
+  const knowledge = useKnowledge(kuzu.conn);
   const graphRef = useRef<Graph3DHandle>(null);
 
   const selectNodeById = useCallback(
@@ -36,18 +36,33 @@ export default function App() {
     startQuiz: knowledge.startQuiz,
   });
 
+  const handleStartQuiz = useCallback(() => {
+    const targetId = selectedNode?.id ?? "_random";
+    knowledge.startQuiz(targetId);
+  }, [selectedNode, knowledge]);
+
+  const isQuizActive = knowledge.activeQuiz !== null;
+
   return (
     <Layout overlayMode={overlayMode} onOverlayChange={setOverlayMode} sidebar={<SidebarContent />}>
       <Graph3D ref={graphRef} data={graphData} onNodeClick={selectNode} highlightedIds={highlightedIds} />
       <AgentStatus kuzuReady={kuzu.isReady} voiceStatus={voice.status} />
       <NodeDetail node={selectedNode} onClose={() => selectNode(null)} />
-      <QuizPanel question={knowledge.activeQuiz?.question ?? null} onAnswer={knowledge.submitAnswer} />
+      <QuizPanel
+        question={knowledge.activeQuiz?.question ?? null}
+        onAnswer={knowledge.submitAnswer}
+        isLoading={knowledge.isLoading}
+        onNextQuestion={() => knowledge.startQuiz("_random")}
+        targetName={knowledge.activeQuiz?.functionName}
+      />
       <VoiceControls
         status={voice.status}
         isSpeaking={voice.isSpeaking}
         transcript={voice.transcript}
         onStart={voice.start}
         onStop={voice.stop}
+        onStartQuiz={handleStartQuiz}
+        isQuizActive={isQuizActive}
       />
     </Layout>
   );

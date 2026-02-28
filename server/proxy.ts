@@ -132,6 +132,35 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
+/** Test endpoint: simulate a tool-result round-trip to debug Mistral response format */
+app.get("/test-tool-roundtrip", async (_req, res) => {
+  const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
+  if (!MISTRAL_API_KEY) { res.status(500).json({ error: "no key" }); return; }
+
+  const testMessages = [
+    { role: "system", content: "You are a helpful assistant. Answer briefly." },
+    { role: "user", content: "What files relate to agents?" },
+    { role: "assistant", content: "Let me check.", tool_calls: [{ id: "call_test1", type: "function", function: { name: "queryGraph", arguments: '{"cypher":"MATCH (f:File) RETURN f.name LIMIT 3"}' } }] },
+    { role: "tool", name: "queryGraph", tool_call_id: "call_test1", content: '[{"f.name":"agent-tools.ts"}]' },
+  ];
+
+  try {
+    const upstream = await fetch(MISTRAL_BASE, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${MISTRAL_API_KEY}` },
+      body: JSON.stringify({ model: DEFAULT_MODEL, stream: true, messages: testMessages, tools: TOOLS }),
+    });
+
+    console.log(`[test] Mistral status: ${upstream.status}`);
+    const body = await upstream.text();
+    console.log(`[test] Mistral response:\n${body}`);
+    res.setHeader("Content-Type", "text/plain");
+    res.send(`Status: ${upstream.status}\n\n${body}`);
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
+});
+
 app.get("/v1/models", (_req, res) => {
   res.json({ data: [{ id: "devstral-small-2507", object: "model" }] });
 });
@@ -145,19 +174,67 @@ app.post("/v1/chat/completions", async (req, res) => {
 
   const messages = req.body.messages ?? [];
   const lastMsg = messages[messages.length - 1];
+  const incomingToolNames = (req.body.tools ?? []).map((t: any) => t.function?.name).filter(Boolean);
   console.log(
-    `[proxy] messages=${messages.length} tools=${req.body.tools?.length ?? 0} lastRole=${lastMsg?.role ?? "none"} stream=${req.body.stream}`,
+    `[proxy] ← REQ messages=${messages.length} tools=[${incomingToolNames.join(",")}] lastRole=${lastMsg?.role ?? "none"} stream=${req.body.stream} model=${req.body.model}`,
   );
+
+  // Log each message role + summary
+  for (const msg of messages) {
+    const content = typeof msg.content === "string" ? msg.content.slice(0, 120) : JSON.stringify(msg.content)?.slice(0, 120);
+    const toolCalls = msg.tool_calls ? ` tool_calls=[${msg.tool_calls.map((tc: any) => tc.function?.name).join(",")}]` : "";
+    const toolCallId = msg.tool_call_id ? ` tool_call_id=${msg.tool_call_id}` : "";
+    console.log(`[proxy]   ${msg.role}${toolCalls}${toolCallId}: ${content}`);
+  }
+
+  // Normalize messages for Mistral compatibility
+  // 1. Ensure tool messages have `name` (required by Mistral, sometimes omitted by ElevenLabs)
+  // 2. Ensure tool message content is a string
+  const normalizedMessages = messages.map((msg: any, i: number) => {
+    if (msg.role !== "tool") return msg;
+
+    const fixed = { ...msg };
+
+    // Add `name` by looking up the tool_call_id in the preceding assistant message
+    if (!fixed.name && fixed.tool_call_id) {
+      for (let j = i - 1; j >= 0; j--) {
+        const prev = messages[j];
+        if (prev.role === "assistant" && prev.tool_calls) {
+          const tc = prev.tool_calls.find((t: any) => t.id === fixed.tool_call_id);
+          if (tc?.function?.name) {
+            fixed.name = tc.function.name;
+            console.log(`[proxy] Patched tool message: added name="${fixed.name}" from tool_call_id=${fixed.tool_call_id}`);
+            break;
+          }
+        }
+      }
+    }
+
+    // Ensure content is a string
+    if (typeof fixed.content !== "string") {
+      fixed.content = JSON.stringify(fixed.content);
+      console.log(`[proxy] Patched tool message: stringified content for ${fixed.name ?? fixed.tool_call_id}`);
+    }
+
+    return fixed;
+  });
 
   // Strip ElevenLabs-specific fields Mistral doesn't understand
   const { user_id, elevenlabs_extra_body, ...rest } = req.body;
 
   const body = {
     ...rest,
+    messages: normalizedMessages,
     model: DEFAULT_MODEL,
     stream: true, // ElevenLabs always requires SSE streaming
     tools: req.body.tools?.length ? req.body.tools : TOOLS,
   };
+
+  // Log full request body when it contains tool results (the failure case)
+  const hasToolResults = normalizedMessages.some((m: any) => m.role === "tool");
+  if (hasToolResults) {
+    console.log(`[proxy] ⚡ Tool-result request body:\n${JSON.stringify(body, null, 2).slice(0, 2000)}`);
+  }
 
   try {
     const upstream = await fetch(MISTRAL_BASE, {
@@ -168,6 +245,20 @@ app.post("/v1/chat/completions", async (req, res) => {
       },
       body: JSON.stringify(body),
     });
+
+    // Check for upstream errors BEFORE streaming
+    if (!upstream.ok) {
+      const errorBody = await upstream.text();
+      console.error(`[proxy] ✗ Mistral returned ${upstream.status}: ${errorBody.slice(0, 500)}`);
+      // Return error as a proper JSON response so ElevenLabs gets a clear signal
+      res.status(upstream.status).json({
+        error: {
+          message: `Mistral API error: ${upstream.status}`,
+          detail: errorBody.slice(0, 500),
+        },
+      });
+      return;
+    }
 
     if (body.stream) {
       res.setHeader("Content-Type", "text/event-stream");
@@ -182,13 +273,37 @@ app.post("/v1/chat/completions", async (req, res) => {
       const reader = upstream.body.getReader();
       const decoder = new TextDecoder();
 
+      // Buffer chunks to log tool_calls and content from the streamed response
+      let fullResponse = "";
       const pump = async () => {
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
-          res.write(decoder.decode(value, { stream: true }));
+          const chunk = decoder.decode(value, { stream: true });
+          fullResponse += chunk;
+          res.write(chunk);
         }
         res.end();
+
+        // Parse streamed chunks to extract tool_calls and content
+        const toolCalls: string[] = [];
+        let contentSnippet = "";
+        for (const line of fullResponse.split("\n")) {
+          if (!line.startsWith("data: ") || line === "data: [DONE]") continue;
+          try {
+            const parsed = JSON.parse(line.slice(6));
+            const delta = parsed.choices?.[0]?.delta;
+            if (delta?.tool_calls) {
+              for (const tc of delta.tool_calls) {
+                if (tc.function?.name) toolCalls.push(tc.function.name);
+              }
+            }
+            if (delta?.content) contentSnippet += delta.content;
+          } catch {}
+        }
+        console.log(
+          `[proxy] → RES tool_calls=[${toolCalls.join(",")}] content="${contentSnippet.slice(0, 150)}"`,
+        );
       };
 
       pump().catch((err) => {
@@ -197,6 +312,7 @@ app.post("/v1/chat/completions", async (req, res) => {
       });
     } else {
       const data = await upstream.json();
+      console.log(`[proxy] → RES (non-stream) status=${upstream.status}`, JSON.stringify(data).slice(0, 300));
       res.status(upstream.status).json(data);
     }
   } catch (err) {
