@@ -6,32 +6,17 @@ const PORT = process.env.PORT ?? 3001;
 const MISTRAL_BASE = "https://api.mistral.ai/v1/chat/completions";
 const DEFAULT_MODEL = "devstral-small-2507";
 
-/** Tool definitions injected when ElevenLabs doesn't send its own. */
+/** Pre-computed briefing injected as system message when set. */
+let currentBriefing: string | null = null;
+
+/** Tool definitions — visualization only (no queryGraph/startQuiz). */
 const TOOLS = [
-  {
-    type: "function" as const,
-    function: {
-      name: "queryGraph",
-      description:
-        "Execute a Cypher query against the codebase knowledge graph in KuzuDB. Use this to answer any question about files, functions, classes, contributors, or relationships.",
-      parameters: {
-        type: "object",
-        properties: {
-          cypher: {
-            type: "string",
-            description: "The Cypher query to execute",
-          },
-        },
-        required: ["cypher"],
-      },
-    },
-  },
   {
     type: "function" as const,
     function: {
       name: "highlightNodes",
       description:
-        "Highlight specific nodes in the 3D graph visualization. Call after queryGraph with the IDs from results.",
+        "Highlight specific nodes in the 3D graph visualization. Call with IDs from the briefing context.",
       parameters: {
         type: "object",
         properties: {
@@ -100,28 +85,10 @@ const TOOLS = [
       },
     },
   },
-  {
-    type: "function" as const,
-    function: {
-      name: "startQuiz",
-      description:
-        "Start a knowledge quiz to test the user's understanding of the codebase. Optionally focused on a topic.",
-      parameters: {
-        type: "object",
-        properties: {
-          topic: {
-            type: "string",
-            description: "Optional topic to focus the quiz on",
-          },
-        },
-        required: [],
-      },
-    },
-  },
 ];
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 
 app.use((req, _res, next) => {
   console.log(`[proxy] ${req.method} ${req.path}`);
@@ -132,33 +99,21 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-/** Test endpoint: simulate a tool-result round-trip to debug Mistral response format */
-app.get("/test-tool-roundtrip", async (_req, res) => {
-  const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
-  if (!MISTRAL_API_KEY) { res.status(500).json({ error: "no key" }); return; }
-
-  const testMessages = [
-    { role: "system", content: "You are a helpful assistant. Answer briefly." },
-    { role: "user", content: "What files relate to agents?" },
-    { role: "assistant", content: "Let me check.", tool_calls: [{ id: "call_test1", type: "function", function: { name: "queryGraph", arguments: '{"cypher":"MATCH (f:File) RETURN f.name LIMIT 3"}' } }] },
-    { role: "tool", name: "queryGraph", tool_call_id: "call_test1", content: '[{"f.name":"agent-tools.ts"}]' },
-  ];
-
-  try {
-    const upstream = await fetch(MISTRAL_BASE, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${MISTRAL_API_KEY}` },
-      body: JSON.stringify({ model: DEFAULT_MODEL, stream: true, messages: testMessages, tools: TOOLS }),
-    });
-
-    console.log(`[test] Mistral status: ${upstream.status}`);
-    const body = await upstream.text();
-    console.log(`[test] Mistral response:\n${body}`);
-    res.setHeader("Content-Type", "text/plain");
-    res.send(`Status: ${upstream.status}\n\n${body}`);
-  } catch (err) {
-    res.status(500).json({ error: String(err) });
+/** Store a pre-computed briefing to inject as system message. */
+app.post("/briefing", (req, res) => {
+  const { briefing } = req.body;
+  if (!briefing || typeof briefing !== "string") {
+    res.status(400).json({ error: "Missing or invalid 'briefing' string" });
+    return;
   }
+  currentBriefing = briefing;
+  console.log(`[proxy] Briefing stored (${briefing.length} chars)`);
+  res.json({ ok: true, length: briefing.length });
+});
+
+/** Check if a briefing is loaded. */
+app.get("/briefing", (_req, res) => {
+  res.json({ ready: currentBriefing !== null, length: currentBriefing?.length ?? 0 });
 });
 
 app.get("/v1/models", (_req, res) => {
@@ -188,8 +143,6 @@ app.post("/v1/chat/completions", async (req, res) => {
   }
 
   // Normalize messages for Mistral compatibility
-  // 1. Ensure tool messages have `name` (required by Mistral, sometimes omitted by ElevenLabs)
-  // 2. Ensure tool message content is a string
   const normalizedMessages = messages.map((msg: any, i: number) => {
     if (msg.role !== "tool") return msg;
 
@@ -219,18 +172,36 @@ app.post("/v1/chat/completions", async (req, res) => {
     return fixed;
   });
 
-  // Strip ElevenLabs-specific fields Mistral doesn't understand
-  const { user_id, elevenlabs_extra_body, ...rest } = req.body;
+  // Inject briefing into system message if available
+  if (currentBriefing) {
+    const systemIdx = normalizedMessages.findIndex((m: any) => m.role === "system");
+    if (systemIdx >= 0) {
+      normalizedMessages[systemIdx] = { ...normalizedMessages[systemIdx], content: currentBriefing };
+      console.log(`[proxy] Injected briefing into system message`);
+    } else {
+      normalizedMessages.unshift({ role: "system", content: currentBriefing });
+      console.log(`[proxy] Injected briefing as new system message`);
+    }
+  }
+
+  // Strip ElevenLabs-specific fields and fields we override
+  const { user_id, elevenlabs_extra_body, messages: _msgs, model: _model, stream: _stream, tools: _tools, ...rest } = req.body;
+
+  // Allow devstral-2507 for preparation, otherwise use default
+  const model = req.body.model === "devstral-2507" ? "devstral-2507" : DEFAULT_MODEL;
+  const stream = req.body.stream === false ? false : true;
+
+  console.log(`[proxy] stream=${stream} (raw=${req.body.stream})`);
 
   const body = {
     ...rest,
     messages: normalizedMessages,
-    model: DEFAULT_MODEL,
-    stream: true, // ElevenLabs always requires SSE streaming
+    model,
+    stream,
     tools: req.body.tools?.length ? req.body.tools : TOOLS,
   };
 
-  // Log full request body when it contains tool results (the failure case)
+  // Log full request body when it contains tool results
   const hasToolResults = normalizedMessages.some((m: any) => m.role === "tool");
   if (hasToolResults) {
     console.log(`[proxy] ⚡ Tool-result request body:\n${JSON.stringify(body, null, 2).slice(0, 2000)}`);
@@ -250,7 +221,6 @@ app.post("/v1/chat/completions", async (req, res) => {
     if (!upstream.ok) {
       const errorBody = await upstream.text();
       console.error(`[proxy] ✗ Mistral returned ${upstream.status}: ${errorBody.slice(0, 500)}`);
-      // Return error as a proper JSON response so ElevenLabs gets a clear signal
       res.status(upstream.status).json({
         error: {
           message: `Mistral API error: ${upstream.status}`,
@@ -273,7 +243,6 @@ app.post("/v1/chat/completions", async (req, res) => {
       const reader = upstream.body.getReader();
       const decoder = new TextDecoder();
 
-      // Buffer chunks to log tool_calls and content from the streamed response
       let fullResponse = "";
       const pump = async () => {
         while (true) {
