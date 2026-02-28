@@ -25,3 +25,19 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+/* Quiz panel slide-up entrance animation */
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slide-up-fade 0.25s ease-out;
+}

@@ -1,4 +1,4 @@
-import { Mic, MicOff, Loader2 } from "lucide-react";
+import { Mic, MicOff, Loader2, Brain } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type VoiceStatus = "disconnected" | "connecting" | "connected" | "disconnecting";
@@ -9,9 +9,20 @@ interface VoiceControlsProps {
   transcript: { role: string; content: string }[];
   onStart: () => void;
   onStop: () => void;
+  // Quiz mode props (optional for backward compat)
+  onStartQuiz?: () => void;
+  isQuizActive?: boolean;
 }
 
-export function VoiceControls({ status, isSpeaking, transcript, onStart, onStop }: VoiceControlsProps) {
+export function VoiceControls({
+  status,
+  isSpeaking,
+  transcript,
+  onStart,
+  onStop,
+  onStartQuiz,
+  isQuizActive = false,
+}: VoiceControlsProps) {
   const isConnected = status === "connected";
   const isTransitioning = status === "connecting" || status === "disconnecting";
 
@@ -28,29 +39,61 @@ export function VoiceControls({ status, isSpeaking, transcript, onStart, onStop 
         </div>
       )}
 
-      {/* Mic button */}
-      <button
-        onClick={isConnected ? onStop : onStart}
-        disabled={isTransitioning}
-        className={cn(
-          "flex h-14 w-14 items-center justify-center rounded-full transition-all",
-          isConnected
-            ? isSpeaking
-              ? "animate-pulse bg-accent shadow-lg shadow-accent/40"
-              : "bg-accent shadow-lg shadow-accent/30"
-            : isTransitioning
-              ? "cursor-wait bg-surface/80"
-              : "bg-surface hover:bg-border",
+      {/* Button row: Quiz me + Mic */}
+      <div className="flex items-center gap-3">
+        {/* Quiz me button */}
+        {onStartQuiz && (
+          <button
+            onClick={onStartQuiz}
+            disabled={isTransitioning}
+            className={cn(
+              "flex h-10 items-center gap-2 rounded-full px-4 transition-all",
+              isQuizActive
+                ? "bg-amber-500/20 border border-amber-500/30 shadow-lg shadow-amber-500/10"
+                : "bg-surface/80 border border-border hover:border-accent/40 hover:bg-surface",
+            )}
+          >
+            <Brain
+              className={cn(
+                "h-4 w-4 transition-colors",
+                isQuizActive ? "text-amber-400 animate-pulse" : "text-text-muted",
+              )}
+            />
+            <span
+              className={cn(
+                "text-xs font-medium transition-colors",
+                isQuizActive ? "text-amber-400" : "text-text-muted",
+              )}
+            >
+              {isQuizActive ? "Quizzing..." : "Quiz me"}
+            </span>
+          </button>
         )}
-      >
-        {isTransitioning ? (
-          <Loader2 className="h-6 w-6 animate-spin text-text-muted" />
-        ) : isConnected ? (
-          <MicOff className="h-6 w-6 text-white" />
-        ) : (
-          <Mic className="h-6 w-6 text-text-muted" />
-        )}
-      </button>
+
+        {/* Mic button */}
+        <button
+          onClick={isConnected ? onStop : onStart}
+          disabled={isTransitioning}
+          className={cn(
+            "flex h-14 w-14 items-center justify-center rounded-full transition-all",
+            isConnected
+              ? isSpeaking
+                ? "animate-pulse bg-accent shadow-lg shadow-accent/40"
+                : "bg-accent shadow-lg shadow-accent/30"
+              : isTransitioning
+                ? "cursor-wait bg-surface/80"
+                : "bg-surface hover:bg-border",
+          )}
+        >
+          {isTransitioning ? (
+            <Loader2 className="h-6 w-6 animate-spin text-text-muted" />
+          ) : isConnected ? (
+            <MicOff className="h-6 w-6 text-white" />
+          ) : (
+            <Mic className="h-6 w-6 text-text-muted" />
+          )}
+        </button>
+      </div>
 
       <p className="text-xs text-text-muted">
         {status === "connected"
