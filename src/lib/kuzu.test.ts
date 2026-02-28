@@ -350,3 +350,281 @@ describe("deriveVizData", () => {
     expect(data.nodes[0]!.contributors).toBeDefined();
   });
 });
+
+// ---------------------------------------------------------------------------
+// deriveVizData — knowledge overlay
+// ---------------------------------------------------------------------------
+
+describe("deriveVizData — knowledge overlay", () => {
+  function createKnowledgeMockConn(understandRows: Record<string, string>[] = []) {
+    const responses = new Map<string, unknown>();
+
+    responses.set(`MATCH (f:Function) RETURN f.id, f.name, f.filePath`, {
+      getAll: () => [
+        { "f.id": "fn:login", "f.name": "login", "f.filePath": "src/auth.ts" },
+        { "f.id": "fn:logout", "f.name": "logout", "f.filePath": "src/auth.ts" },
+        { "f.id": "fn:hash", "f.name": "hash", "f.filePath": "src/crypto.ts" },
+      ],
+    });
+
+    responses.set(`MATCH (p:Person)-[u:UNDERSTANDS]->(f:Function) RETURN f.id AS funcId, u.confidence AS confidence`, {
+      getAll: () => understandRows,
+    });
+
+    responses.set(`MATCH (f:File) RETURN f.id, f.name, f.filePath`, {
+      getAll: () => [
+        { "f.id": "f:auth.ts", "f.name": "auth.ts", "f.filePath": "src/auth.ts" },
+      ],
+    });
+
+    responses.set(`MATCH (c:Class) RETURN c.id, c.name, c.filePath`, {
+      getAll: () => [
+        { "c.id": "c:Auth", "c.name": "Auth", "c.filePath": "src/auth.ts" },
+      ],
+    });
+
+    responses.set(`MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`, {
+      getAll: () => [{ "a.id": "f:auth.ts", "b.id": "fn:login" }],
+    });
+
+    responses.set(`MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`, {
+      getAll: () => [{ "a.id": "fn:login", "b.id": "fn:hash" }],
+    });
+
+    return createMockConn(responses);
+  }
+
+  it("colors functions by confidence: deep=#10b981, surface=#f59e0b, none=#ef4444", async () => {
+    const conn = createKnowledgeMockConn([
+      { funcId: "fn:login", confidence: "deep" },
+      { funcId: "fn:logout", confidence: "surface" },
+    ]);
+    const data = await deriveVizData(conn, "knowledge");
+
+    const login = data.nodes.find((n) => n.id === "fn:login");
+    const logout = data.nodes.find((n) => n.id === "fn:logout");
+    const hash = data.nodes.find((n) => n.id === "fn:hash");
+
+    expect(login?.color).toBe("#10b981");
+    expect(logout?.color).toBe("#f59e0b");
+    expect(hash?.color).toBe("#ef4444");
+  });
+
+  it("assigns knowledgeScore: deep=1.0, surface=0.5, none=0.0", async () => {
+    const conn = createKnowledgeMockConn([
+      { funcId: "fn:login", confidence: "deep" },
+      { funcId: "fn:logout", confidence: "surface" },
+    ]);
+    const data = await deriveVizData(conn, "knowledge");
+
+    const login = data.nodes.find((n) => n.id === "fn:login");
+    const logout = data.nodes.find((n) => n.id === "fn:logout");
+    const hash = data.nodes.find((n) => n.id === "fn:hash");
+
+    expect(login?.knowledgeScore).toBe(1.0);
+    expect(logout?.knowledgeScore).toBe(0.5);
+    expect(hash?.knowledgeScore).toBe(0.0);
+  });
+
+  it("confidence priority: deep > surface > none (multiple UNDERSTANDS for same function)", async () => {
+    const conn = createKnowledgeMockConn([
+      { funcId: "fn:login", confidence: "none" },
+      { funcId: "fn:login", confidence: "surface" },
+      { funcId: "fn:login", confidence: "deep" },
+    ]);
+    const data = await deriveVizData(conn, "knowledge");
+
+    const login = data.nodes.find((n) => n.id === "fn:login");
+    expect(login?.color).toBe("#10b981");
+    expect(login?.knowledgeScore).toBe(1.0);
+  });
+
+  it("files/classes get neutral gray #4b5563", async () => {
+    const conn = createKnowledgeMockConn();
+    const data = await deriveVizData(conn, "knowledge");
+
+    const file = data.nodes.find((n) => n.id === "f:auth.ts");
+    const cls = data.nodes.find((n) => n.id === "c:Auth");
+
+    expect(file?.color).toBe("#4b5563");
+    expect(cls?.color).toBe("#4b5563");
+  });
+
+  it("graceful degradation when no UNDERSTANDS data", async () => {
+    const conn = createKnowledgeMockConn([]);
+    const data = await deriveVizData(conn, "knowledge");
+
+    // All functions should be red (no knowledge)
+    const fns = data.nodes.filter((n) => n.type === "function");
+    expect(fns).toHaveLength(3);
+    for (const fn of fns) {
+      expect(fn.color).toBe("#ef4444");
+      expect(fn.knowledgeScore).toBe(0.0);
+    }
+  });
+
+  it("includes CONTAINS and CALLS edges, no IMPORTS", async () => {
+    const conn = createKnowledgeMockConn();
+    const data = await deriveVizData(conn, "knowledge");
+
+    const containsEdges = data.links.filter((l) => l.type === "contains");
+    const callsEdges = data.links.filter((l) => l.type === "calls");
+    const importsEdges = data.links.filter((l) => l.type === "imports");
+
+    expect(containsEdges).toHaveLength(1);
+    expect(callsEdges).toHaveLength(1);
+    expect(importsEdges).toHaveLength(0);
+  });
+
+  it("no Person nodes in output", async () => {
+    const conn = createKnowledgeMockConn([
+      { funcId: "fn:login", confidence: "deep" },
+    ]);
+    const data = await deriveVizData(conn, "knowledge");
+
+    const personNodes = data.nodes.filter((n) => n.type === "person");
+    expect(personNodes).toHaveLength(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// deriveVizData — people overlay
+// ---------------------------------------------------------------------------
+
+describe("deriveVizData — people overlay", () => {
+  function createPeopleMockConn(
+    personRows: Record<string, string>[] = [],
+    contribEdges: Record<string, string>[] = [],
+    understandEdges: Record<string, string>[] = [],
+  ) {
+    const responses = new Map<string, unknown>();
+
+    responses.set(`MATCH (p:Person) RETURN p.id, p.name, p.email`, {
+      getAll: () => personRows,
+    });
+
+    responses.set(`MATCH (f:File) RETURN f.id, f.name, f.filePath`, {
+      getAll: () => [
+        { "f.id": "f:auth.ts", "f.name": "auth.ts", "f.filePath": "src/auth.ts" },
+      ],
+    });
+
+    responses.set(`MATCH (f:Function) RETURN f.id, f.name, f.filePath`, {
+      getAll: () => [
+        { "f.id": "fn:login", "f.name": "login", "f.filePath": "src/auth.ts" },
+      ],
+    });
+
+    responses.set(`MATCH (c:Class) RETURN c.id, c.name, c.filePath`, {
+      getAll: () => [
+        { "c.id": "c:Auth", "c.name": "Auth", "c.filePath": "src/auth.ts" },
+      ],
+    });
+
+    responses.set(`MATCH (p:Person)-[:CONTRIBUTED]->(f:File) RETURN p.id, f.id`, {
+      getAll: () => contribEdges,
+    });
+
+    responses.set(`MATCH (p:Person)-[:UNDERSTANDS]->(f:Function) RETURN p.id, f.id`, {
+      getAll: () => understandEdges,
+    });
+
+    responses.set(`MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`, {
+      getAll: () => [{ "a.id": "f:auth.ts", "b.id": "fn:login" }],
+    });
+
+    return createMockConn(responses);
+  }
+
+  it("Person nodes are visible: type 'person', color #8b5cf6, val 8", async () => {
+    const conn = createPeopleMockConn(
+      [{ "p.id": "p:alice", "p.name": "Alice", "p.email": "alice@example.com" }],
+    );
+    const data = await deriveVizData(conn, "people");
+
+    const person = data.nodes.find((n) => n.id === "p:alice");
+    expect(person).toBeDefined();
+    expect(person?.type).toBe("person");
+    expect(person?.color).toBe("#8b5cf6");
+    expect(person?.val).toBe(8);
+  });
+
+  it("code nodes have reduced val 3", async () => {
+    const conn = createPeopleMockConn(
+      [{ "p.id": "p:alice", "p.name": "Alice", "p.email": "alice@example.com" }],
+    );
+    const data = await deriveVizData(conn, "people");
+
+    const file = data.nodes.find((n) => n.id === "f:auth.ts");
+    const fn = data.nodes.find((n) => n.id === "fn:login");
+    const cls = data.nodes.find((n) => n.id === "c:Auth");
+
+    expect(file?.val).toBe(3);
+    expect(fn?.val).toBe(3);
+    expect(cls?.val).toBe(3);
+  });
+
+  it("code nodes keep standard TYPE_COLORS", async () => {
+    const conn = createPeopleMockConn(
+      [{ "p.id": "p:alice", "p.name": "Alice", "p.email": "alice@example.com" }],
+    );
+    const data = await deriveVizData(conn, "people");
+
+    const file = data.nodes.find((n) => n.id === "f:auth.ts");
+    const fn = data.nodes.find((n) => n.id === "fn:login");
+    const cls = data.nodes.find((n) => n.id === "c:Auth");
+
+    expect(file?.color).toBe("#6366f1");
+    expect(fn?.color).toBe("#f59e0b");
+    expect(cls?.color).toBe("#10b981");
+  });
+
+  it("CONTRIBUTED edges (Person→File) present", async () => {
+    const conn = createPeopleMockConn(
+      [{ "p.id": "p:alice", "p.name": "Alice", "p.email": "alice@example.com" }],
+      [{ "p.id": "p:alice", "f.id": "f:auth.ts" }],
+    );
+    const data = await deriveVizData(conn, "people");
+
+    const contribLinks = data.links.filter((l) => l.type === "contributed");
+    expect(contribLinks).toHaveLength(1);
+    expect(contribLinks[0]?.source).toBe("p:alice");
+    expect(contribLinks[0]?.target).toBe("f:auth.ts");
+  });
+
+  it("UNDERSTANDS edges (Person→Function) present", async () => {
+    const conn = createPeopleMockConn(
+      [{ "p.id": "p:alice", "p.name": "Alice", "p.email": "alice@example.com" }],
+      [],
+      [{ "p.id": "p:alice", "f.id": "fn:login" }],
+    );
+    const data = await deriveVizData(conn, "people");
+
+    const understandLinks = data.links.filter((l) => l.type === "understands");
+    expect(understandLinks).toHaveLength(1);
+    expect(understandLinks[0]?.source).toBe("p:alice");
+    expect(understandLinks[0]?.target).toBe("fn:login");
+  });
+
+  it("CONTAINS edges as structural context", async () => {
+    const conn = createPeopleMockConn();
+    const data = await deriveVizData(conn, "people");
+
+    const containsLinks = data.links.filter((l) => l.type === "contains");
+    expect(containsLinks).toHaveLength(1);
+    expect(containsLinks[0]?.source).toBe("f:auth.ts");
+    expect(containsLinks[0]?.target).toBe("fn:login");
+  });
+
+  it("graceful degradation when no Person data", async () => {
+    const conn = createPeopleMockConn([], [], []);
+    const data = await deriveVizData(conn, "people");
+
+    const personNodes = data.nodes.filter((n) => n.type === "person");
+    expect(personNodes).toHaveLength(0);
+
+    // Code nodes still present
+    expect(data.nodes.length).toBeGreaterThan(0);
+    expect(data.nodes.every((n) => n.type !== "person")).toBe(true);
+  });
+});

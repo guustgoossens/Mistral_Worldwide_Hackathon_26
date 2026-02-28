@@ -1,9 +1,8 @@
 import express from "express";
 import cors from "cors";
 
-const app = express();
+export const app = express();
 const PORT = process.env.PORT ?? 3001;
-const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
 const MISTRAL_BASE = "https://api.mistral.ai/v1/chat/completions";
 const DEFAULT_MODEL = "devstral-small-2507";
 
@@ -24,6 +23,7 @@ app.get("/v1/models", (_req, res) => {
 });
 
 app.post("/v1/chat/completions", async (req, res) => {
+  const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
   if (!MISTRAL_API_KEY) {
     res.status(500).json({ error: "MISTRAL_API_KEY not set" });
     return;
@@ -80,8 +80,10 @@ app.post("/v1/chat/completions", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`[proxy] Listening on http://localhost:${PORT}`);
-  console.log(`[proxy] Model: ${DEFAULT_MODEL}`);
-  console.log(`[proxy] API key: ${MISTRAL_API_KEY ? "set" : "MISSING"}`);
-});
+if (import.meta.main) {
+  app.listen(PORT, () => {
+    console.log(`[proxy] Listening on http://localhost:${PORT}`);
+    console.log(`[proxy] Model: ${DEFAULT_MODEL}`);
+    console.log(`[proxy] API key: ${process.env.MISTRAL_API_KEY ? "set" : "MISSING"}`);
+  });
+}
