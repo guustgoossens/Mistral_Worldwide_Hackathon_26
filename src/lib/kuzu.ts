@@ -459,3 +459,328 @@ export async function deriveVizData(
 
   return { nodes, links };
 }
+
+// ── Mutation helpers (Phase 3: Quiz & Knowledge) ──────────────────────
+
+function esc(s: string): string {
+  return s.replace(/'/g, "\\'");
+}
+
+/**
+ * Create or update an UNDERSTANDS edge between a Person and a Function.
+ * KuzuDB does not support MERGE — so we delete any existing edge first, then create.
+ */
+export async function upsertUnderstands(
+  conn: KuzuConnection,
+  personId: string,
+  funcId: string,
+  data: {
+    confidence: "deep" | "surface" | "none";
+    source: "quiz" | "voice_interview" | "git" | "inferred";
+    topics: string[];
+    summary_l1: string;
+  },
+): Promise<void> {
+  try {
+    // Delete existing edge if present (KuzuDB has no MERGE)
+    try {
+      await queryGraph(
+        conn,
+        `MATCH (p:Person {id: '${esc(personId)}'})-[u:UNDERSTANDS]->(f:Function {id: '${esc(funcId)}'}) DELETE u`,
+      );
+    } catch {
+      // No existing edge — that's fine
+    }
+
+    // Build the topics array literal: ['topic1', 'topic2']
+    const topicsLiteral = `[${data.topics.map((t) => `'${esc(t)}'`).join(", ")}]`;
+    const now = new Date().toISOString();
+
+    await queryGraph(
+      conn,
+      `MATCH (p:Person {id: '${esc(personId)}'}), (f:Function {id: '${esc(funcId)}'}) ` +
+        `CREATE (p)-[:UNDERSTANDS {` +
+        `confidence: '${esc(data.confidence)}', ` +
+        `source: '${esc(data.source)}', ` +
+        `topics: ${topicsLiteral}, ` +
+        `lastAssessed: '${now}', ` +
+        `needsRetest: false, ` +
+        `summary_l1: '${esc(data.summary_l1)}', ` +
+        `sessions_json: '[]'` +
+        `}]->(f)`,
+    );
+
+    console.log(`[KuzuDB] Upserted UNDERSTANDS: ${personId} → ${funcId} (${data.confidence})`);
+  } catch (err) {
+    console.warn("[KuzuDB] upsertUnderstands failed:", err);
+  }
+}
+
+/**
+ * Create a Discussion node with HAS_PARTICIPANT and ABOUT edges.
+ * Returns the generated discussion ID.
+ */
+export async function createDiscussion(
+  conn: KuzuConnection,
+  data: {
+    transcript: string;
+    summary_l1: string;
+    quizResult?: string;
+    confidenceBefore?: string;
+    confidenceAfter?: string;
+    participants: Array<{ personId: string; role: "quizzer" | "subject" }>;
+    aboutNodes: Array<{ nodeId: string; nodeType: "Function" | "File" | "Class"; focus?: string }>;
+  },
+): Promise<string> {
+  const discId = `disc:${new Date().toISOString()}`;
+  const now = new Date().toISOString();
+
+  try {
+    // Create the Discussion node
+    await queryGraph(
+      conn,
+      `CREATE (d:Discussion {` +
+        `id: '${esc(discId)}', ` +
+        `timestamp: '${now}', ` +
+        `transcript: '${esc(data.transcript)}', ` +
+        `summary_l1: '${esc(data.summary_l1)}', ` +
+        `quizResult: '${esc(data.quizResult ?? "")}', ` +
+        `confidenceBefore: '${esc(data.confidenceBefore ?? "")}', ` +
+        `confidenceAfter: '${esc(data.confidenceAfter ?? "")}'` +
+        `})`,
+    );
+
+    // Create HAS_PARTICIPANT edges
+    for (const p of data.participants) {
+      try {
+        await queryGraph(
+          conn,
+          `MATCH (d:Discussion {id: '${esc(discId)}'}), (p:Person {id: '${esc(p.personId)}'}) ` +
+            `CREATE (d)-[:HAS_PARTICIPANT {role: '${esc(p.role)}'}]->(p)`,
+        );
+      } catch (err) {
+        console.warn(`[KuzuDB] Failed to link participant ${p.personId}:`, err);
+      }
+    }
+
+    // Create ABOUT edges
+    for (const about of data.aboutNodes) {
+      try {
+        await queryGraph(
+          conn,
+          `MATCH (d:Discussion {id: '${esc(discId)}'}), (n:${about.nodeType} {id: '${esc(about.nodeId)}'}) ` +
+            `CREATE (d)-[:ABOUT {focus: '${esc(about.focus ?? "")}'}]->(n)`,
+        );
+      } catch (err) {
+        console.warn(`[KuzuDB] Failed to link about ${about.nodeId}:`, err);
+      }
+    }
+
+    console.log(`[KuzuDB] Created Discussion: ${discId} with ${data.participants.length} participants, ${data.aboutNodes.length} about-links`);
+    return discId;
+  } catch (err) {
+    console.warn("[KuzuDB] createDiscussion failed:", err);
+    throw err;
+  }
+}
+
+/**
+ * Find functions that a person should be quizzed on next.
+ * Prioritizes: no UNDERSTANDS edge > confidence "none" > needsRetest > confidence "surface".
+ */
+export async function getQuizCandidates(
+  conn: KuzuConnection,
+  personId: string,
+  limit: number = 10,
+): Promise<
+  Array<{
+    funcId: string;
+    funcName: string;
+    filePath: string;
+    confidence: string | null;
+    needsRetest: boolean | null;
+  }>
+> {
+  try {
+    type QRow = Record<string, string>;
+
+    // Functions with no UNDERSTANDS edge from this person (highest priority)
+    const unassessed = await queryGraph(
+      conn,
+      `MATCH (f:Function) ` +
+        `WHERE NOT EXISTS { MATCH (p:Person {id: '${esc(personId)}'})-[:UNDERSTANDS]->(f) } ` +
+        `RETURN f.id AS funcId, f.name AS funcName, f.filePath AS filePath, ` +
+        `'__none__' AS confidence, 'false' AS needsRetest, 0 AS priority ` +
+        `ORDER BY f.relevance DESC ` +
+        `LIMIT ${limit}`,
+    ) as QRow[];
+
+    // Functions with weak/stale UNDERSTANDS edges (lower priority)
+    const weak = await queryGraph(
+      conn,
+      `MATCH (p:Person {id: '${esc(personId)}'})-[u:UNDERSTANDS]->(f:Function) ` +
+        `WHERE u.confidence = 'none' OR u.confidence = 'surface' OR u.needsRetest = true ` +
+        `RETURN f.id AS funcId, f.name AS funcName, f.filePath AS filePath, ` +
+        `u.confidence AS confidence, u.needsRetest AS needsRetest, ` +
+        `CASE WHEN u.confidence = 'none' THEN 1 ` +
+        `WHEN u.needsRetest = true THEN 2 ` +
+        `ELSE 3 END AS priority ` +
+        `ORDER BY priority ASC ` +
+        `LIMIT ${limit}`,
+    ) as QRow[];
+
+    // Combine and deduplicate, respecting priority order
+    const seen = new Set<string>();
+    const results: Array<{
+      funcId: string;
+      funcName: string;
+      filePath: string;
+      confidence: string | null;
+      needsRetest: boolean | null;
+    }> = [];
+
+    for (const row of [...unassessed, ...weak]) {
+      const fid = row["funcId"] ?? "";
+      if (seen.has(fid)) continue;
+      seen.add(fid);
+
+      const conf = row["confidence"];
+      const retest = row["needsRetest"];
+
+      results.push({
+        funcId: fid,
+        funcName: row["funcName"] ?? "",
+        filePath: row["filePath"] ?? "",
+        confidence: conf === "__none__" ? null : (conf ?? null),
+        needsRetest: retest === "true" ? true : retest === "false" ? false : null,
+      });
+
+      if (results.length >= limit) break;
+    }
+
+    console.log(`[KuzuDB] Quiz candidates for ${personId}: ${results.length} functions`);
+    return results;
+  } catch (err) {
+    console.warn("[KuzuDB] getQuizCandidates failed:", err);
+    return [];
+  }
+}
+
+/**
+ * Get rich context about a function for quiz question generation.
+ * Returns the function's metadata, callees, callers, containing file, and who understands it.
+ */
+export async function getFunctionContext(
+  conn: KuzuConnection,
+  funcId: string,
+): Promise<{
+  func: { id: string; name: string; filePath: string; summary: string; startLine: number; endLine: number } | null;
+  callees: Array<{ id: string; name: string; filePath: string }>;
+  callers: Array<{ id: string; name: string; filePath: string }>;
+  containingFile: { id: string; name: string; filePath: string } | null;
+  imports: Array<{ id: string; name: string; filePath: string }>;
+  understanders: Array<{ personId: string; personName: string; confidence: string; topics: string }>;
+}> {
+  type FRow = Record<string, string>;
+
+  const empty = {
+    func: null,
+    callees: [],
+    callers: [],
+    containingFile: null,
+    imports: [],
+    understanders: [],
+  };
+
+  try {
+    // Get the function itself
+    const funcRows = await queryGraph(
+      conn,
+      `MATCH (f:Function {id: '${esc(funcId)}'}) ` +
+        `RETURN f.id AS id, f.name AS name, f.filePath AS filePath, f.summary AS summary, f.startLine AS startLine, f.endLine AS endLine`,
+    ) as FRow[];
+
+    if (funcRows.length === 0) {
+      console.warn(`[KuzuDB] getFunctionContext: function not found: ${funcId}`);
+      return empty;
+    }
+
+    const row = funcRows[0]!;
+    const func = {
+      id: row["id"] ?? "",
+      name: row["name"] ?? "",
+      filePath: row["filePath"] ?? "",
+      summary: row["summary"] ?? "",
+      startLine: parseInt(row["startLine"] ?? "0", 10) || 0,
+      endLine: parseInt(row["endLine"] ?? "0", 10) || 0,
+    };
+
+    // What this function calls
+    let callees: Array<{ id: string; name: string; filePath: string }> = [];
+    try {
+      const calleeRows = await queryGraph(
+        conn,
+        `MATCH (f:Function {id: '${esc(funcId)}'})-[:CALLS]->(c:Function) RETURN c.id AS id, c.name AS name, c.filePath AS filePath`,
+      ) as FRow[];
+      callees = calleeRows.map((r) => ({ id: r["id"] ?? "", name: r["name"] ?? "", filePath: r["filePath"] ?? "" }));
+    } catch { /* no callees */ }
+
+    // What calls this function
+    let callers: Array<{ id: string; name: string; filePath: string }> = [];
+    try {
+      const callerRows = await queryGraph(
+        conn,
+        `MATCH (c:Function)-[:CALLS]->(f:Function {id: '${esc(funcId)}'}) RETURN c.id AS id, c.name AS name, c.filePath AS filePath`,
+      ) as FRow[];
+      callers = callerRows.map((r) => ({ id: r["id"] ?? "", name: r["name"] ?? "", filePath: r["filePath"] ?? "" }));
+    } catch { /* no callers */ }
+
+    // Containing file
+    let containingFile: { id: string; name: string; filePath: string } | null = null;
+    try {
+      const fileRows = await queryGraph(
+        conn,
+        `MATCH (file:File)-[:CONTAINS]->(f:Function {id: '${esc(funcId)}'}) RETURN file.id AS id, file.name AS name, file.filePath AS filePath`,
+      ) as FRow[];
+      if (fileRows.length > 0) {
+        const fr = fileRows[0]!;
+        containingFile = { id: fr["id"] ?? "", name: fr["name"] ?? "", filePath: fr["filePath"] ?? "" };
+      }
+    } catch { /* no containing file */ }
+
+    // Imports: what the containing file imports
+    let imports: Array<{ id: string; name: string; filePath: string }> = [];
+    if (containingFile) {
+      try {
+        const importRows = await queryGraph(
+          conn,
+          `MATCH (f:File {id: '${esc(containingFile.id)}'})-[:IMPORTS]->(i:File) RETURN i.id AS id, i.name AS name, i.filePath AS filePath`,
+        ) as FRow[];
+        imports = importRows.map((r) => ({ id: r["id"] ?? "", name: r["name"] ?? "", filePath: r["filePath"] ?? "" }));
+      } catch { /* no imports */ }
+    }
+
+    // Who understands this function
+    let understanders: Array<{ personId: string; personName: string; confidence: string; topics: string }> = [];
+    try {
+      const uRows = await queryGraph(
+        conn,
+        `MATCH (p:Person)-[u:UNDERSTANDS]->(f:Function {id: '${esc(funcId)}'}) ` +
+          `RETURN p.id AS personId, p.name AS personName, u.confidence AS confidence, u.topics AS topics`,
+      ) as FRow[];
+      understanders = uRows.map((r) => ({
+        personId: r["personId"] ?? "",
+        personName: r["personName"] ?? "",
+        confidence: r["confidence"] ?? "none",
+        topics: r["topics"] ?? "[]",
+      }));
+    } catch { /* no understanders */ }
+
+    console.log(`[KuzuDB] getFunctionContext: ${func.name} — ${callees.length} callees, ${callers.length} callers, ${understanders.length} understanders`);
+
+    return { func, callees, callers, containingFile, imports, understanders };
+  } catch (err) {
+    console.warn("[KuzuDB] getFunctionContext failed:", err);
+    return empty;
+  }
+}
