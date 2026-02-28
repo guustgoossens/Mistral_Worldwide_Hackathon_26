@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>KuzuDB WASM Test</title></head>
+<body>
+<h1>Check console (Cmd+Option+J)</h1>
+<script type="module">
+  try {
+    console.time("import");
+    const module = await import('/node_modules/@kuzu/kuzu-wasm/dist/kuzu-browser.js');
+    const kuzu_wasm = module.default;
+    console.timeEnd("import");
+
+    console.time("init");
+    const kuzu = await kuzu_wasm();
+    console.timeEnd("init");
+
+    console.time("db+query");
+    const db = await kuzu.Database();
+    const conn = await kuzu.Connection(db);
+    await conn.execute(`CREATE NODE TABLE Function(id STRING, name STRING, PRIMARY KEY(id))`);
+    await conn.execute(`CREATE (f:Function {id: 'auth::handle', name: 'handleAuth'})`);
+    const res = await conn.execute(`MATCH (f:Function) RETURN f.*;`);
+    console.timeEnd("db+query");
+
+    console.log("✅ Result:", res.table.toString());
+    document.body.innerHTML += `<pre style="color:green;font-size:18px">✅ Works!\n${res.table.toString()}</pre>`;
+  } catch (e) {
+    console.error("❌", e);
+    document.body.innerHTML += `<pre style="color:red">❌ ${e.message}\n${e.stack}</pre>`;
+  }
+</script>
+</body>
+</html>
