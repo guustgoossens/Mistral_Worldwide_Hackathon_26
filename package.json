@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "tsx watch server/proxy.ts",
+    "dev:server": "tsx watch --env-file=.env.local server/proxy.ts",
     "dev:all": "bun run --parallel dev dev:server",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
