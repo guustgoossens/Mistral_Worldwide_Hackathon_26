@@ -1,4 +1,4 @@
-import { useRef, useCallback, useMemo } from "react";
+import { useRef, useCallback, useMemo, forwardRef, useImperativeHandle } from "react";
 import ForceGraph3D from "react-force-graph-3d";
 import type { GraphData, VizNode } from "@/types/graph";
 
@@ -8,9 +8,33 @@ interface Graph3DProps {
   highlightedIds?: Set<string>;
 }
 
-export function Graph3D({ data, onNodeClick, highlightedIds }: Graph3DProps) {
+export interface Graph3DHandle {
+  flyToNode: (nodeId: string) => void;
+}
+
+export const Graph3D = forwardRef<Graph3DHandle, Graph3DProps>(function Graph3D(
+  { data, onNodeClick, highlightedIds },
+  ref,
+) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fgRef = useRef<any>(null);
+
+  useImperativeHandle(ref, () => ({
+    flyToNode: (nodeId: string) => {
+      const node = data.nodes.find((n) => n.id === nodeId);
+      if (!node || !fgRef.current) return;
+      // Use internal force-graph coordinates
+      const gNode = fgRef.current.graphData().nodes.find((n: any) => n.id === nodeId);
+      if (!gNode) return;
+      const distance = 80;
+      const distRatio = 1 + distance / Math.hypot(gNode.x, gNode.y, gNode.z);
+      fgRef.current.cameraPosition(
+        { x: gNode.x * distRatio, y: gNode.y * distRatio, z: gNode.z * distRatio },
+        gNode,
+        1000,
+      );
+    },
+  }));
 
   const handleNodeClick = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,4 +81,4 @@ export function Graph3D({ data, onNodeClick, highlightedIds }: Graph3DProps) {
       enableNodeDrag={true}
     />
   );
-}
+});

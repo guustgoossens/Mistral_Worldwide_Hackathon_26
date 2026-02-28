@@ -13,6 +13,7 @@ export function useGraph(kuzu?: UseKuzuReturn) {
   const [overlayMode, setOverlayMode] = useState<OverlayMode>("structure");
   const [selectedNode, setSelectedNode] = useState<VizNode | null>(null);
   const [highlightedIds, setHighlightedIds] = useState<Set<string>>(new Set());
+  const [personFilter, setPersonFilter] = useState<string | undefined>();
 
   // Derive graph data from KuzuDB when ready or when overlay mode changes
   useEffect(() => {
@@ -22,7 +23,7 @@ export function useGraph(kuzu?: UseKuzuReturn) {
 
     async function derive() {
       try {
-        const data = await deriveVizData(kuzu!.conn, overlayMode);
+        const data = await deriveVizData(kuzu!.conn, overlayMode, personFilter);
         if (cancelled) return;
 
         // Fallback to sample data if KuzuDB returned empty results
@@ -42,7 +43,7 @@ export function useGraph(kuzu?: UseKuzuReturn) {
     return () => {
       cancelled = true;
     };
-  }, [kuzu?.isReady, kuzu?.conn, overlayMode]);
+  }, [kuzu?.isReady, kuzu?.conn, overlayMode, personFilter]);
 
   const selectNode = useCallback((node: VizNode | null) => {
     setSelectedNode(node);
@@ -60,5 +61,7 @@ export function useGraph(kuzu?: UseKuzuReturn) {
     selectNode,
     highlightedIds,
     highlightNodes,
+    personFilter,
+    setPersonFilter,
   };
 }
