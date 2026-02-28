@@ -10,8 +10,17 @@ const DEFAULT_MODEL = "devstral-small-2507";
 app.use(cors());
 app.use(express.json());
 
+app.use((req, _res, next) => {
+  console.log(`[proxy] ${req.method} ${req.path}`);
+  next();
+});
+
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
+});
+
+app.get("/v1/models", (_req, res) => {
+  res.json({ data: [{ id: "devstral-small-2507", object: "model" }] });
 });
 
 app.post("/v1/chat/completions", async (req, res) => {
