@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "parse": "tsx scripts/parse-repo.ts",
     "git-analyze": "tsx scripts/git-analyze.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "postinstall": "cp node_modules/@kuzu/kuzu-wasm/dist/kuzu-wasm.wasm public/kuzu-wasm.wasm"
   },
   "dependencies": {
     "@elevenlabs/react": "^0.14.1",

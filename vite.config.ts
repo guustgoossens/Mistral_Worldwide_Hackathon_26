@@ -5,9 +5,16 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  optimizeDeps: {
+    exclude: ["@kuzu/kuzu-wasm"],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@kuzu/kuzu-wasm": path.resolve(
+        __dirname,
+        "node_modules/@kuzu/kuzu-wasm/dist/kuzu-browser.js",
+      ),
     },
   },
   server: {
