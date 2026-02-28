@@ -36,14 +36,6 @@ export function useVoiceAgent(deps?: AgentToolDeps) {
       await navigator.mediaDevices.getUserMedia({ audio: true });
       await conversation.startSession({
         agentId,
-        connectionType: "webrtc",
-        overrides: {
-          agent: {
-            prompt: {
-              prompt: VOICE_AGENT_PROMPT,
-            },
-          },
-        },
       });
     } catch (err) {
       console.error("[useVoiceAgent] Failed to start session:", err);
