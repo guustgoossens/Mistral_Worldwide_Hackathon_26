@@ -1,4 +1,4 @@
-import type { GraphData } from "@/types/graph";
+import type { GraphData, VizNode } from "@/types/graph";
 
 /**
  * Sample graph data for development — a fake auth module with ~18 nodes.
@@ -60,3 +60,71 @@ export const sampleGraph: GraphData = {
     { source: "f:auth/middleware.ts", target: "f:auth/session.ts", type: "imports" },
   ],
 };
+
+/**
+ * Escape single quotes in a string for Cypher.
+ */
+function esc(s: string): string {
+  return s.replace(/'/g, "\\'");
+}
+
+/**
+ * Insert sample graph data into KuzuDB.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function loadSampleIntoKuzu(conn: any): Promise<void> {
+  // Insert nodes by type
+  for (const node of sampleGraph.nodes) {
+    try {
+      const cypher = nodeInsertCypher(node);
+      if (cypher) await conn.execute(cypher);
+    } catch (err) {
+      const msg = String(err);
+      if (msg.includes("already exists") || msg.includes("duplicate")) continue;
+      console.warn("[KuzuDB] Failed to insert node:", node.id, err);
+    }
+  }
+
+  // Insert edges
+  for (const link of sampleGraph.links) {
+    try {
+      const cypher = linkInsertCypher(link.source as string, link.target as string, link.type);
+      if (cypher) await conn.execute(cypher);
+    } catch (err) {
+      const msg = String(err);
+      if (msg.includes("already exists") || msg.includes("duplicate")) continue;
+      console.warn("[KuzuDB] Failed to insert link:", link.source, "->", link.target, err);
+    }
+  }
+
+  console.log("[KuzuDB] Sample data loaded");
+}
+
+function nodeInsertCypher(node: VizNode): string | null {
+  switch (node.type) {
+    case "file":
+      return `CREATE (n:File {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}'})`;
+    case "function":
+      return `CREATE (n:Function {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}', startLine: 0, endLine: 0, summary_l1: '${esc(node.summary ?? "")}', summary_l2: '', summary_l3: '', structuralImportance: 0.5})`;
+    case "class":
+      return `CREATE (n:Class {id: '${esc(node.id)}', name: '${esc(node.name)}', filePath: '${esc(node.filePath ?? "")}'})`;
+    default:
+      return null;
+  }
+}
+
+function linkInsertCypher(source: string, target: string, type: string): string | null {
+  switch (type) {
+    case "contains": {
+      // Target could be Function or Class — try to determine from ID prefix
+      const targetLabel = target.startsWith("c:") ? "Class" : "Function";
+      return `MATCH (a:File {id: '${esc(source)}'}), (b:${targetLabel} {id: '${esc(target)}'}) CREATE (a)-[:CONTAINS]->(b)`;
+    }
+    case "calls":
+      return `MATCH (a:Function {id: '${esc(source)}'}), (b:Function {id: '${esc(target)}'}) CREATE (a)-[:CALLS]->(b)`;
+    case "imports":
+      return `MATCH (a:File {id: '${esc(source)}'}), (b:File {id: '${esc(target)}'}) CREATE (a)-[:IMPORTS]->(b)`;
+    default:
+      return null;
+  }
+}

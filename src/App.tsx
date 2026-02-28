@@ -10,15 +10,15 @@ import { useVoiceAgent } from "@/hooks/useVoiceAgent";
 import { useKnowledge } from "@/hooks/useKnowledge";
 
 export default function App() {
-  const { graphData, overlayMode, setOverlayMode, selectedNode, selectNode, highlightedIds } = useGraph();
-  const { isReady: kuzuReady } = useKuzu();
+  const kuzu = useKuzu();
+  const { graphData, overlayMode, setOverlayMode, selectedNode, selectNode, highlightedIds } = useGraph(kuzu);
   const voice = useVoiceAgent();
   const knowledge = useKnowledge();
 
   return (
     <Layout overlayMode={overlayMode} onOverlayChange={setOverlayMode} sidebar={<SidebarContent />}>
       <Graph3D data={graphData} onNodeClick={selectNode} highlightedIds={highlightedIds} />
-      <AgentStatus kuzuReady={kuzuReady} voiceConnected={voice.isConnected} />
+      <AgentStatus kuzuReady={kuzu.isReady} voiceConnected={voice.isConnected} />
       <NodeDetail node={selectedNode} onClose={() => selectNode(null)} />
       <QuizPanel question={knowledge.activeQuiz?.question ?? null} onAnswer={knowledge.submitAnswer} />
       <VoiceControls
