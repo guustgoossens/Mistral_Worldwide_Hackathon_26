@@ -793,6 +793,8 @@ const results = await Promise.all(
 
 ## 10. KuzuDB Tool Surface
 
+> **Note:** This section contains early design notes. See [`docs/skills/cypher-skill.md`](../skills/cypher-skill.md) for the canonical, implementation-accurate schema and tool surface.
+
 ### Graph Schema
 
 KuzuDB stores both code nodes AND Person nodes. Person nodes are **query infrastructure** — they exist so agents can write clean Cypher relationship traversals, but they're invisible in the default 3D visualization. The visualization is modal (see View Modes below).
@@ -895,6 +897,8 @@ One tool call. Dynamic composition. No pre-defined function needed.
 ---
 
 ## 11. ElevenLabs Integration Layer
+
+> **Note:** This section contains early design notes. See [`docs/skills/cypher-skill.md`](../skills/cypher-skill.md) for the canonical, implementation-accurate schema and tool surface.
 
 ### How Agents Connect to Voice
 

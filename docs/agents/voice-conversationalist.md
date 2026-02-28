@@ -29,8 +29,6 @@ Available tools:
 - switchViewMode(mode, filterPerson): Switch overlay (structure/contributors/knowledge/people)
 - showDetailPanel(nodeId, level): Show detail panel at disclosure level 1/2/3
 - startQuiz(topic): Begin a knowledge quiz
-- updateKnowledge(person, nodeId, confidence, topics): Update knowledge after quiz
-
 Rules:
 - Always compose valid Cypher for KuzuDB
 - Use queryGraph for data retrieval, then explain results conversationally

@@ -112,20 +112,9 @@ Start a knowledge quiz, optionally focused on a topic.
 }
 ```
 
-### `updateKnowledge`
-Update a person's UNDERSTANDS relationship with a code node after a quiz.
-```json
-{
-  "name": "updateKnowledge",
-  "description": "Update knowledge score after quiz evaluation",
-  "parameters": {
-    "person": { "type": "string" },
-    "nodeId": { "type": "string" },
-    "confidence": { "type": "string", "enum": ["deep", "surface", "none"] },
-    "topics": { "type": "array", "items": { "type": "string" } }
-  }
-}
-```
+### Knowledge Updates
+
+Knowledge updates (UNDERSTANDS relationships) are performed via Cypher through `queryGraph` — there is no dedicated `updateKnowledge` tool. See `docs/skills/cypher-skill.md` for the Cypher patterns.
 
 ## Proxy Server
 
@@ -134,6 +123,28 @@ The Express proxy at `server/proxy.ts`:
 - Forwards to Mistral API with the configured API key
 - Supports streaming (SSE) for real-time voice responses
 - Default model: DevStral Small 2 (24B, 200 t/s — optimized for speed in voice scenarios)
+
+## System Prompt Injection
+
+The voice agent's system prompt is stored in `src/prompts/voice-agent.ts` and injected at runtime via ElevenLabs session overrides — no manual dashboard copy-paste needed:
+
+```typescript
+import { VOICE_AGENT_PROMPT } from "@/prompts/voice-agent";
+
+await conversation.startSession({
+  agentId,
+  connectionType: "webrtc",
+  overrides: {
+    agent: {
+      prompt: {
+        prompt: VOICE_AGENT_PROMPT,
+      },
+    },
+  },
+});
+```
+
+See `src/prompts/voice-agent.ts` for the full prompt following ElevenLabs' recommended structure (Personality, Goal, Tools, Schema, Guardrails, Character normalization, Error handling).
 
 ## Conversation Flow Example
 

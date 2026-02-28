@@ -26,7 +26,7 @@ User speaks → Voice Conversationalist (DevStral Small 2, fast)
 
 All agents interact with the graph through the same interface:
 1. Compose Cypher query based on intent
-2. Execute via `query_graph` client tool
+2. Execute via `queryGraph` client tool
 3. Process results
 4. Either respond directly or trigger UI updates (highlight, overlay change)
 
