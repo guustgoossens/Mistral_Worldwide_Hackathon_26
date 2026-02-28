@@ -84,12 +84,28 @@ export async function queryGraph(
 ): Promise<unknown[]> {
   try {
     const result = await conn.execute(cypher);
-    // WASM version returns { table } — use getAll if available, otherwise parse table
+    // KuzuDB WASM v0.7: result.table.toString() returns JSON
+    if (result.table) {
+      const raw = result.table.toString();
+      // Try JSON parse first (KuzuDB WASM returns JSON from table.toString())
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          if (parsed.length > 0) {
+            console.log("[KuzuDB] Query result keys:", Object.keys(parsed[0]), "for:", cypher.slice(0, 80));
+          }
+          return parsed;
+        }
+        return [];
+      } catch {
+        // Not JSON — try pipe-delimited table format
+        console.log("[KuzuDB] table.toString() is not JSON, trying pipe format. First 200 chars:", raw.slice(0, 200));
+        return parseTable(result.table);
+      }
+    }
+    // Fallback: getAll() (newer WASM versions)
     if (typeof result.getAll === "function") {
       return result.getAll();
-    }
-    if (result.table) {
-      return parseTable(result.table);
     }
     return [];
   } catch (err) {
@@ -152,6 +168,13 @@ const TYPE_COLORS: Record<string, string> = {
   file: "#6366f1",
   function: "#f59e0b",
   class: "#10b981",
+  person: "#8b5cf6",
+};
+
+const KNOWLEDGE_COLORS = {
+  deep: "#10b981",    // green
+  surface: "#f59e0b", // yellow
+  none: "#ef4444",    // red
 };
 
 /**
@@ -171,6 +194,7 @@ export async function deriveVizData(
 
       // Query all File nodes
       const files = await queryGraph(conn, `MATCH (f:File) RETURN f.id, f.name, f.filePath`) as Row[];
+      console.log("[deriveVizData] Files query returned:", files.length, "rows", files.length > 0 ? "first:" : "", files[0]);
       for (const row of files) {
         nodes.push({
           id: row["f.id"] ?? "",
@@ -230,11 +254,207 @@ export async function deriveVizData(
       break;
     }
 
-    case "contributors":
-    case "knowledge":
-    case "people":
-      // TODO: implement non-structure overlays
+    case "contributors": {
+      type CRow = Record<string, string>;
+
+      // Same code nodes as structure
+      const cFiles = await queryGraph(conn, `MATCH (f:File) RETURN f.id, f.name, f.filePath`) as CRow[];
+      const cFns = await queryGraph(conn, `MATCH (f:Function) RETURN f.id, f.name, f.filePath`) as CRow[];
+      const cClasses = await queryGraph(conn, `MATCH (c:Class) RETURN c.id, c.name, c.filePath`) as CRow[];
+
+      // Build contributor data per file
+      let contribRows: CRow[] = [];
+      try {
+        contribRows = await queryGraph(conn,
+          `MATCH (p:Person)-[r:CONTRIBUTED]->(f:File) RETURN f.id AS fileId, p.name AS contributor, r.commits AS commits, r.linesChanged AS linesChanged`,
+        ) as CRow[];
+      } catch { /* no contributor data yet */ }
+
+      // Aggregate contributors per file
+      const fileContribs = new Map<string, { person: string; commits: number }[]>();
+      const fileTotalCommits = new Map<string, number>();
+      for (const row of contribRows) {
+        const fid = row["fileId"] ?? "";
+        const c = parseInt(row["commits"] ?? "0", 10) || 0;
+        if (!fileContribs.has(fid)) fileContribs.set(fid, []);
+        fileContribs.get(fid)!.push({ person: row["contributor"] ?? "", commits: c });
+        fileTotalCommits.set(fid, (fileTotalCommits.get(fid) ?? 0) + c);
+      }
+
+      // Max commits for color scaling
+      const maxCommits = Math.max(1, ...fileTotalCommits.values());
+
+      // Apply person filter if set
+      const filterPerson = _personFilter;
+      const highlightFiles = new Set<string>();
+      if (filterPerson) {
+        for (const [fid, contribs] of fileContribs) {
+          if (contribs.some(c => c.person === filterPerson)) {
+            highlightFiles.add(fid);
+          }
+        }
+      }
+
+      for (const row of cFiles) {
+        const id = row["f.id"] ?? "";
+        const totalC = fileTotalCommits.get(id) ?? 0;
+        const heat = totalC / maxCommits;
+        // Interpolate from cool blue to warm orange/red
+        const isFiltered = filterPerson && !highlightFiles.has(id);
+        const color = isFiltered ? "#374151" : `hsl(${Math.round(30 - heat * 30)}, ${Math.round(60 + heat * 40)}%, ${Math.round(50 - heat * 10)}%)`;
+        nodes.push({
+          id, name: row["f.name"] ?? "", type: "file", filePath: row["f.filePath"] ?? "",
+          val: 5 + Math.round(heat * 8), color,
+          contributors: fileContribs.get(id),
+        });
+      }
+      for (const row of cFns) {
+        const id = row["f.id"] ?? "";
+        nodes.push({
+          id, name: row["f.name"] ?? "", type: "function", filePath: row["f.filePath"] ?? "",
+          val: 4, color: filterPerson ? "#374151" : TYPE_COLORS.function,
+        });
+      }
+      for (const row of cClasses) {
+        const id = row["c.id"] ?? "";
+        nodes.push({
+          id, name: row["c.name"] ?? "", type: "class", filePath: row["c.filePath"] ?? "",
+          val: 5, color: filterPerson ? "#374151" : TYPE_COLORS.class,
+        });
+      }
+
+      // Same structural edges
+      const cContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as CRow[];
+      for (const row of cContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+      const cCalls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as CRow[];
+      for (const row of cCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls" });
+      const cImports = await queryGraph(conn, `MATCH (a:File)-[:IMPORTS]->(b:File) RETURN a.id, b.id`) as CRow[];
+      for (const row of cImports) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "imports" });
+
       break;
+    }
+
+    case "knowledge": {
+      type KRow = Record<string, string>;
+
+      // All functions with optional understanding data
+      const kFns = await queryGraph(conn, `MATCH (f:Function) RETURN f.id, f.name, f.filePath`) as KRow[];
+
+      // Try to get understanding data
+      let understandRows: KRow[] = [];
+      try {
+        understandRows = await queryGraph(conn,
+          `MATCH (p:Person)-[u:UNDERSTANDS]->(f:Function) RETURN f.id AS funcId, u.confidence AS confidence`,
+        ) as KRow[];
+      } catch { /* no understanding data yet */ }
+
+      const funcConfidence = new Map<string, string>();
+      for (const row of understandRows) {
+        const fid = row["funcId"] ?? "";
+        const conf = row["confidence"] ?? "none";
+        // Keep the highest confidence level
+        const existing = funcConfidence.get(fid);
+        if (!existing || (conf === "deep") || (conf === "surface" && existing === "none")) {
+          funcConfidence.set(fid, conf);
+        }
+      }
+
+      for (const row of kFns) {
+        const id = row["f.id"] ?? "";
+        const conf = funcConfidence.get(id) ?? "none";
+        const color = KNOWLEDGE_COLORS[conf as keyof typeof KNOWLEDGE_COLORS] ?? KNOWLEDGE_COLORS.none;
+        nodes.push({
+          id, name: row["f.name"] ?? "", type: "function", filePath: row["f.filePath"] ?? "",
+          val: 5, color, knowledgeScore: conf === "deep" ? 1.0 : conf === "surface" ? 0.5 : 0.0,
+        });
+      }
+
+      // Files and classes (neutral color)
+      const kFiles = await queryGraph(conn, `MATCH (f:File) RETURN f.id, f.name, f.filePath`) as KRow[];
+      for (const row of kFiles) {
+        nodes.push({
+          id: row["f.id"] ?? "", name: row["f.name"] ?? "", type: "file", filePath: row["f.filePath"] ?? "",
+          val: 4, color: "#4b5563",
+        });
+      }
+      const kClasses = await queryGraph(conn, `MATCH (c:Class) RETURN c.id, c.name, c.filePath`) as KRow[];
+      for (const row of kClasses) {
+        nodes.push({
+          id: row["c.id"] ?? "", name: row["c.name"] ?? "", type: "class", filePath: row["c.filePath"] ?? "",
+          val: 5, color: "#4b5563",
+        });
+      }
+
+      // Edges
+      const kContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as KRow[];
+      for (const row of kContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+      const kCalls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as KRow[];
+      for (const row of kCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls" });
+
+      break;
+    }
+
+    case "people": {
+      type PRow = Record<string, string>;
+
+      // Person nodes (visible in this mode)
+      let personRows: PRow[] = [];
+      try {
+        personRows = await queryGraph(conn, `MATCH (p:Person) RETURN p.id, p.name, p.email`) as PRow[];
+      } catch { /* no person data */ }
+
+      for (const row of personRows) {
+        nodes.push({
+          id: row["p.id"] ?? "", name: row["p.name"] ?? "", type: "person",
+          val: 8, color: TYPE_COLORS.person,
+        });
+      }
+
+      // Code nodes (smaller, as context)
+      const pFiles = await queryGraph(conn, `MATCH (f:File) RETURN f.id, f.name, f.filePath`) as PRow[];
+      for (const row of pFiles) {
+        nodes.push({
+          id: row["f.id"] ?? "", name: row["f.name"] ?? "", type: "file", filePath: row["f.filePath"] ?? "",
+          val: 3, color: TYPE_COLORS.file,
+        });
+      }
+      const pFns = await queryGraph(conn, `MATCH (f:Function) RETURN f.id, f.name, f.filePath`) as PRow[];
+      for (const row of pFns) {
+        nodes.push({
+          id: row["f.id"] ?? "", name: row["f.name"] ?? "", type: "function", filePath: row["f.filePath"] ?? "",
+          val: 3, color: TYPE_COLORS.function,
+        });
+      }
+      const pClasses = await queryGraph(conn, `MATCH (c:Class) RETURN c.id, c.name, c.filePath`) as PRow[];
+      for (const row of pClasses) {
+        nodes.push({
+          id: row["c.id"] ?? "", name: row["c.name"] ?? "", type: "class", filePath: row["c.filePath"] ?? "",
+          val: 3, color: TYPE_COLORS.class,
+        });
+      }
+
+      // CONTRIBUTED edges (Person → File)
+      try {
+        const contribEdges = await queryGraph(conn, `MATCH (p:Person)-[:CONTRIBUTED]->(f:File) RETURN p.id, f.id`) as PRow[];
+        for (const row of contribEdges) {
+          links.push({ source: row["p.id"] ?? "", target: row["f.id"] ?? "", type: "contributed" });
+        }
+      } catch { /* no contributor edges */ }
+
+      // UNDERSTANDS edges (Person → Function)
+      try {
+        const understandEdges = await queryGraph(conn, `MATCH (p:Person)-[:UNDERSTANDS]->(f:Function) RETURN p.id, f.id`) as PRow[];
+        for (const row of understandEdges) {
+          links.push({ source: row["p.id"] ?? "", target: row["f.id"] ?? "", type: "understands" });
+        }
+      } catch { /* no understand edges */ }
+
+      // Structural edges (lighter, as context)
+      const pContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as PRow[];
+      for (const row of pContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+
+      break;
+    }
   }
 
   return { nodes, links };
