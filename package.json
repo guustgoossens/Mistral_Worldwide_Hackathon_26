@@ -12,7 +12,8 @@
     "lint": "tsc && eslint .",
     "format": "prettier --write .",
     "parse": "tsx scripts/parse-repo.ts",
-    "git-analyze": "tsx scripts/git-analyze.ts"
+    "git-analyze": "tsx scripts/git-analyze.ts",
+    "test": "bun test"
   },
   "dependencies": {
     "@elevenlabs/react": "^0.14.1",
