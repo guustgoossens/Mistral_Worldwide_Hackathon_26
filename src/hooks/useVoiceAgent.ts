@@ -2,7 +2,7 @@
  * Voice agent hook wrapping ElevenLabs useConversation() + client tools.
  */
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { createAgentTools } from "@/lib/agent-tools";
 import type { AgentToolDeps } from "@/lib/agent-tools";
@@ -10,7 +10,10 @@ import type { AgentToolDeps } from "@/lib/agent-tools";
 export function useVoiceAgent(deps?: AgentToolDeps) {
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; content: string }>>([]);
 
-  const clientTools = deps ? createAgentTools(deps) : undefined;
+  const clientTools = useMemo(
+    () => (deps ? createAgentTools(deps) : undefined),
+    [deps?.executeQuery, deps?.highlightNodes, deps?.setOverlay, deps?.selectNode, deps?.flyToNode, deps?.startQuiz],
+  );
 
   const conversation = useConversation({
     ...(clientTools && { clientTools }),
@@ -28,7 +31,12 @@ export function useVoiceAgent(deps?: AgentToolDeps) {
       console.error("[useVoiceAgent] Missing VITE_ELEVENLABS_AGENT_ID");
       return;
     }
-    await conversation.startSession({ agentId, connectionType: "webrtc" });
+    try {
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      await conversation.startSession({ agentId, connectionType: "webrtc" });
+    } catch (err) {
+      console.error("[useVoiceAgent] Failed to start session:", err);
+    }
   }, [conversation]);
 
   const stop = useCallback(async () => {
