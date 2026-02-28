@@ -11,6 +11,8 @@ Voice-driven codebase intelligence platform for the Mistral Worldwide Hackathon.
 | [Agents](agents/README.md) | Four agent roles and their behaviors |
 | [Decisions](decisions/README.md) | Key decisions with rationale |
 | [Product](product/pitch.md) | Pitch, demo script, sponsor strategy |
+| [Idea](idea/GAMEPLAN.md) | Original concept, battle plan, build sequence, and pitch evolution |
+| [Agent Infrastructure](idea/AGENTS_INFRA.md) | Complete agent architecture reference (the source of truth for agent design) |
 
 ## Tech Stack Summary
 
