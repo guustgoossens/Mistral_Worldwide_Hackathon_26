@@ -6,6 +6,7 @@ import { useState, useCallback, useMemo } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { createAgentTools } from "@/lib/agent-tools";
 import type { AgentToolDeps } from "@/lib/agent-tools";
+import { VOICE_AGENT_PROMPT } from "@/prompts/voice-agent";
 
 export function useVoiceAgent(deps?: AgentToolDeps) {
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; content: string }>>([]);
@@ -33,7 +34,17 @@ export function useVoiceAgent(deps?: AgentToolDeps) {
     }
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
-      await conversation.startSession({ agentId, connectionType: "webrtc" });
+      await conversation.startSession({
+        agentId,
+        connectionType: "webrtc",
+        overrides: {
+          agent: {
+            prompt: {
+              prompt: VOICE_AGENT_PROMPT,
+            },
+          },
+        },
+      });
     } catch (err) {
       console.error("[useVoiceAgent] Failed to start session:", err);
     }
