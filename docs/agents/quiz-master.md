@@ -6,7 +6,7 @@ Knowledge assessment agent. Generates questions about code functions, evaluates 
 
 ## Model
 
-**mistral-medium** — balance of reasoning quality and speed for quiz generation and evaluation.
+**DevStral Small 2** (24B, 200 t/s) — same model as Agent 1. The Quiz Master is a **mode of Agent 1** (same voice pipeline, different system prompt + state), not a separate agent instance. Evaluation quality comes from the parallel truth-finding pattern (DevStral 2 builds a GroundTruth packet while the user speaks).
 
 ## Capabilities
 
@@ -49,9 +49,41 @@ Knowledge assessment agent. Generates questions about code functions, evaluates 
 Priority scoring for which functions to quiz next:
 
 ```
-priority = structuralImportance × (1 - confidence) × timeSinceLastAssessed
+priority = relevance × (1 - confidence) × timeSinceLastAssessed
 ```
 
-High importance + low confidence + long time since assessed = quiz this first.
+High relevance + low confidence + long time since assessed = quiz this first.
 
-> **OPEN QUESTION:** Should the Quiz Master run as a separate agent instance or as a mode of the Voice Conversationalist? For hackathon simplicity, likely a mode switch within the same conversation.
+When a node gets new commits, `needsRetest` is set to `true` on all UNDERSTANDS edges for that node. The quiz agent prioritizes retesting affected understanders.
+
+## Parallel Truth-Finding
+
+The key architectural innovation: when a quiz question is asked, DevStral 2 launches **simultaneously** to build a GroundTruth packet while the user thinks and speaks (5-15 seconds). DevStral 2 finishes in ~3-5 seconds, well before the user stops talking.
+
+```
+Question asked → TTS speaks it
+  │
+  ├── User thinks + speaks (5-15 seconds)
+  │
+  └── DevStral 2 builds GroundTruth packet (3-5 seconds, parallel)
+       • Level 2-3 technical detail from KuzuDB
+       • Recent commits/changes
+       • Past team interview notes (from Discussion nodes)
+       • Common wrong answers
+       • Related concepts
+       • Key nuances for deep vs surface understanding
+
+  → User finishes → Small 2 evaluates against GroundTruth (~500ms)
+  → Rich, contextual feedback delivered instantly
+  → Update UNDERSTANDS + create Discussion node
+```
+
+Result: DevStral 2-quality feedback at Small 2 speed. The latency is hidden behind human thinking time.
+
+## Companion Mode (Activation Triggers)
+
+- User says "quiz me" or "test my knowledge"
+- User taps the "I'm waiting" button (V1 — signals inference idle time manually)
+- V2 (stretch): silence detected on mic for ~5 seconds
+- V3 (post-hackathon): system proactively initiates when coding agent runs inference
+- Spaced repetition trigger: a node has `needsRetest = true`

@@ -27,7 +27,7 @@
 | Technology | Version | Rationale |
 |------------|---------|-----------|
 | ElevenLabs React SDK | 0.14 | Conversational AI with client tool support, low-latency voice |
-| Mistral AI API | — | LLM provider (hackathon sponsor). Models: devstral-small-2507 (voice), codestral (analysis), mistral-medium (quiz) |
+| Mistral AI API | — | LLM provider (hackathon sponsor). Two-speed architecture: DevStral Small 2 (24B, 200 t/s — voice, quiz) + DevStral 2 (123B, 76 t/s — deep analysis, background enrichment) |
 
 ## Code Analysis
 

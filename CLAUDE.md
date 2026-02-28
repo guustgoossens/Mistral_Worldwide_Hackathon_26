@@ -27,8 +27,8 @@ bun run git-analyze   # Git history analysis (stub)
 ### Graph Database (KuzuDB WASM)
 Primary data store. All agents interact via Cypher queries.
 
-**Node tables:** File, Function, Class, Person
-**Relationship tables:** CONTAINS, CALLS, IMPORTS, INHERITS, CONTRIBUTED, UNDERSTANDS, DISCUSSED
+**Node tables:** File, Function, Class, Person, Discussion
+**Relationship tables:** CONTAINS, CALLS, IMPORTS, INHERITS, CONTRIBUTED, UNDERSTANDS, HAS_PARTICIPANT, ABOUT
 
 Person nodes are **invisible infrastructure** — they exist in KuzuDB for powerful relationship queries but are NOT rendered in the default 3D view. Person data surfaces through overlay modes.
 
@@ -40,7 +40,7 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 
 ### Proxy Server (Express)
 - POST `/v1/chat/completions` → forwards to Mistral API with streaming
-- Default model: `devstral-small-2507` (fast, for voice)
+- Default model: DevStral Small 2 (fast, for voice)
 - Port 3001
 
 ### Scripts
@@ -51,10 +51,10 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 
 | Agent | Model | Purpose |
 |-------|-------|---------|
-| Voice Conversationalist | devstral-small-2507 | Real-time voice, Cypher composition |
-| Quiz Master | mistral-medium | Knowledge assessment, spaced repetition |
-| Graph Reasoner | codestral | Multi-step Cypher, sub-agent spawning |
-| Background Enricher | codestral | Batch summaries, cluster analysis |
+| Voice Conversationalist | DevStral Small 2 (24B) | Real-time voice, Cypher composition |
+| Quiz Master | DevStral Small 2 (24B) | Mode of Agent 1 — knowledge assessment, spaced repetition |
+| Graph Reasoner | DevStral 2 (123B) | Multi-step Cypher, sub-agent spawning |
+| Background Enricher | DevStral 2 (123B) | Batch summaries, cluster analysis |
 
 ## Directory Layout
 

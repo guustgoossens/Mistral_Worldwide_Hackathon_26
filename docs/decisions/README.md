@@ -36,15 +36,15 @@ Architectural and product decisions made during planning, with rationale.
 - Overlay switching is a natural voice command ("show me contributors")
 - Keeps the default view simple while enabling rich exploration
 
-## Decision 4: Devstral-small for Voice
+## Decision 4: Two-Speed Model Architecture
 
-**Choice:** devstral-small-2507 as the default voice model.
+**Choice:** DevStral Small 2 (24B) for voice + DevStral 2 (123B) for deep analysis.
 
 **Rationale:**
-- Optimized for speed (~200ms first token) — critical for voice UX
-- Good enough for Cypher composition and conversational responses
-- More powerful models (codestral, mistral-medium) used for complex tasks
-- Easy to swap model per-request via the proxy
+- Small 2: 200 t/s, ~370ms TTFT — critical for voice UX (<2s end-to-end)
+- DevStral 2: 76 t/s — used for background enrichment, complex reasoning, and parallel truth-finding
+- The fast model talks, the big model thinks. User never waits for DevStral 2.
+- Both models are currently free on Mistral's API
 
 ## Decision 5: ElevenLabs Client Tools over Server Tools
 

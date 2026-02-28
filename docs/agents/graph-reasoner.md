@@ -6,7 +6,7 @@ Complex multi-step graph analysis. Handles questions that require chaining multi
 
 ## Model
 
-**codestral** — strong reasoning for multi-step Cypher composition and code analysis.
+**DevStral 2** (123B, 76 t/s) — strong reasoning for multi-step Cypher composition and code analysis. Can spawn DevStral Small 2 sub-agents for parallel node exploration.
 
 ## Capabilities
 
@@ -20,9 +20,12 @@ Complex multi-step graph analysis. Handles questions that require chaining multi
 
 The Voice Conversationalist escalates to the Graph Reasoner for:
 - Questions requiring 3+ sequential Cypher queries
-- "What's the impact of..." questions
-- "Find all paths between..." questions
+- "What's the impact of..." / "what if..." questions
+- "Who should..." / "compare..." / "prioritize..." questions
+- Cross-referencing contributor + knowledge dimensions
 - Architecture-level analysis
+
+Agent 1 speaks buffer words ("Let me analyze that...") at ~1.5s, then waits for Agent 3's response (5-15s total).
 
 ## Multi-Step Example
 
@@ -55,4 +58,23 @@ RETURN p.name, COUNT(fn) AS deepKnowledgeCount
 
 Synthesized response: "Refactoring authenticateUser would affect 3 files and 7 functions. The call chain goes through validateCredentials → findUserByEmail. Alice has deep knowledge of 5/7 affected functions, but nobody deeply understands the session creation path."
 
-> **OPEN QUESTION:** Sub-agent spawning implementation depth depends on hackathon time. Minimum: sequential multi-query. Stretch: parallel sub-queries with result merging.
+## Sub-Agent Spawning
+
+When Agent 3 needs to assess multiple nodes (e.g., "What does Jeff need to catch up on?" returns 12 candidates), it spawns DevStral Small 2 sub-agents to explore each in parallel:
+
+```
+Agent 3 (DevStral 2) — ORCHESTRATOR
+  │
+  │  Step 1: Cypher → finds candidate nodes
+  │  Step 2: Spawn sub-agents (5-10 concurrent)
+  │
+  ├──→ Sub-agent A (Small 2): read node L1, check recent changes, assess urgency
+  ├──→ Sub-agent B (Small 2): same for next node
+  └──→ ... (up to 10 concurrent)
+
+  Step 3: Collect results → rank by priority → synthesize narrative
+```
+
+Each sub-agent is a single Mistral API call with a focused prompt returning structured JSON. This pattern enables the agent to go from L1 summaries (broad context) to L2/L3 detail (deep dive) only for nodes that matter.
+
+Hackathon minimum: sequential multi-query. Stretch: parallel sub-agents with result merging.

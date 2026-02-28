@@ -6,20 +6,20 @@ HackStral uses four specialized AI agent roles, each optimized for different tas
 
 | # | Agent | Model | Latency | Purpose |
 |---|-------|-------|---------|---------|
-| 1 | [Voice Conversationalist](voice-conversationalist.md) | devstral-small-2507 | ~200ms | Real-time voice interaction, Cypher composition |
-| 2 | [Quiz Master](quiz-master.md) | mistral-medium | ~1s | Knowledge assessment, truth-finding |
-| 3 | [Graph Reasoner](graph-reasoner.md) | codestral | ~2s | Multi-step Cypher, complex analysis |
-| 4 | [Background Enricher](background-enricher.md) | codestral | batch | Summaries, quiz bank, cluster analysis |
+| 1 | [Voice Conversationalist](voice-conversationalist.md) | DevStral Small 2 (24B) | <2s | Real-time voice interaction, Cypher composition |
+| 2 | [Quiz Master](quiz-master.md) | DevStral Small 2 (24B) | <2s | Mode of Agent 1 — knowledge assessment, parallel truth-finding |
+| 3 | [Graph Reasoner](graph-reasoner.md) | DevStral 2 (123B) | 5-15s | Multi-step Cypher, sub-agent spawning |
+| 4 | [Background Enricher](background-enricher.md) | DevStral 2 (123B) | batch | Summaries, quiz bank, cluster analysis |
 
 ## Model Selection Map
 
 ```
-User speaks → Voice Conversationalist (devstral-small, fast)
+User speaks → Voice Conversationalist (DevStral Small 2, fast)
                 │
                 ├── Simple query → composes Cypher directly
-                ├── Quiz request → delegates to Quiz Master (mistral-medium)
-                ├── Complex analysis → escalates to Graph Reasoner (codestral)
-                └── "Enrich this" → queues for Background Enricher (codestral)
+                ├── Quiz request → switches to Quiz Master mode (same Small 2 pipeline)
+                ├── Complex analysis → escalates to Graph Reasoner (DevStral 2)
+                └── "Enrich this" → queues for Background Enricher (DevStral 2)
 ```
 
 ## Interaction Pattern

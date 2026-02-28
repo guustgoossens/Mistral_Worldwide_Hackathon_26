@@ -20,7 +20,7 @@ Voice-driven codebase intelligence platform for the Mistral Worldwide Hackathon.
 - **Graph DB:** KuzuDB WASM (in-browser, Cypher queries)
 - **3D Viz:** react-force-graph-3d (Three.js)
 - **Voice:** ElevenLabs Conversational AI
-- **LLM:** Mistral AI (devstral-small, codestral, mistral-medium)
+- **LLM:** Mistral AI (DevStral Small 2 for voice, DevStral 2 for deep analysis)
 - **Parsing:** web-tree-sitter (multi-language AST)
 - **Git:** simple-git (contributor analysis)
 - **Server:** Express proxy (ElevenLabs → Mistral)

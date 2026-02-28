@@ -50,7 +50,7 @@ The result: a live map of **who knows what** — and more importantly, **what no
 
 ### Mistral AI (Primary)
 - All LLM calls go through Mistral API
-- Multiple model tiers: devstral-small (voice), codestral (analysis), mistral-medium (quiz)
+- Two-speed architecture: DevStral Small 2 (voice, fast) + DevStral 2 (deep analysis, background)
 - Demonstrates Mistral's versatility across latency/capability spectrum
 
 ### ElevenLabs

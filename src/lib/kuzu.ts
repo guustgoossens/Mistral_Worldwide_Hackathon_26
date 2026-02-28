@@ -43,10 +43,11 @@ export async function initKuzu(): Promise<KuzuInstance> {
  */
 export async function setupSchema(conn: KuzuConnection): Promise<void> {
   const nodeTables = [
-    `CREATE NODE TABLE IF NOT EXISTS File (id STRING, name STRING, filePath STRING, PRIMARY KEY (id))`,
-    `CREATE NODE TABLE IF NOT EXISTS Function (id STRING, name STRING, filePath STRING, startLine INT64, endLine INT64, summary_l1 STRING, summary_l2 STRING, summary_l3 STRING, structuralImportance DOUBLE, PRIMARY KEY (id))`,
-    `CREATE NODE TABLE IF NOT EXISTS Class (id STRING, name STRING, filePath STRING, PRIMARY KEY (id))`,
+    `CREATE NODE TABLE IF NOT EXISTS File (id STRING, name STRING, filePath STRING, summary STRING, relevance DOUBLE, PRIMARY KEY (id))`,
+    `CREATE NODE TABLE IF NOT EXISTS Function (id STRING, name STRING, filePath STRING, startLine INT64, endLine INT64, summary STRING, relevance DOUBLE, PRIMARY KEY (id))`,
+    `CREATE NODE TABLE IF NOT EXISTS Class (id STRING, name STRING, filePath STRING, summary STRING, relevance DOUBLE, PRIMARY KEY (id))`,
     `CREATE NODE TABLE IF NOT EXISTS Person (id STRING, name STRING, email STRING, PRIMARY KEY (id))`,
+    `CREATE NODE TABLE IF NOT EXISTS Discussion (id STRING, timestamp STRING, transcript STRING, summary_l1 STRING, quizResult STRING, confidenceBefore STRING, confidenceAfter STRING, PRIMARY KEY (id))`,
   ];
 
   const relTables = [
@@ -54,9 +55,10 @@ export async function setupSchema(conn: KuzuConnection): Promise<void> {
     `CREATE REL TABLE IF NOT EXISTS CALLS (FROM Function TO Function)`,
     `CREATE REL TABLE IF NOT EXISTS IMPORTS (FROM File TO File)`,
     `CREATE REL TABLE IF NOT EXISTS INHERITS (FROM Class TO Class)`,
-    `CREATE REL TABLE IF NOT EXISTS CONTRIBUTED (FROM Person TO File, commits INT64, lastTouch STRING, linesChanged INT64)`,
-    `CREATE REL TABLE IF NOT EXISTS UNDERSTANDS (FROM Person TO Function, confidence STRING, source STRING, topics STRING[], lastAssessed STRING)`,
-    `CREATE REL TABLE IF NOT EXISTS DISCUSSED (FROM Person TO Function, timestamp STRING, transcript STRING, quizResult STRING, confidenceBefore STRING, confidenceAfter STRING)`,
+    `CREATE REL TABLE IF NOT EXISTS CONTRIBUTED (FROM Person TO File, commits INT64, lastTouch STRING, linesChanged INT64, blameLines INT64, ownershipPct DOUBLE, summary_l1 STRING, commits_json STRING)`,
+    `CREATE REL TABLE IF NOT EXISTS UNDERSTANDS (FROM Person TO Function, confidence STRING, source STRING, topics STRING[], lastAssessed STRING, needsRetest BOOLEAN, summary_l1 STRING, sessions_json STRING)`,
+    `CREATE REL TABLE IF NOT EXISTS HAS_PARTICIPANT (FROM Discussion TO Person, role STRING)`,
+    `CREATE REL TABLE IF NOT EXISTS ABOUT (FROM Discussion TO Function, FROM Discussion TO File, FROM Discussion TO Class, focus STRING)`,
   ];
 
   for (const ddl of [...nodeTables, ...relTables]) {
@@ -181,7 +183,7 @@ export async function deriveVizData(
       }
 
       // Query all Function nodes
-      const fns = await queryGraph(conn, `MATCH (f:Function) RETURN f.id, f.name, f.filePath, f.summary_l1`) as Row[];
+      const fns = await queryGraph(conn, `MATCH (f:Function) RETURN f.id, f.name, f.filePath, f.summary`) as Row[];
       for (const row of fns) {
         nodes.push({
           id: row["f.id"] ?? "",
@@ -190,7 +192,7 @@ export async function deriveVizData(
           filePath: row["f.filePath"] ?? "",
           val: 5,
           color: TYPE_COLORS.function,
-          summary: row["f.summary_l1"] || undefined,
+          summary: row["f.summary"] || undefined,
         });
       }
 
