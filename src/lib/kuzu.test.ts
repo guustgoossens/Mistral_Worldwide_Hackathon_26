@@ -124,16 +124,16 @@ describe("queryGraph", () => {
 // ---------------------------------------------------------------------------
 
 describe("setupSchema", () => {
-  it("executes all DDL statements (4 node tables + 7 rel tables)", async () => {
+  it("executes all DDL statements (5 node tables + 8 rel tables)", async () => {
     const conn = createMockConn();
     await setupSchema(conn);
 
-    // 4 node tables + 7 relationship tables = 11 DDL statements
-    expect(conn.calls).toHaveLength(11);
+    // 5 node tables + 8 relationship tables = 13 DDL statements
+    expect(conn.calls).toHaveLength(13);
     expect(conn.calls[0]).toContain("CREATE NODE TABLE");
     expect(conn.calls[0]).toContain("File");
-    expect(conn.calls[4]).toContain("CREATE REL TABLE");
-    expect(conn.calls[4]).toContain("CONTAINS");
+    expect(conn.calls[5]).toContain("CREATE REL TABLE");
+    expect(conn.calls[5]).toContain("CONTAINS");
   });
 
   it("ignores 'already exists' errors", async () => {
@@ -192,8 +192,8 @@ describe("loadSampleIntoKuzu", () => {
     const fnNodes = sampleGraph.nodes.filter((n) => n.type === "function");
     expect(fnCreates).toHaveLength(fnNodes.length);
 
-    // Check that summary_l1 is populated from the sample summary
-    expect(fnCreates[0]).toContain("summary_l1");
+    // Check that summary is populated from the sample summary
+    expect(fnCreates[0]).toContain("summary");
     expect(fnCreates[0]).toContain("Main login entry");
   });
 
@@ -249,9 +249,9 @@ describe("deriveVizData", () => {
     });
 
     // Functions
-    responses.set(`MATCH (f:Function) RETURN f.id, f.name, f.filePath, f.summary_l1`, {
+    responses.set(`MATCH (f:Function) RETURN f.id, f.name, f.filePath, f.summary`, {
       getAll: () => [
-        { "f.id": "fn:login", "f.name": "login", "f.filePath": "src/auth.ts", "f.summary_l1": "Handles login" },
+        { "f.id": "fn:login", "f.name": "login", "f.filePath": "src/auth.ts", "f.summary": "Handles login" },
       ],
     });
 
@@ -320,13 +320,33 @@ describe("deriveVizData", () => {
     expect(data.links[0]?.target).toBe("fn:login");
   });
 
-  it("returns empty for non-structure overlays (TODO stubs)", async () => {
-    const conn = createMockConn();
+  it("returns nodes for contributors overlay with contributor data", async () => {
+    const responses = new Map<string, unknown>();
 
-    for (const overlay of ["contributors", "knowledge", "people"] as const) {
-      const data = await deriveVizData(conn, overlay);
-      expect(data.nodes).toHaveLength(0);
-      expect(data.links).toHaveLength(0);
-    }
+    // Files, Functions, Classes queries for contributors overlay
+    responses.set(`MATCH (f:File) RETURN f.id, f.name, f.filePath`, {
+      getAll: () => [{ "f.id": "f:auth.ts", "f.name": "auth.ts", "f.filePath": "src/auth.ts" }],
+    });
+    responses.set(`MATCH (f:Function) RETURN f.id, f.name, f.filePath`, {
+      getAll: () => [],
+    });
+    responses.set(`MATCH (c:Class) RETURN c.id, c.name, c.filePath`, {
+      getAll: () => [],
+    });
+    // Contributor data
+    responses.set(`MATCH (p:Person)-[r:CONTRIBUTED]->(f:File) RETURN f.id AS fileId, p.name AS contributor, r.commits AS commits, r.linesChanged AS linesChanged`, {
+      getAll: () => [{ fileId: "f:auth.ts", contributor: "Alice", commits: "10", linesChanged: "200" }],
+    });
+    // Structural edges
+    responses.set(`MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`, { getAll: () => [] });
+    responses.set(`MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`, { getAll: () => [] });
+    responses.set(`MATCH (a:File)-[:IMPORTS]->(b:File) RETURN a.id, b.id`, { getAll: () => [] });
+
+    const conn = createMockConn(responses);
+    const data = await deriveVizData(conn, "contributors");
+
+    expect(data.nodes).toHaveLength(1);
+    expect(data.nodes[0]!.id).toBe("f:auth.ts");
+    expect(data.nodes[0]!.contributors).toBeDefined();
   });
 });
