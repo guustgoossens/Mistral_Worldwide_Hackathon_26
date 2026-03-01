@@ -45,12 +45,12 @@ function extractFilename(filePath: string): string {
 
 function KnowledgeBadge({ score }: { score: number }) {
   if (score >= 0.7) {
-    return <span className="rounded bg-green-500/20 px-1.5 py-0.5 text-xs font-medium text-green-400">Deep</span>;
+    return <span className="rounded bg-amber/20 px-1.5 py-0.5 text-xs font-medium text-amber">Deep</span>;
   }
   if (score >= 0.3) {
-    return <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-xs font-medium text-amber-400">Surface</span>;
+    return <span className="rounded bg-accent-muted/20 px-1.5 py-0.5 text-xs font-medium text-accent-muted">Surface</span>;
   }
-  return <span className="rounded bg-red-500/20 px-1.5 py-0.5 text-xs font-medium text-red-400">None</span>;
+  return <span className="rounded bg-warm-red/20 px-1.5 py-0.5 text-xs font-medium text-warm-red">None</span>;
 }
 
 export function NodeDetail({ node, onClose }: NodeDetailProps) {
@@ -63,7 +63,7 @@ export function NodeDetail({ node, onClose }: NodeDetailProps) {
       : 0;
 
   return (
-    <div className="absolute inset-x-0 top-0 z-10 border-b border-border bg-surface/95 p-4 backdrop-blur md:inset-x-auto md:right-4 md:top-4 md:w-80 md:rounded-lg md:border">
+    <div className="absolute inset-x-0 top-0 z-10 border-b border-border bg-surface p-4 md:inset-x-auto md:right-4 md:top-4 md:w-80 md:rounded-[12px] md:border">
       {/* Header */}
       <div className="mb-3 flex items-start justify-between">
         <div className="flex items-center gap-2">

@@ -1,12 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0f;
-  --color-surface: #141420;
-  --color-border: #2a2a3a;
-  --color-accent: #6366f1;
-  --color-text: #e2e8f0;
-  --color-text-muted: #94a3b8;
+  --color-bg: #0D0D0D;
+  --color-surface: #1A1A1A;
+  --color-elevated: #242424;
+  --color-input: #2A2A2A;
+  --color-border: #2A2A2A;
+  --color-border-medium: #3A3A3A;
+  --color-accent: #E85C0F;
+  --color-accent-bright: #F57A1F;
+  --color-accent-muted: #D4603A;
+  --color-amber: #F5A623;
+  --color-yellow: #FFD036;
+  --color-warm-red: #E83A0F;
+  --color-text: #F5F5F5;
+  --color-text-muted: #A3A3A3;
+  --color-text-tertiary: #6B6B6B;
+  --color-text-warm: #E8C5A0;
 }
 
 body {
@@ -25,6 +35,18 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+/* Gradient utilities */
+.gradient-cta { background: linear-gradient(90deg, #E85C0F, #F57A1F); }
+.gradient-hero { background: linear-gradient(135deg, #E85C0F 0%, #F5A623 50%, #FFD036 100%); }
+.gradient-sidebar-bar { background: linear-gradient(90deg, #8B2A1A, #C44A20, #E85C0F); }
+
+/* Pixel art rendering */
+.pixel-art { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+/* Gradient spinner */
+@keyframes spin-gradient { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spinner-gradient { width: 40px; height: 40px; border: 3px solid #2A2A2A; border-top-color: #E85C0F; border-right-color: #F5A623; border-radius: 50%; animation: spin-gradient 0.8s linear infinite; }
 
 /* Quiz panel slide-up entrance animation */
 @keyframes slide-up-fade {
@@ -47,7 +69,7 @@ body {
   width: 4px;
 }
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: #3A3A3A;
   border-radius: 2px;
 }
 

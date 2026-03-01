@@ -6,28 +6,28 @@ import type { GraphData, VizNode } from "@/types/graph";
 export const sampleGraph: GraphData = {
   nodes: [
     // Files
-    { id: "f:auth/index.ts", name: "auth/index.ts", type: "file", filePath: "src/auth/index.ts", val: 8, color: "#6366f1" },
-    { id: "f:auth/login.ts", name: "auth/login.ts", type: "file", filePath: "src/auth/login.ts", val: 6, color: "#6366f1" },
-    { id: "f:auth/session.ts", name: "auth/session.ts", type: "file", filePath: "src/auth/session.ts", val: 5, color: "#6366f1" },
-    { id: "f:auth/middleware.ts", name: "auth/middleware.ts", type: "file", filePath: "src/auth/middleware.ts", val: 5, color: "#6366f1" },
-    { id: "f:db/users.ts", name: "db/users.ts", type: "file", filePath: "src/db/users.ts", val: 6, color: "#6366f1" },
-    { id: "f:utils/hash.ts", name: "utils/hash.ts", type: "file", filePath: "src/utils/hash.ts", val: 3, color: "#6366f1" },
+    { id: "f:auth/index.ts", name: "auth/index.ts", type: "file", filePath: "src/auth/index.ts", val: 8, color: "#5B8FF9" },
+    { id: "f:auth/login.ts", name: "auth/login.ts", type: "file", filePath: "src/auth/login.ts", val: 6, color: "#5B8FF9" },
+    { id: "f:auth/session.ts", name: "auth/session.ts", type: "file", filePath: "src/auth/session.ts", val: 5, color: "#5B8FF9" },
+    { id: "f:auth/middleware.ts", name: "auth/middleware.ts", type: "file", filePath: "src/auth/middleware.ts", val: 5, color: "#5B8FF9" },
+    { id: "f:db/users.ts", name: "db/users.ts", type: "file", filePath: "src/db/users.ts", val: 6, color: "#5B8FF9" },
+    { id: "f:utils/hash.ts", name: "utils/hash.ts", type: "file", filePath: "src/utils/hash.ts", val: 3, color: "#5B8FF9" },
 
     // Functions
-    { id: "fn:authenticateUser", name: "authenticateUser", type: "function", filePath: "src/auth/login.ts", val: 10, color: "#f59e0b", summary: "Main login entry: validates credentials, creates session" },
-    { id: "fn:validateCredentials", name: "validateCredentials", type: "function", filePath: "src/auth/login.ts", val: 7, color: "#f59e0b", summary: "Checks email/password against DB" },
-    { id: "fn:createSession", name: "createSession", type: "function", filePath: "src/auth/session.ts", val: 8, color: "#f59e0b", summary: "Creates JWT session token" },
-    { id: "fn:verifySession", name: "verifySession", type: "function", filePath: "src/auth/session.ts", val: 7, color: "#f59e0b", summary: "Validates JWT and returns user context" },
-    { id: "fn:requireAuth", name: "requireAuth", type: "function", filePath: "src/auth/middleware.ts", val: 6, color: "#f59e0b", summary: "Express middleware that checks session" },
-    { id: "fn:hashPassword", name: "hashPassword", type: "function", filePath: "src/utils/hash.ts", val: 4, color: "#f59e0b", summary: "Bcrypt hash wrapper" },
-    { id: "fn:comparePassword", name: "comparePassword", type: "function", filePath: "src/utils/hash.ts", val: 4, color: "#f59e0b", summary: "Bcrypt compare wrapper" },
-    { id: "fn:findUserByEmail", name: "findUserByEmail", type: "function", filePath: "src/db/users.ts", val: 5, color: "#f59e0b", summary: "DB query: find user by email" },
-    { id: "fn:createUser", name: "createUser", type: "function", filePath: "src/db/users.ts", val: 5, color: "#f59e0b", summary: "DB insert: create new user record" },
+    { id: "fn:authenticateUser", name: "authenticateUser", type: "function", filePath: "src/auth/login.ts", val: 10, color: "#F6BD16", summary: "Main login entry: validates credentials, creates session" },
+    { id: "fn:validateCredentials", name: "validateCredentials", type: "function", filePath: "src/auth/login.ts", val: 7, color: "#F6BD16", summary: "Checks email/password against DB" },
+    { id: "fn:createSession", name: "createSession", type: "function", filePath: "src/auth/session.ts", val: 8, color: "#F6BD16", summary: "Creates JWT session token" },
+    { id: "fn:verifySession", name: "verifySession", type: "function", filePath: "src/auth/session.ts", val: 7, color: "#F6BD16", summary: "Validates JWT and returns user context" },
+    { id: "fn:requireAuth", name: "requireAuth", type: "function", filePath: "src/auth/middleware.ts", val: 6, color: "#F6BD16", summary: "Express middleware that checks session" },
+    { id: "fn:hashPassword", name: "hashPassword", type: "function", filePath: "src/utils/hash.ts", val: 4, color: "#F6BD16", summary: "Bcrypt hash wrapper" },
+    { id: "fn:comparePassword", name: "comparePassword", type: "function", filePath: "src/utils/hash.ts", val: 4, color: "#F6BD16", summary: "Bcrypt compare wrapper" },
+    { id: "fn:findUserByEmail", name: "findUserByEmail", type: "function", filePath: "src/db/users.ts", val: 5, color: "#F6BD16", summary: "DB query: find user by email" },
+    { id: "fn:createUser", name: "createUser", type: "function", filePath: "src/db/users.ts", val: 5, color: "#F6BD16", summary: "DB insert: create new user record" },
 
     // Classes
-    { id: "c:AuthService", name: "AuthService", type: "class", filePath: "src/auth/index.ts", val: 12, color: "#10b981", summary: "Orchestrates auth flows" },
-    { id: "c:SessionStore", name: "SessionStore", type: "class", filePath: "src/auth/session.ts", val: 9, color: "#10b981", summary: "In-memory session storage" },
-    { id: "c:UserRepository", name: "UserRepository", type: "class", filePath: "src/db/users.ts", val: 8, color: "#10b981", summary: "Data access layer for users table" },
+    { id: "c:AuthService", name: "AuthService", type: "class", filePath: "src/auth/index.ts", val: 12, color: "#5AD8A6", summary: "Orchestrates auth flows" },
+    { id: "c:SessionStore", name: "SessionStore", type: "class", filePath: "src/auth/session.ts", val: 9, color: "#5AD8A6", summary: "In-memory session storage" },
+    { id: "c:UserRepository", name: "UserRepository", type: "class", filePath: "src/db/users.ts", val: 8, color: "#5AD8A6", summary: "Data access layer for users table" },
   ],
   links: [
     // CONTAINS: file → function/class

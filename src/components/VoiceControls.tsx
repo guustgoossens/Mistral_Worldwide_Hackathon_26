@@ -38,14 +38,14 @@ export function VoiceControls({
     <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3">
       {/* Error message */}
       {error && (
-        <div className="w-96 rounded-lg bg-red-500/10 border border-red-500/30 p-3">
-          <p className="text-xs text-red-400">{error}</p>
+        <div className="w-96 rounded-lg bg-warm-red/10 border border-warm-red/30 p-3">
+          <p className="text-xs text-warm-red">{error}</p>
         </div>
       )}
 
       {/* Transcript (visible during interview) */}
       {interviewState === "interviewing" && transcript.length > 0 && (
-        <div className="max-h-32 w-96 overflow-y-auto rounded-lg bg-surface/90 p-3 backdrop-blur">
+        <div className="max-h-32 w-96 overflow-y-auto rounded-lg bg-surface p-3">
           {transcript.slice(-3).map((msg, i) => (
             <p key={i} className={cn("text-xs", msg.role === "user" ? "text-accent" : "text-text-muted")}>
               <span className="font-medium">{msg.role === "user" ? "You" : "Agent"}:</span> {msg.content}
@@ -60,9 +60,9 @@ export function VoiceControls({
           onClick={onPrepare}
           disabled={!kuzuReady}
           className={cn(
-            "flex h-14 items-center gap-3 rounded-full px-8 text-sm font-medium transition-all",
+            "flex h-14 items-center gap-3 rounded-[10px] px-8 text-sm font-medium transition-all",
             kuzuReady
-              ? "bg-accent text-white shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:scale-105"
+              ? "gradient-cta text-white font-bold hover:scale-105"
               : "bg-surface/50 text-text-muted cursor-not-allowed",
           )}
         >
@@ -72,7 +72,7 @@ export function VoiceControls({
       )}
 
       {interviewState === "preparing" && (
-        <div className="flex h-14 items-center gap-3 rounded-full bg-surface/80 px-8">
+        <div className="flex h-14 items-center gap-3 rounded-[10px] bg-surface px-8">
           <Loader2 className="h-5 w-5 animate-spin text-accent" />
           <span className="text-sm text-text-muted">Analyzing codebase...</span>
         </div>
@@ -81,7 +81,7 @@ export function VoiceControls({
       {interviewState === "ready" && (
         <button
           onClick={onStartInterview}
-          className="flex h-14 items-center gap-3 rounded-full bg-green-500 px-8 text-sm font-medium text-white shadow-lg shadow-green-500/30 hover:shadow-green-500/50 hover:scale-105 transition-all"
+          className="flex h-14 items-center gap-3 rounded-[10px] gradient-cta px-8 text-sm font-bold text-white hover:scale-105 transition-all"
         >
           <Mic className="h-5 w-5" />
           Start Interview
@@ -97,11 +97,11 @@ export function VoiceControls({
               "flex h-14 w-14 items-center justify-center rounded-full transition-all",
               isVoiceConnected
                 ? isSpeaking
-                  ? "animate-pulse bg-accent shadow-lg shadow-accent/40"
-                  : "bg-accent shadow-lg shadow-accent/30"
+                  ? "animate-pulse gradient-cta"
+                  : "gradient-cta"
                 : isVoiceTransitioning
-                  ? "cursor-wait bg-surface/80"
-                  : "bg-surface hover:bg-border",
+                  ? "cursor-wait bg-surface"
+                  : "bg-input hover:bg-border-medium",
             )}
           >
             {isVoiceTransitioning ? (
@@ -117,14 +117,14 @@ export function VoiceControls({
 
       {interviewState === "complete" && (
         <div className="flex items-center gap-3">
-          <div className="flex h-14 items-center gap-3 rounded-full bg-green-500/10 border border-green-500/30 px-8">
-            <CheckCircle className="h-5 w-5 text-green-400" />
-            <span className="text-sm text-green-400">Interview Complete</span>
+          <div className="flex h-14 items-center gap-3 rounded-[10px] bg-accent-muted/10 border border-accent-muted/30 px-8">
+            <CheckCircle className="h-5 w-5 text-accent-muted" />
+            <span className="text-sm text-accent-muted">Interview Complete</span>
           </div>
           {onStartQuiz && (
             <button
               onClick={onStartQuiz}
-              className="flex h-14 items-center gap-2 rounded-full bg-amber-500 px-6 text-sm font-medium text-white shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 transition-all"
+              className="flex h-14 items-center gap-2 rounded-[10px] gradient-cta px-6 text-sm font-bold text-white hover:scale-105 transition-all"
             >
               <Brain className="h-5 w-5" />
               Quiz Me
@@ -135,14 +135,14 @@ export function VoiceControls({
 
       {interviewState === "quizzing" && (
         <div className="flex items-center gap-3">
-          <div className="flex h-14 items-center gap-3 rounded-full bg-amber-500/10 border border-amber-500/30 px-8">
-            <Brain className="h-5 w-5 text-amber-400" />
-            <span className="text-sm text-amber-400">Quizzing...</span>
+          <div className="flex h-14 items-center gap-3 rounded-[10px] bg-amber/10 border border-amber/30 px-8">
+            <Brain className="h-5 w-5 text-amber" />
+            <span className="text-sm text-amber">Quizzing...</span>
           </div>
           {onStopQuiz && (
             <button
               onClick={onStopQuiz}
-              className="flex h-14 items-center gap-2 rounded-full bg-red-500/80 px-6 text-sm font-medium text-white shadow-lg hover:bg-red-500 hover:scale-105 transition-all"
+              className="flex h-14 items-center gap-2 rounded-[10px] bg-warm-red/80 px-6 text-sm font-medium text-white hover:bg-warm-red hover:scale-105 transition-all"
             >
               <Square className="h-4 w-4" />
               Stop Quiz
