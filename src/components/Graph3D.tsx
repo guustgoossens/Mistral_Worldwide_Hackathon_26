@@ -1,5 +1,16 @@
 import { useRef, useCallback, useMemo, forwardRef, useImperativeHandle } from "react";
 import ForceGraph3D from "react-force-graph-3d";
+import {
+  SphereGeometry,
+  MeshLambertMaterial,
+  Mesh,
+  SpriteMaterial,
+  Sprite,
+  CanvasTexture,
+  Group,
+  Color,
+  AdditiveBlending,
+} from "three";
 import type { GraphData, VizNode } from "@/types/graph";
 
 interface Graph3DProps {
@@ -53,12 +64,33 @@ export const Graph3D = forwardRef<Graph3DHandle, Graph3DProps>(function Graph3D(
     [onNodeClick],
   );
 
+  // Glow texture (created once, reused across renders)
+  const glowTexRef = useRef<CanvasTexture | null>(null);
+  if (!glowTexRef.current) {
+    const size = 64;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d")!;
+    const grad = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grad.addColorStop(0, "rgba(255,255,255,0.7)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, size, size);
+    glowTexRef.current = new CanvasTexture(canvas);
+  }
+
   const graphData = useMemo(
     () => ({
-      nodes: data.nodes.map((n) => ({ ...n })),
+      nodes: data.nodes.map((n) => ({
+        ...n,
+        __glowColor: (highlightedIds?.size && !highlightedIds.has(n.id))
+          ? "#333"
+          : (n.color ?? "#6366f1"),
+      })),
       links: data.links.map((l) => ({ ...l })),
     }),
-    [data],
+    [data, highlightedIds],
   );
 
   return (
@@ -66,19 +98,41 @@ export const Graph3D = forwardRef<Graph3DHandle, Graph3DProps>(function Graph3D(
       ref={fgRef}
       graphData={graphData}
       nodeLabel="name"
-      nodeVal="val"
-      nodeColor={(node) => {
-        const n = node as VizNode;
-        if (highlightedIds?.size && !highlightedIds.has(n.id)) return "#333";
-        return n.color ?? "#6366f1";
-      }}
-      linkColor={() => "#2a2a3a"}
+      linkColor={(link: any) => link.color ?? "#2a2a3a"}
       linkOpacity={0.4}
       linkWidth={1}
+      linkDirectionalParticles={(link: any) => link.type === "calls" ? 2 : 0}
+      linkDirectionalParticleSpeed={0.006}
+      linkDirectionalParticleWidth={1.5}
+      linkDirectionalParticleColor={() => "#f59e0b"}
       backgroundColor="#0a0a0f"
       onNodeClick={handleNodeClick}
-      nodeOpacity={0.9}
       enableNodeDrag={true}
+      nodeThreeObject={(node: any) => {
+        const color = node.__glowColor ?? "#6366f1";
+        const group = new Group();
+
+        // Core sphere
+        const geo = new SphereGeometry(4, 16, 16);
+        const mat = new MeshLambertMaterial({ color: new Color(color) });
+        group.add(new Mesh(geo, mat));
+
+        // Glow sprite
+        const spriteMat = new SpriteMaterial({
+          map: glowTexRef.current!,
+          color: new Color(color),
+          transparent: true,
+          opacity: 0.25,
+          blending: AdditiveBlending,
+          depthWrite: false,
+        });
+        const sprite = new Sprite(spriteMat);
+        sprite.scale.set(20, 20, 1);
+        group.add(sprite);
+
+        return group;
+      }}
+      nodeThreeObjectExtend={false}
     />
   );
 });

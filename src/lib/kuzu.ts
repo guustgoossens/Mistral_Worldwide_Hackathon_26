@@ -177,6 +177,15 @@ const KNOWLEDGE_COLORS = {
   none: "#ef4444",    // red
 };
 
+const LINK_TYPE_COLORS: Record<string, string> = {
+  contains: "#374151",
+  calls:    "#f59e0b80",
+  imports:  "#6366f180",
+  inherits: "#10b98180",
+  contributed: "#8b5cf680",
+  understands: "#06b6d480",
+};
+
 /**
  * Derive visualization data from KuzuDB based on the active overlay mode.
  */
@@ -236,19 +245,19 @@ export async function deriveVizData(
       // Query CONTAINS edges
       const contains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as Row[];
       for (const row of contains) {
-        links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+        links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
       }
 
       // Query CALLS edges
       const calls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as Row[];
       for (const row of calls) {
-        links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls" });
+        links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls", color: LINK_TYPE_COLORS["calls"] ?? "#2a2a3a" });
       }
 
       // Query IMPORTS edges
       const imports = await queryGraph(conn, `MATCH (a:File)-[:IMPORTS]->(b:File) RETURN a.id, b.id`) as Row[];
       for (const row of imports) {
-        links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "imports" });
+        links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "imports", color: LINK_TYPE_COLORS["imports"] ?? "#2a2a3a" });
       }
 
       break;
@@ -325,11 +334,11 @@ export async function deriveVizData(
 
       // Same structural edges
       const cContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as CRow[];
-      for (const row of cContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+      for (const row of cContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
       const cCalls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as CRow[];
-      for (const row of cCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls" });
+      for (const row of cCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls", color: LINK_TYPE_COLORS["calls"] ?? "#2a2a3a" });
       const cImports = await queryGraph(conn, `MATCH (a:File)-[:IMPORTS]->(b:File) RETURN a.id, b.id`) as CRow[];
-      for (const row of cImports) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "imports" });
+      for (const row of cImports) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "imports", color: LINK_TYPE_COLORS["imports"] ?? "#2a2a3a" });
 
       break;
     }
@@ -387,9 +396,9 @@ export async function deriveVizData(
 
       // Edges
       const kContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as KRow[];
-      for (const row of kContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+      for (const row of kContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
       const kCalls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as KRow[];
-      for (const row of kCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls" });
+      for (const row of kCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls", color: LINK_TYPE_COLORS["calls"] ?? "#2a2a3a" });
 
       break;
     }
@@ -437,7 +446,7 @@ export async function deriveVizData(
       try {
         const contribEdges = await queryGraph(conn, `MATCH (p:Person)-[:CONTRIBUTED]->(f:File) RETURN p.id, f.id`) as PRow[];
         for (const row of contribEdges) {
-          links.push({ source: row["p.id"] ?? "", target: row["f.id"] ?? "", type: "contributed" });
+          links.push({ source: row["p.id"] ?? "", target: row["f.id"] ?? "", type: "contributed", color: LINK_TYPE_COLORS["contributed"] ?? "#2a2a3a" });
         }
       } catch { /* no contributor edges */ }
 
@@ -445,13 +454,13 @@ export async function deriveVizData(
       try {
         const understandEdges = await queryGraph(conn, `MATCH (p:Person)-[:UNDERSTANDS]->(f:Function) RETURN p.id, f.id`) as PRow[];
         for (const row of understandEdges) {
-          links.push({ source: row["p.id"] ?? "", target: row["f.id"] ?? "", type: "understands" });
+          links.push({ source: row["p.id"] ?? "", target: row["f.id"] ?? "", type: "understands", color: LINK_TYPE_COLORS["understands"] ?? "#2a2a3a" });
         }
       } catch { /* no understand edges */ }
 
       // Structural edges (lighter, as context)
       const pContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as PRow[];
-      for (const row of pContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains" });
+      for (const row of pContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
 
       break;
     }

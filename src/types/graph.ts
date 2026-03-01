@@ -107,6 +107,7 @@ export interface VizLink {
   source: string;
   target: string;
   type: "contains" | "calls" | "imports" | "inherits" | "contributed" | "understands";
+  color?: string;
 }
 
 export interface GraphData {
