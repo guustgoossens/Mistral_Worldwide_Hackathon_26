@@ -41,3 +41,28 @@ body {
 .animate-in {
   animation: slide-up-fade 0.25s ease-out;
 }
+
+/* Scrollbar styling */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 4px;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+/* Mobile overrides for voice controls */
+@media (max-width: 767px) {
+  .absolute.bottom-8 {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Safe area insets */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

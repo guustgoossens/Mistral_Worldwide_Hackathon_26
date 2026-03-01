@@ -1,5 +1,6 @@
+import { useState } from "react";
 import type { VizNode } from "@/types/graph";
-import { X, FileCode, Box, Braces } from "lucide-react";
+import { X, FileCode, Box, Braces, ChevronDown } from "lucide-react";
 
 interface NodeDetailProps {
   node: VizNode | null;
@@ -14,17 +15,61 @@ const typeIcons = {
   person: Box,
 };
 
+function DetailSection({
+  title,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-t border-border pt-2">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between text-xs font-medium text-text-muted hover:text-text"
+      >
+        {title}
+        <ChevronDown className={`h-3 w-3 transition-transform ${open ? "" : "-rotate-90"}`} />
+      </button>
+      {open && <div className="mt-1.5">{children}</div>}
+    </div>
+  );
+}
+
+function extractFilename(filePath: string): string {
+  return filePath.split("/").pop() ?? filePath;
+}
+
+function KnowledgeBadge({ score }: { score: number }) {
+  if (score >= 0.7) {
+    return <span className="rounded bg-green-500/20 px-1.5 py-0.5 text-xs font-medium text-green-400">Deep</span>;
+  }
+  if (score >= 0.3) {
+    return <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-xs font-medium text-amber-400">Surface</span>;
+  }
+  return <span className="rounded bg-red-500/20 px-1.5 py-0.5 text-xs font-medium text-red-400">None</span>;
+}
+
 export function NodeDetail({ node, onClose }: NodeDetailProps) {
   if (!node) return null;
 
   const Icon = typeIcons[node.type] ?? Box;
+  const maxCommits =
+    node.contributors && node.contributors.length > 0
+      ? Math.max(...node.contributors.map((c) => c.commits))
+      : 0;
 
   return (
-    <div className="absolute right-4 top-4 z-10 w-80 rounded-lg border border-border bg-surface/95 p-4 backdrop-blur">
+    <div className="absolute inset-x-0 top-0 z-10 border-b border-border bg-surface/95 p-4 backdrop-blur md:inset-x-auto md:right-4 md:top-4 md:w-80 md:rounded-lg md:border">
+      {/* Header */}
       <div className="mb-3 flex items-start justify-between">
         <div className="flex items-center gap-2">
           <Icon className="h-4 w-4 text-accent" />
           <h3 className="font-medium text-text">{node.name}</h3>
+          <span className="rounded bg-border px-1.5 py-0.5 text-xs text-text-muted">{node.type}</span>
         </div>
         <button onClick={onClose} className="text-text-muted hover:text-text">
           <X className="h-4 w-4" />
@@ -32,39 +77,49 @@ export function NodeDetail({ node, onClose }: NodeDetailProps) {
       </div>
 
       <div className="space-y-2 text-xs">
-        <div>
-          <span className="text-text-muted">Type:</span>{" "}
-          <span className="rounded bg-border px-1.5 py-0.5 text-text">{node.type}</span>
-        </div>
-
+        {/* Location (always visible) */}
         {node.filePath && (
-          <div>
-            <span className="text-text-muted">Path:</span> <span className="text-text">{node.filePath}</span>
+          <div title={node.filePath}>
+            <span className="text-text-muted">Location:</span>{" "}
+            <span className="text-text">{extractFilename(node.filePath)}</span>
           </div>
         )}
 
+        {/* Summary */}
         {node.summary && (
-          <div>
-            <span className="text-text-muted">Summary:</span> <span className="text-text">{node.summary}</span>
-          </div>
+          <blockquote className="border-l-2 border-accent pl-3 text-sm text-text-muted italic">
+            {node.summary}
+          </blockquote>
         )}
 
-        {node.contributors && node.contributors.length > 0 && (
-          <div>
-            <p className="mb-1 text-text-muted">Contributors:</p>
-            {node.contributors.map((c) => (
-              <p key={c.person} className="ml-2 text-text">
-                {c.person} — {c.commits} commits
-              </p>
-            ))}
-          </div>
-        )}
-
+        {/* Knowledge badge */}
         {node.knowledgeScore != null && (
-          <div>
-            <span className="text-text-muted">Knowledge:</span>{" "}
-            <span className="text-text">{Math.round(node.knowledgeScore * 100)}%</span>
+          <div className="flex items-center gap-2">
+            <span className="text-text-muted">Knowledge:</span>
+            <KnowledgeBadge score={node.knowledgeScore} />
           </div>
+        )}
+
+        {/* Contributors (collapsible, default closed) */}
+        {node.contributors && node.contributors.length > 0 && (
+          <DetailSection title={`Contributors (${node.contributors.length})`} defaultOpen={false}>
+            <div className="space-y-1.5">
+              {node.contributors.map((c) => (
+                <div key={c.person} className="flex items-center gap-2">
+                  <span className="w-20 truncate text-text" title={c.person}>
+                    {c.person}
+                  </span>
+                  <div className="flex-1 h-2 rounded-full bg-border overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-accent"
+                      style={{ width: `${maxCommits > 0 ? (c.commits / maxCommits) * 100 : 0}%` }}
+                    />
+                  </div>
+                  <span className="w-8 text-right text-text-muted">{c.commits}</span>
+                </div>
+              ))}
+            </div>
+          </DetailSection>
         )}
       </div>
     </div>
