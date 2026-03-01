@@ -1,475 +1,12 @@
 {
   "repoPath": "/Users/guustgoossens/Desktop/dev/Hackathon/HackStral/.repos/wandb",
-  "analyzedAt": "2026-03-01T10:11:07.592Z",
+  "analyzedAt": "2026-03-01T13:34:11.802Z",
   "stats": {
-    "totalCommits": 64,
-    "totalContributors": 7,
-    "totalFiles": 86
+    "totalCommits": 14,
+    "totalContributors": 5,
+    "totalFiles": 37
   },
   "contributors": [
-    {
-      "id": "p:anish@wandb.com",
-      "name": "Anish Shah",
-      "email": "anish@wandb.com",
-      "files": [
-        {
-          "filePath": "tests/conftest.py",
-          "commits": 11,
-          "linesChanged": 176,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "skills/_evals/conftest.py",
-          "commits": 10,
-          "linesChanged": 1008,
-          "lastTouch": "2026-02-24T00:20:20-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
-          "commits": 10,
-          "linesChanged": 750,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "tests/__init__.py",
-          "commits": 9,
-          "linesChanged": 0,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/auth.py",
-          "commits": 8,
-          "linesChanged": 334,
-          "lastTouch": "2026-02-27T16:02:26-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
-          "commits": 8,
-          "linesChanged": 247,
-          "lastTouch": "2026-02-27T16:02:26-05:00"
-        },
-        {
-          "filePath": "skills/_evals/run_evals.py",
-          "commits": 8,
-          "linesChanged": 1084,
-          "lastTouch": "2026-02-24T00:20:20-05:00"
-        },
-        {
-          "filePath": "skills/_evals/test_quickstart.py",
-          "commits": 8,
-          "linesChanged": 298,
-          "lastTouch": "2026-02-23T17:21:30-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/weave_api/processors.py",
-          "commits": 8,
-          "linesChanged": 637,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/config.py",
-          "commits": 8,
-          "linesChanged": 82,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": ".gitignore",
-          "commits": 8,
-          "linesChanged": 18,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "skills/_evals/README.md",
-          "commits": 6,
-          "linesChanged": 402,
-          "lastTouch": "2026-02-24T00:20:20-05:00"
-        },
-        {
-          "filePath": "skills/_evals/scorers.py",
-          "commits": 6,
-          "linesChanged": 990,
-          "lastTouch": "2026-02-23T17:21:30-05:00"
-        },
-        {
-          "filePath": "skills/_evals/test_experiment.py",
-          "commits": 6,
-          "linesChanged": 256,
-          "lastTouch": "2026-02-23T17:21:30-05:00"
-        },
-        {
-          "filePath": "skills/_evals/test_failure.py",
-          "commits": 6,
-          "linesChanged": 270,
-          "lastTouch": "2026-02-23T17:21:30-05:00"
-        },
-        {
-          "filePath": "skills/_evals/test_trace.py",
-          "commits": 6,
-          "linesChanged": 248,
-          "lastTouch": "2026-02-23T17:21:30-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/query_weave.py",
-          "commits": 6,
-          "linesChanged": 99,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "pyproject.toml",
-          "commits": 5,
-          "linesChanged": 47,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/weave_api/client.py",
-          "commits": 5,
-          "linesChanged": 93,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": ".github/workflows/ci.yml",
-          "commits": 5,
-          "linesChanged": 124,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/server.py",
-          "commits": 5,
-          "linesChanged": 493,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/trace_utils.py",
-          "commits": 5,
-          "linesChanged": 497,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/weave_api/service.py",
-          "commits": 5,
-          "linesChanged": 550,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "tests/test_authentication.py",
-          "commits": 5,
-          "linesChanged": 397,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "tests/test_weave_api.py",
-          "commits": 5,
-          "linesChanged": 879,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/analytics.py",
-          "commits": 4,
-          "linesChanged": 575,
-          "lastTouch": "2026-02-27T16:18:26-05:00"
-        },
-        {
-          "filePath": "tests/test_analytics.py",
-          "commits": 4,
-          "linesChanged": 968,
-          "lastTouch": "2026-02-27T16:02:26-05:00"
-        },
-        {
-          "filePath": "skills/_evals/run.sh",
-          "commits": 4,
-          "linesChanged": 150,
-          "lastTouch": "2026-02-24T00:20:20-05:00"
-        },
-        {
-          "filePath": "skills/_evals/seed_project.py",
-          "commits": 4,
-          "linesChanged": 690,
-          "lastTouch": "2026-02-24T00:20:20-05:00"
-        },
-        {
-          "filePath": "skills/_evals/runners/claude_runner.py",
-          "commits": 4,
-          "linesChanged": 332,
-          "lastTouch": "2026-02-23T16:43:48-05:00"
-        },
-        {
-          "filePath": "skills/experiment-analysis/SKILL.md",
-          "commits": 4,
-          "linesChanged": 314,
-          "lastTouch": "2026-02-23T16:02:15-05:00"
-        },
-        {
-          "filePath": "skills/failure-analysis/SKILL.md",
-          "commits": 4,
-          "linesChanged": 704,
-          "lastTouch": "2026-02-23T16:02:15-05:00"
-        },
-        {
-          "filePath": "skills/quickstart/SKILL.md",
-          "commits": 4,
-          "linesChanged": 298,
-          "lastTouch": "2026-02-23T16:02:15-05:00"
-        },
-        {
-          "filePath": "skills/trace-analyst/SKILL.md",
-          "commits": 4,
-          "linesChanged": 366,
-          "lastTouch": "2026-02-23T16:02:15-05:00"
-        },
-        {
-          "filePath": "tests/test_semantic_truncation.py",
-          "commits": 4,
-          "linesChanged": 360,
-          "lastTouch": "2026-02-24T09:45:42-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/weave_api/models.py",
-          "commits": 3,
-          "linesChanged": 3,
-          "lastTouch": "2026-02-23T12:41:51-05:00"
-        },
-        {
-          "filePath": ".pre-commit-config.yaml",
-          "commits": 3,
-          "linesChanged": 21,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": ".vscode/settings.json",
-          "commits": 3,
-          "linesChanged": 30,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "README.md",
-          "commits": 3,
-          "linesChanged": 66,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/add_to_client.py",
-          "commits": 3,
-          "linesChanged": 93,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/api_client.py",
-          "commits": 3,
-          "linesChanged": 123,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/count_traces.py",
-          "commits": 3,
-          "linesChanged": 96,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/create_report.py",
-          "commits": 3,
-          "linesChanged": 261,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py",
-          "commits": 3,
-          "linesChanged": 48,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/query_wandbot.py",
-          "commits": 3,
-          "linesChanged": 30,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/secrets_resolver.py",
-          "commits": 3,
-          "linesChanged": 6,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/session_manager.py",
-          "commits": 3,
-          "linesChanged": 441,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/utils.py",
-          "commits": 3,
-          "linesChanged": 165,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
-          "commits": 3,
-          "linesChanged": 342,
-          "lastTouch": "2026-02-26T10:29:59-05:00"
-        },
-        {
-          "filePath": "docs/segment-integration-spec.md",
-          "commits": 2,
-          "linesChanged": 179,
-          "lastTouch": "2026-02-27T16:18:26-05:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/analytics_segment.py",
-          "commits": 2,
-          "linesChanged": 253,
-          "lastTouch": "2026-02-27T16:18:26-05:00"
-        },
-        {
-          "filePath": "tests/test_analytics_segment.py",
-          "commits": 2,
-          "linesChanged": 410,
-          "lastTouch": "2026-02-27T16:18:26-05:00"
-        },
-        {
-          "filePath": "skills/_evals/tui.py",
-          "commits": 2,
-          "linesChanged": 680,
-          "lastTouch": "2026-02-23T16:33:54-05:00"
-        },
-        {
-          "filePath": "skills/_evals/runners/__init__.py",
-          "commits": 2,
-          "linesChanged": 18,
-          "lastTouch": "2026-02-23T16:31:14-05:00"
-        },
-        {
-          "filePath": "skills/_evals/runners/base.py",
-          "commits": 2,
-          "linesChanged": 380,
-          "lastTouch": "2026-02-23T16:31:14-05:00"
-        },
-        {
-          "filePath": "skills/_evals/runners/codex_runner.py",
-          "commits": 2,
-          "linesChanged": 312,
-          "lastTouch": "2026-02-23T16:31:14-05:00"
-        },
-        {
-          "filePath": "skills/_evals/__init__.py",
-          "commits": 2,
-          "linesChanged": 0,
-          "lastTouch": "2026-02-23T15:46:39-05:00"
-        },
-        {
-          "filePath": "skills/experiment-analysis/references/gql-patterns.md",
-          "commits": 2,
-          "linesChanged": 180,
-          "lastTouch": "2026-02-23T15:46:39-05:00"
-        },
-        {
-          "filePath": "skills/failure-analysis/references/taxonomy-patterns.md",
-          "commits": 2,
-          "linesChanged": 130,
-          "lastTouch": "2026-02-23T15:46:39-05:00"
-        },
-        {
-          "filePath": "skills/quickstart/references/framework-detection.md",
-          "commits": 2,
-          "linesChanged": 74,
-          "lastTouch": "2026-02-23T15:46:39-05:00"
-        },
-        {
-          "filePath": "skills/trace-analyst/references/field-priority.md",
-          "commits": 2,
-          "linesChanged": 116,
-          "lastTouch": "2026-02-23T15:46:39-05:00"
-        },
-        {
-          "filePath": "tests/test_config.py",
-          "commits": 2,
-          "linesChanged": 130,
-          "lastTouch": "2026-02-23T11:53:48-05:00"
-        },
-        {
-          "filePath": "tests/test_env_loading.py",
-          "commits": 2,
-          "linesChanged": 138,
-          "lastTouch": "2026-02-23T11:53:48-05:00"
-        },
-        {
-          "filePath": "tests/test_gql_prefix.py",
-          "commits": 2,
-          "linesChanged": 120,
-          "lastTouch": "2026-02-23T11:53:48-05:00"
-        },
-        {
-          "filePath": "tests/test_health_endpoint.py",
-          "commits": 2,
-          "linesChanged": 57,
-          "lastTouch": "2026-02-23T12:36:35-05:00"
-        },
-        {
-          "filePath": "tests/test_redaction.py",
-          "commits": 2,
-          "linesChanged": 83,
-          "lastTouch": "2026-02-23T12:36:35-05:00"
-        },
-        {
-          "filePath": "docs/analytics-contract.md",
-          "commits": 1,
-          "linesChanged": 133,
-          "lastTouch": "2026-02-27T16:02:26-05:00"
-        },
-        {
-          "filePath": ".github/workflows/deploy.yml",
-          "commits": 1,
-          "linesChanged": 66,
-          "lastTouch": "2026-02-25T14:47:55-05:00"
-        },
-        {
-          "filePath": "Dockerfile",
-          "commits": 1,
-          "linesChanged": 60,
-          "lastTouch": "2026-02-25T14:01:09-05:00"
-        },
-        {
-          "filePath": "SECURITY.md",
-          "commits": 1,
-          "linesChanged": 262,
-          "lastTouch": "2026-02-25T14:01:09-05:00"
-        },
-        {
-          "filePath": "app.py",
-          "commits": 1,
-          "linesChanged": 496,
-          "lastTouch": "2026-02-25T14:01:09-05:00"
-        },
-        {
-          "filePath": "deploy.sh",
-          "commits": 1,
-          "linesChanged": 276,
-          "lastTouch": "2026-02-25T14:01:09-05:00"
-        },
-        {
-          "filePath": "index.html",
-          "commits": 1,
-          "linesChanged": 340,
-          "lastTouch": "2026-02-25T14:01:09-05:00"
-        },
-        {
-          "filePath": "tests/test_trace_utils_deletion.py",
-          "commits": 1,
-          "linesChanged": 11,
-          "lastTouch": "2026-02-23T12:36:35-05:00"
-        },
-        {
-          "filePath": "tests/test_token_budget.py",
-          "commits": 1,
-          "linesChanged": 79,
-          "lastTouch": "2026-02-23T11:56:03-05:00"
-        },
-        {
-          "filePath": "tests/test_truncation_warning.py",
-          "commits": 1,
-          "linesChanged": 33,
-          "lastTouch": "2026-02-23T11:56:03-05:00"
-        }
-      ]
-    },
     {
       "id": "p:n.remerscheid@bluewin.ch",
       "name": "NiWaRe",
@@ -480,18 +17,6 @@
           "commits": 4,
           "linesChanged": 585,
           "lastTouch": "2026-02-04T17:01:25-08:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/auth.py",
-          "commits": 2,
-          "linesChanged": 211,
-          "lastTouch": "2025-11-24T16:34:55-08:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
-          "commits": 2,
-          "linesChanged": 358,
-          "lastTouch": "2025-11-24T16:34:55-08:00"
         },
         {
           "filePath": "Dockerfile",
@@ -516,12 +41,6 @@
           "commits": 2,
           "linesChanged": 52,
           "lastTouch": "2025-11-24T15:57:57-08:00"
-        },
-        {
-          "filePath": "src/wandb_mcp_server/analytics.py",
-          "commits": 1,
-          "linesChanged": 303,
-          "lastTouch": "2025-11-24T16:34:55-08:00"
         },
         {
           "filePath": ".gitignore",
@@ -578,6 +97,12 @@
           "lastTouch": "2025-11-24T15:17:10-08:00"
         },
         {
+          "filePath": "src/wandb_mcp_server/auth.py",
+          "commits": 1,
+          "linesChanged": 182,
+          "lastTouch": "2025-11-24T15:17:10-08:00"
+        },
+        {
           "filePath": "src/wandb_mcp_server/config.py",
           "commits": 1,
           "linesChanged": 14,
@@ -617,6 +142,12 @@
           "filePath": "src/wandb_mcp_server/mcp_tools/query_weave.py",
           "commits": 1,
           "linesChanged": 514,
+          "lastTouch": "2025-11-24T15:17:10-08:00"
+        },
+        {
+          "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
+          "commits": 1,
+          "linesChanged": 339,
           "lastTouch": "2025-11-24T15:17:10-08:00"
         },
         {
@@ -702,31 +233,6 @@
           "commits": 1,
           "linesChanged": 2275,
           "lastTouch": "2025-11-24T15:17:10-08:00"
-        }
-      ]
-    },
-    {
-      "id": "p:93145909_ash0ts@users.noreply.github.com",
-      "name": "Anish Shah",
-      "email": "93145909+ash0ts@users.noreply.github.com",
-      "files": [
-        {
-          "filePath": "docs/segment-integration-spec.md",
-          "commits": 1,
-          "linesChanged": 177,
-          "lastTouch": "2026-02-27T16:32:07-05:00"
-        },
-        {
-          "filePath": "docs/analytics-contract.md",
-          "commits": 1,
-          "linesChanged": 133,
-          "lastTouch": "2026-02-27T16:31:59-05:00"
-        },
-        {
-          "filePath": "SECURITY.md",
-          "commits": 1,
-          "linesChanged": 262,
-          "lastTouch": "2026-02-25T15:45:44-05:00"
         }
       ]
     },
