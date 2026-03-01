@@ -1,5 +1,10 @@
 import express from "express";
 import cors from "cors";
+import { WebSocketServer } from "ws";
+import { spawn } from "child_process";
+import { createServer } from "http";
+import path from "path";
+import fs from "fs";
 
 export const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -224,7 +229,58 @@ app.post("/v1/chat/completions", async (req, res) => {
 });
 
 if (import.meta.main) {
-  app.listen(PORT, () => {
+  const httpServer = createServer(app);
+
+  // Voxtral STT WebSocket endpoint
+  const VOXTRAL_BIN = path.resolve("vendor/voxtral.c/voxtral");
+  const VOXTRAL_MODEL = path.resolve("vendor/voxtral.c/voxtral-model");
+
+  if (fs.existsSync(VOXTRAL_BIN)) {
+    const wss = new WebSocketServer({ server: httpServer, path: "/voxtral/stream" });
+    console.log(`[proxy] Voxtral STT WebSocket endpoint: ws://localhost:${PORT}/voxtral/stream`);
+
+    wss.on("connection", (ws) => {
+      console.log("[proxy] Voxtral STT client connected");
+
+      const proc = spawn(VOXTRAL_BIN, ["-d", VOXTRAL_MODEL, "--stdin"], {
+        stdio: ["pipe", "pipe", "pipe"],
+      });
+
+      proc.stderr.on("data", (chunk: Buffer) => {
+        console.error(`[voxtral] stderr: ${chunk.toString().trim()}`);
+      });
+
+      // Browser sends PCM16LE binary frames → pipe to voxtral stdin
+      ws.on("message", (data: Buffer) => {
+        if (proc.stdin.writable) proc.stdin.write(data);
+      });
+
+      // voxtral stdout (text tokens) → forward to browser
+      proc.stdout.on("data", (chunk: Buffer) => {
+        if (ws.readyState === ws.OPEN) ws.send(chunk.toString());
+      });
+
+      ws.on("close", () => {
+        console.log("[proxy] Voxtral STT client disconnected");
+        proc.kill();
+      });
+
+      proc.on("exit", (code) => {
+        console.log(`[proxy] Voxtral process exited (code=${code})`);
+        if (ws.readyState === ws.OPEN) ws.close();
+      });
+
+      proc.on("error", (err) => {
+        console.error(`[proxy] Voxtral spawn error: ${err.message}`);
+        ws.close(1011, "Voxtral process error");
+      });
+    });
+  } else {
+    console.warn(`[proxy] Voxtral binary not found at ${VOXTRAL_BIN} — /voxtral/stream endpoint disabled`);
+    console.warn(`[proxy] Run: git clone https://github.com/antirez/voxtral.c vendor/voxtral.c && cd vendor/voxtral.c && make mps && bash download_model.sh`);
+  }
+
+  httpServer.listen(PORT, () => {
     console.log(`[proxy] Listening on http://localhost:${PORT}`);
     console.log(`[proxy] Model: ${DEFAULT_MODEL}`);
     console.log(`[proxy] API key: ${process.env.MISTRAL_API_KEY ? "set" : "MISSING"}`);

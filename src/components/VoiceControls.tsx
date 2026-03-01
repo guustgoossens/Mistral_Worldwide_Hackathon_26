@@ -1,6 +1,8 @@
-import { Mic, MicOff, Loader2, Play, CheckCircle, Brain, Square } from "lucide-react";
+import { useState } from "react";
+import { Mic, MicOff, Loader2, Play, CheckCircle, Brain, Square, Radio } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { InterviewState } from "@/hooks/useInterview";
+import { useVoxtralSTT } from "@/hooks/useVoxtralSTT";
 
 type VoiceStatus = "disconnected" | "connecting" | "connected" | "disconnecting";
 
@@ -34,6 +36,23 @@ export function VoiceControls({
   const isVoiceConnected = voiceStatus === "connected";
   const isVoiceTransitioning = voiceStatus === "connecting" || voiceStatus === "disconnecting";
 
+  const [voxtralEnabled, setVoxtralEnabled] = useState(false);
+  const voxtral = useVoxtralSTT();
+
+  const handleVoxtralToggle = async () => {
+    if (voxtral.isConnected) {
+      voxtral.stop();
+      setVoxtralEnabled(false);
+    } else {
+      setVoxtralEnabled(true);
+      try {
+        await voxtral.start();
+      } catch {
+        setVoxtralEnabled(false);
+      }
+    }
+  };
+
   return (
     <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3">
       {/* Error message */}
@@ -43,7 +62,22 @@ export function VoiceControls({
         </div>
       )}
 
-      {/* Transcript (visible during interview) */}
+      {/* Voxtral STT parallel transcript */}
+      {interviewState === "interviewing" && voxtral.isConnected && voxtral.transcript && (
+        <div className="w-96 rounded-lg bg-surface border border-orange-500/20 p-3">
+          <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-orange-400">
+            Voxtral STT
+          </p>
+          <p className="text-xs text-orange-400 leading-relaxed">
+            {voxtral.transcript}
+            {voxtral.partialToken && (
+              <span className="opacity-60">{voxtral.partialToken}</span>
+            )}
+          </p>
+        </div>
+      )}
+
+      {/* ElevenLabs transcript (unchanged) */}
       {interviewState === "interviewing" && transcript.length > 0 && (
         <div className="max-h-32 w-96 overflow-y-auto rounded-lg bg-surface p-3">
           {transcript.slice(-3).map((msg, i) => (
@@ -89,7 +123,7 @@ export function VoiceControls({
       )}
 
       {interviewState === "interviewing" && (
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex items-center gap-3">
           <button
             onClick={isVoiceConnected ? onStopInterview : undefined}
             disabled={isVoiceTransitioning}
@@ -112,6 +146,23 @@ export function VoiceControls({
               <Mic className="h-6 w-6 text-text-muted" />
             )}
           </button>
+
+          {/* Voxtral STT toggle — only show when not unavailable */}
+          {voxtral.isAvailable !== false && (
+            <button
+              onClick={handleVoxtralToggle}
+              title={voxtral.isAvailable === null ? "Voxtral STT (availability unknown)" : voxtral.isConnected ? "Stop Voxtral STT" : "Start Voxtral STT"}
+              className={cn(
+                "flex h-10 items-center gap-2 rounded-[8px] px-4 text-xs font-medium transition-all",
+                voxtral.isConnected
+                  ? "bg-orange-500/20 border border-orange-500/40 text-orange-400 hover:bg-orange-500/30"
+                  : "bg-surface border border-border-medium text-text-muted hover:text-text-primary hover:border-orange-500/30",
+              )}
+            >
+              <Radio className={cn("h-3.5 w-3.5", voxtral.isConnected && "animate-pulse")} />
+              Voxtral STT
+            </button>
+          )}
         </div>
       )}
 
