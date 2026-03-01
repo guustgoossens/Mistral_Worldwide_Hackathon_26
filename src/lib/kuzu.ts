@@ -165,35 +165,43 @@ export function parseTable(table: { toString: () => string; numRows?: number; nu
 }
 
 const TYPE_COLORS: Record<string, string> = {
-  file: "#6366f1",
-  function: "#f59e0b",
-  class: "#10b981",
-  person: "#8b5cf6",
+  file: "#5B8FF9",     // blue — distinct categorical
+  function: "#F6BD16", // gold — warm, high contrast
+  class: "#5AD8A6",    // teal — clearly different from blue/gold
+  person: "#E8684A",   // coral — warm, people-associated
 };
 
 const KNOWLEDGE_COLORS = {
-  deep: "#10b981",    // green
-  surface: "#f59e0b", // yellow
-  none: "#ef4444",    // red
+  deep: "#F5A623",    // amber
+  surface: "#D4603A", // muted orange
+  none: "#E83A0F",    // warm red
 };
 
 const LINK_TYPE_COLORS: Record<string, string> = {
-  contains: "#374151",
-  calls:    "#f59e0b80",
-  imports:  "#6366f180",
-  inherits: "#10b98180",
-  contributed: "#8b5cf680",
-  understands: "#06b6d480",
+  contains: "#3A3A3A",
+  calls:    "#F5A62380",
+  imports:  "#E85C0F80",
+  inherits: "#FFD03680",
+  contributed: "#D4603A60",
+  understands: "#F5A62360",
 };
 
 /**
- * Derive visualization data from KuzuDB based on the active overlay mode.
+ * Derive visualization data from KuzuDB based on the active overlay mode(s).
  */
 export async function deriveVizData(
   conn: KuzuConnection,
-  overlay: OverlayMode,
-  _personFilter?: string,
+  overlayOrSet: OverlayMode | Set<OverlayMode>,
+  _personFilter?: Set<string>,
 ): Promise<GraphData> {
+  const modes = typeof overlayOrSet === "string"
+    ? new Set<OverlayMode>([overlayOrSet])
+    : overlayOrSet;
+  const overlay: OverlayMode = modes.has("people") ? "people"
+    : (modes.has("contributors") && modes.has("knowledge")) ? "combined" as OverlayMode
+    : modes.has("knowledge") ? "knowledge"
+    : modes.has("contributors") ? "contributors"
+    : "structure";
   const nodes: VizNode[] = [];
   const links: VizLink[] = [];
 
@@ -293,13 +301,25 @@ export async function deriveVizData(
       // Max commits for color scaling
       const maxCommits = Math.max(1, ...fileTotalCommits.values());
 
-      // Apply person filter if set
-      const filterPerson = _personFilter;
+      // Build filePath→fileId + filePath→contribs lookups for child propagation
+      const fileIdByPath = new Map<string, string>();
+      for (const row of cFiles) {
+        fileIdByPath.set(row["f.filePath"] ?? "", row["f.id"] ?? "");
+      }
+
+      // Apply person filter if set — track both file IDs and filePaths
+      const filterActive = _personFilter && _personFilter.size > 0;
       const highlightFiles = new Set<string>();
-      if (filterPerson) {
+      const highlightPaths = new Set<string>();
+      if (filterActive) {
         for (const [fid, contribs] of fileContribs) {
-          if (contribs.some(c => c.person === filterPerson)) {
+          if (contribs.some(c => _personFilter!.has(c.person))) {
             highlightFiles.add(fid);
+          }
+        }
+        for (const row of cFiles) {
+          if (highlightFiles.has(row["f.id"] ?? "")) {
+            highlightPaths.add(row["f.filePath"] ?? "");
           }
         }
       }
@@ -308,31 +328,55 @@ export async function deriveVizData(
         const id = row["f.id"] ?? "";
         const totalC = fileTotalCommits.get(id) ?? 0;
         const heat = totalC / maxCommits;
-        // Interpolate from cool blue to warm orange/red
-        const isFiltered = filterPerson && !highlightFiles.has(id);
-        const color = isFiltered ? "#374151" : `hsl(${Math.round(30 - heat * 30)}, ${Math.round(60 + heat * 40)}%, ${Math.round(50 - heat * 10)}%)`;
+        const isFiltered = filterActive && !highlightFiles.has(id);
+        const color = isFiltered ? "#2A2A2A" : `hsl(${Math.round(30 - heat * 30)}, ${Math.round(60 + heat * 40)}%, ${Math.round(50 - heat * 10)}%)`;
         nodes.push({
           id, name: row["f.name"] ?? "", type: "file", filePath: row["f.filePath"] ?? "",
           val: 5 + Math.round(heat * 8), color,
           contributors: fileContribs.get(id),
         });
       }
+
+      // Propagate contributor heat to functions/classes via filePath matching
+      // (more robust than CONTAINS edges which may not cover all nodes)
       for (const row of cFns) {
         const id = row["f.id"] ?? "";
+        const fp = row["f.filePath"] ?? "";
+        const parentFileId = fileIdByPath.get(fp);
+        const parentHeat = parentFileId ? (fileTotalCommits.get(parentFileId) ?? 0) / maxCommits : 0;
+        const parentContribs = parentFileId ? fileContribs.get(parentFileId) : undefined;
+        const isFiltered = filterActive && !highlightPaths.has(fp);
+        const color = isFiltered
+          ? "#2A2A2A"
+          : parentHeat > 0
+            ? `hsl(${Math.round(40 - parentHeat * 20)}, ${Math.round(50 + parentHeat * 30)}%, ${Math.round(55 - parentHeat * 10)}%)`
+            : TYPE_COLORS.function;
         nodes.push({
-          id, name: row["f.name"] ?? "", type: "function", filePath: row["f.filePath"] ?? "",
-          val: 4, color: filterPerson ? "#374151" : TYPE_COLORS.function,
+          id, name: row["f.name"] ?? "", type: "function", filePath: fp,
+          val: 4 + Math.round(parentHeat * 4), color,
+          contributors: parentContribs,
         });
       }
       for (const row of cClasses) {
         const id = row["c.id"] ?? "";
+        const fp = row["c.filePath"] ?? "";
+        const parentFileId = fileIdByPath.get(fp);
+        const parentHeat = parentFileId ? (fileTotalCommits.get(parentFileId) ?? 0) / maxCommits : 0;
+        const parentContribs = parentFileId ? fileContribs.get(parentFileId) : undefined;
+        const isFiltered = filterActive && !highlightPaths.has(fp);
+        const color = isFiltered
+          ? "#2A2A2A"
+          : parentHeat > 0
+            ? `hsl(${Math.round(40 - parentHeat * 20)}, ${Math.round(50 + parentHeat * 30)}%, ${Math.round(55 - parentHeat * 10)}%)`
+            : TYPE_COLORS.class;
         nodes.push({
-          id, name: row["c.name"] ?? "", type: "class", filePath: row["c.filePath"] ?? "",
-          val: 5, color: filterPerson ? "#374151" : TYPE_COLORS.class,
+          id, name: row["c.name"] ?? "", type: "class", filePath: fp,
+          val: 5 + Math.round(parentHeat * 4), color,
+          contributors: parentContribs,
         });
       }
 
-      // Same structural edges
+      // Structural edges
       const cContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as CRow[];
       for (const row of cContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
       const cCalls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as CRow[];
@@ -383,14 +427,14 @@ export async function deriveVizData(
       for (const row of kFiles) {
         nodes.push({
           id: row["f.id"] ?? "", name: row["f.name"] ?? "", type: "file", filePath: row["f.filePath"] ?? "",
-          val: 4, color: "#4b5563",
+          val: 4, color: "#3A3A3A",
         });
       }
       const kClasses = await queryGraph(conn, `MATCH (c:Class) RETURN c.id, c.name, c.filePath`) as KRow[];
       for (const row of kClasses) {
         nodes.push({
           id: row["c.id"] ?? "", name: row["c.name"] ?? "", type: "class", filePath: row["c.filePath"] ?? "",
-          val: 5, color: "#4b5563",
+          val: 5, color: "#3A3A3A",
         });
       }
 
@@ -462,6 +506,160 @@ export async function deriveVizData(
       const pContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as PRow[];
       for (const row of pContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
 
+      break;
+    }
+
+    default: {
+      // Combined contributors + knowledge discrepancy view
+      if (overlay === ("combined" as OverlayMode)) {
+        type DRow = Record<string, string>;
+
+        const dFiles = await queryGraph(conn, `MATCH (f:File) RETURN f.id, f.name, f.filePath`) as DRow[];
+        const dFns = await queryGraph(conn, `MATCH (f:Function) RETURN f.id, f.name, f.filePath`) as DRow[];
+        const dClasses = await queryGraph(conn, `MATCH (c:Class) RETURN c.id, c.name, c.filePath`) as DRow[];
+
+        // Contributor data
+        let contribRows: DRow[] = [];
+        try {
+          contribRows = await queryGraph(conn,
+            `MATCH (p:Person)-[r:CONTRIBUTED]->(f:File) RETURN f.id AS fileId, p.name AS contributor, r.commits AS commits`,
+          ) as DRow[];
+        } catch { /* no contributor data */ }
+
+        const fileContribs = new Map<string, { person: string; commits: number }[]>();
+        const fileTotalCommits = new Map<string, number>();
+        for (const row of contribRows) {
+          const fid = row["fileId"] ?? "";
+          const c = parseInt(row["commits"] ?? "0", 10) || 0;
+          if (!fileContribs.has(fid)) fileContribs.set(fid, []);
+          fileContribs.get(fid)!.push({ person: row["contributor"] ?? "", commits: c });
+          fileTotalCommits.set(fid, (fileTotalCommits.get(fid) ?? 0) + c);
+        }
+        const maxCommits = Math.max(1, ...fileTotalCommits.values());
+
+        // Knowledge data
+        let understandRows: DRow[] = [];
+        try {
+          understandRows = await queryGraph(conn,
+            `MATCH (p:Person)-[u:UNDERSTANDS]->(f:Function) RETURN f.id AS funcId, u.confidence AS confidence`,
+          ) as DRow[];
+        } catch { /* no understanding data */ }
+
+        const funcConfidence = new Map<string, string>();
+        for (const row of understandRows) {
+          const fid = row["funcId"] ?? "";
+          const conf = row["confidence"] ?? "none";
+          const existing = funcConfidence.get(fid);
+          if (!existing || conf === "deep" || (conf === "surface" && existing === "none")) {
+            funcConfidence.set(fid, conf);
+          }
+        }
+
+        // Build filePath→fileId lookup for child propagation
+        const dFileIdByPath = new Map<string, string>();
+        for (const row of dFiles) dFileIdByPath.set(row["f.filePath"] ?? "", row["f.id"] ?? "");
+
+        // Discrepancy color: high contrib + low knowledge = danger
+        function discrepancyColor(contribNorm: number, knowledgeNorm: number): string {
+          if (contribNorm < 0.1) return "#3A3A3A"; // low contribution = dim gray
+          const discrepancy = contribNorm * (1 - knowledgeNorm);
+          const hue = discrepancy > 0.4
+            ? 15 + (1 - discrepancy) * 25  // red-orange/danger
+            : 40 - discrepancy * 25;        // amber → warm
+          const sat = 40 + contribNorm * 40;
+          const light = 35 + (1 - discrepancy) * 20;
+          return `hsl(${Math.round(hue)}, ${Math.round(sat)}%, ${Math.round(light)}%)`;
+        }
+
+        // Person filter — track both file IDs and filePaths
+        const filterActive = _personFilter && _personFilter.size > 0;
+        const highlightFiles = new Set<string>();
+        const highlightPaths = new Set<string>();
+        if (filterActive) {
+          for (const [fid, contribs] of fileContribs) {
+            if (contribs.some(c => _personFilter!.has(c.person))) highlightFiles.add(fid);
+          }
+          for (const row of dFiles) {
+            if (highlightFiles.has(row["f.id"] ?? "")) highlightPaths.add(row["f.filePath"] ?? "");
+          }
+        }
+
+        // Build map of filePath → child function IDs for file-level knowledge averaging
+        const fnsByPath = new Map<string, string[]>();
+        for (const row of dFns) {
+          const fp = row["f.filePath"] ?? "";
+          if (!fnsByPath.has(fp)) fnsByPath.set(fp, []);
+          fnsByPath.get(fp)!.push(row["f.id"] ?? "");
+        }
+
+        // File nodes
+        for (const row of dFiles) {
+          const id = row["f.id"] ?? "";
+          const fp = row["f.filePath"] ?? "";
+          const totalC = fileTotalCommits.get(id) ?? 0;
+          const contribNorm = totalC / maxCommits;
+          // Average knowledge of functions in this file
+          const childIds = fnsByPath.get(fp) ?? [];
+          const childKnowledge: number[] = childIds.map(cid => {
+            const c = funcConfidence.get(cid) ?? "none";
+            return c === "deep" ? 1.0 : c === "surface" ? 0.5 : 0.0;
+          });
+          const avgKnowledge = childKnowledge.length > 0
+            ? childKnowledge.reduce((a, b) => a + b, 0) / childKnowledge.length
+            : 0;
+          const isFiltered = filterActive && !highlightFiles.has(id);
+          const color = isFiltered ? "#2A2A2A" : discrepancyColor(contribNorm, avgKnowledge);
+          nodes.push({
+            id, name: row["f.name"] ?? "", type: "file", filePath: fp,
+            val: 5 + Math.round(contribNorm * 8), color,
+            contributors: fileContribs.get(id),
+            knowledgeScore: avgKnowledge,
+          });
+        }
+
+        // Function nodes — use filePath to find parent file
+        for (const row of dFns) {
+          const id = row["f.id"] ?? "";
+          const fp = row["f.filePath"] ?? "";
+          const parentFileId = dFileIdByPath.get(fp);
+          const contribNorm = parentFileId ? (fileTotalCommits.get(parentFileId) ?? 0) / maxCommits : 0;
+          const parentContribs = parentFileId ? fileContribs.get(parentFileId) : undefined;
+          const conf = funcConfidence.get(id) ?? "none";
+          const knowledgeNorm = conf === "deep" ? 1.0 : conf === "surface" ? 0.5 : 0.0;
+          const isFiltered = filterActive && !highlightPaths.has(fp);
+          const color = isFiltered ? "#2A2A2A" : discrepancyColor(contribNorm, knowledgeNorm);
+          nodes.push({
+            id, name: row["f.name"] ?? "", type: "function", filePath: fp,
+            val: 4 + Math.round(contribNorm * 4), color,
+            contributors: parentContribs,
+            knowledgeScore: knowledgeNorm,
+          });
+        }
+
+        // Class nodes — use filePath to find parent file
+        for (const row of dClasses) {
+          const id = row["c.id"] ?? "";
+          const fp = row["c.filePath"] ?? "";
+          const parentFileId = dFileIdByPath.get(fp);
+          const contribNorm = parentFileId ? (fileTotalCommits.get(parentFileId) ?? 0) / maxCommits : 0;
+          const parentContribs = parentFileId ? fileContribs.get(parentFileId) : undefined;
+          const isFiltered = filterActive && !highlightPaths.has(fp);
+          const color = isFiltered ? "#2A2A2A" : discrepancyColor(contribNorm, 0);
+          nodes.push({
+            id, name: row["c.name"] ?? "", type: "class", filePath: fp,
+            val: 5 + Math.round(contribNorm * 4), color,
+            contributors: parentContribs,
+          });
+        }
+
+        // Edges
+        const dContains = await queryGraph(conn, `MATCH (a:File)-[:CONTAINS]->(b) RETURN a.id, b.id`) as DRow[];
+        for (const row of dContains) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "contains", color: LINK_TYPE_COLORS["contains"] ?? "#2a2a3a" });
+        const dCalls = await queryGraph(conn, `MATCH (a:Function)-[:CALLS]->(b:Function) RETURN a.id, b.id`) as DRow[];
+        for (const row of dCalls) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "calls", color: LINK_TYPE_COLORS["calls"] ?? "#2a2a3a" });
+        const dImports = await queryGraph(conn, `MATCH (a:File)-[:IMPORTS]->(b:File) RETURN a.id, b.id`) as DRow[];
+        for (const row of dImports) links.push({ source: row["a.id"] ?? "", target: row["b.id"] ?? "", type: "imports", color: LINK_TYPE_COLORS["imports"] ?? "#2a2a3a" });
+      }
       break;
     }
   }
