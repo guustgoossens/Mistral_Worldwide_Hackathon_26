@@ -1,6 +1,6 @@
 import { describe, it, expect, mock, beforeEach } from "bun:test";
 import { setupSchema, queryGraph, parseTable, deriveVizData } from "./kuzu";
-import { loadSampleIntoKuzu, sampleGraph } from "../data/sample-graph";
+import { loadSampleIntoKuzu, sampleGraph, sampleContributed, sampleUnderstands, samplePersons } from "../data/sample-graph";
 
 // ---------------------------------------------------------------------------
 // Mock connection factory
@@ -165,11 +165,12 @@ describe("loadSampleIntoKuzu", () => {
     conn = createMockConn();
   });
 
-  it("inserts all sample nodes and links", async () => {
+  it("inserts all sample nodes, links, persons, contributions, and understands", async () => {
     await loadSampleIntoKuzu(conn);
 
-    // Should have called execute for each node + each link
-    const totalExpected = sampleGraph.nodes.length + sampleGraph.links.length;
+    // nodes + links + persons + CONTRIBUTED edges + UNDERSTANDS edges
+    const totalExpected = sampleGraph.nodes.length + sampleGraph.links.length
+      + samplePersons.length + sampleContributed.length + sampleUnderstands.length;
     expect(conn.calls.length).toBe(totalExpected);
   });
 
@@ -181,8 +182,8 @@ describe("loadSampleIntoKuzu", () => {
     expect(fileCreates).toHaveLength(fileNodes.length);
 
     // Spot-check one
-    expect(fileCreates[0]).toContain("f:auth/index.ts");
-    expect(fileCreates[0]).toContain("auth/index.ts");
+    expect(fileCreates[0]).toContain("f:lib/briefing.ts");
+    expect(fileCreates[0]).toContain("lib/briefing.ts");
   });
 
   it("creates Function nodes with summary", async () => {
@@ -194,7 +195,7 @@ describe("loadSampleIntoKuzu", () => {
 
     // Check that summary is populated from the sample summary
     expect(fnCreates[0]).toContain("summary");
-    expect(fnCreates[0]).toContain("Main login entry");
+    expect(fnCreates[0]).toContain("Queries KuzuDB for codebase context");
   });
 
   it("creates Class nodes", async () => {
@@ -209,7 +210,7 @@ describe("loadSampleIntoKuzu", () => {
     await loadSampleIntoKuzu(conn);
 
     const edgeCalls = conn.calls.filter((c) => c.includes("MATCH") && c.includes("CREATE"));
-    expect(edgeCalls).toHaveLength(sampleGraph.links.length);
+    expect(edgeCalls).toHaveLength(sampleGraph.links.length + sampleContributed.length + sampleUnderstands.length);
 
     // Check CONTAINS edges reference correct labels
     const containsEdges = edgeCalls.filter((c) => c.includes("CONTAINS"));
@@ -299,16 +300,16 @@ describe("deriveVizData", () => {
 
     const file = data.nodes.find((n) => n.id === "f:auth.ts");
     expect(file?.type).toBe("file");
-    expect(file?.color).toBe("#6366f1");
+    expect(file?.color).toBe("#6C5CE7");
 
     const fn = data.nodes.find((n) => n.id === "fn:login");
     expect(fn?.type).toBe("function");
-    expect(fn?.color).toBe("#f59e0b");
+    expect(fn?.color).toBe("#00CFDD");
     expect(fn?.summary).toBe("Handles login");
 
     const cls = data.nodes.find((n) => n.id === "c:Auth");
     expect(cls?.type).toBe("class");
-    expect(cls?.color).toBe("#10b981");
+    expect(cls?.color).toBe("#FF2D78");
   });
 
   it("returns correct link types", async () => {
@@ -394,7 +395,7 @@ describe("deriveVizData — knowledge overlay", () => {
     return createMockConn(responses);
   }
 
-  it("colors functions by confidence: deep=#10b981, surface=#f59e0b, none=#ef4444", async () => {
+  it("colors functions by confidence: deep=#0A2463, surface=#3E7CB1, none=#A8DADC", async () => {
     const conn = createKnowledgeMockConn([
       { funcId: "fn:login", confidence: "deep" },
       { funcId: "fn:logout", confidence: "surface" },
@@ -405,9 +406,9 @@ describe("deriveVizData — knowledge overlay", () => {
     const logout = data.nodes.find((n) => n.id === "fn:logout");
     const hash = data.nodes.find((n) => n.id === "fn:hash");
 
-    expect(login?.color).toBe("#10b981");
-    expect(logout?.color).toBe("#f59e0b");
-    expect(hash?.color).toBe("#ef4444");
+    expect(login?.color).toBe("#0A2463");
+    expect(logout?.color).toBe("#3E7CB1");
+    expect(hash?.color).toBe("#A8DADC");
   });
 
   it("assigns knowledgeScore: deep=1.0, surface=0.5, none=0.0", async () => {
@@ -435,30 +436,30 @@ describe("deriveVizData — knowledge overlay", () => {
     const data = await deriveVizData(conn, "knowledge");
 
     const login = data.nodes.find((n) => n.id === "fn:login");
-    expect(login?.color).toBe("#10b981");
+    expect(login?.color).toBe("#0A2463");
     expect(login?.knowledgeScore).toBe(1.0);
   });
 
-  it("files/classes get neutral gray #4b5563", async () => {
+  it("files/classes get neutral gray #3A3A3A", async () => {
     const conn = createKnowledgeMockConn();
     const data = await deriveVizData(conn, "knowledge");
 
     const file = data.nodes.find((n) => n.id === "f:auth.ts");
     const cls = data.nodes.find((n) => n.id === "c:Auth");
 
-    expect(file?.color).toBe("#4b5563");
-    expect(cls?.color).toBe("#4b5563");
+    expect(file?.color).toBe("#3A3A3A");
+    expect(cls?.color).toBe("#3A3A3A");
   });
 
   it("graceful degradation when no UNDERSTANDS data", async () => {
     const conn = createKnowledgeMockConn([]);
     const data = await deriveVizData(conn, "knowledge");
 
-    // All functions should be red (no knowledge)
+    // All functions should be icy blue (no knowledge)
     const fns = data.nodes.filter((n) => n.type === "function");
     expect(fns).toHaveLength(3);
     for (const fn of fns) {
-      expect(fn.color).toBe("#ef4444");
+      expect(fn.color).toBe("#A8DADC");
       expect(fn.knowledgeScore).toBe(0.0);
     }
   });
@@ -536,7 +537,7 @@ describe("deriveVizData — people overlay", () => {
     return createMockConn(responses);
   }
 
-  it("Person nodes are visible: type 'person', color #8b5cf6, val 8", async () => {
+  it("Person nodes are visible: type 'person', color #FF9F1A, val 8", async () => {
     const conn = createPeopleMockConn(
       [{ "p.id": "p:alice", "p.name": "Alice", "p.email": "alice@example.com" }],
     );
@@ -545,7 +546,7 @@ describe("deriveVizData — people overlay", () => {
     const person = data.nodes.find((n) => n.id === "p:alice");
     expect(person).toBeDefined();
     expect(person?.type).toBe("person");
-    expect(person?.color).toBe("#8b5cf6");
+    expect(person?.color).toBe("#FF9F1A");
     expect(person?.val).toBe(8);
   });
 
@@ -574,9 +575,9 @@ describe("deriveVizData — people overlay", () => {
     const fn = data.nodes.find((n) => n.id === "fn:login");
     const cls = data.nodes.find((n) => n.id === "c:Auth");
 
-    expect(file?.color).toBe("#6366f1");
-    expect(fn?.color).toBe("#f59e0b");
-    expect(cls?.color).toBe("#10b981");
+    expect(file?.color).toBe("#6C5CE7");
+    expect(fn?.color).toBe("#00CFDD");
+    expect(cls?.color).toBe("#FF2D78");
   });
 
   it("CONTRIBUTED edges (Person→File) present", async () => {

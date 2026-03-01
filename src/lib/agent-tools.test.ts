@@ -7,60 +7,12 @@ import { createAgentTools, type AgentToolDeps } from "./agent-tools";
 
 function createMockDeps(): AgentToolDeps {
   return {
-    executeQuery: mock(async (_cypher: string) => []),
     highlightNodes: mock((_ids: string[]) => {}),
     setOverlay: mock((_mode: any) => {}),
     selectNode: mock((_nodeId: string) => {}),
     flyToNode: mock((_nodeId: string) => {}),
-    startQuiz: mock((_topic: string) => {}),
   };
 }
-
-// ---------------------------------------------------------------------------
-// queryGraph
-// ---------------------------------------------------------------------------
-
-describe("queryGraph", () => {
-  it("calls deps.executeQuery with the provided cypher string", async () => {
-    const deps = createMockDeps();
-    const tools = createAgentTools(deps);
-
-    await tools.queryGraph({ cypher: "MATCH (n) RETURN n" });
-
-    expect(deps.executeQuery).toHaveBeenCalledWith("MATCH (n) RETURN n");
-  });
-
-  it("returns JSON.stringify(results) of query results", async () => {
-    const deps = createMockDeps();
-    deps.executeQuery = mock(async () => [{ id: "1" }, { id: "2" }]);
-    const tools = createAgentTools(deps);
-
-    const result = await tools.queryGraph({ cypher: "MATCH (n) RETURN n" });
-
-    expect(result).toBe(JSON.stringify([{ id: "1" }, { id: "2" }]));
-  });
-
-  it("truncates output to 2000 characters", async () => {
-    const deps = createMockDeps();
-    const longData = Array.from({ length: 500 }, (_, i) => ({ id: `node-${i}`, name: `A very long node name that takes up space number ${i}` }));
-    deps.executeQuery = mock(async () => longData);
-    const tools = createAgentTools(deps);
-
-    const result = await tools.queryGraph({ cypher: "MATCH (n) RETURN n" });
-
-    expect(result!.length).toBeLessThanOrEqual(2000);
-  });
-
-  it('returns "[]" for empty results', async () => {
-    const deps = createMockDeps();
-    deps.executeQuery = mock(async () => []);
-    const tools = createAgentTools(deps);
-
-    const result = await tools.queryGraph({ cypher: "MATCH (n) RETURN n" });
-
-    expect(result).toBe("[]");
-  });
-});
 
 // ---------------------------------------------------------------------------
 // highlightNodes
@@ -174,39 +126,5 @@ describe("showDetailPanel", () => {
     const result = await tools.showDetailPanel({ nodeId: "c:Auth" });
 
     expect(result).toBe("Showing details for c:Auth");
-  });
-});
-
-// ---------------------------------------------------------------------------
-// startQuiz
-// ---------------------------------------------------------------------------
-
-describe("startQuiz", () => {
-  it("calls deps.startQuiz with topic", async () => {
-    const deps = createMockDeps();
-    const tools = createAgentTools(deps);
-
-    await tools.startQuiz({ topic: "authentication" });
-
-    expect(deps.startQuiz).toHaveBeenCalledWith("authentication");
-  });
-
-  it('defaults topic to "" when undefined', async () => {
-    const deps = createMockDeps();
-    const tools = createAgentTools(deps);
-
-    await tools.startQuiz({});
-
-    expect(deps.startQuiz).toHaveBeenCalledWith("");
-  });
-
-  it("does not throw when startQuiz is undefined", async () => {
-    const deps = createMockDeps();
-    deps.startQuiz = undefined;
-    const tools = createAgentTools(deps);
-
-    const result = await tools.startQuiz({ topic: "auth" });
-
-    expect(result).toBe("Quiz started");
   });
 });
