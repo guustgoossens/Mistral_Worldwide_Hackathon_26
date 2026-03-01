@@ -50,6 +50,19 @@ cp .env.local.example .env.local
 3. Set the URL to your ngrok HTTPS URL + `/v1/chat/completions`
 4. Configure client tools (query_graph, highlight_nodes, etc.) — see [voice flow](../architecture/voice-flow.md)
 
+## Data Pipeline (multi-repo)
+
+The app visualizes parsed graph data from `public/data/{repoId}/`. To generate it:
+
+```bash
+bun run clone-repos   # shallow-clone all non-local repos into .repos/
+bun run parse         # parse all repos → public/data/{id}/graph.json + git-data.json
+```
+
+Repos are defined in `public/data/repos.json`. The `hackstral` entry (marked `local: true`) always points to the project root; all others are cloned into `.repos/`.
+
+You only need to re-run `clone-repos` if repos are added/updated. Re-run `parse` whenever you want fresh graph data.
+
 ## Running
 
 ```bash
