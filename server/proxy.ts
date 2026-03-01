@@ -264,10 +264,10 @@ app.post("/v1/chat/completions", async (req, res) => {
   });
 
   // Inject briefing into system message if available.
-  // Skip injection when tools are present — that's the chat path, not voice.
-  const hasClientTools = req.body.tools?.length > 0;
-  console.log(`[proxy] hasClientTools=${hasClientTools} tools=${req.body.tools?.length ?? 0} briefing=${!!currentBriefing}`);
-  if (currentBriefing && !hasClientTools) {
+  // Chat uses /v1/chat/graph, so everything hitting this endpoint is voice or briefing-gen.
+  // Briefing generation now routes through /v1/chat/graph too, so only voice lands here.
+  console.log(`[proxy] tools=${req.body.tools?.length ?? 0} briefing=${!!currentBriefing}`);
+  if (currentBriefing) {
     const systemIdx = normalizedMessages.findIndex((m: any) => m.role === "system");
     if (systemIdx >= 0) {
       normalizedMessages[systemIdx] = { ...normalizedMessages[systemIdx], content: currentBriefing };

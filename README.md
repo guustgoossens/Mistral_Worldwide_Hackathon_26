@@ -2,7 +2,11 @@
 
 **Voice-driven codebase intelligence. Talk to your code. Understand what you ship.**
 
+**[Try it live](https://mistral-worldwide-hackathon-26.vercel.app/)**
+
 Built solo by [Guust Goossens](https://github.com/guustgoossens) at the [Mistral Worldwide Hackathon](https://mistral.ai) in Paris, February 28 to March 1, 2026. Selected from 7,000+ global applicants, 100 participants per city, near the Eiffel Tower.
+
+![Summa Repo Picker](docs/assets/screenshot-repo-picker.jpeg)
 
 ![Summa 3D Graph](docs/assets/screenshot-graph.png)
 
@@ -41,6 +45,8 @@ Summa turns any codebase into a living 3D knowledge graph you can explore and ta
    - **Contributors**: who built what, ownership patterns, stale code
    - **Knowledge**: green = understood, red = knowledge gap, yellow = surface only
    - **People**: the full human topology around code, knowledge silos made visible
+
+![Contributors Overlay](docs/assets/screenshot-contributors.jpeg)
 
 ![Overlay Modes](docs/assets/screenshot-overlays.png)
 

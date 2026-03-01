@@ -81,13 +81,14 @@ Return a JSON object with this exact structure:
 Node ID formats: "file:filePath" for files, "fn:filePath:functionName" for functions, "class:filePath:className" for classes.
 Questions should cover: file structure, function relationships (calls), imports, contributor ownership, and architectural patterns.`;
 
-  const response = await fetch(`${proxyUrl}/v1/chat/completions`, {
+  // Route through /v1/chat/graph (not /v1/chat/completions) to avoid
+  // the briefing being injected into this generation request on re-prepare.
+  const response = await fetch(`${proxyUrl}/v1/chat/graph`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       model: "devstral-small-2507",
       stream: false,
-      tools: [],
       response_format: { type: "json_object" },
       messages: [
         { role: "system", content: systemPrompt },
