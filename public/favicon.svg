@@ -1,7 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="4" fill="#0D0D0D"/>
   <rect x="4" y="4" width="24" height="24" rx="2" fill="#1A1A1A"/>
-  <rect x="8" y="8" width="4" height="16" fill="#E85C0F"/>
-  <rect x="12" y="14" width="8" height="4" fill="#F5A623"/>
-  <rect x="20" y="8" width="4" height="16" fill="#FFD036"/>
+  <!-- Book spine -->
+  <rect x="8" y="7" width="3" height="18" rx="1" fill="#E85C0F"/>
+  <!-- Pages -->
+  <rect x="11" y="8" width="13" height="16" rx="1" fill="#F5A623"/>
+  <rect x="12" y="9" width="11" height="14" rx="0.5" fill="#1A1A1A"/>
+  <!-- Text lines -->
+  <rect x="13" y="11" width="8" height="1.5" rx="0.5" fill="#E85C0F"/>
+  <rect x="13" y="14" width="6" height="1.5" rx="0.5" fill="#FFD036"/>
+  <rect x="13" y="17" width="7" height="1.5" rx="0.5" fill="#F5A623"/>
+  <rect x="13" y="20" width="5" height="1.5" rx="0.5" fill="#E85C0F" opacity="0.6"/>
 </svg>

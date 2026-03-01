@@ -9,11 +9,13 @@ import { VoiceControls } from "@/components/VoiceControls";
 import { NodeDetail } from "@/components/NodeDetail";
 import { QuizPanel } from "@/components/QuizPanel";
 import { AgentStatus } from "@/components/AgentStatus";
+import { ChatPanel } from "@/components/ChatPanel";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { useGraph } from "@/hooks/useGraph";
 import { useKuzu } from "@/hooks/useKuzu";
 import { useInterview } from "@/hooks/useInterview";
 import { useKnowledge } from "@/hooks/useKnowledge";
+import { useChat } from "@/hooks/useChat";
 import { queryGraph } from "@/lib/kuzu";
 import type { VizNode } from "@/types/graph";
 
@@ -65,6 +67,15 @@ export function RepoView() {
     proxyUrl: PROXY_URL,
   });
 
+  const chat = useChat({
+    executeQuery: kuzu.executeQuery,
+    highlightNodes,
+    selectNode: selectNodeById,
+    setOverlay: setOverlayMode,
+    flyToNode: (nodeId: string) => graphRef.current?.flyToNode(nodeId),
+    proxyUrl: PROXY_URL,
+  });
+
   const handleStartQuiz = useCallback(() => {
     interview.startQuizMode();
     knowledge.startQuiz();
@@ -79,9 +90,9 @@ export function RepoView() {
   if (!kuzu.isReady && !kuzu.error) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center bg-bg">
-        <img src="/favicon.svg" alt="HackStral" className="mb-6 h-16 w-16 pixel-art" />
+        <img src="/favicon.svg" alt="Summa" className="mb-6 h-16 w-16" />
         <div className="spinner-gradient mb-4" />
-        <h2 className="text-lg font-semibold text-text">Loading {repoId ?? "HackStral"}</h2>
+        <h2 className="text-lg font-semibold text-text">Loading {repoId ?? "Summa"}</h2>
         <p className="mt-2 text-sm text-text-muted">Initializing graph database...</p>
       </div>
     );
@@ -146,6 +157,15 @@ export function RepoView() {
           onNextQuestion={knowledge.nextQuestion}
           onClose={knowledge.dismissQuiz}
           targetName={knowledge.activeQuiz?.functionName}
+        />
+
+        <ChatPanel
+          messages={chat.messages}
+          isLoading={chat.isLoading}
+          onSend={chat.sendMessage}
+          onClear={chat.clearChat}
+          onStop={chat.stopGeneration}
+          onHighlight={highlightNodes}
         />
 
         {/* Voice error retry overlay */}

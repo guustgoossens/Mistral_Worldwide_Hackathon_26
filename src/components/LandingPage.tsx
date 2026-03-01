@@ -24,8 +24,8 @@ export function LandingPage() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center bg-bg px-4">
       <div className="mb-12 flex flex-col items-center">
-        <img src="/favicon.svg" alt="HackStral" className="mb-4 h-20 w-20 pixel-art" />
-        <h1 className="mb-2 text-3xl font-bold text-text">HackStral</h1>
+        <img src="/favicon.svg" alt="Summa" className="mb-4 h-20 w-20 drop-shadow-[0_0_24px_rgba(232,92,15,0.4)]" />
+        <h1 className="mb-2 text-3xl font-bold gradient-text">Summa</h1>
         <p className="text-center text-text-muted">
           Voice-driven codebase intelligence. Pick a repo to explore.
         </p>
