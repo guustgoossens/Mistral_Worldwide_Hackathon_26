@@ -14,6 +14,8 @@ bun run lint          # TypeScript + ESLint
 bun run format        # Prettier
 bun run parse         # Tree-sitter repo parsing → data/output/graph.json
 bun run git-analyze   # Git history analysis → data/output/git-data.json
+bun run mcp -- public/data/hackstral   # KuzuDB MCP Server (stdio)
+bun run enrich -- public/data/hackstral # Metadata enricher (L0/L1 summaries)
 ```
 
 ## Architecture
@@ -46,16 +48,38 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 - `VoiceProvider` interface (`src/lib/voice-provider.ts`) enables future swap to full custom pipeline
 
 ### Proxy Server (Express)
-- `POST /v1/chat/completions` → forwards to Mistral API (streaming or non-streaming)
+- `POST /v1/chat/completions` → forwards to Mistral API or Bedrock (streaming or non-streaming)
 - `POST /briefing` → stores pre-computed interview briefing as system message
 - `GET /briefing` → checks if a briefing is loaded
 - `GET /v1/models` → returns available model list
 - `GET /health` → health check
 - `WS /voxtral/stream` → Voxtral STT WebSocket (PCM in, text out; requires `vendor/voxtral.c/voxtral`)
 - Default model: DevStral Small 2 (fast, for voice)
+- Dual-mode: `INFERENCE_PROVIDER=mistral` (default) or `INFERENCE_PROVIDER=bedrock`
+- Bedrock uses AWS SDK ConverseCommand with `AWS_BEARER_TOKEN_BEDROCK`
 - No tools injected for voice requests — avoids ElevenLabs Custom LLM round-trip failure
 - Supports `response_format` and `stream: false` passthrough for JSON mode
 - Port 3001
+
+### KuzuDB MCP Server
+- Separate process from proxy, uses native `kuzu` package (not WASM)
+- Stdio transport for Claude Code/Cursor integration
+- Loads graph.json + git-data.json from filesystem
+- 7 tools: `get_schema`, `query_graph`, `search_nodes`, `get_node_context`, `get_graph_stats`, `reason_about`, `enrich_repo`
+- `reason_about` uses multi-step Cypher reasoning with progressive disclosure (L0→L1→L2)
+- `enrich_repo` generates L0 node summaries + L1 relationship summaries via Mistral
+
+### Metadata Enricher
+- Generates L0 summaries (50 tokens) + relevance scores for all nodes
+- Generates L1 contribution summaries for CONTRIBUTED edges
+- Batched processing with Mistral API
+- Can run standalone CLI or as MCP tool
+
+### Graph Reasoner
+- Multi-step agent loop following L0→L1→L2 progressive disclosure
+- Three dimensions: structural (CALLS/IMPORTS), contribution (CONTRIBUTED), knowledge (UNDERSTANDS)
+- Loop detection prevents repeated queries
+- Max 8 reasoning steps, forced conclusion on loop detection
 
 ### Scripts
 - `scripts/parse-repo.ts` — Tree-sitter AST → graph.json
@@ -67,8 +91,8 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 |-------|-------|---------|
 | Interview Agent | DevStral Small 2 (24B) | Pre-computed briefing → voice interview (no tool calls during voice) |
 | Quiz System | DevStral Small 2 (24B) | Independent `useKnowledge` hook — question generation + answer evaluation via Mistral |
-| Graph Reasoner | DevStral 2 (123B) | *Not implemented — stretch goal for post-hackathon* |
-| Background Enricher | DevStral 2 (123B) | *Not implemented — stretch goal for post-hackathon* |
+| Graph Reasoner | DevStral 2 (123B) | Multi-step Cypher reasoning with L0→L1→L2 progressive disclosure (`server/reasoner/`) |
+| Metadata Enricher | DevStral Small 2 (24B) | L0 node summaries + L1 relationship summaries (`server/enricher/`) |
 
 ## Directory Layout
 
@@ -100,7 +124,22 @@ src/
 ├── App.tsx               # Root component
 ├── main.tsx              # Entry point
 └── index.css             # Tailwind + dark theme
-server/proxy.ts           # Mistral API proxy + briefing storage
+server/
+├── proxy.ts              # Mistral/Bedrock API proxy + briefing storage
+├── mcp/
+│   ├── index.ts          # MCP server entry point (stdio transport)
+│   ├── kuzu-server.ts    # KuzuDB native init + schema + data loading
+│   └── tools.ts          # 7 MCP tool definitions + handlers
+├── enricher/
+│   ├── index.ts          # Enricher entry point + CLI
+│   ├── node-summaries.ts # L0: generate summaries + relevance
+│   ├── relationship-l1.ts # L1: CONTRIBUTED.summary_l1
+│   └── prompts.ts        # System prompts for metadata generation
+├── reasoner/
+│   ├── index.ts          # Reasoner entry point
+│   ├── agent-loop.ts     # Multi-step L0→L1→L2 reasoning loop
+│   ├── loop-detector.ts  # Prevents semantic query repetition
+│   └── prompts.ts        # System prompts with progressive disclosure
 scripts/                  # Repo analysis scripts
 docs/                     # Full documentation
 ```
@@ -111,6 +150,11 @@ docs/                     # Full documentation
 - `MISTRAL_API_KEY` — Mistral API key
 - `VITE_PROXY_URL` — Proxy URL (default: http://localhost:3001)
 - `NGROK_URL` — Public URL for webhooks
+- `INFERENCE_PROVIDER` — `mistral` (default) or `bedrock`
+- `AWS_BEARER_TOKEN_BEDROCK` — AWS Bearer token for Bedrock access
+- `AWS_BEDROCK_REGION` — AWS region (default: us-east-1)
+- `REASONER_MODEL` — Model for Graph Reasoner (default: devstral-2507)
+- `ENRICHER_MODEL` — Model for Enricher (default: devstral-small-2507)
 
 ## Key Patterns
 
