@@ -1,3 +1,5 @@
+> **Not implemented — stretch goal for post-hackathon.** The design below is the planned architecture but was not built during the hackathon. Enrichment (summaries, relevance scores) is handled by the preprocessing scripts instead.
+
 # Agent 4: Background Enricher
 
 ## Role

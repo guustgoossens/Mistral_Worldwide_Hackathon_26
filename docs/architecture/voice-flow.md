@@ -2,62 +2,76 @@
 
 ## Overview
 
-Voice interaction uses ElevenLabs Conversational AI with a custom LLM (Mistral via proxy) and client-side tools that execute against the in-browser KuzuDB.
+Voice interaction uses ElevenLabs Conversational AI with a custom LLM (Mistral via proxy). Interview questions are **pre-computed** before the voice session starts — no tool calls occur during voice to avoid ElevenLabs Custom LLM round-trip failures.
 
 ```
-User speaks
+"I'm Ready" button click
     │
     ▼
-ElevenLabs (cloud)
-    │ transcribes speech
+KuzuDB queries (browser, instant)
+    │ gatherContext() — files, functions, classes, calls, imports, contributors
     ▼
-Custom LLM request → Express Proxy → Mistral API
-    │                                      │
-    │ LLM response (may include tool calls)│
-    ◄──────────────────────────────────────┘
+Mistral API (via proxy, stream:false, JSON mode)
+    │ generateBriefing() — 5-8 interview questions + ground truth
+    ▼
+POST /briefing → stored on proxy
     │
     ▼
-Client tool execution (browser)
-    │ query_graph, highlight_nodes, etc.
-    ▼
-KuzuDB WASM → Graph update → 3D visualization
+"Start Interview" button click
     │
     ▼
-ElevenLabs speaks response
+ElevenLabs voice session starts
+    │ proxy injects briefing as system message
+    ▼
+Agent asks pre-prepared questions, evaluates answers
+    │ no tool calls — pure conversation
+    ▼
+Interview complete → optional Quiz Me flow
 ```
+
+## Briefing Pipeline
+
+The briefing is generated in `src/lib/briefing.ts`:
+
+1. **`gatherContext(executeQuery)`** — Runs 6 parallel KuzuDB queries to collect files, functions, classes, calls, imports, and contributors. Results are capped (50 files, 100 functions, etc.) to stay within prompt limits.
+
+2. **`generateBriefing(context, proxyUrl)`** — Sends the context to Mistral via the proxy with `stream: false` and `response_format: { type: "json_object" }`. Returns a `BriefingPacket` with:
+   - `summary`: 2-3 sentence codebase overview
+   - `questions`: Array of `{ question, groundTruth, relatedNodes }`
+
+3. **`composeBriefingPrompt(packet)`** — Formats the briefing into a full system prompt for the voice agent, including personality, interview flow instructions, voice guidelines, and guardrails.
+
+## Interview Lifecycle (`useInterview`)
+
+The `src/hooks/useInterview.ts` hook manages the full lifecycle:
+
+| State | Description |
+|-------|-------------|
+| `idle` | Initial state, waiting for user to start |
+| `preparing` | Gathering context + generating briefing |
+| `ready` | Briefing stored on proxy, ready to start voice |
+| `interviewing` | ElevenLabs voice session active |
+| `complete` | Interview finished |
+| `quizzing` | Optional quiz mode after interview |
 
 ## ElevenLabs Configuration
 
 The ElevenLabs agent is configured with:
 - **Custom LLM**: Points to the Express proxy (`NGROK_URL/v1/chat/completions`)
 - **Voice**: Low-latency voice model
-- **Client tools**: Registered via `useConversation()` hook
+- **No client tools injected** — tools are defined in `agent-tools.ts` but NOT passed to Mistral during voice to avoid round-trip failures
 
-## Client Tools
+## Client Tools (Reference Only)
 
-Tools registered with ElevenLabs that execute in the browser. All use **camelCase** naming.
-
-### `queryGraph`
-Execute a Cypher query against KuzuDB and return results.
-```json
-{
-  "name": "queryGraph",
-  "description": "Execute a Cypher query against the codebase knowledge graph",
-  "parameters": {
-    "cypher": { "type": "string", "description": "Cypher query to execute" }
-  }
-}
-```
+These 4 tools are defined in `src/lib/agent-tools.ts` but are **NOT injected into Mistral requests** during voice. They exist for potential future use:
 
 ### `highlightNodes`
 Highlight specific nodes in the 3D visualization.
 ```json
 {
   "name": "highlightNodes",
-  "description": "Highlight nodes in the 3D graph by their IDs",
   "parameters": {
-    "nodeIds": { "type": "array", "items": { "type": "string" } },
-    "color": { "type": "string", "description": "Optional highlight color" }
+    "nodeIds": { "type": "array", "items": { "type": "string" } }
   }
 }
 ```
@@ -67,7 +81,6 @@ Animate camera to focus on a specific node.
 ```json
 {
   "name": "flyToNode",
-  "description": "Fly the 3D camera to focus on a specific node",
   "parameters": {
     "nodeId": { "type": "string" }
   }
@@ -75,85 +88,67 @@ Animate camera to focus on a specific node.
 ```
 
 ### `switchViewMode`
-Switch the visualization overlay mode, optionally filtering by person.
+Switch the visualization overlay mode.
 ```json
 {
   "name": "switchViewMode",
-  "description": "Switch the graph overlay mode",
   "parameters": {
-    "mode": { "type": "string", "enum": ["structure", "contributors", "knowledge", "people"] },
-    "filterPerson": { "type": "string", "description": "Optional person name to filter by" }
+    "mode": { "type": "string", "enum": ["structure", "contributors", "knowledge", "people"] }
   }
 }
 ```
 
 ### `showDetailPanel`
-Show the detail panel for a specific node at a given disclosure level.
+Show the detail panel for a specific node.
 ```json
 {
   "name": "showDetailPanel",
-  "description": "Show detailed info panel for a node",
   "parameters": {
-    "nodeId": { "type": "string" },
-    "level": { "type": "number", "description": "Detail level: 1 (summary), 2 (detailed), 3 (full)" }
+    "nodeId": { "type": "string" }
   }
 }
 ```
-
-### `startQuiz`
-Start a knowledge quiz, optionally focused on a topic.
-```json
-{
-  "name": "startQuiz",
-  "description": "Start a knowledge quiz",
-  "parameters": {
-    "topic": { "type": "string", "description": "Optional topic or function to quiz on" }
-  }
-}
-```
-
-### Knowledge Updates
-
-Knowledge updates (UNDERSTANDS relationships) are performed via Cypher through `queryGraph` — there is no dedicated `updateKnowledge` tool. See `docs/skills/cypher-skill.md` for the Cypher patterns.
 
 ## Proxy Server
 
-The Express proxy at `server/proxy.ts`:
-- Receives OpenAI-compatible chat completion requests from ElevenLabs
-- Forwards to Mistral API with the configured API key
-- Supports streaming (SSE) for real-time voice responses
-- Default model: DevStral Small 2 (24B, 200 t/s — optimized for speed in voice scenarios)
+The Express proxy at `server/proxy.ts` handles:
 
-## System Prompt Injection
+### Endpoints
 
-The voice agent's system prompt is stored in `src/prompts/voice-agent.ts` and injected at runtime via ElevenLabs session overrides — no manual dashboard copy-paste needed:
+| Method | Path | Purpose |
+|--------|------|---------|
+| `POST` | `/v1/chat/completions` | Forward to Mistral API (streaming or non-streaming) |
+| `POST` | `/briefing` | Store pre-computed briefing string |
+| `GET` | `/briefing` | Check if briefing is loaded |
+| `GET` | `/v1/models` | Return available model list |
+| `GET` | `/health` | Health check |
 
-```typescript
-import { VOICE_AGENT_PROMPT } from "@/prompts/voice-agent";
+### Briefing Injection
 
-await conversation.startSession({
-  agentId,
-  connectionType: "webrtc",
-  overrides: {
-    agent: {
-      prompt: {
-        prompt: VOICE_AGENT_PROMPT,
-      },
-    },
-  },
-});
-```
+When a briefing is stored via `POST /briefing`, the proxy injects it as the system message in every subsequent `/v1/chat/completions` request. This replaces any existing system message from ElevenLabs.
 
-See `src/prompts/voice-agent.ts` for the full prompt following ElevenLabs' recommended structure (Personality, Goal, Tools, Schema, Guardrails, Character normalization, Error handling).
+### Body Construction
+
+The proxy explicitly constructs the Mistral request body — it does NOT spread the incoming request. This filters out ElevenLabs-specific fields (`conversation_config`, `metadata`, etc.) that Mistral would reject.
+
+Supported passthrough fields: `messages`, `model`, `stream`, `max_tokens`, `temperature`, `top_p`, `response_format`, `tools` (only if explicitly provided).
+
+### Model Selection
+
+- Default: `devstral-small-2507` (24B, fast for voice)
+- Briefing generation can use `devstral-2507` (123B) when explicitly requested
 
 ## Conversation Flow Example
 
-1. User: "What functions does the auth module have?"
-2. ElevenLabs transcribes → sends to proxy → Mistral
-3. Mistral responds with `queryGraph` tool call: `MATCH (f:File)-[:CONTAINS]->(fn:Function) WHERE f.filePath CONTAINS 'auth' RETURN fn.name, fn.summary`
-4. Client executes Cypher against KuzuDB, returns results
-5. Mistral composes natural language response
-6. ElevenLabs speaks: "The auth module has 5 functions: authenticateUser handles the main login flow..."
-7. Optionally calls `highlightNodes` to light up the relevant nodes in 3D
-
-> **OPEN QUESTION:** Voxtral Mini 4B Realtime integration depends on GPU availability on-site. If an NVIDIA GPU is available, we could run Voxtral locally for lower latency voice. This is a stretch goal.
+1. User clicks "I'm Ready" — briefing generation starts
+2. KuzuDB queries gather codebase context (instant)
+3. Mistral generates 5-8 interview questions with ground truth (2-5s)
+4. Briefing stored on proxy via `POST /briefing`
+5. User clicks "Start Interview" — ElevenLabs voice session starts
+6. Agent greets: "Hi! I have 7 questions about your codebase. Let's start."
+7. Agent asks Question 1 (from briefing)
+8. User answers by voice
+9. Agent evaluates against ground truth, gives feedback: "That's right! The kuzu module does handle..."
+10. Agent moves to Question 2
+11. After all questions: "Great session! You got 5 out of 7. Want to try the quiz mode?"
+12. User can click "Quiz Me" for the `useKnowledge` quiz system

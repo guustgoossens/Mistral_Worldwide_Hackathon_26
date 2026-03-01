@@ -21,18 +21,18 @@ The result: a live map of **who knows what** — and more importantly, **what no
 - Code nodes colored by type (files=purple, functions=amber, classes=green)
 - Click a function node → show detail panel with summary + contributors
 
-### Scene 2: Voice Interaction (45s)
-- Click mic → "Show me the auth module"
-- Graph highlights auth-related nodes, zooms in
-- "Who worked on this the most?"
-- Switch to contributor overlay → nodes sized by commit count
-- "Are there any knowledge gaps here?"
-- Switch to knowledge overlay → red nodes (gaps) vs green nodes (covered)
+### Scene 2: Voice Interview (45s)
+- Click "I'm Ready" → briefing generates (show loading state)
+- Click "Start Interview" → voice session begins
+- Agent: "I have 7 questions about your codebase. Let's start."
+- Agent asks about file structure, user answers by voice
+- Agent gives feedback: "That's right! The auth module handles..."
+- Toggle overlays while interviewing to show different perspectives
 
 ### Scene 3: Knowledge Quiz (30s)
-- "Quiz me on authenticateUser"
-- Quiz panel appears with a targeted question
-- Answer via voice → AI evaluates against ground truth
+- Interview completes → click "Quiz Me" button
+- Quiz panel appears with a targeted question about a function
+- Type answer → AI evaluates via Mistral
 - UNDERSTANDS relationship updated → knowledge overlay changes in real-time
 
 ### Scene 4: The Insight (15s)

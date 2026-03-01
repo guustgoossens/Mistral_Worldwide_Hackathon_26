@@ -310,31 +310,28 @@ MATCH (p:Person)-[:UNDERSTANDS]->(fn:Function) RETURN p.id, fn.id
 - **String matching:** Use `CONTAINS` for substring match, `=~` for regex. KuzuDB supports `(?i)` flag for case-insensitive regex.
 - **No MERGE:** KuzuDB WASM does not support `MERGE`. Use `CREATE` with manual existence checks, or delete + recreate.
 - **Array properties:** `STRING[]` type is supported (e.g., `topics` on UNDERSTANDS). Access with list functions.
-- **Query result truncation:** The `queryGraph` client tool truncates results to 2000 chars. For large result sets, use `LIMIT` or project only needed columns.
+- **Query result truncation:** The `queryGraph()` function returns results that should be truncated when used in prompts. For large result sets, use `LIMIT` or project only needed columns.
 
 ## Available Client Tools
 
-These are the 6 tools registered with the ElevenLabs voice agent. They execute in the browser.
+4 visualization tools are defined in `src/lib/agent-tools.ts`. They are registered in the browser but **NOT injected into Mistral requests** during voice (to avoid ElevenLabs round-trip failures). Knowledge updates happen in the `useKnowledge` hook directly.
 
 | Tool | Parameters | Purpose |
 |------|-----------|---------|
-| `queryGraph` | `cypher: string` | Execute Cypher against KuzuDB, returns JSON (truncated to 2000 chars) |
 | `highlightNodes` | `nodeIds: string[]` | Highlight specific nodes in the 3D visualization |
 | `switchViewMode` | `mode: string` | Switch overlay: "structure", "contributors", "knowledge", "people" |
 | `flyToNode` | `nodeId: string` | Animate 3D camera to focus on a node |
 | `showDetailPanel` | `nodeId: string` | Open the detail panel for a node |
-| `startQuiz` | `topic?: string` | Start a knowledge quiz on a topic |
 
 ### Tool Composition Patterns
 
-1. **Query + Highlight:** Always `queryGraph` first, then `highlightNodes` with the returned IDs.
-2. **Query + Fly:** For "show me X" requests, query → fly to the first result → show detail panel.
-3. **Mode + Query:** Switch overlay first, then query for the relevant data in that mode.
-4. **Quiz flow:** `startQuiz` → agent asks questions → evaluate answers → `queryGraph` to update UNDERSTANDS via Cypher.
+1. **Query + Fly:** For "show me X" requests, query → fly to the first result → show detail panel.
+2. **Mode + Query:** Switch overlay first, then query for the relevant data in that mode.
+3. **Briefing flow:** `gatherContext()` queries KuzuDB before voice starts → `generateBriefing()` sends context to Mistral → `composeBriefingPrompt()` builds system message → proxy injects into voice session
 
 ### Knowledge Updates via Cypher
 
-There is no dedicated `updateKnowledge` tool. Knowledge updates happen through `queryGraph` with Cypher:
+Knowledge updates happen in the `useKnowledge` hook (`src/hooks/useKnowledge.ts`), which calls `queryGraph()` directly:
 
 ```cypher
 -- Create or update an UNDERSTANDS relationship

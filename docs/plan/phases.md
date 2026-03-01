@@ -2,7 +2,7 @@
 
 ---
 
-## Phase 1: Real Data Pipeline (~3-4 hours)
+## Phase 1: Real Data Pipeline ✅
 
 **Goal:** Parse a real repo and show it in the 3D graph with git data.
 
@@ -16,7 +16,7 @@
 
 ---
 
-## Phase 2: Voice Agent (~4-5 hours)
+## Phase 2: Voice Agent ✅
 
 **Goal:** Talk to the graph. This IS the product.
 
@@ -31,7 +31,7 @@
 
 ---
 
-## Phase 3: Quiz & Knowledge System (~3-4 hours)
+## Phase 3: Quiz & Knowledge System ✅
 
 **Goal:** Get quizzed on code you don't know.
 
@@ -45,7 +45,7 @@
 
 ---
 
-## Phase 4: Polish & Demo Prep (~4-5 hours)
+## Phase 4: Polish & Demo Prep (in progress)
 
 **Goal:** Make it demo-ready and visually stunning.
 

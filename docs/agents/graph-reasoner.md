@@ -1,3 +1,5 @@
+> **Not implemented — stretch goal for post-hackathon.** The design below is the planned architecture but was not built during the hackathon. The interview flow (pre-computed briefing) replaced the need for real-time multi-step Cypher during voice.
+
 # Agent 3: Graph Reasoner
 
 ## Role

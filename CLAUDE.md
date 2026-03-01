@@ -12,8 +12,8 @@ bun run build         # TypeScript check + Vite production build
 bun run preview       # Preview production build
 bun run lint          # TypeScript + ESLint
 bun run format        # Prettier
-bun run parse         # Tree-sitter repo parsing (stub)
-bun run git-analyze   # Git history analysis (stub)
+bun run parse         # Tree-sitter repo parsing → data/output/graph.json
+bun run git-analyze   # Git history analysis → data/output/git-data.json
 ```
 
 ## Architecture
@@ -39,8 +39,14 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 4. **People** — Person nodes become visible, showing human topology around code
 
 ### Proxy Server (Express)
-- POST `/v1/chat/completions` → forwards to Mistral API with streaming
+- `POST /v1/chat/completions` → forwards to Mistral API (streaming or non-streaming)
+- `POST /briefing` → stores pre-computed interview briefing as system message
+- `GET /briefing` → checks if a briefing is loaded
+- `GET /v1/models` → returns available model list
+- `GET /health` → health check
 - Default model: DevStral Small 2 (fast, for voice)
+- No tools injected for voice requests — avoids ElevenLabs Custom LLM round-trip failure
+- Supports `response_format` and `stream: false` passthrough for JSON mode
 - Port 3001
 
 ### Scripts
@@ -51,10 +57,10 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 
 | Agent | Model | Purpose |
 |-------|-------|---------|
-| Voice Conversationalist | DevStral Small 2 (24B) | Real-time voice, Cypher composition |
-| Quiz Master | DevStral Small 2 (24B) | Mode of Agent 1 — knowledge assessment, spaced repetition |
-| Graph Reasoner | DevStral 2 (123B) | Multi-step Cypher, sub-agent spawning |
-| Background Enricher | DevStral 2 (123B) | Batch summaries, cluster analysis |
+| Interview Agent | DevStral Small 2 (24B) | Pre-computed briefing → voice interview (no tool calls during voice) |
+| Quiz System | DevStral Small 2 (24B) | Independent `useKnowledge` hook — question generation + answer evaluation via Mistral |
+| Graph Reasoner | DevStral 2 (123B) | *Not implemented — stretch goal for post-hackathon* |
+| Background Enricher | DevStral 2 (123B) | *Not implemented — stretch goal for post-hackathon* |
 
 ## Directory Layout
 
@@ -64,19 +70,21 @@ src/
 ├── lib/
 │   ├── utils.ts          # cn() helper
 │   ├── kuzu.ts           # KuzuDB WASM init + schema + query helpers
-│   ├── graph-builder.ts  # Tree-sitter AST → KuzuDB (stub)
-│   ├── git-data.ts       # Git data → KuzuDB (stub)
-│   └── agent-tools.ts    # ElevenLabs client tools (stub)
+│   ├── briefing.ts       # Pre-computed interview briefing pipeline
+│   ├── graph-builder.ts  # Tree-sitter AST → KuzuDB
+│   ├── git-data.ts       # Git data → KuzuDB
+│   └── agent-tools.ts    # ElevenLabs client tools (visualization only)
 ├── hooks/
 │   ├── useGraph.ts       # Graph state + overlay mode
 │   ├── useKuzu.ts        # KuzuDB lifecycle
-│   ├── useVoiceAgent.ts  # ElevenLabs voice (stub)
-│   ├── useTreeSitter.ts  # WASM parsing (stub)
-│   └── useKnowledge.ts   # Quiz + knowledge scores (stub)
+│   ├── useInterview.ts   # Interview lifecycle (idle → preparing → ready → interviewing → complete)
+│   ├── useVoiceAgent.ts  # ElevenLabs voice connection
+│   ├── useTreeSitter.ts  # WASM parsing
+│   └── useKnowledge.ts   # Quiz system + knowledge scores
 ├── components/
 │   ├── Layout.tsx        # App shell + overlay toggles
 │   ├── Graph3D.tsx       # 3D force graph wrapper
-│   ├── VoiceControls.tsx # Mic button + transcript
+│   ├── VoiceControls.tsx # Mic button + transcript + interview controls
 │   ├── NodeDetail.tsx    # Selected node panel
 │   ├── QuizPanel.tsx     # Quiz UI
 │   └── AgentStatus.tsx   # Status indicators
@@ -84,7 +92,7 @@ src/
 ├── App.tsx               # Root component
 ├── main.tsx              # Entry point
 └── index.css             # Tailwind + dark theme
-server/proxy.ts           # Mistral API proxy
+server/proxy.ts           # Mistral API proxy + briefing storage
 scripts/                  # Repo analysis scripts
 docs/                     # Full documentation
 ```
@@ -102,7 +110,9 @@ docs/                     # Full documentation
 - `@/` path alias maps to `src/`
 - Cypher queries via `queryGraph(conn, cypher)` in `src/lib/kuzu.ts`
 - Overlay mode drives which Cypher queries produce visualization data
-- All stubs are typed and export real interfaces
+- Pre-computed briefing flow: KuzuDB queries → Mistral generates questions → proxy stores briefing → voice agent reads briefing as system message
+- No tool calls during voice — avoids ElevenLabs Custom LLM round-trip failure
+- Interview lifecycle: idle → preparing → ready → interviewing → complete → (optional) quizzing
 
 ## Docs
 

@@ -13,6 +13,7 @@ Voice-driven codebase intelligence platform for the Mistral Worldwide Hackathon.
 | [Product](product/pitch.md) | Pitch, demo script, sponsor strategy |
 | [Idea](idea/GAMEPLAN.md) | Original concept, battle plan, build sequence, and pitch evolution |
 | [Agent Infrastructure](idea/AGENTS_INFRA.md) | Complete agent architecture reference (the source of truth for agent design) |
+| [Architecture Changes & Roadmap](architecture/ARCHITECTURE_CHANGES.md) | What changed (tool calling → briefing), what was lost, how to fix it, future plans |
 
 ## Tech Stack Summary
 

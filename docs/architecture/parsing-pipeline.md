@@ -75,7 +75,7 @@ Uses simple-git to extract contributor data:
 On app start:
 1. Load `graph.json` → insert File, Function, Class nodes + CONTAINS, CALLS, IMPORTS edges into KuzuDB
 2. Load `git-data.json` → insert Person nodes + CONTRIBUTED edges into KuzuDB
-3. (Future) Run AI enrichment: generate summaries (summary_l1/l2/l3) and structuralImportance scores via Mistral
+3. Compute structural importance scores from graph topology (fan-in, fan-out, file centrality)
 
 ## Structural Importance Scoring
 
@@ -85,4 +85,4 @@ Functions are scored 0.0–1.0 based on:
 - **File centrality**: how many imports flow through the containing file
 - **Size**: lines of code (proxy for complexity)
 
-> **OPEN QUESTION:** Should importance scoring run in the preprocessing scripts (faster, offline) or as a background agent task (can use LLM reasoning)? For hackathon, likely preprocessing.
+> **Resolved:** Importance scoring runs in the preprocessing scripts (offline), not as a background agent task. This was the pragmatic choice for the hackathon.
