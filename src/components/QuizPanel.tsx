@@ -75,7 +75,7 @@ export function QuizPanel({
           <Brain className="h-4 w-4 text-accent" />
           <h3 className="text-sm font-semibold text-text">Knowledge Quiz</h3>
           {sessionStats && (
-            <span className="rounded-full bg-input px-2 py-0.5 text-[10px] font-medium text-text-muted">
+            <span className="rounded-[6px] bg-input px-2 py-0.5 text-[10px] font-medium text-text-muted">
               Q{sessionStats.questionNumber}
             </span>
           )}
@@ -83,7 +83,7 @@ export function QuizPanel({
         <div className="flex items-center gap-2">
           {/* Streak indicator */}
           {sessionStats && sessionStats.streak > 0 && (
-            <div className="flex items-center gap-1 rounded-full bg-amber/10 px-2 py-0.5">
+            <div className="flex items-center gap-1 rounded-[6px] bg-amber/10 px-2 py-0.5">
               <Zap className="h-3 w-3 text-amber" />
               <span className="text-[10px] font-bold text-amber">{sessionStats.streak}</span>
             </div>
