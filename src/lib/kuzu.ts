@@ -165,25 +165,25 @@ export function parseTable(table: { toString: () => string; numRows?: number; nu
 }
 
 const TYPE_COLORS: Record<string, string> = {
-  file: "#5B8FF9",     // blue — distinct categorical
-  function: "#F6BD16", // gold — warm, high contrast
-  class: "#5AD8A6",    // teal — clearly different from blue/gold
-  person: "#E8684A",   // coral — warm, people-associated
+  file: "#6C5CE7",     // deep purple — bold, cartoony
+  function: "#00CFDD",  // electric cyan — sharp, distinct
+  class: "#FF2D78",     // hot magenta — unmistakable
+  person: "#FF9F1A",    // vivid orange — people-associated
 };
 
 const KNOWLEDGE_COLORS = {
-  deep: "#F5A623",    // amber
-  surface: "#D4603A", // muted orange
-  none: "#E83A0F",    // warm red
+  deep: "#0A2463",    // deep navy — well-understood
+  surface: "#3E7CB1",  // medium blue — partial knowledge
+  none: "#A8DADC",     // icy blue — unknown
 };
 
 const LINK_TYPE_COLORS: Record<string, string> = {
   contains: "#3A3A3A",
-  calls:    "#F5A62380",
-  imports:  "#E85C0F80",
-  inherits: "#FFD03680",
-  contributed: "#D4603A60",
-  understands: "#F5A62360",
+  calls:    "#00CFDD60",      // cyan
+  imports:  "#6C5CE760",      // purple
+  inherits: "#FF2D7860",      // magenta
+  contributed: "#2E7D3260",   // forest green
+  understands: "#3E7CB160",   // blue
 };
 
 /**
@@ -329,7 +329,7 @@ export async function deriveVizData(
         const totalC = fileTotalCommits.get(id) ?? 0;
         const heat = totalC / maxCommits;
         const isFiltered = filterActive && !highlightFiles.has(id);
-        const color = isFiltered ? "#2A2A2A" : `hsl(${Math.round(30 - heat * 30)}, ${Math.round(60 + heat * 40)}%, ${Math.round(50 - heat * 10)}%)`;
+        const color = isFiltered ? "#2A2A2A" : `hsl(${Math.round(140 - heat * 10)}, ${Math.round(45 + heat * 35)}%, ${Math.round(70 - heat * 40)}%)`;
         nodes.push({
           id, name: row["f.name"] ?? "", type: "file", filePath: row["f.filePath"] ?? "",
           val: 5 + Math.round(heat * 8), color,
@@ -349,7 +349,7 @@ export async function deriveVizData(
         const color = isFiltered
           ? "#2A2A2A"
           : parentHeat > 0
-            ? `hsl(${Math.round(40 - parentHeat * 20)}, ${Math.round(50 + parentHeat * 30)}%, ${Math.round(55 - parentHeat * 10)}%)`
+            ? `hsl(${Math.round(140 - parentHeat * 10)}, ${Math.round(40 + parentHeat * 30)}%, ${Math.round(72 - parentHeat * 35)}%)`
             : TYPE_COLORS.function;
         nodes.push({
           id, name: row["f.name"] ?? "", type: "function", filePath: fp,
@@ -367,7 +367,7 @@ export async function deriveVizData(
         const color = isFiltered
           ? "#2A2A2A"
           : parentHeat > 0
-            ? `hsl(${Math.round(40 - parentHeat * 20)}, ${Math.round(50 + parentHeat * 30)}%, ${Math.round(55 - parentHeat * 10)}%)`
+            ? `hsl(${Math.round(140 - parentHeat * 10)}, ${Math.round(40 + parentHeat * 30)}%, ${Math.round(72 - parentHeat * 35)}%)`
             : TYPE_COLORS.class;
         nodes.push({
           id, name: row["c.name"] ?? "", type: "class", filePath: fp,
@@ -559,16 +559,14 @@ export async function deriveVizData(
         const dFileIdByPath = new Map<string, string>();
         for (const row of dFiles) dFileIdByPath.set(row["f.filePath"] ?? "", row["f.id"] ?? "");
 
-        // Discrepancy color: high contrib + low knowledge = danger
+        // Discrepancy color: green (safe) → red (danger)
         function discrepancyColor(contribNorm: number, knowledgeNorm: number): string {
           if (contribNorm < 0.1) return "#3A3A3A"; // low contribution = dim gray
           const discrepancy = contribNorm * (1 - knowledgeNorm);
-          const hue = discrepancy > 0.4
-            ? 15 + (1 - discrepancy) * 25  // red-orange/danger
-            : 40 - discrepancy * 25;        // amber → warm
-          const sat = 40 + contribNorm * 40;
-          const light = 35 + (1 - discrepancy) * 20;
-          return `hsl(${Math.round(hue)}, ${Math.round(sat)}%, ${Math.round(light)}%)`;
+          const hue = Math.round(120 * (1 - discrepancy)); // 120=green → 0=red
+          const sat = Math.round(50 + contribNorm * 40);    // 50-90%
+          const light = Math.round(35 + (1 - discrepancy) * 20); // 35-55%
+          return `hsl(${hue}, ${sat}%, ${light}%)`;
         }
 
         // Person filter — track both file IDs and filePaths

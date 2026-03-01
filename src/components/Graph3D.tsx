@@ -2,7 +2,8 @@ import { useRef, useCallback, useMemo, useState, useEffect, forwardRef, useImper
 import ForceGraph3D from "react-force-graph-3d";
 import {
   BoxGeometry,
-  OctahedronGeometry,
+  TetrahedronGeometry,
+  IcosahedronGeometry,
   SphereGeometry,
   MeshLambertMaterial,
   Mesh,
@@ -18,13 +19,13 @@ import {
 } from "three";
 import type { GraphData, VizNode } from "@/types/graph";
 
-// Shape per node type — cubes for files, octahedra for functions
-const NODE_SHAPES: Record<string, "box" | "octahedron" | "sphere"> = {
-  file: "box",
-  function: "octahedron",
-  class: "box",
-  person: "sphere",
-  method: "octahedron",
+// Shape per node type — distinct blocky shapes for Mistral feel
+const NODE_SHAPES: Record<string, "box" | "tetrahedron" | "icosahedron" | "sphere"> = {
+  file: "box",            // cube — classic blocky
+  function: "tetrahedron", // sharp angular pyramid
+  class: "icosahedron",    // faceted gem — distinct from cube
+  person: "sphere",        // organic, human
+  method: "tetrahedron",
 };
 
 interface Graph3DProps {
@@ -135,7 +136,7 @@ export const Graph3D = forwardRef<Graph3DHandle, Graph3DProps>(function Graph3D(
         ...n,
         __glowColor: (highlightedIds?.size && !highlightedIds.has(n.id))
           ? "#2A2A2A"
-          : (n.color ?? "#5B8FF9"),
+          : (n.color ?? "#6C5CE7"),
       })),
       links: data.links.map((l) => ({ ...l })),
     }),
@@ -157,24 +158,27 @@ export const Graph3D = forwardRef<Graph3DHandle, Graph3DProps>(function Graph3D(
           linkDirectionalParticles={(link: any) => link.type === "calls" ? 2 : 0}
           linkDirectionalParticleSpeed={0.006}
           linkDirectionalParticleWidth={1.5}
-          linkDirectionalParticleColor={() => "#F6BD16"}
+          linkDirectionalParticleColor={() => "#00CFDD"}
           backgroundColor="#0D0D0D"
           onNodeClick={handleNodeClick}
           enableNodeDrag={true}
           nodeThreeObject={(node: any) => {
-            const color = node.__glowColor ?? "#5B8FF9";
+            const color = node.__glowColor ?? "#6C5CE7";
             const shape = NODE_SHAPES[node.type] ?? "sphere";
             const group = new Group();
 
-            // Core geometry — shape per node type
+            // Core geometry — distinct blocky shapes per type
             let geo;
-            const s = 4;
+            const s = 8;
             switch (shape) {
               case "box":
                 geo = new BoxGeometry(s * 1.4, s * 1.4, s * 1.4);
                 break;
-              case "octahedron":
-                geo = new OctahedronGeometry(s * 1.1);
+              case "tetrahedron":
+                geo = new TetrahedronGeometry(s * 1.3);
+                break;
+              case "icosahedron":
+                geo = new IcosahedronGeometry(s * 1.1);
                 break;
               default:
                 geo = new SphereGeometry(s, 16, 16);
@@ -183,8 +187,8 @@ export const Graph3D = forwardRef<Graph3DHandle, Graph3DProps>(function Graph3D(
             const mat = new MeshLambertMaterial({ color: new Color(color) });
             group.add(new Mesh(geo, mat));
 
-            // Wireframe edges for cubes — techy/pixel feel
-            if (shape === "box") {
+            // Wireframe edges on all non-sphere shapes — blocky Mistral feel
+            if (shape !== "sphere") {
               const edges = new EdgesGeometry(geo);
               const lineMat = new LineBasicMaterial({
                 color: new Color(color),

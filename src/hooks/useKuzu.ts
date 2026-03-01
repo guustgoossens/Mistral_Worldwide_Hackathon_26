@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { initKuzu, queryGraph } from "@/lib/kuzu";
-import { loadSampleIntoKuzu } from "@/data/sample-graph";
+import { loadSampleIntoKuzu, seedKnowledgeData } from "@/data/sample-graph";
 import { loadGraphFromJSON } from "@/lib/graph-builder";
 import { loadGitData } from "@/lib/git-data";
 
@@ -67,6 +67,14 @@ export function useKuzu(): UseKuzuReturn {
           }
         } catch {
           // git-data.json not available — skip
+        }
+
+        // Seed knowledge (UNDERSTANDS edges) based on file path classification
+        try {
+          await seedKnowledgeData(conn);
+          console.log("[useKuzu] Seeded knowledge data");
+        } catch (seedErr) {
+          console.warn("[useKuzu] Knowledge seeding failed:", seedErr);
         }
 
         if (cancelled) return;
