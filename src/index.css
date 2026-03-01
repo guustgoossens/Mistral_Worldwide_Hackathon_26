@@ -40,6 +40,7 @@ body {
 .gradient-cta { background: linear-gradient(90deg, #E85C0F, #F57A1F); }
 .gradient-hero { background: linear-gradient(135deg, #E85C0F 0%, #F5A623 50%, #FFD036 100%); }
 .gradient-sidebar-bar { background: linear-gradient(90deg, #8B2A1A, #C44A20, #E85C0F); }
+.gradient-text { background: linear-gradient(135deg, #E85C0F 0%, #F5A623 50%, #FFD036 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
 /* Pixel art rendering */
 .pixel-art { image-rendering: pixelated; image-rendering: crisp-edges; }

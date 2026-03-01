@@ -64,7 +64,7 @@ export function VoiceControls({
 
       {/* Voxtral STT parallel transcript */}
       {interviewState === "interviewing" && voxtral.isConnected && voxtral.transcript && (
-        <div className="w-96 rounded-lg bg-surface border border-orange-500/20 p-3">
+        <div className="w-96 rounded-lg bg-surface/80 backdrop-blur-sm border border-orange-500/20 p-3">
           <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-orange-400">
             Voxtral STT
           </p>
@@ -79,7 +79,7 @@ export function VoiceControls({
 
       {/* ElevenLabs transcript (unchanged) */}
       {interviewState === "interviewing" && transcript.length > 0 && (
-        <div className="max-h-32 w-96 overflow-y-auto rounded-lg bg-surface p-3">
+        <div className="max-h-32 w-96 overflow-y-auto rounded-lg bg-surface/80 backdrop-blur-sm p-3">
           {transcript.slice(-3).map((msg, i) => (
             <p key={i} className={cn("text-xs", msg.role === "user" ? "text-accent" : "text-text-muted")}>
               <span className="font-medium">{msg.role === "user" ? "You" : "Agent"}:</span> {msg.content}

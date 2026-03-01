@@ -68,7 +68,10 @@ export function QuizPanel({
   };
 
   return (
-    <div className="absolute bottom-24 right-4 z-10 w-96 animate-in rounded-[12px] border border-border bg-surface">
+    <div className="absolute bottom-24 right-4 z-10 w-96 animate-in rounded-[12px] border border-border bg-surface overflow-hidden">
+      {/* Gradient accent bar */}
+      <div className="h-[2px] w-full gradient-sidebar-bar" />
+
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-4 py-3">
         <div className="flex items-center gap-2">

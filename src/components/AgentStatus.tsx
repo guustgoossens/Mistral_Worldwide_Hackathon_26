@@ -1,4 +1,4 @@
-import { Database } from "lucide-react";
+import { Database, Users, Mic } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type VoiceStatus = "disconnected" | "connecting" | "connected" | "disconnecting";
@@ -32,10 +32,11 @@ export function AgentStatus({
 
   return (
     <div className="absolute left-4 top-4 z-10 flex flex-col gap-1.5">
-      <StatusDot label="KuzuDB" status={kuzuReady ? "active" : "inactive"} />
+      <StatusDot label="KuzuDB" status={kuzuReady ? "active" : "inactive"} icon={Database} />
       <StatusDot
         label="Voice"
         status={voiceStatus === "connected" ? "active" : voiceStatus === "connecting" || voiceStatus === "disconnecting" ? "pending" : "inactive"}
+        icon={Mic}
       />
 
       {/* Data source badge */}
@@ -64,7 +65,10 @@ export function AgentStatus({
       {hasPersons && (
         <div className="mt-1 flex flex-col gap-0.5 rounded bg-surface border border-border p-1.5">
           <div className="flex items-center justify-between px-1 mb-0.5">
-            <span className="text-[10px] font-medium uppercase tracking-wider text-text-muted">Contributors</span>
+            <div className="flex items-center gap-1">
+              <Users className="h-2.5 w-2.5 text-text-muted" />
+              <span className="text-[10px] font-medium uppercase tracking-wider text-text-muted">Contributors</span>
+            </div>
             {personFilter && personFilter.size > 0 && (
               <button
                 onClick={onClearPersonFilter}
@@ -74,46 +78,57 @@ export function AgentStatus({
               </button>
             )}
           </div>
-          {persons!.map((name) => {
-            const active = personFilter?.has(name) ?? false;
-            return (
-              <button
-                key={name}
-                onClick={() => onTogglePerson?.(name)}
-                className={cn(
-                  "flex items-center gap-2 rounded px-1.5 py-1 text-xs transition-colors",
-                  active
-                    ? "bg-accent/20 text-text"
-                    : "text-text-muted hover:text-text hover:bg-border/50",
-                )}
-              >
-                <span
+          <div className="max-h-48 overflow-y-auto flex flex-col gap-0.5">
+            {persons!.map((name) => {
+              const active = personFilter?.has(name) ?? false;
+              return (
+                <button
+                  key={name}
+                  onClick={() => onTogglePerson?.(name)}
                   className={cn(
-                    "h-2 w-2 shrink-0 rounded-full border transition-colors",
+                    "flex items-center gap-2 rounded px-1.5 py-0.5 text-[11px] transition-colors",
                     active
-                      ? "border-accent bg-accent"
-                      : "border-text-muted bg-transparent",
+                      ? "bg-accent/20 text-text"
+                      : "text-text-muted hover:text-text hover:bg-border/50",
                   )}
-                />
-                {name}
-              </button>
-            );
-          })}
+                >
+                  <span
+                    className={cn(
+                      "h-1.5 w-1.5 shrink-0 rounded-full border transition-colors",
+                      active
+                        ? "border-accent bg-accent"
+                        : "border-text-muted bg-transparent",
+                    )}
+                  />
+                  {name}
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-function StatusDot({ label, status }: { label: string; status: "active" | "pending" | "inactive" }) {
+function StatusDot({ label, status, icon: IconComp }: { label: string; status: "active" | "pending" | "inactive"; icon?: React.ElementType }) {
   return (
     <div className="flex items-center gap-2 rounded bg-surface px-2.5 py-1">
-      <div
-        className={cn(
-          "h-2 w-2 rounded-full",
-          status === "active" ? "bg-accent-bright" : status === "pending" ? "bg-amber animate-pulse" : "bg-text-tertiary",
-        )}
-      />
+      {IconComp ? (
+        <IconComp
+          className={cn(
+            "h-3 w-3",
+            status === "active" ? "text-accent-bright" : status === "pending" ? "text-amber animate-pulse" : "text-text-tertiary",
+          )}
+        />
+      ) : (
+        <div
+          className={cn(
+            "h-2 w-2 rounded-full",
+            status === "active" ? "bg-accent-bright" : status === "pending" ? "bg-amber animate-pulse" : "bg-text-tertiary",
+          )}
+        />
+      )}
       <span className="text-xs text-text-muted">{label}</span>
     </div>
   );
