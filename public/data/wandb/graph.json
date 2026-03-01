@@ -1,0 +1,2704 @@
+{
+  "repoPath": "/Users/guustgoossens/Desktop/dev/Hackathon/HackStral/.repos/wandb",
+  "parsedAt": "2026-03-01T10:11:06.801Z",
+  "stats": {
+    "files": 23,
+    "functions": 116,
+    "classes": 29,
+    "methods": 0,
+    "imports": 0,
+    "calls": 161
+  },
+  "nodes": {
+    "files": [
+      {
+        "id": "f:src/wandb_mcp_server/__init__.py",
+        "name": "__init__.py",
+        "filePath": "src/wandb_mcp_server/__init__.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/add_to_client.py",
+        "name": "add_to_client.py",
+        "filePath": "src/wandb_mcp_server/add_to_client.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/api_client.py",
+        "name": "api_client.py",
+        "filePath": "src/wandb_mcp_server/api_client.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/auth.py",
+        "name": "auth.py",
+        "filePath": "src/wandb_mcp_server/auth.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/config.py",
+        "name": "config.py",
+        "filePath": "src/wandb_mcp_server/config.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/count_traces.py",
+        "name": "count_traces.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/count_traces.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/create_report.py",
+        "name": "create_report.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/create_report.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py",
+        "name": "list_wandb_entities_projects.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "name": "query_wandb_gql.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/query_wandbot.py",
+        "name": "query_wandbot.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandbot.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "name": "query_weave.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_weave.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "name": "tools_utils.py",
+        "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/secrets_resolver.py",
+        "name": "secrets_resolver.py",
+        "filePath": "src/wandb_mcp_server/secrets_resolver.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/server.py",
+        "name": "server.py",
+        "filePath": "src/wandb_mcp_server/server.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/session_manager.py",
+        "name": "session_manager.py",
+        "filePath": "src/wandb_mcp_server/session_manager.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/trace_utils.py",
+        "name": "trace_utils.py",
+        "filePath": "src/wandb_mcp_server/trace_utils.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/utils.py",
+        "name": "utils.py",
+        "filePath": "src/wandb_mcp_server/utils.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/weave_api/__init__.py",
+        "name": "__init__.py",
+        "filePath": "src/wandb_mcp_server/weave_api/__init__.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/weave_api/client.py",
+        "name": "client.py",
+        "filePath": "src/wandb_mcp_server/weave_api/client.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/weave_api/models.py",
+        "name": "models.py",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "name": "processors.py",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "name": "query_builder.py",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py"
+      },
+      {
+        "id": "f:src/wandb_mcp_server/weave_api/service.py",
+        "name": "service.py",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py"
+      }
+    ],
+    "functions": [
+      {
+        "id": "fn:src/wandb_mcp_server/add_to_client.py:get_env_vars",
+        "name": "get_env_vars",
+        "filePath": "src/wandb_mcp_server/add_to_client.py",
+        "startLine": 31,
+        "endLine": 45
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/add_to_client.py:get_new_config",
+        "name": "get_new_config",
+        "filePath": "src/wandb_mcp_server/add_to_client.py",
+        "startLine": 48,
+        "endLine": 75
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client",
+        "name": "add_to_client",
+        "filePath": "src/wandb_mcp_server/add_to_client.py",
+        "startLine": 78,
+        "endLine": 183
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client_cli",
+        "name": "add_to_client_cli",
+        "filePath": "src/wandb_mcp_server/add_to_client.py",
+        "startLine": 186,
+        "endLine": 188
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "name": "get_api_key",
+        "filePath": "src/wandb_mcp_server/api_client.py",
+        "startLine": 30,
+        "endLine": 44
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "name": "get_api",
+        "filePath": "src/wandb_mcp_server/api_client.py",
+        "startLine": 47,
+        "endLine": 72
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/api_client.py:set_context_api_key",
+        "name": "set_context_api_key",
+        "filePath": "src/wandb_mcp_server/api_client.py",
+        "startLine": 75,
+        "endLine": 85
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/api_client.py:reset_context_api_key",
+        "name": "reset_context_api_key",
+        "filePath": "src/wandb_mcp_server/api_client.py",
+        "startLine": 88,
+        "endLine": 95
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/api_client.py:get_wandb_api",
+        "name": "get_wandb_api",
+        "filePath": "src/wandb_mcp_server/api_client.py",
+        "startLine": 98,
+        "endLine": 111
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/auth.py:is_valid_wandb_api_key",
+        "name": "is_valid_wandb_api_key",
+        "filePath": "src/wandb_mcp_server/auth.py",
+        "startLine": 35,
+        "endLine": 55
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/auth.py:validate_bearer_token",
+        "name": "validate_bearer_token",
+        "filePath": "src/wandb_mcp_server/auth.py",
+        "startLine": 58,
+        "endLine": 97
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware",
+        "name": "mcp_auth_middleware",
+        "filePath": "src/wandb_mcp_server/auth.py",
+        "startLine": 100,
+        "endLine": 179
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "name": "count_traces",
+        "filePath": "src/wandb_mcp_server/mcp_tools/count_traces.py",
+        "startLine": 119,
+        "endLine": 348
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:_get_api_from_context",
+        "name": "_get_api_from_context",
+        "filePath": "src/wandb_mcp_server/mcp_tools/create_report.py",
+        "startLine": 29,
+        "endLine": 42
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report",
+        "name": "create_report",
+        "filePath": "src/wandb_mcp_server/mcp_tools/create_report.py",
+        "startLine": 133,
+        "endLine": 220
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:parse_markdown_to_blocks",
+        "name": "parse_markdown_to_blocks",
+        "filePath": "src/wandb_mcp_server/mcp_tools/create_report.py",
+        "startLine": 223,
+        "endLine": 346
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:flush_content",
+        "name": "flush_content",
+        "filePath": "src/wandb_mcp_server/mcp_tools/create_report.py",
+        "startLine": 250,
+        "endLine": 277
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py:list_entity_projects",
+        "name": "list_entity_projects",
+        "filePath": "src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py",
+        "startLine": 57,
+        "endLine": 123
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:find_paginated_collections",
+        "name": "find_paginated_collections",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 530,
+        "endLine": 556
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:get_nested_value",
+        "name": "get_nested_value",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 559,
+        "endLine": 567
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "name": "query_paginated_wandb_gql",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 570,
+        "endLine": 927
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:__init__",
+        "name": "__init__",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 933,
+        "endLine": 941
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:enter_field",
+        "name": "enter_field",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 943,
+        "endLine": 974
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:leave_field",
+        "name": "leave_field",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 976,
+        "endLine": 978
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:enter_operation_definition",
+        "name": "enter_operation_definition",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 980,
+        "endLine": 1015
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_wandbot.py:query_wandbot_api",
+        "name": "query_wandbot_api",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandbot.py",
+        "startLine": 36,
+        "endLine": 141
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:get_trace_service",
+        "name": "get_trace_service",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "startLine": 11,
+        "endLine": 20
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "name": "query_traces",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "startLine": 292,
+        "endLine": 388
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "name": "query_paginated_weave_traces",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "startLine": 391,
+        "endLine": 514
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_map_python_type_to_json_schema",
+        "name": "_map_python_type_to_json_schema",
+        "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "startLine": 11,
+        "endLine": 50
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_parse_docstring",
+        "name": "_parse_docstring",
+        "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "startLine": 53,
+        "endLine": 209
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:generate_anthropic_tool_schema",
+        "name": "generate_anthropic_tool_schema",
+        "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "startLine": 213,
+        "endLine": 294
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:get_retry_session",
+        "name": "get_retry_session",
+        "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "startLine": 297,
+        "endLine": 325
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "name": "log_tool_call",
+        "filePath": "src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "startLine": 328,
+        "endLine": 339
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/secrets_resolver.py:__init__",
+        "name": "__init__",
+        "filePath": "src/wandb_mcp_server/secrets_resolver.py",
+        "startLine": 14,
+        "endLine": 27
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/secrets_resolver.py:fetch_secret",
+        "name": "fetch_secret",
+        "filePath": "src/wandb_mcp_server/secrets_resolver.py",
+        "startLine": 29,
+        "endLine": 46
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/secrets_resolver.py:get_secrets_resolver_from_env",
+        "name": "get_secrets_resolver_from_env",
+        "filePath": "src/wandb_mcp_server/secrets_resolver.py",
+        "startLine": 49,
+        "endLine": 54
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:validate_api_key",
+        "name": "validate_api_key",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 90,
+        "endLine": 109
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:validate_and_get_api_key",
+        "name": "validate_and_get_api_key",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 112,
+        "endLine": 155
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:configure_wandb_logging",
+        "name": "configure_wandb_logging",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 162,
+        "endLine": 196
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:initialize_weave_tracing",
+        "name": "initialize_weave_tracing",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 199,
+        "endLine": 242
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:register_tools",
+        "name": "register_tools",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 249,
+        "endLine": 367
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:query_weave_traces_tool",
+        "name": "query_weave_traces_tool",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 266,
+        "endLine": 301
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:count_weave_traces_tool",
+        "name": "count_weave_traces_tool",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 304,
+        "endLine": 326
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:query_wandb_tool",
+        "name": "query_wandb_tool",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 329,
+        "endLine": 335
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:create_wandb_report_tool",
+        "name": "create_wandb_report_tool",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 338,
+        "endLine": 359
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:query_wandb_entity_projects",
+        "name": "query_wandb_entity_projects",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 362,
+        "endLine": 363
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:query_wandb_support_bot",
+        "name": "query_wandb_support_bot",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 366,
+        "endLine": 367
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:create_mcp_server",
+        "name": "create_mcp_server",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 374,
+        "endLine": 415
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/server.py:cli",
+        "name": "cli",
+        "filePath": "src/wandb_mcp_server/server.py",
+        "startLine": 422,
+        "endLine": 492
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:update_access",
+        "name": "update_access",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 49,
+        "endLine": 52
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:__init__",
+        "name": "__init__",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 62,
+        "endLine": 108
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:_hash_api_key",
+        "name": "_hash_api_key",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 110,
+        "endLine": 115
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:create_session",
+        "name": "create_session",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 117,
+        "endLine": 176
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:validate_session",
+        "name": "validate_session",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 178,
+        "endLine": 207
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:get_session",
+        "name": "get_session",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 209,
+        "endLine": 212
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:start_request",
+        "name": "start_request",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 214,
+        "endLine": 238
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:end_request",
+        "name": "end_request",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 240,
+        "endLine": 256
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:cleanup_session",
+        "name": "cleanup_session",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 258,
+        "endLine": 295
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_api_key_sessions",
+        "name": "_cleanup_api_key_sessions",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 297,
+        "endLine": 312
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_expired_sessions",
+        "name": "_cleanup_expired_sessions",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 314,
+        "endLine": 329
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:_start_cleanup_task",
+        "name": "_start_cleanup_task",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 331,
+        "endLine": 343
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:cleanup_loop",
+        "name": "cleanup_loop",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 333,
+        "endLine": 339
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:get_stats",
+        "name": "get_stats",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 345,
+        "endLine": 358
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:get_session_manager",
+        "name": "get_session_manager",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 366,
+        "endLine": 384
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/session_manager.py:reset_session_manager",
+        "name": "reset_session_manager",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 387,
+        "endLine": 396
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:default",
+        "name": "default",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 13,
+        "endLine": 16
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:truncate_value",
+        "name": "truncate_value",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 19,
+        "endLine": 81
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:count_tokens",
+        "name": "count_tokens",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 84,
+        "endLine": 91
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:calculate_token_counts",
+        "name": "calculate_token_counts",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 94,
+        "endLine": 113
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:generate_status_summary",
+        "name": "generate_status_summary",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 116,
+        "endLine": 129
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:get_time_range",
+        "name": "get_time_range",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 132,
+        "endLine": 149
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:extract_op_name_distribution",
+        "name": "extract_op_name_distribution",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 152,
+        "endLine": 173
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "name": "process_traces",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 176,
+        "endLine": 214
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:__init__",
+        "name": "__init__",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 24,
+        "endLine": 26
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:emit",
+        "name": "emit",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 28,
+        "endLine": 43
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "name": "get_rich_logger",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 47,
+        "endLine": 136
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:filter",
+        "name": "filter",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 69,
+        "endLine": 79
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:_wandb_base_url",
+        "name": "_wandb_base_url",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 186,
+        "endLine": 187
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc_file",
+        "name": "_wandb_api_key_via_netrc_file",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 190,
+        "endLine": 199
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc",
+        "name": "_wandb_api_key_via_netrc",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 202,
+        "endLine": 207
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:get_server_args",
+        "name": "get_server_args",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 210,
+        "endLine": 246
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:merge_metadata",
+        "name": "merge_metadata",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 249,
+        "endLine": 308
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:get_git_commit",
+        "name": "get_git_commit",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 311,
+        "endLine": 320
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:_get_session_prefix_length",
+        "name": "_get_session_prefix_length",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 323,
+        "endLine": 332
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "name": "get_session_prefix_from_session",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 335,
+        "endLine": 343
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:get_request_session",
+        "name": "get_request_session",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 346,
+        "endLine": 358
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/utils.py:get_request_session_prefix",
+        "name": "get_request_session_prefix",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 361,
+        "endLine": 370
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/client.py:__init__",
+        "name": "__init__",
+        "filePath": "src/wandb_mcp_server/weave_api/client.py",
+        "startLine": 25,
+        "endLine": 60
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/client.py:_get_auth_headers",
+        "name": "_get_auth_headers",
+        "filePath": "src/wandb_mcp_server/weave_api/client.py",
+        "startLine": 62,
+        "endLine": 73
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/client.py:query_traces",
+        "name": "query_traces",
+        "filePath": "src/wandb_mcp_server/weave_api/client.py",
+        "startLine": 75,
+        "endLine": 137
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:default",
+        "name": "default",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 24,
+        "endLine": 28
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:truncate_value",
+        "name": "truncate_value",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 35,
+        "endLine": 108
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:count_tokens",
+        "name": "count_tokens",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 111,
+        "endLine": 128
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:calculate_token_counts",
+        "name": "calculate_token_counts",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 131,
+        "endLine": 176
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:generate_status_summary",
+        "name": "generate_status_summary",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 179,
+        "endLine": 211
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:get_time_range",
+        "name": "get_time_range",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 214,
+        "endLine": 252
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:extract_op_name_distribution",
+        "name": "extract_op_name_distribution",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 255,
+        "endLine": 289
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "name": "process_traces",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 292,
+        "endLine": 459
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:get_cost",
+        "name": "get_cost",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 462,
+        "endLine": 496
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:get_latency_ms",
+        "name": "get_latency_ms",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 499,
+        "endLine": 515
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:extract_status",
+        "name": "extract_status",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 518,
+        "endLine": 534
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/processors.py:synthesize_fields",
+        "name": "synthesize_fields",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 537,
+        "endLine": 557
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/query_builder.py:datetime_to_timestamp",
+        "name": "datetime_to_timestamp",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 47,
+        "endLine": 68
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/query_builder.py:create_comparison_operation",
+        "name": "create_comparison_operation",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 71,
+        "endLine": 119
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/query_builder.py:create_contains_operation",
+        "name": "create_contains_operation",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 122,
+        "endLine": 143
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "name": "build_query_expression",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 146,
+        "endLine": 407
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/query_builder.py:separate_filters",
+        "name": "separate_filters",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 410,
+        "endLine": 516
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/query_builder.py:prepare_query_params",
+        "name": "prepare_query_params",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 519,
+        "endLine": 627
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:__init__",
+        "name": "__init__",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 65,
+        "endLine": 105
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:_validate_and_filter_columns",
+        "name": "_validate_and_filter_columns",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 107,
+        "endLine": 221
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:_ensure_required_columns_for_synthetic",
+        "name": "_ensure_required_columns_for_synthetic",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 223,
+        "endLine": 251
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:_add_synthetic_columns",
+        "name": "_add_synthetic_columns",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 253,
+        "endLine": 332
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "name": "query_traces",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 334,
+        "endLine": 505
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces",
+        "name": "query_paginated_traces",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 507,
+        "endLine": 675
+      },
+      {
+        "id": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting",
+        "name": "_query_for_cost_sorting",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 677,
+        "endLine": 797
+      }
+    ],
+    "classes": [
+      {
+        "id": "c:src/wandb_mcp_server/add_to_client.py:AddToClientArgs",
+        "name": "AddToClientArgs",
+        "filePath": "src/wandb_mcp_server/add_to_client.py",
+        "startLine": 19,
+        "endLine": 45
+      },
+      {
+        "id": "c:src/wandb_mcp_server/api_client.py:WandBApiManager",
+        "name": "WandBApiManager",
+        "filePath": "src/wandb_mcp_server/api_client.py",
+        "startLine": 21,
+        "endLine": 95
+      },
+      {
+        "id": "c:src/wandb_mcp_server/auth.py:MCPAuthConfig",
+        "name": "MCPAuthConfig",
+        "filePath": "src/wandb_mcp_server/auth.py",
+        "startLine": 25,
+        "endLine": 32
+      },
+      {
+        "id": "c:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:AddPaginationArgsVisitor",
+        "name": "AddPaginationArgsVisitor",
+        "filePath": "src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "startLine": 930,
+        "endLine": 1015
+      },
+      {
+        "id": "c:src/wandb_mcp_server/secrets_resolver.py:SecretsResolver",
+        "name": "SecretsResolver",
+        "filePath": "src/wandb_mcp_server/secrets_resolver.py",
+        "startLine": 9,
+        "endLine": 46
+      },
+      {
+        "id": "c:src/wandb_mcp_server/session_manager.py:Session",
+        "name": "Session",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 39,
+        "endLine": 52
+      },
+      {
+        "id": "c:src/wandb_mcp_server/session_manager.py:MultiTenantSessionManager",
+        "name": "MultiTenantSessionManager",
+        "filePath": "src/wandb_mcp_server/session_manager.py",
+        "startLine": 55,
+        "endLine": 358
+      },
+      {
+        "id": "c:src/wandb_mcp_server/trace_utils.py:DateTimeEncoder",
+        "name": "DateTimeEncoder",
+        "filePath": "src/wandb_mcp_server/trace_utils.py",
+        "startLine": 12,
+        "endLine": 16
+      },
+      {
+        "id": "c:src/wandb_mcp_server/utils.py:RedirectLoggerHandler",
+        "name": "RedirectLoggerHandler",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 21,
+        "endLine": 43
+      },
+      {
+        "id": "c:src/wandb_mcp_server/utils.py:_SessionPrefixInjectFilter",
+        "name": "_SessionPrefixInjectFilter",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 68,
+        "endLine": 79
+      },
+      {
+        "id": "c:src/wandb_mcp_server/utils.py:ServerMCPArgs",
+        "name": "ServerMCPArgs",
+        "filePath": "src/wandb_mcp_server/utils.py",
+        "startLine": 145,
+        "endLine": 178
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/client.py:WeaveApiClient",
+        "name": "WeaveApiClient",
+        "filePath": "src/wandb_mcp_server/weave_api/client.py",
+        "startLine": 22,
+        "endLine": 137
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:SortDirection",
+        "name": "SortDirection",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 14,
+        "endLine": 18
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:FilterOperator",
+        "name": "FilterOperator",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 21,
+        "endLine": 29
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:TimeRange",
+        "name": "TimeRange",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 33,
+        "endLine": 37
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:AttributeFilter",
+        "name": "AttributeFilter",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 41,
+        "endLine": 46
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:QueryFilter",
+        "name": "QueryFilter",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 50,
+        "endLine": 65
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:QueryParams",
+        "name": "QueryParams",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 69,
+        "endLine": 85
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:TraceCost",
+        "name": "TraceCost",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 89,
+        "endLine": 96
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:TokenCounts",
+        "name": "TokenCounts",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 99,
+        "endLine": 105
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:TraceMetadata",
+        "name": "TraceMetadata",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 108,
+        "endLine": 115
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:WeaveTrace",
+        "name": "WeaveTrace",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 118,
+        "endLine": 145
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:Config",
+        "name": "Config",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 142,
+        "endLine": 145
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:QueryResult",
+        "name": "QueryResult",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 148,
+        "endLine": 157
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/models.py:Config",
+        "name": "Config",
+        "filePath": "src/wandb_mcp_server/weave_api/models.py",
+        "startLine": 154,
+        "endLine": 157
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/processors.py:DateTimeEncoder",
+        "name": "DateTimeEncoder",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 21,
+        "endLine": 28
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/processors.py:TraceProcessor",
+        "name": "TraceProcessor",
+        "filePath": "src/wandb_mcp_server/weave_api/processors.py",
+        "startLine": 31,
+        "endLine": 557
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/query_builder.py:QueryBuilder",
+        "name": "QueryBuilder",
+        "filePath": "src/wandb_mcp_server/weave_api/query_builder.py",
+        "startLine": 37,
+        "endLine": 627
+      },
+      {
+        "id": "c:src/wandb_mcp_server/weave_api/service.py:TraceService",
+        "name": "TraceService",
+        "filePath": "src/wandb_mcp_server/weave_api/service.py",
+        "startLine": 53,
+        "endLine": 797
+      }
+    ],
+    "methods": []
+  },
+  "edges": {
+    "contains": [
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "c:src/wandb_mcp_server/add_to_client.py:AddToClientArgs"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:get_env_vars"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:get_new_config"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client_cli"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "c:src/wandb_mcp_server/api_client.py:WandBApiManager"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "fn:src/wandb_mcp_server/api_client.py:set_context_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "fn:src/wandb_mcp_server/api_client.py:reset_context_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_wandb_api"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/auth.py",
+        "target": "c:src/wandb_mcp_server/auth.py:MCPAuthConfig"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/auth.py",
+        "target": "fn:src/wandb_mcp_server/auth.py:is_valid_wandb_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/auth.py",
+        "target": "fn:src/wandb_mcp_server/auth.py:validate_bearer_token"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/auth.py",
+        "target": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/count_traces.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/create_report.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:_get_api_from_context"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/create_report.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/create_report.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:parse_markdown_to_blocks"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/create_report.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:flush_content"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py:list_entity_projects"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:find_paginated_collections"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:get_nested_value"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "c:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:AddPaginationArgsVisitor"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:__init__"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:enter_field"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:leave_field"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:enter_operation_definition"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandbot.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandbot.py:query_wandbot_api"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:get_trace_service"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_map_python_type_to_json_schema"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_parse_docstring"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:generate_anthropic_tool_schema"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:get_retry_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/tools_utils.py",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/secrets_resolver.py",
+        "target": "c:src/wandb_mcp_server/secrets_resolver.py:SecretsResolver"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/secrets_resolver.py",
+        "target": "fn:src/wandb_mcp_server/secrets_resolver.py:__init__"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/secrets_resolver.py",
+        "target": "fn:src/wandb_mcp_server/secrets_resolver.py:fetch_secret"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/secrets_resolver.py",
+        "target": "fn:src/wandb_mcp_server/secrets_resolver.py:get_secrets_resolver_from_env"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:validate_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:validate_and_get_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:configure_wandb_logging"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:initialize_weave_tracing"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:register_tools"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:query_weave_traces_tool"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:count_weave_traces_tool"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:query_wandb_tool"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:create_wandb_report_tool"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:query_wandb_entity_projects"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:query_wandb_support_bot"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:create_mcp_server"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:cli"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "c:src/wandb_mcp_server/session_manager.py:Session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:update_access"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "c:src/wandb_mcp_server/session_manager.py:MultiTenantSessionManager"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:__init__"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_hash_api_key"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:create_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:validate_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:get_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:start_request"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:end_request"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:cleanup_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_api_key_sessions"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_expired_sessions"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_start_cleanup_task"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:cleanup_loop"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:get_stats"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:get_session_manager"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:reset_session_manager"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "c:src/wandb_mcp_server/trace_utils.py:DateTimeEncoder"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:default"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:truncate_value"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:count_tokens"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:calculate_token_counts"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:generate_status_summary"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:get_time_range"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:extract_op_name_distribution"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/trace_utils.py",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:process_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "c:src/wandb_mcp_server/utils.py:RedirectLoggerHandler"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:__init__"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:emit"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "c:src/wandb_mcp_server/utils.py:_SessionPrefixInjectFilter"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:filter"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "c:src/wandb_mcp_server/utils.py:ServerMCPArgs"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:_wandb_base_url"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc_file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_server_args"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:merge_metadata"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_git_commit"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:_get_session_prefix_length"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_request_session"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_request_session_prefix"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/client.py",
+        "target": "c:src/wandb_mcp_server/weave_api/client.py:WeaveApiClient"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/client.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/client.py:__init__"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/client.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/client.py:_get_auth_headers"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/client.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/client.py:query_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:SortDirection"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:FilterOperator"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:TimeRange"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:AttributeFilter"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:QueryFilter"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:QueryParams"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:TraceCost"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:TokenCounts"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:TraceMetadata"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:WeaveTrace"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:Config"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:QueryResult"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/models.py",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:Config"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "c:src/wandb_mcp_server/weave_api/processors.py:DateTimeEncoder"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:default"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "c:src/wandb_mcp_server/weave_api/processors.py:TraceProcessor"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:truncate_value"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:count_tokens"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:calculate_token_counts"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:generate_status_summary"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_time_range"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:extract_op_name_distribution"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_cost"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_latency_ms"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:extract_status"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:synthesize_fields"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "c:src/wandb_mcp_server/weave_api/query_builder.py:QueryBuilder"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:datetime_to_timestamp"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:create_comparison_operation"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:create_contains_operation"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:separate_filters"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:prepare_query_params"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "c:src/wandb_mcp_server/weave_api/service.py:TraceService"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:__init__"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_validate_and_filter_columns"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_ensure_required_columns_for_synthetic"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_add_synthetic_columns"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting"
+      }
+    ],
+    "calls": [
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:get_env_vars",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:get_new_config",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client_cli",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/add_to_client.py",
+        "target": "fn:src/wandb_mcp_server/add_to_client.py:add_to_client_cli",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/api_client.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/api_client.py:get_wandb_api",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/auth.py:validate_bearer_token",
+        "target": "fn:src/wandb_mcp_server/auth.py:is_valid_wandb_api_key",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware",
+        "target": "c:src/wandb_mcp_server/auth.py:MCPAuthConfig",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware",
+        "target": "fn:src/wandb_mcp_server/auth.py:validate_bearer_token",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware",
+        "target": "fn:src/wandb_mcp_server/api_client.py:set_context_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/auth.py:mcp_auth_middleware",
+        "target": "fn:src/wandb_mcp_server/api_client.py:reset_context_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/count_traces.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:get_retry_session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/create_report.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:_get_api_from_context",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:parse_markdown_to_blocks",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:parse_markdown_to_blocks",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:flush_content",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py:list_entity_projects",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_wandb_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py:list_entity_projects",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:find_paginated_collections",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:find_paginated_collections",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_wandb_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:find_paginated_collections",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:get_nested_value",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "target": "c:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:AddPaginationArgsVisitor",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:__init__",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:__init__",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_wandbot.py:query_wandbot_api",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/mcp_tools/query_weave.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:get_trace_service",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:get_trace_service",
+        "target": "c:src/wandb_mcp_server/weave_api/service.py:TraceService",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:get_trace_service",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "target": "c:src/wandb_mcp_server/weave_api/service.py:TraceService",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_traces",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:get_trace_service",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "target": "c:src/wandb_mcp_server/weave_api/service.py:TraceService",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_map_python_type_to_json_schema",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_map_python_type_to_json_schema",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:generate_anthropic_tool_schema",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_parse_docstring",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:generate_anthropic_tool_schema",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:_map_python_type_to_json_schema",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:get_retry_session",
+        "target": "c:src/wandb_mcp_server/session_manager.py:Session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/mcp_tools/tools_utils.py:log_tool_call",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/secrets_resolver.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/secrets_resolver.py:get_secrets_resolver_from_env",
+        "target": "c:src/wandb_mcp_server/secrets_resolver.py:SecretsResolver",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:validate_and_get_api_key",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_server_args",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:configure_wandb_logging",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:query_weave_traces_tool",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_weave.py:query_paginated_weave_traces",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:count_weave_traces_tool",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/count_traces.py:count_traces",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:query_wandb_tool",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandb_gql.py:query_paginated_wandb_gql",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:create_wandb_report_tool",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/create_report.py:create_report",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:query_wandb_entity_projects",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/list_wandb_entities_projects.py:list_entity_projects",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:query_wandb_support_bot",
+        "target": "fn:src/wandb_mcp_server/mcp_tools/query_wandbot.py:query_wandbot_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:create_mcp_server",
+        "target": "fn:src/wandb_mcp_server/server.py:register_tools",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/server.py:configure_wandb_logging",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/server.py:validate_and_get_api_key",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/server.py:validate_api_key",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/api_client.py:set_context_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/server.py:initialize_weave_tracing",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/server.py:cli",
+        "target": "fn:src/wandb_mcp_server/server.py:create_mcp_server",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/server.py",
+        "target": "fn:src/wandb_mcp_server/server.py:cli",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/session_manager.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:__init__",
+        "target": "fn:src/wandb_mcp_server/secrets_resolver.py:get_secrets_resolver_from_env",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:__init__",
+        "target": "fn:src/wandb_mcp_server/secrets_resolver.py:fetch_secret",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:__init__",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_start_cleanup_task",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:create_session",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_hash_api_key",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:create_session",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:create_session",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:update_access",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:create_session",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_api_key_sessions",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:create_session",
+        "target": "c:src/wandb_mcp_server/session_manager.py:Session",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:validate_session",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:validate_session",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_hash_api_key",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:validate_session",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:update_access",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:start_request",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:start_request",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:update_access",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:end_request",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:cleanup_session",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_api_key_sessions",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:cleanup_session",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_expired_sessions",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:cleanup_session",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:cleanup_loop",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:_cleanup_expired_sessions",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:get_session_manager",
+        "target": "c:src/wandb_mcp_server/session_manager.py:MultiTenantSessionManager",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/session_manager.py:reset_session_manager",
+        "target": "fn:src/wandb_mcp_server/session_manager.py:cleanup_session",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:default",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:default",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:truncate_value",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:truncate_value",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:truncate_value",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:calculate_token_counts",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:count_tokens",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:calculate_token_counts",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:get_time_range",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:generate_status_summary",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:extract_op_name_distribution",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:truncate_value",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:__init__",
+        "target": "fn:src/wandb_mcp_server/utils.py:__init__",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "target": "c:src/wandb_mcp_server/utils.py:_SessionPrefixInjectFilter",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/utils.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc_file",
+        "target": "fn:src/wandb_mcp_server/utils.py:_wandb_base_url",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc",
+        "target": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc_file",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_server_args",
+        "target": "c:src/wandb_mcp_server/utils.py:ServerMCPArgs",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_server_args",
+        "target": "fn:src/wandb_mcp_server/utils.py:_wandb_api_key_via_netrc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_git_commit",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "target": "fn:src/wandb_mcp_server/utils.py:_get_session_prefix_length",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_request_session_prefix",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_request_session",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/utils.py:get_request_session_prefix",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_session_prefix_from_session",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/client.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/client.py:__init__",
+        "target": "c:src/wandb_mcp_server/session_manager.py:Session",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/client.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/client.py:_get_auth_headers",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/processors.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:default",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:default",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:truncate_value",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:truncate_value",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:calculate_token_counts",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:count_tokens",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:TraceMetadata",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:calculate_token_counts",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_time_range",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:generate_status_summary",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:extract_op_name_distribution",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:QueryResult",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:truncate_value",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:process_traces",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:WeaveTrace",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:synthesize_fields",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:extract_status",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/processors.py:synthesize_fields",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_latency_ms",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/query_builder.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:create_contains_operation",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:create_comparison_operation",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:datetime_to_timestamp",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "target": "c:src/wandb_mcp_server/weave_api/models.py:FilterOperator",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/query_builder.py:prepare_query_params",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:separate_filters",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/query_builder.py:prepare_query_params",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:build_query_expression",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/wandb_mcp_server/weave_api/service.py",
+        "target": "fn:src/wandb_mcp_server/utils.py:get_rich_logger",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:__init__",
+        "target": "fn:src/wandb_mcp_server/api_client.py:get_api_key",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:__init__",
+        "target": "c:src/wandb_mcp_server/weave_api/client.py:WeaveApiClient",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_validate_and_filter_columns",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:prepare_query_params",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_add_synthetic_columns",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_cost",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:synthesize_fields",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "confidence": 0.3,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_validate_and_filter_columns",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:query_paginated_traces",
+        "target": "fn:src/wandb_mcp_server/trace_utils.py:process_traces",
+        "confidence": 0.3,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting",
+        "target": "fn:src/wandb_mcp_server/weave_api/query_builder.py:prepare_query_params",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:query_traces",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting",
+        "target": "fn:src/wandb_mcp_server/weave_api/processors.py:get_cost",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/wandb_mcp_server/weave_api/service.py:_query_for_cost_sorting",
+        "target": "fn:src/wandb_mcp_server/weave_api/service.py:_add_synthetic_columns",
+        "confidence": 0.85,
+        "reason": "same-file"
+      }
+    ],
+    "imports": []
+  }
+}

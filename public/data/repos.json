@@ -1,0 +1,51 @@
+[
+  {
+    "id": "hackstral",
+    "name": "HackStral",
+    "description": "Voice-driven codebase intelligence platform",
+    "language": "TypeScript",
+    "stars": 0,
+    "url": "https://github.com/your-org/hackstral",
+    "local": true
+  },
+  {
+    "id": "nvidia",
+    "name": "NVIDIA NeMo",
+    "description": "Framework for building and deploying AI models",
+    "language": "Python",
+    "stars": 12800,
+    "url": "https://github.com/NVIDIA/NeMo"
+  },
+  {
+    "id": "mistral-vibe",
+    "name": "Mistral Vibe",
+    "description": "Mistral AI coding assistant",
+    "language": "TypeScript",
+    "stars": 500,
+    "url": "https://github.com/mistralai/mistral-vibe"
+  },
+  {
+    "id": "mistral-python-client",
+    "name": "Mistral Python Client",
+    "description": "Official Python client library for the Mistral API",
+    "language": "Python",
+    "stars": 1200,
+    "url": "https://github.com/mistralai/client-python"
+  },
+  {
+    "id": "strands",
+    "name": "Strands Agents SDK",
+    "description": "SDK for building AI agents",
+    "language": "Python",
+    "stars": 3200,
+    "url": "https://github.com/strands-agents/sdk-python"
+  },
+  {
+    "id": "wandb",
+    "name": "W&B MCP Server",
+    "description": "Weights & Biases MCP server for AI experiment tracking",
+    "language": "TypeScript",
+    "stars": 0,
+    "url": "https://github.com/wandb/wandb-mcp-server"
+  }
+]

@@ -1,0 +1,5005 @@
+{
+  "repoPath": "/Users/guustgoossens/Desktop/dev/Hackathon/HackStral/.repos/mistral-vibe",
+  "analyzedAt": "2026-03-01T10:10:56.053Z",
+  "stats": {
+    "totalCommits": 27,
+    "totalContributors": 8,
+    "totalFiles": 465
+  },
+  "contributors": [
+    {
+      "id": "p:mathias.gesbert@mistral.ai",
+      "name": "Mathias Gesbert",
+      "email": "mathias.gesbert@mistral.ai",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 8,
+          "linesChanged": 39,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 8,
+          "linesChanged": 173,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 8,
+          "linesChanged": 112,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 8,
+          "linesChanged": 63,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 8,
+          "linesChanged": 105,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 8,
+          "linesChanged": 298,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/__init__.py",
+          "commits": 8,
+          "linesChanged": 16,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.py",
+          "commits": 6,
+          "linesChanged": 1770,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/config.py",
+          "commits": 6,
+          "linesChanged": 189,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/whats_new.md",
+          "commits": 6,
+          "linesChanged": 62,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_observer_streaming.py",
+          "commits": 5,
+          "linesChanged": 307,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.tcss",
+          "commits": 5,
+          "linesChanged": 913,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/types.py",
+          "commits": 5,
+          "linesChanged": 107,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_clipboard.py",
+          "commits": 4,
+          "linesChanged": 382,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_ask_user_question/test_snapshot_ask_user_question_collapsed.svg",
+          "commits": 4,
+          "linesChanged": 198,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_ask_user_question/test_snapshot_ask_user_question_expanded.svg",
+          "commits": 4,
+          "linesChanged": 274,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_basic_conversation/test_snapshot_shows_basic_conversation.svg",
+          "commits": 4,
+          "linesChanged": 74,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_code_block_horizontal_scrolling/test_snapshot_allows_horizontal_scrolling_for_long_code_blocks.svg",
+          "commits": 4,
+          "linesChanged": 133,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_to_accept_edits_mode.svg",
+          "commits": 4,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_to_auto_approve_mode.svg",
+          "commits": 4,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_to_plan_mode.svg",
+          "commits": 4,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_wraps_to_default.svg",
+          "commits": 4,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_default_mode.svg",
+          "commits": 4,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_buffered_reasoning_yields_before_content.svg",
+          "commits": 4,
+          "linesChanged": 86,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_shows_interleaved_reasoning.svg",
+          "commits": 4,
+          "linesChanged": 100,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_shows_reasoning_content.svg",
+          "commits": 4,
+          "linesChanged": 86,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_shows_reasoning_content_expanded.svg",
+          "commits": 4,
+          "linesChanged": 92,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_release_update_notification/test_snapshot_shows_release_update_notification.svg",
+          "commits": 4,
+          "linesChanged": 148,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_session_resume/test_snapshot_shows_resumed_session_messages.svg",
+          "commits": 4,
+          "linesChanged": 288,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_whats_new/test_snapshot_shows_whats_new_message.svg",
+          "commits": 4,
+          "linesChanged": 298,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_stats.py",
+          "commits": 4,
+          "linesChanged": 204,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/test_reasoning_content.py",
+          "commits": 4,
+          "linesChanged": 31,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/clipboard.py",
+          "commits": 4,
+          "linesChanged": 182,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/handlers/event_handler.py",
+          "commits": 4,
+          "linesChanged": 113,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/config_app.py",
+          "commits": 4,
+          "linesChanged": 79,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/tool_widgets.py",
+          "commits": 4,
+          "linesChanged": 332,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/agent_loop.py",
+          "commits": 4,
+          "linesChanged": 600,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/session/session_loader.py",
+          "commits": 4,
+          "linesChanged": 288,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/session/session_logger.py",
+          "commits": 4,
+          "linesChanged": 374,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_ui_clipboard_notifications.py",
+          "commits": 3,
+          "linesChanged": 78,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_ui_session_resume.py",
+          "commits": 3,
+          "linesChanged": 235,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_whats_new/test_snapshot_shows_no_plan_message.svg",
+          "commits": 3,
+          "linesChanged": 232,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_whats_new/test_snapshot_shows_switch_message.svg",
+          "commits": 3,
+          "linesChanged": 245,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_whats_new/test_snapshot_shows_upgrade_message.svg",
+          "commits": 3,
+          "linesChanged": 245,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/container.py",
+          "commits": 3,
+          "linesChanged": 68,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/mistral.py",
+          "commits": 3,
+          "linesChanged": 41,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/bash.py",
+          "commits": 3,
+          "linesChanged": 98,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "README.md",
+          "commits": 3,
+          "linesChanged": 336,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_new_session.py",
+          "commits": 3,
+          "linesChanged": 138,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_ui_chat_autocompletion.py",
+          "commits": 3,
+          "linesChanged": 44,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/conftest.py",
+          "commits": 3,
+          "linesChanged": 132,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/session/test_session_loader.py",
+          "commits": 3,
+          "linesChanged": 828,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/skills/test_manager.py",
+          "commits": 3,
+          "linesChanged": 343,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_auto_compact.py",
+          "commits": 3,
+          "linesChanged": 45,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_tool_call.py",
+          "commits": 3,
+          "linesChanged": 371,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/test_middleware.py",
+          "commits": 3,
+          "linesChanged": 617,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/acp/acp_agent_loop.py",
+          "commits": 3,
+          "linesChanged": 268,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/cli/commands.py",
+          "commits": 3,
+          "linesChanged": 19,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/config_paths.py",
+          "commits": 3,
+          "linesChanged": 24,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/global_paths.py",
+          "commits": 3,
+          "linesChanged": 4,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/system_prompt.py",
+          "commits": 3,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/utils.py",
+          "commits": 3,
+          "linesChanged": 135,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/api_key.py",
+          "commits": 3,
+          "linesChanged": 30,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_bash.py",
+          "commits": 3,
+          "linesChanged": 307,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/plan_offer/test_decide_plan_offer.py",
+          "commits": 3,
+          "linesChanged": 200,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/session/test_session_logger.py",
+          "commits": 3,
+          "linesChanged": 763,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_plan_offer/test_snapshot_shows_switch_key_plan_offer.svg",
+          "commits": 3,
+          "linesChanged": 426,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_plan_offer/test_snapshot_shows_upgrade_plan_offer.svg",
+          "commits": 3,
+          "linesChanged": 426,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_plan_offer/test_snapshot_shows_whats_new_and_plan_offer.svg",
+          "commits": 3,
+          "linesChanged": 444,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/test_agents.py",
+          "commits": 3,
+          "linesChanged": 712,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/bash.py",
+          "commits": 3,
+          "linesChanged": 102,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/cli.py",
+          "commits": 3,
+          "linesChanged": 78,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/entrypoint.py",
+          "commits": 3,
+          "linesChanged": 53,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/plan_offer/decide_plan_offer.py",
+          "commits": 3,
+          "linesChanged": 107,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/approval_app.py",
+          "commits": 3,
+          "linesChanged": 40,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/loading.py",
+          "commits": 3,
+          "linesChanged": 112,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/messages.py",
+          "commits": 3,
+          "linesChanged": 134,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/tools.py",
+          "commits": 3,
+          "linesChanged": 141,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/backend/test_vertex_anthropic_adapter.py",
+          "commits": 2,
+          "linesChanged": 701,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/windowing/history_windowing.py",
+          "commits": 2,
+          "linesChanged": 77,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/completers.py",
+          "commits": 2,
+          "linesChanged": 35,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/vertex.py",
+          "commits": 2,
+          "linesChanged": 159,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "CONTRIBUTING.md",
+          "commits": 2,
+          "linesChanged": 25,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "docs/README.md",
+          "commits": 2,
+          "linesChanged": 3,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/conftest.py",
+          "commits": 2,
+          "linesChanged": 97,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_acp.py",
+          "commits": 2,
+          "linesChanged": 125,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/onboarding/test_ui_onboarding.py",
+          "commits": 2,
+          "linesChanged": 49,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/test_cli_programmatic_preload.py",
+          "commits": 2,
+          "linesChanged": 19,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_mcp.py",
+          "commits": 2,
+          "linesChanged": 376,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/acp/utils.py",
+          "commits": 2,
+          "linesChanged": 192,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/agents/models.py",
+          "commits": 2,
+          "linesChanged": 124,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/generic.py",
+          "commits": 2,
+          "linesChanged": 96,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/format.py",
+          "commits": 2,
+          "linesChanged": 100,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/middleware.py",
+          "commits": 2,
+          "linesChanged": 76,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/programmatic.py",
+          "commits": 2,
+          "linesChanged": 63,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/cli.md",
+          "commits": 2,
+          "linesChanged": 178,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/manager.py",
+          "commits": 2,
+          "linesChanged": 32,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/mcp.py",
+          "commits": 2,
+          "linesChanged": 180,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/trusted_folders.py",
+          "commits": 2,
+          "linesChanged": 28,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_compact_session_updates.py",
+          "commits": 2,
+          "linesChanged": 90,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_model.py",
+          "commits": 2,
+          "linesChanged": 265,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/plan_offer/test_plan_offer_in_app.py",
+          "commits": 2,
+          "linesChanged": 126,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_agents.py",
+          "commits": 2,
+          "linesChanged": 84,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_load_dotenv.py",
+          "commits": 2,
+          "linesChanged": 81,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/mock/utils.py",
+          "commits": 2,
+          "linesChanged": 24,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/skills/conftest.py",
+          "commits": 2,
+          "linesChanged": 9,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_plan_offer/test_snapshot_shows_no_plan_offer.svg",
+          "commits": 2,
+          "linesChanged": 408,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_question_answer_first_advance.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_question_first_answered_checkmark.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_question_initial.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_question_navigate_left_wraps.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_question_navigate_right.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_question_tab_to_second.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_initial.svg",
+          "commits": 2,
+          "linesChanged": 152,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_mixed_selection.svg",
+          "commits": 2,
+          "linesChanged": 157,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_navigate_to_submit.svg",
+          "commits": 2,
+          "linesChanged": 153,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_other_with_text.svg",
+          "commits": 2,
+          "linesChanged": 157,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_toggle_first.svg",
+          "commits": 2,
+          "linesChanged": 152,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_toggle_multiple.svg",
+          "commits": 2,
+          "linesChanged": 152,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_multi_select_untoggle.svg",
+          "commits": 2,
+          "linesChanged": 152,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_question_app_initial.svg",
+          "commits": 2,
+          "linesChanged": 150,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_question_app_navigate_down.svg",
+          "commits": 2,
+          "linesChanged": 150,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_question_app_navigate_to_other.svg",
+          "commits": 2,
+          "linesChanged": 152,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_question_app_navigate_to_third_option.svg",
+          "commits": 2,
+          "linesChanged": 150,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_question_app_navigate_up_wraps.svg",
+          "commits": 2,
+          "linesChanged": 152,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_question_app/test_snapshot_question_app_other_typing.svg",
+          "commits": 2,
+          "linesChanged": 155,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/base_snapshot_test_app.py",
+          "commits": 2,
+          "linesChanged": 62,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_plan_offer.py",
+          "commits": 2,
+          "linesChanged": 264,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_reasoning_content.py",
+          "commits": 2,
+          "linesChanged": 28,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_whats_new.py",
+          "commits": 2,
+          "linesChanged": 158,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_client.py",
+          "commits": 2,
+          "linesChanged": 140,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_backend.py",
+          "commits": 2,
+          "linesChanged": 31,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/test_system_prompt.py",
+          "commits": 2,
+          "linesChanged": 12,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/test_ui_external_editor.py",
+          "commits": 2,
+          "linesChanged": 95,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/test_ui_input_history.py",
+          "commits": 2,
+          "linesChanged": 19,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_manager_get_tool_config.py",
+          "commits": 2,
+          "linesChanged": 448,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_task.py",
+          "commits": 2,
+          "linesChanged": 174,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_ui_bash_execution.py",
+          "commits": 2,
+          "linesChanged": 40,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_ui_update_notification.py",
+          "commits": 2,
+          "linesChanged": 567,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/terminal_setup.py",
+          "commits": 2,
+          "linesChanged": 169,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/agent_indicator.py",
+          "commits": 2,
+          "linesChanged": 82,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/body.py",
+          "commits": 2,
+          "linesChanged": 20,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/text_area.py",
+          "commits": 2,
+          "linesChanged": 34,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/question_app.py",
+          "commits": 2,
+          "linesChanged": 504,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/spinner.py",
+          "commits": 2,
+          "linesChanged": 107,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/status_message.py",
+          "commits": 2,
+          "linesChanged": 15,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/welcome.py",
+          "commits": 2,
+          "linesChanged": 286,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/ask_user_question.py",
+          "commits": 2,
+          "linesChanged": 134,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/__init__.py",
+          "commits": 2,
+          "linesChanged": 24,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/theme_selection.py",
+          "commits": 2,
+          "linesChanged": 173,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/welcome.py",
+          "commits": 2,
+          "linesChanged": 5,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/trusted_folders/trust_folder_dialog.py",
+          "commits": 2,
+          "linesChanged": 53,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/adapters/filesystem_update_cache_repository.py",
+          "commits": 2,
+          "linesChanged": 36,
+          "lastTouch": "2026-01-28T18:34:16+01:00"
+        },
+        {
+          "filePath": ".github/workflows/ci.yml",
+          "commits": 2,
+          "linesChanged": 12,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/compact.py",
+          "commits": 2,
+          "linesChanged": 21,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/context_progress.py",
+          "commits": 2,
+          "linesChanged": 11,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_file_indexer.py",
+          "commits": 1,
+          "linesChanged": 118,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "tests/backend/test_backend.py",
+          "commits": 1,
+          "linesChanged": 39,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/file_indexer/indexer.py",
+          "commits": 1,
+          "linesChanged": 14,
+          "lastTouch": "2026-02-19T12:06:03+01:00"
+        },
+        {
+          "filePath": ".pre-commit-config.yaml",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "AGENTS.md",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "docs/acp-setup.md",
+          "commits": 1,
+          "linesChanged": 14,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "docs/proxy-setup.md",
+          "commits": 1,
+          "linesChanged": 36,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_list_sessions.py",
+          "commits": 1,
+          "linesChanged": 242,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_load_session.py",
+          "commits": 1,
+          "linesChanged": 301,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_proxy_setup_acp.py",
+          "commits": 1,
+          "linesChanged": 271,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_utils.py",
+          "commits": 1,
+          "linesChanged": 55,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/backend/test_anthropic_adapter.py",
+          "commits": 1,
+          "linesChanged": 586,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_commands.py",
+          "commits": 1,
+          "linesChanged": 54,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_paths.py",
+          "commits": 1,
+          "linesChanged": 57,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/core/test_file_logging.py",
+          "commits": 1,
+          "linesChanged": 280,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/core/test_proxy_setup.py",
+          "commits": 1,
+          "linesChanged": 304,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/core/test_telemetry_send.py",
+          "commits": 1,
+          "linesChanged": 269,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/core/test_trusted_folders.py",
+          "commits": 1,
+          "linesChanged": 52,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_cancel_discards_changes.svg",
+          "commits": 1,
+          "linesChanged": 200,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_edit_existing_values.svg",
+          "commits": 1,
+          "linesChanged": 200,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_initial_empty.svg",
+          "commits": 1,
+          "linesChanged": 204,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_initial_with_values.svg",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_save_error.svg",
+          "commits": 1,
+          "linesChanged": 201,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_save_new_values.svg",
+          "commits": 1,
+          "linesChanged": 200,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/conftest.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_proxy_setup.py",
+          "commits": 1,
+          "linesChanged": 129,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "tests/test_message_merging.py",
+          "commits": 1,
+          "linesChanged": 47,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/proxy_setup_app.py",
+          "commits": 1,
+          "linesChanged": 127,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/anthropic.py",
+          "commits": 1,
+          "linesChanged": 630,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/base.py",
+          "commits": 1,
+          "linesChanged": 38,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/message_utils.py",
+          "commits": 1,
+          "linesChanged": 24,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/__init__.py",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/explore.md",
+          "commits": 1,
+          "linesChanged": 50,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/proxy_setup.py",
+          "commits": 1,
+          "linesChanged": 65,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/{llm/backend => telemetry}/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": "vibe/core/telemetry/send.py",
+          "commits": 1,
+          "linesChanged": 185,
+          "lastTouch": "2026-02-17T16:23:28+01:00"
+        },
+        {
+          "filePath": ".github/{ISSUE_TEMPLATE/feature-request.yml => DISCUSSION_TEMPLATE/ideas.yml}",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": ".typos.toml",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "scripts/install.sh",
+          "commits": 1,
+          "linesChanged": 24,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_agent_thought.py",
+          "commits": 1,
+          "linesChanged": 154,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_braille_renderer.py",
+          "commits": 1,
+          "linesChanged": 114,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_copy_shortcuts.py",
+          "commits": 1,
+          "linesChanged": 59,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_spinner.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_ui_session_incremental_renderer.py",
+          "commits": 1,
+          "linesChanged": 172,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_auth_crypto.py",
+          "commits": 1,
+          "linesChanged": 46,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_auth_github.py",
+          "commits": 1,
+          "linesChanged": 286,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_teleport_git.py",
+          "commits": 1,
+          "linesChanged": 327,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_teleport_nuage.py",
+          "commits": 1,
+          "linesChanged": 337,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_teleport_service.py",
+          "commits": 1,
+          "linesChanged": 418,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_push_confirmation_cancel_selected.svg",
+          "commits": 1,
+          "linesChanged": 104,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_push_confirmation_multiple_commits.svg",
+          "commits": 1,
+          "linesChanged": 104,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_push_confirmation_single_commit.svg",
+          "commits": 1,
+          "linesChanged": 104,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_auth_complete.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_auth_required.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_checking_git.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_complete.svg",
+          "commits": 1,
+          "linesChanged": 95,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_error.svg",
+          "commits": 1,
+          "linesChanged": 95,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_pushing.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_sending_token.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_teleport/test_snapshot_teleport_status_starting_workflow.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_teleport.py",
+          "commits": 1,
+          "linesChanged": 249,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/ansi_markdown.py",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/terminal_theme.py",
+          "commits": 1,
+          "linesChanged": 266,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/banner/banner.py",
+          "commits": 1,
+          "linesChanged": 85,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/banner/petit_chat.py",
+          "commits": 1,
+          "linesChanged": 195,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/braille_renderer.py",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/load_more.py",
+          "commits": 1,
+          "linesChanged": 43,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/teleport_message.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/utils.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/windowing/__init__.py",
+          "commits": 1,
+          "linesChanged": 29,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/windowing/history.py",
+          "commits": 1,
+          "linesChanged": 105,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/windowing/state.py",
+          "commits": 1,
+          "linesChanged": 105,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/auth/__init__.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/auth/crypto.py",
+          "commits": 1,
+          "linesChanged": 137,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/auth/github.py",
+          "commits": 1,
+          "linesChanged": 178,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/teleport/errors.py",
+          "commits": 1,
+          "linesChanged": 9,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/teleport/git.py",
+          "commits": 1,
+          "linesChanged": 196,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/teleport/nuage.py",
+          "commits": 1,
+          "linesChanged": 180,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/teleport/teleport.py",
+          "commits": 1,
+          "linesChanged": 208,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/teleport/types.py",
+          "commits": 1,
+          "linesChanged": 54,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/onboarding.tcss",
+          "commits": 1,
+          "linesChanged": 108,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/__init__.py",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "vibe/setup/trusted_folders/trust_folder_dialog.tcss",
+          "commits": 1,
+          "linesChanged": 22,
+          "lastTouch": "2026-02-11T18:17:30+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_migration.py",
+          "commits": 1,
+          "linesChanged": 51,
+          "lastTouch": "2026-01-30T14:08:38+01:00"
+        },
+        {
+          "filePath": "scripts/bump_version.py",
+          "commits": 1,
+          "linesChanged": 63,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "scripts/prepare_release.py",
+          "commits": 1,
+          "linesChanged": 284,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_content.py",
+          "commits": 1,
+          "linesChanged": 104,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_multi_session.py",
+          "commits": 1,
+          "linesChanged": 133,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_read_file.py",
+          "commits": 1,
+          "linesChanged": 161,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_search_replace.py",
+          "commits": 1,
+          "linesChanged": 163,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_mode.py",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_write_file.py",
+          "commits": 1,
+          "linesChanged": 138,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_slash_command_controller.py",
+          "commits": 1,
+          "linesChanged": 73,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/plan_offer/adapters/fake_whoami_gateway.py",
+          "commits": 1,
+          "linesChanged": 32,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/plan_offer/test_http_whoami_gateway.py",
+          "commits": 1,
+          "linesChanged": 122,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_external_editor.py",
+          "commits": 1,
+          "linesChanged": 72,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_question_app.py",
+          "commits": 1,
+          "linesChanged": 513,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/onboarding/test_run_onboarding.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/session/test_session_migration.py",
+          "commits": 1,
+          "linesChanged": 177,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/skills/test_models.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_ask_user_question.py",
+          "commits": 1,
+          "linesChanged": 80,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_basic_conversation.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_question_app.py",
+          "commits": 1,
+          "linesChanged": 365,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_release_update_notification.py",
+          "commits": 1,
+          "linesChanged": 33,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_session_resume.py",
+          "commits": 1,
+          "linesChanged": 47,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_connection.py",
+          "commits": 1,
+          "linesChanged": 86,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_tool.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/test_message_id.py",
+          "commits": 1,
+          "linesChanged": 162,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/test_modes.py",
+          "commits": 1,
+          "linesChanged": 322,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/test_ui_pending_user_message.py",
+          "commits": 1,
+          "linesChanged": 161,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_ask_user_question.py",
+          "commits": 1,
+          "linesChanged": 188,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_bash.py",
+          "commits": 1,
+          "linesChanged": 27,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_grep.py",
+          "commits": 1,
+          "linesChanged": 83,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_invoke_context.py",
+          "commits": 1,
+          "linesChanged": 106,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/adapters/fake_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 22,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/adapters/fake_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 24,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_do_update.py",
+          "commits": 1,
+          "linesChanged": 74,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_filesystem_update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 41,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/{test_github_version_update_gateway.py => test_github_update_gateway.py}",
+          "commits": 1,
+          "linesChanged": 40,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/{test_pypi_version_update_gateway.py => test_pypi_update_gateway.py}",
+          "commits": 1,
+          "linesChanged": 38,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_ui_version_update_notification.py",
+          "commits": 1,
+          "linesChanged": 222,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/{test_version_update_use_case.py => test_update_use_case.py}",
+          "commits": 1,
+          "linesChanged": 127,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_whats_new.py",
+          "commits": 1,
+          "linesChanged": 161,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/{acp_agent.py => acp_agent_loop.py}",
+          "commits": 1,
+          "linesChanged": 366,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/entrypoint.py",
+          "commits": 1,
+          "linesChanged": 40,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/base.py",
+          "commits": 1,
+          "linesChanged": 46,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/read_file.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/search_replace.py",
+          "commits": 1,
+          "linesChanged": 43,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/todo.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/write_file.py",
+          "commits": 1,
+          "linesChanged": 34,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/session_update.py",
+          "commits": 1,
+          "linesChanged": 27,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/history_manager.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/plan_offer/adapters/http_whoami_gateway.py",
+          "commits": 1,
+          "linesChanged": 67,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/plan_offer/ports/whoami_gateway.py",
+          "commits": 1,
+          "linesChanged": 23,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/external_editor.py",
+          "commits": 1,
+          "linesChanged": 32,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/mode_indicator.py",
+          "commits": 1,
+          "linesChanged": 47,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/__init__.py",
+          "commits": 1,
+          "linesChanged": 48,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/adapters/{github_version_update_gateway.py => github_update_gateway.py}",
+          "commits": 1,
+          "linesChanged": 38,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/adapters/{pypi_version_update_gateway.py => pypi_update_gateway.py}",
+          "commits": 1,
+          "linesChanged": 38,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/ports/update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/ports/update_gateway.py",
+          "commits": 1,
+          "linesChanged": 53,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/ports/version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 53,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/{version_update.py => update.py}",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/whats_new.py",
+          "commits": 1,
+          "linesChanged": 49,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/{agent.py => agent_loop.py}",
+          "commits": 1,
+          "linesChanged": 354,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/agents/__init__.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/agents/manager.py",
+          "commits": 1,
+          "linesChanged": 165,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/path_prompt_adapter.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/interaction_logger.py",
+          "commits": 1,
+          "linesChanged": 245,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/types.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/modes.py",
+          "commits": 1,
+          "linesChanged": 108,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/output_formatters.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/session/session_migration.py",
+          "commits": 1,
+          "linesChanged": 41,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/models.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/base.py",
+          "commits": 1,
+          "linesChanged": 127,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/grep.py",
+          "commits": 1,
+          "linesChanged": 20,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/ask_user_question.md",
+          "commits": 1,
+          "linesChanged": 84,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/bash.md",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/task.md",
+          "commits": 1,
+          "linesChanged": 24,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/read_file.py",
+          "commits": 1,
+          "linesChanged": 23,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/search_replace.py",
+          "commits": 1,
+          "linesChanged": 27,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/task.py",
+          "commits": 1,
+          "linesChanged": 154,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/todo.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/write_file.py",
+          "commits": 1,
+          "linesChanged": 22,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/manager.py",
+          "commits": 1,
+          "linesChanged": 157,
+          "lastTouch": "2026-01-27T16:39:30+01:00"
+        },
+        {
+          "filePath": "vibe-acp.spec",
+          "commits": 1,
+          "linesChanged": 17,
+          "lastTouch": "2026-01-12T17:47:25+01:00"
+        },
+        {
+          "filePath": ".github/workflows/build-and-upload.yml",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2026-01-07T17:57:27+01:00"
+        },
+        {
+          "filePath": ".github/workflows/issue-labeler.yml",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2026-01-07T17:57:27+01:00"
+        },
+        {
+          "filePath": ".github/workflows/release.yml",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-01-07T17:57:27+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_no_markup_static.py",
+          "commits": 1,
+          "linesChanged": 19,
+          "lastTouch": "2026-01-07T17:57:27+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/no_markup_static.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2026-01-07T17:57:27+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/path_display.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2026-01-07T17:57:27+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:quentin.torroba@mistral.ai",
+      "name": "Quentin",
+      "email": "quentin.torroba@mistral.ai",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 5,
+          "linesChanged": 85,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 5,
+          "linesChanged": 88,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 5,
+          "linesChanged": 91,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 5,
+          "linesChanged": 175,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 5,
+          "linesChanged": 2282,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/config.py",
+          "commits": 5,
+          "linesChanged": 605,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_observer_streaming.py",
+          "commits": 4,
+          "linesChanged": 531,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_cli_programmatic_preload.py",
+          "commits": 4,
+          "linesChanged": 142,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_acp.py",
+          "commits": 4,
+          "linesChanged": 932,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/__init__.py",
+          "commits": 4,
+          "linesChanged": 13,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "README.md",
+          "commits": 3,
+          "linesChanged": 322,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_new_session.py",
+          "commits": 3,
+          "linesChanged": 192,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_mode.py",
+          "commits": 3,
+          "linesChanged": 273,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_ui_chat_autocompletion.py",
+          "commits": 3,
+          "linesChanged": 328,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_stats.py",
+          "commits": 3,
+          "linesChanged": 758,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_tool_call.py",
+          "commits": 3,
+          "linesChanged": 505,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/__init__.py",
+          "commits": 3,
+          "linesChanged": 8,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/entrypoint.py",
+          "commits": 3,
+          "linesChanged": 51,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/utils.py",
+          "commits": 3,
+          "linesChanged": 215,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/commands.py",
+          "commits": 3,
+          "linesChanged": 132,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.py",
+          "commits": 3,
+          "linesChanged": 1665,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.tcss",
+          "commits": 3,
+          "linesChanged": 969,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/handlers/event_handler.py",
+          "commits": 3,
+          "linesChanged": 206,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/body.py",
+          "commits": 3,
+          "linesChanged": 274,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/container.py",
+          "commits": 3,
+          "linesChanged": 201,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/loading.py",
+          "commits": 3,
+          "linesChanged": 221,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/messages.py",
+          "commits": 3,
+          "linesChanged": 233,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/tool_widgets.py",
+          "commits": 3,
+          "linesChanged": 343,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/tools.py",
+          "commits": 3,
+          "linesChanged": 258,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/middleware.py",
+          "commits": 3,
+          "linesChanged": 283,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/programmatic.py",
+          "commits": 3,
+          "linesChanged": 95,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/cli.md",
+          "commits": 3,
+          "linesChanged": 54,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/search_replace.py",
+          "commits": 3,
+          "linesChanged": 481,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/manager.py",
+          "commits": 3,
+          "linesChanged": 434,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/types.py",
+          "commits": 3,
+          "linesChanged": 374,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/utils.py",
+          "commits": 3,
+          "linesChanged": 351,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_basic_conversation/test_snapshot_shows_basic_conversation.svg",
+          "commits": 3,
+          "linesChanged": 247,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_code_block_horizontal_scrolling/test_snapshot_allows_horizontal_scrolling_for_long_code_blocks.svg",
+          "commits": 3,
+          "linesChanged": 257,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_release_update_notification/test_snapshot_shows_release_update_notification.svg",
+          "commits": 3,
+          "linesChanged": 252,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/system_prompt.py",
+          "commits": 3,
+          "linesChanged": 422,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 2,
+          "linesChanged": 8,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_file_indexer.py",
+          "commits": 2,
+          "linesChanged": 245,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/core/test_trusted_folders.py",
+          "commits": 2,
+          "linesChanged": 223,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_modes.py",
+          "commits": 2,
+          "linesChanged": 88,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_backend.py",
+          "commits": 2,
+          "linesChanged": 131,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_auto_compact.py",
+          "commits": 2,
+          "linesChanged": 150,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_backend.py",
+          "commits": 2,
+          "linesChanged": 200,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_middleware.py",
+          "commits": 2,
+          "linesChanged": 487,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_bash.py",
+          "commits": 2,
+          "linesChanged": 96,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_grep.py",
+          "commits": 2,
+          "linesChanged": 376,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/base.py",
+          "commits": 2,
+          "linesChanged": 102,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/bash.py",
+          "commits": 2,
+          "linesChanged": 157,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/read_file.py",
+          "commits": 2,
+          "linesChanged": 63,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/search_replace.py",
+          "commits": 2,
+          "linesChanged": 146,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/write_file.py",
+          "commits": 2,
+          "linesChanged": 112,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/session_update.py",
+          "commits": 2,
+          "linesChanged": 113,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/cli.py",
+          "commits": 2,
+          "linesChanged": 229,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/terminal_setup.py",
+          "commits": 2,
+          "linesChanged": 425,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/file_indexer/ignore_rules.py",
+          "commits": 2,
+          "linesChanged": 204,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/generic.py",
+          "commits": 2,
+          "linesChanged": 422,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/mistral.py",
+          "commits": 2,
+          "linesChanged": 346,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/exceptions.py",
+          "commits": 2,
+          "linesChanged": 203,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/types.py",
+          "commits": 2,
+          "linesChanged": 134,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/config_paths.py",
+          "commits": 2,
+          "linesChanged": 85,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/base.py",
+          "commits": 2,
+          "linesChanged": 302,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/bash.py",
+          "commits": 2,
+          "linesChanged": 296,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/grep.py",
+          "commits": 2,
+          "linesChanged": 353,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/read_file.md",
+          "commits": 2,
+          "linesChanged": 24,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/read_file.py",
+          "commits": 2,
+          "linesChanged": 292,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/todo.py",
+          "commits": 2,
+          "linesChanged": 156,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/write_file.py",
+          "commits": 2,
+          "linesChanged": 217,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/ui.py",
+          "commits": 2,
+          "linesChanged": 127,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/trusted_folders.py",
+          "commits": 2,
+          "linesChanged": 82,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": ".github/workflows/build-and-upload.yml",
+          "commits": 2,
+          "linesChanged": 119,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": ".typos.toml",
+          "commits": 2,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "flake.lock",
+          "commits": 2,
+          "linesChanged": 157,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "scripts/bump_version.py",
+          "commits": 2,
+          "linesChanged": 140,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_slash_command_controller.py",
+          "commits": 2,
+          "linesChanged": 168,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/conftest.py",
+          "commits": 2,
+          "linesChanged": 106,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/mock/mock_entrypoint.py",
+          "commits": 2,
+          "linesChanged": 81,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/onboarding/test_ui_onboarding.py",
+          "commits": 2,
+          "linesChanged": 126,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/base_snapshot_test_app.py",
+          "commits": 2,
+          "linesChanged": 54,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_basic_conversation.py",
+          "commits": 2,
+          "linesChanged": 45,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_ui_version_update_notification.py",
+          "commits": 2,
+          "linesChanged": 168,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/acp/acp_agent.py",
+          "commits": 2,
+          "linesChanged": 480,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/autocompletion/path_completion.py",
+          "commits": 2,
+          "linesChanged": 177,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/autocompletion/slash_command.py",
+          "commits": 2,
+          "linesChanged": 101,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/entrypoint.py",
+          "commits": 2,
+          "linesChanged": 458,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/approval_app.py",
+          "commits": 2,
+          "linesChanged": 198,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/blinking_message.py",
+          "commits": 2,
+          "linesChanged": 134,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/text_area.py",
+          "commits": 2,
+          "linesChanged": 363,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/compact.py",
+          "commits": 2,
+          "linesChanged": 52,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/mode_indicator.py",
+          "commits": 2,
+          "linesChanged": 73,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/welcome.py",
+          "commits": 2,
+          "linesChanged": 288,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/agent.py",
+          "commits": 2,
+          "linesChanged": 1071,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/file_indexer/indexer.py",
+          "commits": 2,
+          "linesChanged": 179,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/__init__.py",
+          "commits": 2,
+          "linesChanged": 42,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/api_key.py",
+          "commits": 2,
+          "linesChanged": 135,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/test_system_prompt.py",
+          "commits": 2,
+          "linesChanged": 38,
+          "lastTouch": "2025-12-10T19:25:16+01:00"
+        },
+        {
+          "filePath": "vibe/cli/clipboard.py",
+          "commits": 2,
+          "linesChanged": 41,
+          "lastTouch": "2025-12-10T16:16:53+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_load_session.py",
+          "commits": 1,
+          "linesChanged": 47,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_config_option.py",
+          "commits": 1,
+          "linesChanged": 287,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_tool_call_session_update.py",
+          "commits": 1,
+          "linesChanged": 44,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_bell_notifications.py",
+          "commits": 1,
+          "linesChanged": 151,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_commands.py",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_switching_mode.py",
+          "commits": 1,
+          "linesChanged": 109,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_ui_session_incremental_renderer.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/cli/textual_ui/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/cli/textual_ui/test_session_picker.py",
+          "commits": 1,
+          "linesChanged": 131,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_paths.py",
+          "commits": 1,
+          "linesChanged": 143,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/core/test_file_logging.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/core/test_telemetry_send.py",
+          "commits": 1,
+          "linesChanged": 49,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/e2e/common.py",
+          "commits": 1,
+          "linesChanged": 86,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/e2e/conftest.py",
+          "commits": 1,
+          "linesChanged": 82,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/e2e/mock_server.py",
+          "commits": 1,
+          "linesChanged": 149,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/e2e/test_cli_tui_onboarding.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/e2e/test_cli_tui_streaming.py",
+          "commits": 1,
+          "linesChanged": 51,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/e2e/test_cli_tui_tool_approval.py",
+          "commits": 1,
+          "linesChanged": 87,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/session/test_session_loader.py",
+          "commits": 1,
+          "linesChanged": 130,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/session/test_session_logger.py",
+          "commits": 1,
+          "linesChanged": 83,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_empty_assistant_before_reasoning/test_snapshot_empty_assistant_removed_when_reasoning_starts.svg",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_parallel_tool_calls/test_snapshot_parallel_tool_calls_pending.svg",
+          "commits": 1,
+          "linesChanged": 114,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_parallel_tool_calls/test_snapshot_parallel_tool_calls_resolved.svg",
+          "commits": 1,
+          "linesChanged": 137,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_initial_empty.svg",
+          "commits": 1,
+          "linesChanged": 77,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_proxy_setup/test_snapshot_proxy_setup_initial_with_values.svg",
+          "commits": 1,
+          "linesChanged": 77,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_streaming_tool_call/test_snapshot_tool_call_partial.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_streaming_tool_call/test_snapshot_tool_call_updated.svg",
+          "commits": 1,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_empty_assistant_before_reasoning.py",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_parallel_tool_calls.py",
+          "commits": 1,
+          "linesChanged": 114,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_streaming_tool_call.py",
+          "commits": 1,
+          "linesChanged": 75,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/test_agents.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_manager_get_tool_config.py",
+          "commits": 1,
+          "linesChanged": 64,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_mcp.py",
+          "commits": 1,
+          "linesChanged": 179,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_mcp_sampling.py",
+          "commits": 1,
+          "linesChanged": 171,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_task.py",
+          "commits": 1,
+          "linesChanged": 46,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_webfetch.py",
+          "commits": 1,
+          "linesChanged": 253,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_websearch.py",
+          "commits": 1,
+          "linesChanged": 165,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/acp_agent_loop.py",
+          "commits": 1,
+          "linesChanged": 162,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/acp/acp_logger.py",
+          "commits": 1,
+          "linesChanged": 97,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/notifications/__init__.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/notifications/adapters/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/notifications/adapters/textual_notification_adapter.py",
+          "commits": 1,
+          "linesChanged": 60,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/notifications/ports/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/notifications/ports/notification_port.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/proxy_setup_app.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/session_picker.py",
+          "commits": 1,
+          "linesChanged": 113,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/windowing/history.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/agent_loop.py",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/agents/manager.py",
+          "commits": 1,
+          "linesChanged": 13,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/agents/models.py",
+          "commits": 1,
+          "linesChanged": 9,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/anthropic.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/base.py",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/vertex.py",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/message_utils.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/logger.py",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/local_config_walk.py",
+          "commits": 1,
+          "linesChanged": 39,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/session/session_loader.py",
+          "commits": 1,
+          "linesChanged": 57,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/session/session_logger.py",
+          "commits": 1,
+          "linesChanged": 51,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/manager.py",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/telemetry/send.py",
+          "commits": 1,
+          "linesChanged": 18,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/ask_user_question.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/webfetch.md",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/websearch.md",
+          "commits": 1,
+          "linesChanged": 25,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/task.py",
+          "commits": 1,
+          "linesChanged": 34,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/webfetch.py",
+          "commits": 1,
+          "linesChanged": 200,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/websearch.py",
+          "commits": 1,
+          "linesChanged": 131,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/mcp/__init__.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/mcp/registry.py",
+          "commits": 1,
+          "linesChanged": 167,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/{mcp.py => mcp/tools.py}",
+          "commits": 1,
+          "linesChanged": 53,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/mcp_sampling.py",
+          "commits": 1,
+          "linesChanged": 115,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/utils.py",
+          "commits": 1,
+          "linesChanged": 69,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "vibe/whats_new.md",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2026-02-27T17:31:58+01:00"
+        },
+        {
+          "filePath": "docs/README.md",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "docs/acp-setup.md",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_resolution.py",
+          "commits": 1,
+          "linesChanged": 22,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_to_accept_edits_mode.svg",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_to_auto_approve_mode.svg",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_to_plan_mode.svg",
+          "commits": 1,
+          "linesChanged": 203,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_cycle_wraps_to_default.svg",
+          "commits": 1,
+          "linesChanged": 204,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_modes/test_snapshot_default_mode.svg",
+          "commits": 1,
+          "linesChanged": 204,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "tests/test_modes.py",
+          "commits": 1,
+          "linesChanged": 323,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/spinner.py",
+          "commits": 1,
+          "linesChanged": 87,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/status_message.py",
+          "commits": 1,
+          "linesChanged": 75,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/utils.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/adapters/filesystem_update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/config_path.py",
+          "commits": 1,
+          "linesChanged": 51,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/modes.py",
+          "commits": 1,
+          "linesChanged": 108,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/global_paths.py",
+          "commits": 1,
+          "linesChanged": 37,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/setup/trusted_folders/trust_folder_dialog.py",
+          "commits": 1,
+          "linesChanged": 187,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": "vibe/setup/trusted_folders/trust_folder_dialog.tcss",
+          "commits": 1,
+          "linesChanged": 83,
+          "lastTouch": "2025-12-14T00:54:42+01:00"
+        },
+        {
+          "filePath": ".envrc",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".github/CODEOWNERS",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".github/workflows/ci.yml",
+          "commits": 1,
+          "linesChanged": 126,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".github/workflows/release.yml",
+          "commits": 1,
+          "linesChanged": 44,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".gitignore",
+          "commits": 1,
+          "linesChanged": 201,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".pre-commit-config.yaml",
+          "commits": 1,
+          "linesChanged": 34,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".python-version",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".vscode/extensions.json",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": ".vscode/settings.json",
+          "commits": 1,
+          "linesChanged": 26,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "AGENTS.md",
+          "commits": 1,
+          "linesChanged": 135,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "CONTRIBUTING.md",
+          "commits": 1,
+          "linesChanged": 168,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "LICENSE",
+          "commits": 1,
+          "linesChanged": 201,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "action.yml",
+          "commits": 1,
+          "linesChanged": 64,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "distribution/zed/icons/mistral_vibe.svg",
+          "commits": 1,
+          "linesChanged": 13,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "flake.nix",
+          "commits": 1,
+          "linesChanged": 144,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "scripts/README.md",
+          "commits": 1,
+          "linesChanged": 20,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "scripts/install.sh",
+          "commits": 1,
+          "linesChanged": 128,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/__init__.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_bash.py",
+          "commits": 1,
+          "linesChanged": 536,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_content.py",
+          "commits": 1,
+          "linesChanged": 184,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_multi_session.py",
+          "commits": 1,
+          "linesChanged": 161,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_read_file.py",
+          "commits": 1,
+          "linesChanged": 240,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_search_replace.py",
+          "commits": 1,
+          "linesChanged": 339,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_model.py",
+          "commits": 1,
+          "linesChanged": 308,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_write_file.py",
+          "commits": 1,
+          "linesChanged": 269,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_fuzzy.py",
+          "commits": 1,
+          "linesChanged": 96,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_path_completer_fuzzy.py",
+          "commits": 1,
+          "linesChanged": 122,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_path_completer_recursive.py",
+          "commits": 1,
+          "linesChanged": 69,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_path_completion_controller.py",
+          "commits": 1,
+          "linesChanged": 258,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/autocompletion/test_path_prompt_transformer.py",
+          "commits": 1,
+          "linesChanged": 142,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/backend/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/backend/data/__init__.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/backend/data/fireworks.py",
+          "commits": 1,
+          "linesChanged": 183,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/backend/data/mistral.py",
+          "commits": 1,
+          "linesChanged": 173,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/backend/test_backend.py",
+          "commits": 1,
+          "linesChanged": 248,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_migration.py",
+          "commits": 1,
+          "linesChanged": 51,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/mock/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/mock/mock_backend_factory.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/mock/utils.py",
+          "commits": 1,
+          "linesChanged": 42,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/onboarding/test_run_onboarding.py",
+          "commits": 1,
+          "linesChanged": 69,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/playground/.gitkeep",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/snap_compare.py",
+          "commits": 1,
+          "linesChanged": 20,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_code_block_horizontal_scrolling.py",
+          "commits": 1,
+          "linesChanged": 38,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_release_update_notification.py",
+          "commits": 1,
+          "linesChanged": 28,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_connection.py",
+          "commits": 1,
+          "linesChanged": 86,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_tool.py",
+          "commits": 1,
+          "linesChanged": 30,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/test_history_manager.py",
+          "commits": 1,
+          "linesChanged": 101,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/test_tagged_text.py",
+          "commits": 1,
+          "linesChanged": 107,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/test_ui_input_history.py",
+          "commits": 1,
+          "linesChanged": 130,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/test_ui_pending_user_message.py",
+          "commits": 1,
+          "linesChanged": 161,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_ui_bash_execution.py",
+          "commits": 1,
+          "linesChanged": 138,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_github_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 249,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_version_update_use_case.py",
+          "commits": 1,
+          "linesChanged": 146,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe-acp.spec",
+          "commits": 1,
+          "linesChanged": 45,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/acp/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/acp/tools/builtins/todo.py",
+          "commits": 1,
+          "linesChanged": 65,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/autocompletion/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/autocompletion/base.py",
+          "commits": 1,
+          "linesChanged": 22,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/history_manager.py",
+          "commits": 1,
+          "linesChanged": 91,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/handlers/__init__.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/renderers/__init__.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/renderers/tool_renderers.py",
+          "commits": 1,
+          "linesChanged": 216,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/__init__.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/completion_manager.py",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/completion_popup.py",
+          "commits": 1,
+          "linesChanged": 43,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/config_app.py",
+          "commits": 1,
+          "linesChanged": 156,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/context_progress.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/path_display.py",
+          "commits": 1,
+          "linesChanged": 28,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/__init__.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/fake_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 24,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/github_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 109,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/version_update.py",
+          "commits": 1,
+          "linesChanged": 57,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 54,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/completers.py",
+          "commits": 1,
+          "linesChanged": 247,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/file_indexer/__init__.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/file_indexer/store.py",
+          "commits": 1,
+          "linesChanged": 169,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/file_indexer/watcher.py",
+          "commits": 1,
+          "linesChanged": 71,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/fuzzy.py",
+          "commits": 1,
+          "linesChanged": 189,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/path_prompt.py",
+          "commits": 1,
+          "linesChanged": 108,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/autocompletion/path_prompt_adapter.py",
+          "commits": 1,
+          "linesChanged": 149,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/interaction_logger.py",
+          "commits": 1,
+          "linesChanged": 245,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/factory.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/format.py",
+          "commits": 1,
+          "linesChanged": 270,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/output_formatters.py",
+          "commits": 1,
+          "linesChanged": 85,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/__init__.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/compact.md",
+          "commits": 1,
+          "linesChanged": 48,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/dangerous_directory.md",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/project_context.md",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/prompts/tests.md",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/__init__.py",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/bash.md",
+          "commits": 1,
+          "linesChanged": 68,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/grep.md",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/search_replace.md",
+          "commits": 1,
+          "linesChanged": 43,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/todo.md",
+          "commits": 1,
+          "linesChanged": 199,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/prompts/write_file.md",
+          "commits": 1,
+          "linesChanged": 42,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/mcp.py",
+          "commits": 1,
+          "linesChanged": 313,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/base.py",
+          "commits": 1,
+          "linesChanged": 14,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/onboarding.tcss",
+          "commits": 1,
+          "linesChanged": 230,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/__init__.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/theme_selection.py",
+          "commits": 1,
+          "linesChanged": 140,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/welcome.py",
+          "commits": 1,
+          "linesChanged": 135,
+          "lastTouch": "2025-12-09T13:13:22+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:mathias.gesbert@ext.mistral.ai",
+      "name": "Mathias Gesbert",
+      "email": "mathias.gesbert@ext.mistral.ai",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 3,
+          "linesChanged": 13,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 3,
+          "linesChanged": 51,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 3,
+          "linesChanged": 50,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 3,
+          "linesChanged": 10,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 3,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_observer_streaming.py",
+          "commits": 3,
+          "linesChanged": 220,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_tool_call.py",
+          "commits": 3,
+          "linesChanged": 196,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 3,
+          "linesChanged": 14,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/agent.py",
+          "commits": 3,
+          "linesChanged": 266,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/types.py",
+          "commits": 3,
+          "linesChanged": 104,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/cli/test_clipboard.py",
+          "commits": 2,
+          "linesChanged": 439,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/mock/utils.py",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/onboarding/test_ui_onboarding.py",
+          "commits": 2,
+          "linesChanged": 70,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/__init__.py",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/acp/acp_agent.py",
+          "commits": 2,
+          "linesChanged": 46,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/clipboard.py",
+          "commits": 2,
+          "linesChanged": 94,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.py",
+          "commits": 2,
+          "linesChanged": 162,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/handlers/event_handler.py",
+          "commits": 2,
+          "linesChanged": 23,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/config.py",
+          "commits": 2,
+          "linesChanged": 108,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/mistral.py",
+          "commits": 2,
+          "linesChanged": 93,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/system_prompt.py",
+          "commits": 2,
+          "linesChanged": 48,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/manager.py",
+          "commits": 2,
+          "linesChanged": 26,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/__init__.py",
+          "commits": 2,
+          "linesChanged": 17,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": ".github/workflows/build-and-upload.yml",
+          "commits": 2,
+          "linesChanged": 74,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_acp.py",
+          "commits": 2,
+          "linesChanged": 274,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_model.py",
+          "commits": 2,
+          "linesChanged": 13,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/backend/test_backend.py",
+          "commits": 2,
+          "linesChanged": 56,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/generic.py",
+          "commits": 2,
+          "linesChanged": 29,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/bug-report.yml",
+          "commits": 1,
+          "linesChanged": 57,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/config.yml",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/feature-request.yml",
+          "commits": 1,
+          "linesChanged": 47,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": ".github/workflows/release.yml",
+          "commits": 1,
+          "linesChanged": 19,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/skills/conftest.py",
+          "commits": 1,
+          "linesChanged": 59,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/skills/test_manager.py",
+          "commits": 1,
+          "linesChanged": 275,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/skills/test_models.py",
+          "commits": 1,
+          "linesChanged": 188,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/skills/test_parser.py",
+          "commits": 1,
+          "linesChanged": 115,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_buffered_reasoning_yields_before_content.svg",
+          "commits": 1,
+          "linesChanged": 207,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_shows_interleaved_reasoning.svg",
+          "commits": 1,
+          "linesChanged": 207,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_shows_reasoning_content.svg",
+          "commits": 1,
+          "linesChanged": 207,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_reasoning_content/test_snapshot_shows_reasoning_content_expanded.svg",
+          "commits": 1,
+          "linesChanged": 207,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_reasoning_content.py",
+          "commits": 1,
+          "linesChanged": 146,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/test_reasoning_content.py",
+          "commits": 1,
+          "linesChanged": 360,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/cli.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.tcss",
+          "commits": 1,
+          "linesChanged": 61,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/renderers/__init__.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/renderers/tool_renderers.py",
+          "commits": 1,
+          "linesChanged": 216,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/terminal_theme.py",
+          "commits": 1,
+          "linesChanged": 266,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/approval_app.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/chat_input/container.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/config_app.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/loading.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/messages.py",
+          "commits": 1,
+          "linesChanged": 104,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/spinner.py",
+          "commits": 1,
+          "linesChanged": 60,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/status_message.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/tool_widgets.py",
+          "commits": 1,
+          "linesChanged": 524,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/tools.py",
+          "commits": 1,
+          "linesChanged": 15,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/format.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/config_paths.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/paths/global_paths.py",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/__init__.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/manager.py",
+          "commits": 1,
+          "linesChanged": 113,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/models.py",
+          "commits": 1,
+          "linesChanged": 85,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/parser.py",
+          "commits": 1,
+          "linesChanged": 39,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/grep.py",
+          "commits": 1,
+          "linesChanged": 22,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/read_file.py",
+          "commits": 1,
+          "linesChanged": 18,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/search_replace.py",
+          "commits": 1,
+          "linesChanged": 17,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/todo.py",
+          "commits": 1,
+          "linesChanged": 25,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/builtins/write_file.py",
+          "commits": 1,
+          "linesChanged": 15,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/mcp.py",
+          "commits": 1,
+          "linesChanged": 34,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/ui.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/theme_selection.py",
+          "commits": 1,
+          "linesChanged": 43,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "vibe/setup/trusted_folders/trust_folder_dialog.py",
+          "commits": 1,
+          "linesChanged": 24,
+          "lastTouch": "2025-12-23T19:00:46+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_content.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_multi_session.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_new_session.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_set_mode.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/backend/data/fireworks.py",
+          "commits": 1,
+          "linesChanged": 42,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/backend/data/mistral.py",
+          "commits": 1,
+          "linesChanged": 31,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_basic_conversation.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/stubs/fake_backend.py",
+          "commits": 1,
+          "linesChanged": 70,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_auto_compact.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_backend.py",
+          "commits": 1,
+          "linesChanged": 16,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/test_agent_stats.py",
+          "commits": 1,
+          "linesChanged": 120,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/test_cli_programmatic_preload.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "tests/test_modes.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-22T13:33:20+01:00"
+        },
+        {
+          "filePath": "action.yml",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/conftest.py",
+          "commits": 1,
+          "linesChanged": 98,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/core/test_config_resolution.py",
+          "commits": 1,
+          "linesChanged": 41,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/onboarding/test_run_onboarding.py",
+          "commits": 1,
+          "linesChanged": 9,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_release_update_notification.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/adapters/fake_update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 17,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "{vibe/cli/update_notifier => tests/update_notifier/adapters}/fake_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_filesystem_update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 78,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_github_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_pypi_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 157,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_ui_version_update_notification.py",
+          "commits": 1,
+          "linesChanged": 66,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "tests/update_notifier/test_version_update_use_case.py",
+          "commits": 1,
+          "linesChanged": 225,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/entrypoint.py",
+          "commits": 1,
+          "linesChanged": 18,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/__init__.py",
+          "commits": 1,
+          "linesChanged": 30,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/adapters/filesystem_update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 49,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/{ => adapters}/github_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/adapters/pypi_version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 113,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/ports/update_cache_repository.py",
+          "commits": 1,
+          "linesChanged": 15,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/{ => ports}/version_update_gateway.py",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/cli/update_notifier/version_update.py",
+          "commits": 1,
+          "linesChanged": 86,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/__init__.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/config_path.py",
+          "commits": 1,
+          "linesChanged": 51,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/utils.py",
+          "commits": 1,
+          "linesChanged": 27,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        },
+        {
+          "filePath": "vibe/setup/onboarding/screens/api_key.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-12T17:47:20+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:51709227_michelTho@users.noreply.github.com",
+      "name": "Michel Thomazo",
+      "email": "51709227+michelTho@users.noreply.github.com",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 4,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 4,
+          "linesChanged": 20,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 4,
+          "linesChanged": 72,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 4,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_acp.py",
+          "commits": 4,
+          "linesChanged": 52,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 4,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/__init__.py",
+          "commits": 4,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_release_update_notification/test_snapshot_shows_release_update_notification.svg",
+          "commits": 3,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-09T19:38:56+01:00"
+        },
+        {
+          "filePath": "scripts/bump_version.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 1,
+          "linesChanged": 80,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "tests/backend/test_backend.py",
+          "commits": 1,
+          "linesChanged": 100,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "vibe/acp/acp_agent.py",
+          "commits": 1,
+          "linesChanged": 38,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/agent.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": "vibe/core/utils.py",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2025-12-11T09:39:20+01:00"
+        },
+        {
+          "filePath": ".envrc",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-09T19:38:56+01:00"
+        },
+        {
+          "filePath": "distribution/zed/icons/mistral_vibe.svg",
+          "commits": 1,
+          "linesChanged": 23,
+          "lastTouch": "2025-12-09T19:38:56+01:00"
+        },
+        {
+          "filePath": "distribution/zed/LICENSE",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-09T17:48:54+01:00"
+        },
+        {
+          "filePath": "vibe-acp.spec",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-09T16:17:51+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:mathias.gesbert@gmail.com",
+      "name": "Mathias Gesbert",
+      "email": "mathias.gesbert@gmail.com",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 3,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 3,
+          "linesChanged": 72,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 3,
+          "linesChanged": 42,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 3,
+          "linesChanged": 9,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 3,
+          "linesChanged": 75,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_acp.py",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/__snapshots__/test_ui_snapshot_release_update_notification/test_snapshot_shows_release_update_notification.svg",
+          "commits": 2,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "vibe/core/__init__.py",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "vibe/__init__.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "vibe/cli/entrypoint.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/messages.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-18T18:12:18+01:00"
+        },
+        {
+          "filePath": "README.md",
+          "commits": 1,
+          "linesChanged": 29,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "scripts/bump_version.py",
+          "commits": 1,
+          "linesChanged": 17,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_manager_get_tool_config.py",
+          "commits": 1,
+          "linesChanged": 88,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.tcss",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/base.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-10T11:10:51+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_release_update_notification.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-09T14:46:09+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:torroba.q@gmail.com",
+      "name": "Quentin Torroba",
+      "email": "torroba.q@gmail.com",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 2,
+          "linesChanged": 13,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 2,
+          "linesChanged": 28,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 2,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "vibe/__init__.py",
+          "commits": 2,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "tests/skills/test_manager.py",
+          "commits": 1,
+          "linesChanged": 26,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "tests/test_system_prompt.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "tests/tools/test_manager_get_tool_config.py",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/app.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "vibe/core/agent.py",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "vibe/core/skills/manager.py",
+          "commits": 1,
+          "linesChanged": 11,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": "vibe/core/tools/manager.py",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-26T17:03:09+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/bug-report.yml",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/feature-request.yml",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        },
+        {
+          "filePath": ".github/workflows/build-and-upload.yml",
+          "commits": 1,
+          "linesChanged": 27,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        },
+        {
+          "filePath": ".github/workflows/issue-labeler.yml",
+          "commits": 1,
+          "linesChanged": 61,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        },
+        {
+          "filePath": "flake.lock",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        },
+        {
+          "filePath": "flake.nix",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/status_message.py",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-24T13:44:00+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:clement.drouin@mistral.ai",
+      "name": "Clément Drouin",
+      "email": "clement.drouin@mistral.ai",
+      "files": [
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/bug-report.yml",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": ".github/ISSUE_TEMPLATE/feature-request.yml",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 1,
+          "linesChanged": 10,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 1,
+          "linesChanged": 14,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_initialize.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "tests/test_reasoning_content.py",
+          "commits": 1,
+          "linesChanged": 176,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/__init__.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/loading.py",
+          "commits": 1,
+          "linesChanged": 32,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/messages.py",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/spinner.py",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/cli/textual_ui/widgets/status_message.py",
+          "commits": 1,
+          "linesChanged": 3,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/core/config.py",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/generic.py",
+          "commits": 1,
+          "linesChanged": 68,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/mistral.py",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        },
+        {
+          "filePath": "vibe/core/types.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-24T16:04:45+01:00"
+        }
+      ]
+    },
+    {
+      "id": "p:10739306_VinceOPS@users.noreply.github.com",
+      "name": "Vincent G",
+      "email": "10739306+VinceOPS@users.noreply.github.com",
+      "files": [
+        {
+          "filePath": ".vscode/launch.json",
+          "commits": 1,
+          "linesChanged": 20,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "CHANGELOG.md",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "distribution/zed/extension.toml",
+          "commits": 1,
+          "linesChanged": 14,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "pyproject.toml",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "tests/acp/test_acp.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/base_snapshot_test_app.py",
+          "commits": 1,
+          "linesChanged": 1,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "tests/snapshots/test_ui_snapshot_release_update_notification.py",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "uv.lock",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "vibe/core/__init__.py",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        },
+        {
+          "filePath": "vibe/core/llm/backend/generic.py",
+          "commits": 1,
+          "linesChanged": 5,
+          "lastTouch": "2025-12-09T21:46:38+01:00"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2800 @@
+{
+  "repoPath": "/Users/guustgoossens/Desktop/dev/Hackathon/HackStral",
+  "parsedAt": "2026-03-01T10:10:36.370Z",
+  "stats": {
+    "files": 49,
+    "functions": 88,
+    "classes": 58,
+    "methods": 5,
+    "imports": 54,
+    "calls": 108
+  },
+  "nodes": {
+    "files": [
+      {
+        "id": "f:eslint.config.js",
+        "name": "eslint.config.js",
+        "filePath": "eslint.config.js"
+      },
+      {
+        "id": "f:prettier.config.mjs",
+        "name": "prettier.config.mjs",
+        "filePath": "prettier.config.mjs"
+      },
+      {
+        "id": "f:scripts/clone-repos.ts",
+        "name": "clone-repos.ts",
+        "filePath": "scripts/clone-repos.ts"
+      },
+      {
+        "id": "f:scripts/git-analyze.ts",
+        "name": "git-analyze.ts",
+        "filePath": "scripts/git-analyze.ts"
+      },
+      {
+        "id": "f:scripts/lib/languages.ts",
+        "name": "languages.ts",
+        "filePath": "scripts/lib/languages.ts"
+      },
+      {
+        "id": "f:scripts/lib/queries.ts",
+        "name": "queries.ts",
+        "filePath": "scripts/lib/queries.ts"
+      },
+      {
+        "id": "f:scripts/lib/symbol-table.ts",
+        "name": "symbol-table.ts",
+        "filePath": "scripts/lib/symbol-table.ts"
+      },
+      {
+        "id": "f:scripts/parse-all.ts",
+        "name": "parse-all.ts",
+        "filePath": "scripts/parse-all.ts"
+      },
+      {
+        "id": "f:scripts/parse-repo.ts",
+        "name": "parse-repo.ts",
+        "filePath": "scripts/parse-repo.ts"
+      },
+      {
+        "id": "f:serve-test.js",
+        "name": "serve-test.js",
+        "filePath": "serve-test.js"
+      },
+      {
+        "id": "f:server/proxy.test.ts",
+        "name": "proxy.test.ts",
+        "filePath": "server/proxy.test.ts"
+      },
+      {
+        "id": "f:server/proxy.ts",
+        "name": "proxy.ts",
+        "filePath": "server/proxy.ts"
+      },
+      {
+        "id": "f:src/App.tsx",
+        "name": "App.tsx",
+        "filePath": "src/App.tsx"
+      },
+      {
+        "id": "f:src/components/AgentStatus.tsx",
+        "name": "AgentStatus.tsx",
+        "filePath": "src/components/AgentStatus.tsx"
+      },
+      {
+        "id": "f:src/components/ErrorBoundary.tsx",
+        "name": "ErrorBoundary.tsx",
+        "filePath": "src/components/ErrorBoundary.tsx"
+      },
+      {
+        "id": "f:src/components/Graph3D.tsx",
+        "name": "Graph3D.tsx",
+        "filePath": "src/components/Graph3D.tsx"
+      },
+      {
+        "id": "f:src/components/LandingPage.tsx",
+        "name": "LandingPage.tsx",
+        "filePath": "src/components/LandingPage.tsx"
+      },
+      {
+        "id": "f:src/components/Layout.tsx",
+        "name": "Layout.tsx",
+        "filePath": "src/components/Layout.tsx"
+      },
+      {
+        "id": "f:src/components/NodeDetail.tsx",
+        "name": "NodeDetail.tsx",
+        "filePath": "src/components/NodeDetail.tsx"
+      },
+      {
+        "id": "f:src/components/OverlayBar.tsx",
+        "name": "OverlayBar.tsx",
+        "filePath": "src/components/OverlayBar.tsx"
+      },
+      {
+        "id": "f:src/components/QuizPanel.tsx",
+        "name": "QuizPanel.tsx",
+        "filePath": "src/components/QuizPanel.tsx"
+      },
+      {
+        "id": "f:src/components/RepoView.tsx",
+        "name": "RepoView.tsx",
+        "filePath": "src/components/RepoView.tsx"
+      },
+      {
+        "id": "f:src/components/VoiceControls.tsx",
+        "name": "VoiceControls.tsx",
+        "filePath": "src/components/VoiceControls.tsx"
+      },
+      {
+        "id": "f:src/data/sample-graph.ts",
+        "name": "sample-graph.ts",
+        "filePath": "src/data/sample-graph.ts"
+      },
+      {
+        "id": "f:src/hooks/useGraph.ts",
+        "name": "useGraph.ts",
+        "filePath": "src/hooks/useGraph.ts"
+      },
+      {
+        "id": "f:src/hooks/useInterview.ts",
+        "name": "useInterview.ts",
+        "filePath": "src/hooks/useInterview.ts"
+      },
+      {
+        "id": "f:src/hooks/useKnowledge.ts",
+        "name": "useKnowledge.ts",
+        "filePath": "src/hooks/useKnowledge.ts"
+      },
+      {
+        "id": "f:src/hooks/useKuzu.ts",
+        "name": "useKuzu.ts",
+        "filePath": "src/hooks/useKuzu.ts"
+      },
+      {
+        "id": "f:src/hooks/useTreeSitter.ts",
+        "name": "useTreeSitter.ts",
+        "filePath": "src/hooks/useTreeSitter.ts"
+      },
+      {
+        "id": "f:src/hooks/useVoiceAgent.ts",
+        "name": "useVoiceAgent.ts",
+        "filePath": "src/hooks/useVoiceAgent.ts"
+      },
+      {
+        "id": "f:src/hooks/useVoxtralSTT.ts",
+        "name": "useVoxtralSTT.ts",
+        "filePath": "src/hooks/useVoxtralSTT.ts"
+      },
+      {
+        "id": "f:src/lib/agent-tools.test.ts",
+        "name": "agent-tools.test.ts",
+        "filePath": "src/lib/agent-tools.test.ts"
+      },
+      {
+        "id": "f:src/lib/agent-tools.ts",
+        "name": "agent-tools.ts",
+        "filePath": "src/lib/agent-tools.ts"
+      },
+      {
+        "id": "f:src/lib/briefing.ts",
+        "name": "briefing.ts",
+        "filePath": "src/lib/briefing.ts"
+      },
+      {
+        "id": "f:src/lib/git-data.test.ts",
+        "name": "git-data.test.ts",
+        "filePath": "src/lib/git-data.test.ts"
+      },
+      {
+        "id": "f:src/lib/git-data.ts",
+        "name": "git-data.ts",
+        "filePath": "src/lib/git-data.ts"
+      },
+      {
+        "id": "f:src/lib/graph-builder.test.ts",
+        "name": "graph-builder.test.ts",
+        "filePath": "src/lib/graph-builder.test.ts"
+      },
+      {
+        "id": "f:src/lib/graph-builder.ts",
+        "name": "graph-builder.ts",
+        "filePath": "src/lib/graph-builder.ts"
+      },
+      {
+        "id": "f:src/lib/kuzu.test.ts",
+        "name": "kuzu.test.ts",
+        "filePath": "src/lib/kuzu.test.ts"
+      },
+      {
+        "id": "f:src/lib/kuzu.ts",
+        "name": "kuzu.ts",
+        "filePath": "src/lib/kuzu.ts"
+      },
+      {
+        "id": "f:src/lib/utils.ts",
+        "name": "utils.ts",
+        "filePath": "src/lib/utils.ts"
+      },
+      {
+        "id": "f:src/lib/voice-provider.ts",
+        "name": "voice-provider.ts",
+        "filePath": "src/lib/voice-provider.ts"
+      },
+      {
+        "id": "f:src/main.tsx",
+        "name": "main.tsx",
+        "filePath": "src/main.tsx"
+      },
+      {
+        "id": "f:src/prompts/voice-agent.ts",
+        "name": "voice-agent.ts",
+        "filePath": "src/prompts/voice-agent.ts"
+      },
+      {
+        "id": "f:src/types/graph.ts",
+        "name": "graph.ts",
+        "filePath": "src/types/graph.ts"
+      },
+      {
+        "id": "f:src/types/repo.ts",
+        "name": "repo.ts",
+        "filePath": "src/types/repo.ts"
+      },
+      {
+        "id": "f:src/vite-env.d.ts",
+        "name": "vite-env.d.ts",
+        "filePath": "src/vite-env.d.ts"
+      },
+      {
+        "id": "f:src/worklets/pcm-processor.worklet.ts",
+        "name": "pcm-processor.worklet.ts",
+        "filePath": "src/worklets/pcm-processor.worklet.ts"
+      },
+      {
+        "id": "f:vite.config.ts",
+        "name": "vite.config.ts",
+        "filePath": "vite.config.ts"
+      }
+    ],
+    "functions": [
+      {
+        "id": "fn:scripts/lib/languages.ts:getLanguageFromFilename",
+        "name": "getLanguageFromFilename",
+        "filePath": "scripts/lib/languages.ts",
+        "startLine": 38,
+        "endLine": 47
+      },
+      {
+        "id": "fn:scripts/lib/languages.ts:shouldIgnoreDir",
+        "name": "shouldIgnoreDir",
+        "filePath": "scripts/lib/languages.ts",
+        "startLine": 52,
+        "endLine": 54
+      },
+      {
+        "id": "fn:scripts/lib/symbol-table.ts:createSymbolTable",
+        "name": "createSymbolTable",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 21,
+        "endLine": 59
+      },
+      {
+        "id": "fn:scripts/lib/symbol-table.ts:add",
+        "name": "add",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 28,
+        "endLine": 38
+      },
+      {
+        "id": "fn:scripts/lib/symbol-table.ts:lookupExact",
+        "name": "lookupExact",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 40,
+        "endLine": 42
+      },
+      {
+        "id": "fn:scripts/lib/symbol-table.ts:lookupFuzzy",
+        "name": "lookupFuzzy",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 44,
+        "endLine": 46
+      },
+      {
+        "id": "fn:scripts/lib/symbol-table.ts:getStats",
+        "name": "getStats",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 48,
+        "endLine": 51
+      },
+      {
+        "id": "fn:scripts/lib/symbol-table.ts:clear",
+        "name": "clear",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 53,
+        "endLine": 56
+      },
+      {
+        "id": "fn:scripts/parse-repo.ts:getGrammar",
+        "name": "getGrammar",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 102,
+        "endLine": 111
+      },
+      {
+        "id": "fn:scripts/parse-repo.ts:discoverFiles",
+        "name": "discoverFiles",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 145,
+        "endLine": 179
+      },
+      {
+        "id": "fn:scripts/parse-repo.ts:walk",
+        "name": "walk",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 148,
+        "endLine": 175
+      },
+      {
+        "id": "fn:scripts/parse-repo.ts:resolveImportPath",
+        "name": "resolveImportPath",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 294,
+        "endLine": 321
+      },
+      {
+        "id": "fn:scripts/parse-repo.ts:findEnclosingFunction",
+        "name": "findEnclosingFunction",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 379,
+        "endLine": 410
+      },
+      {
+        "id": "fn:scripts/parse-repo.ts:resolveCallTarget",
+        "name": "resolveCallTarget",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 418,
+        "endLine": 444
+      },
+      {
+        "id": "fn:server/proxy.test.ts:mockUpstreamOk",
+        "name": "mockUpstreamOk",
+        "filePath": "server/proxy.test.ts",
+        "startLine": 43,
+        "endLine": 50
+      },
+      {
+        "id": "fn:server/proxy.test.ts:mockUpstreamStream",
+        "name": "mockUpstreamStream",
+        "filePath": "server/proxy.test.ts",
+        "startLine": 52,
+        "endLine": 72
+      },
+      {
+        "id": "fn:server/proxy.test.ts:mockUpstreamFail",
+        "name": "mockUpstreamFail",
+        "filePath": "server/proxy.test.ts",
+        "startLine": 74,
+        "endLine": 78
+      },
+      {
+        "id": "fn:server/proxy.test.ts:mockUpstreamNullBody",
+        "name": "mockUpstreamNullBody",
+        "filePath": "server/proxy.test.ts",
+        "startLine": 80,
+        "endLine": 86
+      },
+      {
+        "id": "fn:server/proxy.test.ts:request",
+        "name": "request",
+        "filePath": "server/proxy.test.ts",
+        "startLine": 92,
+        "endLine": 127
+      },
+      {
+        "id": "fn:server/proxy.ts:pump",
+        "name": "pump",
+        "filePath": "server/proxy.ts",
+        "startLine": 185,
+        "endLine": 214
+      },
+      {
+        "id": "fn:src/App.tsx:App",
+        "name": "App",
+        "filePath": "src/App.tsx",
+        "startLine": 5,
+        "endLine": 12
+      },
+      {
+        "id": "fn:src/components/AgentStatus.tsx:AgentStatus",
+        "name": "AgentStatus",
+        "filePath": "src/components/AgentStatus.tsx",
+        "startLine": 19,
+        "endLine": 106
+      },
+      {
+        "id": "fn:src/components/AgentStatus.tsx:StatusDot",
+        "name": "StatusDot",
+        "filePath": "src/components/AgentStatus.tsx",
+        "startLine": 108,
+        "endLine": 120
+      },
+      {
+        "id": "fn:src/components/LandingPage.tsx:LandingPage",
+        "name": "LandingPage",
+        "filePath": "src/components/LandingPage.tsx",
+        "startLine": 14,
+        "endLine": 78
+      },
+      {
+        "id": "fn:src/components/Layout.tsx:Layout",
+        "name": "Layout",
+        "filePath": "src/components/Layout.tsx",
+        "startLine": 7,
+        "endLine": 11
+      },
+      {
+        "id": "fn:src/components/NodeDetail.tsx:DetailSection",
+        "name": "DetailSection",
+        "filePath": "src/components/NodeDetail.tsx",
+        "startLine": 18,
+        "endLine": 40
+      },
+      {
+        "id": "fn:src/components/NodeDetail.tsx:extractFilename",
+        "name": "extractFilename",
+        "filePath": "src/components/NodeDetail.tsx",
+        "startLine": 42,
+        "endLine": 44
+      },
+      {
+        "id": "fn:src/components/NodeDetail.tsx:KnowledgeBadge",
+        "name": "KnowledgeBadge",
+        "filePath": "src/components/NodeDetail.tsx",
+        "startLine": 46,
+        "endLine": 54
+      },
+      {
+        "id": "fn:src/components/NodeDetail.tsx:NodeDetail",
+        "name": "NodeDetail",
+        "filePath": "src/components/NodeDetail.tsx",
+        "startLine": 56,
+        "endLine": 127
+      },
+      {
+        "id": "fn:src/components/OverlayBar.tsx:OverlayBar",
+        "name": "OverlayBar",
+        "filePath": "src/components/OverlayBar.tsx",
+        "startLine": 15,
+        "endLine": 42
+      },
+      {
+        "id": "fn:src/components/QuizPanel.tsx:QuizPanel",
+        "name": "QuizPanel",
+        "filePath": "src/components/QuizPanel.tsx",
+        "startLine": 29,
+        "endLine": 240
+      },
+      {
+        "id": "fn:src/components/QuizPanel.tsx:handleSubmit",
+        "name": "handleSubmit",
+        "filePath": "src/components/QuizPanel.tsx",
+        "startLine": 57,
+        "endLine": 63
+      },
+      {
+        "id": "fn:src/components/QuizPanel.tsx:handleSkip",
+        "name": "handleSkip",
+        "filePath": "src/components/QuizPanel.tsx",
+        "startLine": 65,
+        "endLine": 68
+      },
+      {
+        "id": "fn:src/components/RepoView.tsx:RepoView",
+        "name": "RepoView",
+        "filePath": "src/components/RepoView.tsx",
+        "startLine": 22,
+        "endLine": 180
+      },
+      {
+        "id": "fn:src/components/VoiceControls.tsx:VoiceControls",
+        "name": "VoiceControls",
+        "filePath": "src/components/VoiceControls.tsx",
+        "startLine": 23,
+        "endLine": 229
+      },
+      {
+        "id": "fn:src/components/VoiceControls.tsx:handleVoxtralToggle",
+        "name": "handleVoxtralToggle",
+        "filePath": "src/components/VoiceControls.tsx",
+        "startLine": 42,
+        "endLine": 54
+      },
+      {
+        "id": "fn:src/data/sample-graph.ts:esc",
+        "name": "esc",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 246,
+        "endLine": 248
+      },
+      {
+        "id": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu",
+        "name": "loadSampleIntoKuzu",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 254,
+        "endLine": 323
+      },
+      {
+        "id": "fn:src/data/sample-graph.ts:nodeInsertCypher",
+        "name": "nodeInsertCypher",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 325,
+        "endLine": 336
+      },
+      {
+        "id": "fn:src/data/sample-graph.ts:linkInsertCypher",
+        "name": "linkInsertCypher",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 338,
+        "endLine": 351
+      },
+      {
+        "id": "fn:src/data/sample-graph.ts:classifyFunction",
+        "name": "classifyFunction",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 384,
+        "endLine": 388
+      },
+      {
+        "id": "fn:src/data/sample-graph.ts:seedKnowledgeData",
+        "name": "seedKnowledgeData",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 396,
+        "endLine": 467
+      },
+      {
+        "id": "fn:src/hooks/useGraph.ts:useGraph",
+        "name": "useGraph",
+        "filePath": "src/hooks/useGraph.ts",
+        "startLine": 11,
+        "endLine": 120
+      },
+      {
+        "id": "fn:src/hooks/useGraph.ts:derive",
+        "name": "derive",
+        "filePath": "src/hooks/useGraph.ts",
+        "startLine": 73,
+        "endLine": 88
+      },
+      {
+        "id": "fn:src/hooks/useInterview.ts:useInterview",
+        "name": "useInterview",
+        "filePath": "src/hooks/useInterview.ts",
+        "startLine": 27,
+        "endLine": 115
+      },
+      {
+        "id": "fn:src/hooks/useKnowledge.ts:esc",
+        "name": "esc",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 55,
+        "endLine": 57
+      },
+      {
+        "id": "fn:src/hooks/useKnowledge.ts:callMistral",
+        "name": "callMistral",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 62,
+        "endLine": 89
+      },
+      {
+        "id": "fn:src/hooks/useKnowledge.ts:useKnowledge",
+        "name": "useKnowledge",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 103,
+        "endLine": 583
+      },
+      {
+        "id": "fn:src/hooks/useKuzu.ts:useKuzu",
+        "name": "useKuzu",
+        "filePath": "src/hooks/useKuzu.ts",
+        "startLine": 23,
+        "endLine": 122
+      },
+      {
+        "id": "fn:src/hooks/useKuzu.ts:init",
+        "name": "init",
+        "filePath": "src/hooks/useKuzu.ts",
+        "startLine": 38,
+        "endLine": 98
+      },
+      {
+        "id": "fn:src/hooks/useTreeSitter.ts:useTreeSitter",
+        "name": "useTreeSitter",
+        "filePath": "src/hooks/useTreeSitter.ts",
+        "startLine": 10,
+        "endLine": 19
+      },
+      {
+        "id": "fn:src/hooks/useVoiceAgent.ts:useVoiceAgent",
+        "name": "useVoiceAgent",
+        "filePath": "src/hooks/useVoiceAgent.ts",
+        "startLine": 13,
+        "endLine": 61
+      },
+      {
+        "id": "fn:src/hooks/useVoxtralSTT.ts:useVoxtralSTT",
+        "name": "useVoxtralSTT",
+        "filePath": "src/hooks/useVoxtralSTT.ts",
+        "startLine": 28,
+        "endLine": 131
+      },
+      {
+        "id": "fn:src/lib/agent-tools.test.ts:createMockDeps",
+        "name": "createMockDeps",
+        "filePath": "src/lib/agent-tools.test.ts",
+        "startLine": 8,
+        "endLine": 17
+      },
+      {
+        "id": "fn:src/lib/agent-tools.ts:createAgentTools",
+        "name": "createAgentTools",
+        "filePath": "src/lib/agent-tools.ts",
+        "startLine": 17,
+        "endLine": 36
+      },
+      {
+        "id": "fn:src/lib/briefing.ts:gatherContext",
+        "name": "gatherContext",
+        "filePath": "src/lib/briefing.ts",
+        "startLine": 31,
+        "endLine": 51
+      },
+      {
+        "id": "fn:src/lib/briefing.ts:generateBriefing",
+        "name": "generateBriefing",
+        "filePath": "src/lib/briefing.ts",
+        "startLine": 56,
+        "endLine": 163
+      },
+      {
+        "id": "fn:src/lib/briefing.ts:composeBriefingPrompt",
+        "name": "composeBriefingPrompt",
+        "filePath": "src/lib/briefing.ts",
+        "startLine": 168,
+        "endLine": 210
+      },
+      {
+        "id": "fn:src/lib/git-data.test.ts:createMockConn",
+        "name": "createMockConn",
+        "filePath": "src/lib/git-data.test.ts",
+        "startLine": 8,
+        "endLine": 16
+      },
+      {
+        "id": "fn:src/lib/git-data.test.ts:mockFetchOk",
+        "name": "mockFetchOk",
+        "filePath": "src/lib/git-data.test.ts",
+        "startLine": 49,
+        "endLine": 55
+      },
+      {
+        "id": "fn:src/lib/git-data.test.ts:mockFetchFail",
+        "name": "mockFetchFail",
+        "filePath": "src/lib/git-data.test.ts",
+        "startLine": 57,
+        "endLine": 63
+      },
+      {
+        "id": "fn:src/lib/git-data.ts:esc",
+        "name": "esc",
+        "filePath": "src/lib/git-data.ts",
+        "startLine": 10,
+        "endLine": 12
+      },
+      {
+        "id": "fn:src/lib/git-data.ts:safeExec",
+        "name": "safeExec",
+        "filePath": "src/lib/git-data.ts",
+        "startLine": 28,
+        "endLine": 38
+      },
+      {
+        "id": "fn:src/lib/git-data.ts:loadGitData",
+        "name": "loadGitData",
+        "filePath": "src/lib/git-data.ts",
+        "startLine": 40,
+        "endLine": 70
+      },
+      {
+        "id": "fn:src/lib/graph-builder.test.ts:createMockConn",
+        "name": "createMockConn",
+        "filePath": "src/lib/graph-builder.test.ts",
+        "startLine": 8,
+        "endLine": 16
+      },
+      {
+        "id": "fn:src/lib/graph-builder.test.ts:mockFetchOk",
+        "name": "mockFetchOk",
+        "filePath": "src/lib/graph-builder.test.ts",
+        "startLine": 53,
+        "endLine": 59
+      },
+      {
+        "id": "fn:src/lib/graph-builder.test.ts:mockFetchFail",
+        "name": "mockFetchFail",
+        "filePath": "src/lib/graph-builder.test.ts",
+        "startLine": 61,
+        "endLine": 67
+      },
+      {
+        "id": "fn:src/lib/graph-builder.ts:esc",
+        "name": "esc",
+        "filePath": "src/lib/graph-builder.ts",
+        "startLine": 10,
+        "endLine": 12
+      },
+      {
+        "id": "fn:src/lib/graph-builder.ts:safeExec",
+        "name": "safeExec",
+        "filePath": "src/lib/graph-builder.ts",
+        "startLine": 29,
+        "endLine": 42
+      },
+      {
+        "id": "fn:src/lib/graph-builder.ts:loadGraphFromData",
+        "name": "loadGraphFromData",
+        "filePath": "src/lib/graph-builder.ts",
+        "startLine": 44,
+        "endLine": 126
+      },
+      {
+        "id": "fn:src/lib/graph-builder.ts:loadGraphFromJSON",
+        "name": "loadGraphFromJSON",
+        "filePath": "src/lib/graph-builder.ts",
+        "startLine": 129,
+        "endLine": 137
+      },
+      {
+        "id": "fn:src/lib/kuzu.test.ts:createMockConn",
+        "name": "createMockConn",
+        "filePath": "src/lib/kuzu.test.ts",
+        "startLine": 10,
+        "endLine": 23
+      },
+      {
+        "id": "fn:src/lib/kuzu.test.ts:createStructureMockConn",
+        "name": "createStructureMockConn",
+        "filePath": "src/lib/kuzu.test.ts",
+        "startLine": 241,
+        "endLine": 284
+      },
+      {
+        "id": "fn:src/lib/kuzu.test.ts:createKnowledgeMockConn",
+        "name": "createKnowledgeMockConn",
+        "filePath": "src/lib/kuzu.test.ts",
+        "startLine": 359,
+        "endLine": 395
+      },
+      {
+        "id": "fn:src/lib/kuzu.test.ts:createPeopleMockConn",
+        "name": "createPeopleMockConn",
+        "filePath": "src/lib/kuzu.test.ts",
+        "startLine": 495,
+        "endLine": 537
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:initKuzu",
+        "name": "initKuzu",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 25,
+        "endLine": 39
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:setupSchema",
+        "name": "setupSchema",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 44,
+        "endLine": 76
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:queryGraph",
+        "name": "queryGraph",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 81,
+        "endLine": 115
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:parseTable",
+        "name": "parseTable",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 120,
+        "endLine": 165
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:isSeparator",
+        "name": "isSeparator",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 129,
+        "endLine": 129
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:deriveVizData",
+        "name": "deriveVizData",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 192,
+        "endLine": 666
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:discrepancyColor",
+        "name": "discrepancyColor",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 563,
+        "endLine": 570
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:esc",
+        "name": "esc",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 670,
+        "endLine": 672
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:upsertUnderstands",
+        "name": "upsertUnderstands",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 678,
+        "endLine": 722
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:createDiscussion",
+        "name": "createDiscussion",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 728,
+        "endLine": 790
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:getQuizCandidates",
+        "name": "getQuizCandidates",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 796,
+        "endLine": 872
+      },
+      {
+        "id": "fn:src/lib/kuzu.ts:getFunctionContext",
+        "name": "getFunctionContext",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 878,
+        "endLine": 991
+      },
+      {
+        "id": "fn:src/lib/utils.ts:cn",
+        "name": "cn",
+        "filePath": "src/lib/utils.ts",
+        "startLine": 4,
+        "endLine": 6
+      }
+    ],
+    "classes": [
+      {
+        "id": "c:scripts/clone-repos.ts:RepoEntry",
+        "name": "RepoEntry",
+        "filePath": "scripts/clone-repos.ts",
+        "startLine": 13,
+        "endLine": 18
+      },
+      {
+        "id": "c:scripts/git-analyze.ts:FileStats",
+        "name": "FileStats",
+        "filePath": "scripts/git-analyze.ts",
+        "startLine": 13,
+        "endLine": 18
+      },
+      {
+        "id": "c:scripts/git-analyze.ts:Contributor",
+        "name": "Contributor",
+        "filePath": "scripts/git-analyze.ts",
+        "startLine": 20,
+        "endLine": 25
+      },
+      {
+        "id": "c:scripts/git-analyze.ts:GitDataJSON",
+        "name": "GitDataJSON",
+        "filePath": "scripts/git-analyze.ts",
+        "startLine": 27,
+        "endLine": 36
+      },
+      {
+        "id": "c:scripts/git-analyze.ts:CommitInfo",
+        "name": "CommitInfo",
+        "filePath": "scripts/git-analyze.ts",
+        "startLine": 77,
+        "endLine": 83
+      },
+      {
+        "id": "c:scripts/lib/languages.ts:LanguageInfo",
+        "name": "LanguageInfo",
+        "filePath": "scripts/lib/languages.ts",
+        "startLine": 30,
+        "endLine": 33
+      },
+      {
+        "id": "c:scripts/lib/symbol-table.ts:SymbolDefinition",
+        "name": "SymbolDefinition",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 7,
+        "endLine": 11
+      },
+      {
+        "id": "c:scripts/lib/symbol-table.ts:SymbolTable",
+        "name": "SymbolTable",
+        "filePath": "scripts/lib/symbol-table.ts",
+        "startLine": 13,
+        "endLine": 19
+      },
+      {
+        "id": "c:scripts/parse-all.ts:RepoEntry",
+        "name": "RepoEntry",
+        "filePath": "scripts/parse-all.ts",
+        "startLine": 12,
+        "endLine": 17
+      },
+      {
+        "id": "c:scripts/parse-repo.ts:SourceFile",
+        "name": "SourceFile",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 32,
+        "endLine": 37
+      },
+      {
+        "id": "c:scripts/parse-repo.ts:GraphJSON",
+        "name": "GraphJSON",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 39,
+        "endLine": 61
+      },
+      {
+        "id": "c:scripts/parse-repo.ts:ResolveResult",
+        "name": "ResolveResult",
+        "filePath": "scripts/parse-repo.ts",
+        "startLine": 412,
+        "endLine": 416
+      },
+      {
+        "id": "c:src/components/AgentStatus.tsx:AgentStatusProps",
+        "name": "AgentStatusProps",
+        "filePath": "src/components/AgentStatus.tsx",
+        "startLine": 6,
+        "endLine": 17
+      },
+      {
+        "id": "c:src/components/ErrorBoundary.tsx:ErrorBoundaryProps",
+        "name": "ErrorBoundaryProps",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 5,
+        "endLine": 7
+      },
+      {
+        "id": "c:src/components/ErrorBoundary.tsx:ErrorBoundaryState",
+        "name": "ErrorBoundaryState",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 9,
+        "endLine": 12
+      },
+      {
+        "id": "c:src/components/ErrorBoundary.tsx:ErrorBoundary",
+        "name": "ErrorBoundary",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 14,
+        "endLine": 51
+      },
+      {
+        "id": "c:src/components/Graph3D.tsx:Graph3DProps",
+        "name": "Graph3DProps",
+        "filePath": "src/components/Graph3D.tsx",
+        "startLine": 31,
+        "endLine": 35
+      },
+      {
+        "id": "c:src/components/Graph3D.tsx:Graph3DHandle",
+        "name": "Graph3DHandle",
+        "filePath": "src/components/Graph3D.tsx",
+        "startLine": 37,
+        "endLine": 39
+      },
+      {
+        "id": "c:src/components/Layout.tsx:LayoutProps",
+        "name": "LayoutProps",
+        "filePath": "src/components/Layout.tsx",
+        "startLine": 3,
+        "endLine": 5
+      },
+      {
+        "id": "c:src/components/NodeDetail.tsx:NodeDetailProps",
+        "name": "NodeDetailProps",
+        "filePath": "src/components/NodeDetail.tsx",
+        "startLine": 5,
+        "endLine": 8
+      },
+      {
+        "id": "c:src/components/OverlayBar.tsx:OverlayBarProps",
+        "name": "OverlayBarProps",
+        "filePath": "src/components/OverlayBar.tsx",
+        "startLine": 10,
+        "endLine": 13
+      },
+      {
+        "id": "c:src/components/QuizPanel.tsx:QuizFeedback",
+        "name": "QuizFeedback",
+        "filePath": "src/components/QuizPanel.tsx",
+        "startLine": 5,
+        "endLine": 9
+      },
+      {
+        "id": "c:src/components/QuizPanel.tsx:QuizSessionStats",
+        "name": "QuizSessionStats",
+        "filePath": "src/components/QuizPanel.tsx",
+        "startLine": 11,
+        "endLine": 15
+      },
+      {
+        "id": "c:src/components/QuizPanel.tsx:QuizPanelProps",
+        "name": "QuizPanelProps",
+        "filePath": "src/components/QuizPanel.tsx",
+        "startLine": 17,
+        "endLine": 27
+      },
+      {
+        "id": "c:src/components/VoiceControls.tsx:VoiceControlsProps",
+        "name": "VoiceControlsProps",
+        "filePath": "src/components/VoiceControls.tsx",
+        "startLine": 9,
+        "endLine": 21
+      },
+      {
+        "id": "c:src/data/sample-graph.ts:PersonSeed",
+        "name": "PersonSeed",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 155,
+        "endLine": 159
+      },
+      {
+        "id": "c:src/data/sample-graph.ts:UnderstandsSeed",
+        "name": "UnderstandsSeed",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 161,
+        "endLine": 167
+      },
+      {
+        "id": "c:src/data/sample-graph.ts:ContributedSeed",
+        "name": "ContributedSeed",
+        "filePath": "src/data/sample-graph.ts",
+        "startLine": 169,
+        "endLine": 175
+      },
+      {
+        "id": "c:src/hooks/useInterview.ts:UseInterviewDeps",
+        "name": "UseInterviewDeps",
+        "filePath": "src/hooks/useInterview.ts",
+        "startLine": 18,
+        "endLine": 25
+      },
+      {
+        "id": "c:src/hooks/useKnowledge.ts:ActiveQuiz",
+        "name": "ActiveQuiz",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 24,
+        "endLine": 30
+      },
+      {
+        "id": "c:src/hooks/useKnowledge.ts:QuizHistoryEntry",
+        "name": "QuizHistoryEntry",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 32,
+        "endLine": 40
+      },
+      {
+        "id": "c:src/hooks/useKnowledge.ts:QuizCandidate",
+        "name": "QuizCandidate",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 42,
+        "endLine": 50
+      },
+      {
+        "id": "c:src/hooks/useKnowledge.ts:QuizFeedback",
+        "name": "QuizFeedback",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 91,
+        "endLine": 95
+      },
+      {
+        "id": "c:src/hooks/useKnowledge.ts:QuizSessionStats",
+        "name": "QuizSessionStats",
+        "filePath": "src/hooks/useKnowledge.ts",
+        "startLine": 97,
+        "endLine": 101
+      },
+      {
+        "id": "c:src/hooks/useKuzu.ts:UseKuzuReturn",
+        "name": "UseKuzuReturn",
+        "filePath": "src/hooks/useKuzu.ts",
+        "startLine": 10,
+        "endLine": 16
+      },
+      {
+        "id": "c:src/hooks/useVoxtralSTT.ts:VoxtralSTTState",
+        "name": "VoxtralSTTState",
+        "filePath": "src/hooks/useVoxtralSTT.ts",
+        "startLine": 19,
+        "endLine": 26
+      },
+      {
+        "id": "c:src/lib/agent-tools.ts:AgentToolDeps",
+        "name": "AgentToolDeps",
+        "filePath": "src/lib/agent-tools.ts",
+        "startLine": 10,
+        "endLine": 15
+      },
+      {
+        "id": "c:src/lib/briefing.ts:CodebaseContext",
+        "name": "CodebaseContext",
+        "filePath": "src/lib/briefing.ts",
+        "startLine": 8,
+        "endLine": 15
+      },
+      {
+        "id": "c:src/lib/briefing.ts:BriefingQuestion",
+        "name": "BriefingQuestion",
+        "filePath": "src/lib/briefing.ts",
+        "startLine": 17,
+        "endLine": 21
+      },
+      {
+        "id": "c:src/lib/briefing.ts:BriefingPacket",
+        "name": "BriefingPacket",
+        "filePath": "src/lib/briefing.ts",
+        "startLine": 23,
+        "endLine": 26
+      },
+      {
+        "id": "c:src/lib/git-data.ts:GitDataJSON",
+        "name": "GitDataJSON",
+        "filePath": "src/lib/git-data.ts",
+        "startLine": 14,
+        "endLine": 26
+      },
+      {
+        "id": "c:src/lib/graph-builder.ts:GraphJSON",
+        "name": "GraphJSON",
+        "filePath": "src/lib/graph-builder.ts",
+        "startLine": 14,
+        "endLine": 26
+      },
+      {
+        "id": "c:src/lib/kuzu.ts:KuzuInstance",
+        "name": "KuzuInstance",
+        "filePath": "src/lib/kuzu.ts",
+        "startLine": 16,
+        "endLine": 19
+      },
+      {
+        "id": "c:src/lib/voice-provider.ts:VoiceProvider",
+        "name": "VoiceProvider",
+        "filePath": "src/lib/voice-provider.ts",
+        "startLine": 6,
+        "endLine": 13
+      },
+      {
+        "id": "c:src/types/graph.ts:FileNode",
+        "name": "FileNode",
+        "filePath": "src/types/graph.ts",
+        "startLine": 5,
+        "endLine": 11
+      },
+      {
+        "id": "c:src/types/graph.ts:FunctionNode",
+        "name": "FunctionNode",
+        "filePath": "src/types/graph.ts",
+        "startLine": 13,
+        "endLine": 21
+      },
+      {
+        "id": "c:src/types/graph.ts:ClassNode",
+        "name": "ClassNode",
+        "filePath": "src/types/graph.ts",
+        "startLine": 23,
+        "endLine": 29
+      },
+      {
+        "id": "c:src/types/graph.ts:PersonNode",
+        "name": "PersonNode",
+        "filePath": "src/types/graph.ts",
+        "startLine": 32,
+        "endLine": 36
+      },
+      {
+        "id": "c:src/types/graph.ts:ContributedRel",
+        "name": "ContributedRel",
+        "filePath": "src/types/graph.ts",
+        "startLine": 40,
+        "endLine": 51
+      },
+      {
+        "id": "c:src/types/graph.ts:UnderstandsRel",
+        "name": "UnderstandsRel",
+        "filePath": "src/types/graph.ts",
+        "startLine": 53,
+        "endLine": 62
+      },
+      {
+        "id": "c:src/types/graph.ts:DiscussionNode",
+        "name": "DiscussionNode",
+        "filePath": "src/types/graph.ts",
+        "startLine": 65,
+        "endLine": 73
+      },
+      {
+        "id": "c:src/types/graph.ts:HasParticipantRel",
+        "name": "HasParticipantRel",
+        "filePath": "src/types/graph.ts",
+        "startLine": 75,
+        "endLine": 77
+      },
+      {
+        "id": "c:src/types/graph.ts:AboutRel",
+        "name": "AboutRel",
+        "filePath": "src/types/graph.ts",
+        "startLine": 79,
+        "endLine": 81
+      },
+      {
+        "id": "c:src/types/graph.ts:VizNode",
+        "name": "VizNode",
+        "filePath": "src/types/graph.ts",
+        "startLine": 93,
+        "endLine": 104
+      },
+      {
+        "id": "c:src/types/graph.ts:VizLink",
+        "name": "VizLink",
+        "filePath": "src/types/graph.ts",
+        "startLine": 106,
+        "endLine": 111
+      },
+      {
+        "id": "c:src/types/graph.ts:GraphData",
+        "name": "GraphData",
+        "filePath": "src/types/graph.ts",
+        "startLine": 113,
+        "endLine": 116
+      },
+      {
+        "id": "c:src/types/repo.ts:RepoInfo",
+        "name": "RepoInfo",
+        "filePath": "src/types/repo.ts",
+        "startLine": 1,
+        "endLine": 9
+      },
+      {
+        "id": "c:src/worklets/pcm-processor.worklet.ts:PCMProcessor",
+        "name": "PCMProcessor",
+        "filePath": "src/worklets/pcm-processor.worklet.ts",
+        "startLine": 7,
+        "endLine": 20
+      }
+    ],
+    "methods": [
+      {
+        "id": "m:src/components/ErrorBoundary.tsx:constructor",
+        "name": "constructor",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 15,
+        "endLine": 18
+      },
+      {
+        "id": "m:src/components/ErrorBoundary.tsx:getDerivedStateFromError",
+        "name": "getDerivedStateFromError",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 20,
+        "endLine": 22
+      },
+      {
+        "id": "m:src/components/ErrorBoundary.tsx:componentDidCatch",
+        "name": "componentDidCatch",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 24,
+        "endLine": 26
+      },
+      {
+        "id": "m:src/components/ErrorBoundary.tsx:render",
+        "name": "render",
+        "filePath": "src/components/ErrorBoundary.tsx",
+        "startLine": 28,
+        "endLine": 50
+      },
+      {
+        "id": "m:src/worklets/pcm-processor.worklet.ts:process",
+        "name": "process",
+        "filePath": "src/worklets/pcm-processor.worklet.ts",
+        "startLine": 8,
+        "endLine": 19
+      }
+    ]
+  },
+  "edges": {
+    "contains": [
+      {
+        "source": "f:scripts/clone-repos.ts",
+        "target": "c:scripts/clone-repos.ts:RepoEntry"
+      },
+      {
+        "source": "f:scripts/git-analyze.ts",
+        "target": "c:scripts/git-analyze.ts:FileStats"
+      },
+      {
+        "source": "f:scripts/git-analyze.ts",
+        "target": "c:scripts/git-analyze.ts:Contributor"
+      },
+      {
+        "source": "f:scripts/git-analyze.ts",
+        "target": "c:scripts/git-analyze.ts:GitDataJSON"
+      },
+      {
+        "source": "f:scripts/git-analyze.ts",
+        "target": "c:scripts/git-analyze.ts:CommitInfo"
+      },
+      {
+        "source": "f:scripts/lib/languages.ts",
+        "target": "c:scripts/lib/languages.ts:LanguageInfo"
+      },
+      {
+        "source": "f:scripts/lib/languages.ts",
+        "target": "fn:scripts/lib/languages.ts:getLanguageFromFilename"
+      },
+      {
+        "source": "f:scripts/lib/languages.ts",
+        "target": "fn:scripts/lib/languages.ts:shouldIgnoreDir"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "c:scripts/lib/symbol-table.ts:SymbolDefinition"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "c:scripts/lib/symbol-table.ts:SymbolTable"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:createSymbolTable"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:add"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:lookupExact"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:lookupFuzzy"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:getStats"
+      },
+      {
+        "source": "f:scripts/lib/symbol-table.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:clear"
+      },
+      {
+        "source": "f:scripts/parse-all.ts",
+        "target": "c:scripts/parse-all.ts:RepoEntry"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "c:scripts/parse-repo.ts:SourceFile"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "c:scripts/parse-repo.ts:GraphJSON"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:getGrammar"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:discoverFiles"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:walk"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:resolveImportPath"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:findEnclosingFunction"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "c:scripts/parse-repo.ts:ResolveResult"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:resolveCallTarget"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamOk"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamStream"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamFail"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamNullBody"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:request"
+      },
+      {
+        "source": "f:server/proxy.ts",
+        "target": "fn:server/proxy.ts:pump"
+      },
+      {
+        "source": "f:src/App.tsx",
+        "target": "fn:src/App.tsx:App"
+      },
+      {
+        "source": "f:src/components/AgentStatus.tsx",
+        "target": "c:src/components/AgentStatus.tsx:AgentStatusProps"
+      },
+      {
+        "source": "f:src/components/AgentStatus.tsx",
+        "target": "fn:src/components/AgentStatus.tsx:AgentStatus"
+      },
+      {
+        "source": "f:src/components/AgentStatus.tsx",
+        "target": "fn:src/components/AgentStatus.tsx:StatusDot"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "c:src/components/ErrorBoundary.tsx:ErrorBoundaryProps"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "c:src/components/ErrorBoundary.tsx:ErrorBoundaryState"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "c:src/components/ErrorBoundary.tsx:ErrorBoundary"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "m:src/components/ErrorBoundary.tsx:constructor"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "m:src/components/ErrorBoundary.tsx:getDerivedStateFromError"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "m:src/components/ErrorBoundary.tsx:componentDidCatch"
+      },
+      {
+        "source": "f:src/components/ErrorBoundary.tsx",
+        "target": "m:src/components/ErrorBoundary.tsx:render"
+      },
+      {
+        "source": "f:src/components/Graph3D.tsx",
+        "target": "c:src/components/Graph3D.tsx:Graph3DProps"
+      },
+      {
+        "source": "f:src/components/Graph3D.tsx",
+        "target": "c:src/components/Graph3D.tsx:Graph3DHandle"
+      },
+      {
+        "source": "f:src/components/LandingPage.tsx",
+        "target": "fn:src/components/LandingPage.tsx:LandingPage"
+      },
+      {
+        "source": "f:src/components/Layout.tsx",
+        "target": "c:src/components/Layout.tsx:LayoutProps"
+      },
+      {
+        "source": "f:src/components/Layout.tsx",
+        "target": "fn:src/components/Layout.tsx:Layout"
+      },
+      {
+        "source": "f:src/components/NodeDetail.tsx",
+        "target": "c:src/components/NodeDetail.tsx:NodeDetailProps"
+      },
+      {
+        "source": "f:src/components/NodeDetail.tsx",
+        "target": "fn:src/components/NodeDetail.tsx:DetailSection"
+      },
+      {
+        "source": "f:src/components/NodeDetail.tsx",
+        "target": "fn:src/components/NodeDetail.tsx:extractFilename"
+      },
+      {
+        "source": "f:src/components/NodeDetail.tsx",
+        "target": "fn:src/components/NodeDetail.tsx:KnowledgeBadge"
+      },
+      {
+        "source": "f:src/components/NodeDetail.tsx",
+        "target": "fn:src/components/NodeDetail.tsx:NodeDetail"
+      },
+      {
+        "source": "f:src/components/OverlayBar.tsx",
+        "target": "c:src/components/OverlayBar.tsx:OverlayBarProps"
+      },
+      {
+        "source": "f:src/components/OverlayBar.tsx",
+        "target": "fn:src/components/OverlayBar.tsx:OverlayBar"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "c:src/components/QuizPanel.tsx:QuizFeedback"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "c:src/components/QuizPanel.tsx:QuizSessionStats"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "c:src/components/QuizPanel.tsx:QuizPanelProps"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "fn:src/components/QuizPanel.tsx:QuizPanel"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "fn:src/components/QuizPanel.tsx:handleSubmit"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "fn:src/components/QuizPanel.tsx:handleSkip"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "fn:src/components/RepoView.tsx:RepoView"
+      },
+      {
+        "source": "f:src/components/VoiceControls.tsx",
+        "target": "c:src/components/VoiceControls.tsx:VoiceControlsProps"
+      },
+      {
+        "source": "f:src/components/VoiceControls.tsx",
+        "target": "fn:src/components/VoiceControls.tsx:VoiceControls"
+      },
+      {
+        "source": "f:src/components/VoiceControls.tsx",
+        "target": "fn:src/components/VoiceControls.tsx:handleVoxtralToggle"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "c:src/data/sample-graph.ts:PersonSeed"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "c:src/data/sample-graph.ts:UnderstandsSeed"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "c:src/data/sample-graph.ts:ContributedSeed"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "fn:src/data/sample-graph.ts:esc"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "fn:src/data/sample-graph.ts:nodeInsertCypher"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "fn:src/data/sample-graph.ts:linkInsertCypher"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "fn:src/data/sample-graph.ts:classifyFunction"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "fn:src/data/sample-graph.ts:seedKnowledgeData"
+      },
+      {
+        "source": "f:src/hooks/useGraph.ts",
+        "target": "fn:src/hooks/useGraph.ts:useGraph"
+      },
+      {
+        "source": "f:src/hooks/useGraph.ts",
+        "target": "fn:src/hooks/useGraph.ts:derive"
+      },
+      {
+        "source": "f:src/hooks/useInterview.ts",
+        "target": "c:src/hooks/useInterview.ts:UseInterviewDeps"
+      },
+      {
+        "source": "f:src/hooks/useInterview.ts",
+        "target": "fn:src/hooks/useInterview.ts:useInterview"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "c:src/hooks/useKnowledge.ts:ActiveQuiz"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "c:src/hooks/useKnowledge.ts:QuizHistoryEntry"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "c:src/hooks/useKnowledge.ts:QuizCandidate"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "fn:src/hooks/useKnowledge.ts:esc"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "fn:src/hooks/useKnowledge.ts:callMistral"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "c:src/hooks/useKnowledge.ts:QuizFeedback"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "c:src/hooks/useKnowledge.ts:QuizSessionStats"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "fn:src/hooks/useKnowledge.ts:useKnowledge"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "c:src/hooks/useKuzu.ts:UseKuzuReturn"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "fn:src/hooks/useKuzu.ts:useKuzu"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "fn:src/hooks/useKuzu.ts:init"
+      },
+      {
+        "source": "f:src/hooks/useTreeSitter.ts",
+        "target": "fn:src/hooks/useTreeSitter.ts:useTreeSitter"
+      },
+      {
+        "source": "f:src/hooks/useVoiceAgent.ts",
+        "target": "fn:src/hooks/useVoiceAgent.ts:useVoiceAgent"
+      },
+      {
+        "source": "f:src/hooks/useVoxtralSTT.ts",
+        "target": "c:src/hooks/useVoxtralSTT.ts:VoxtralSTTState"
+      },
+      {
+        "source": "f:src/hooks/useVoxtralSTT.ts",
+        "target": "fn:src/hooks/useVoxtralSTT.ts:useVoxtralSTT"
+      },
+      {
+        "source": "f:src/lib/agent-tools.test.ts",
+        "target": "fn:src/lib/agent-tools.test.ts:createMockDeps"
+      },
+      {
+        "source": "f:src/lib/agent-tools.ts",
+        "target": "c:src/lib/agent-tools.ts:AgentToolDeps"
+      },
+      {
+        "source": "f:src/lib/agent-tools.ts",
+        "target": "fn:src/lib/agent-tools.ts:createAgentTools"
+      },
+      {
+        "source": "f:src/lib/briefing.ts",
+        "target": "c:src/lib/briefing.ts:CodebaseContext"
+      },
+      {
+        "source": "f:src/lib/briefing.ts",
+        "target": "c:src/lib/briefing.ts:BriefingQuestion"
+      },
+      {
+        "source": "f:src/lib/briefing.ts",
+        "target": "c:src/lib/briefing.ts:BriefingPacket"
+      },
+      {
+        "source": "f:src/lib/briefing.ts",
+        "target": "fn:src/lib/briefing.ts:gatherContext"
+      },
+      {
+        "source": "f:src/lib/briefing.ts",
+        "target": "fn:src/lib/briefing.ts:generateBriefing"
+      },
+      {
+        "source": "f:src/lib/briefing.ts",
+        "target": "fn:src/lib/briefing.ts:composeBriefingPrompt"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.test.ts:createMockConn"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.test.ts:mockFetchOk"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.test.ts:mockFetchFail"
+      },
+      {
+        "source": "f:src/lib/git-data.ts",
+        "target": "fn:src/lib/git-data.ts:esc"
+      },
+      {
+        "source": "f:src/lib/git-data.ts",
+        "target": "c:src/lib/git-data.ts:GitDataJSON"
+      },
+      {
+        "source": "f:src/lib/git-data.ts",
+        "target": "fn:src/lib/git-data.ts:safeExec"
+      },
+      {
+        "source": "f:src/lib/git-data.ts",
+        "target": "fn:src/lib/git-data.ts:loadGitData"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.test.ts:createMockConn"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.test.ts:mockFetchOk"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.test.ts:mockFetchFail"
+      },
+      {
+        "source": "f:src/lib/graph-builder.ts",
+        "target": "fn:src/lib/graph-builder.ts:esc"
+      },
+      {
+        "source": "f:src/lib/graph-builder.ts",
+        "target": "c:src/lib/graph-builder.ts:GraphJSON"
+      },
+      {
+        "source": "f:src/lib/graph-builder.ts",
+        "target": "fn:src/lib/graph-builder.ts:safeExec"
+      },
+      {
+        "source": "f:src/lib/graph-builder.ts",
+        "target": "fn:src/lib/graph-builder.ts:loadGraphFromData"
+      },
+      {
+        "source": "f:src/lib/graph-builder.ts",
+        "target": "fn:src/lib/graph-builder.ts:loadGraphFromJSON"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createMockConn"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createStructureMockConn"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createKnowledgeMockConn"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createPeopleMockConn"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "c:src/lib/kuzu.ts:KuzuInstance"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:initKuzu"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:setupSchema"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:queryGraph"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:parseTable"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:isSeparator"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:deriveVizData"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:discrepancyColor"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:esc"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:upsertUnderstands"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:createDiscussion"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:getQuizCandidates"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "fn:src/lib/kuzu.ts:getFunctionContext"
+      },
+      {
+        "source": "f:src/lib/utils.ts",
+        "target": "fn:src/lib/utils.ts:cn"
+      },
+      {
+        "source": "f:src/lib/voice-provider.ts",
+        "target": "c:src/lib/voice-provider.ts:VoiceProvider"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:FileNode"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:FunctionNode"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:ClassNode"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:PersonNode"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:ContributedRel"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:UnderstandsRel"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:DiscussionNode"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:HasParticipantRel"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:AboutRel"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:VizNode"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:VizLink"
+      },
+      {
+        "source": "f:src/types/graph.ts",
+        "target": "c:src/types/graph.ts:GraphData"
+      },
+      {
+        "source": "f:src/types/repo.ts",
+        "target": "c:src/types/repo.ts:RepoInfo"
+      },
+      {
+        "source": "f:src/worklets/pcm-processor.worklet.ts",
+        "target": "c:src/worklets/pcm-processor.worklet.ts:PCMProcessor"
+      },
+      {
+        "source": "f:src/worklets/pcm-processor.worklet.ts",
+        "target": "m:src/worklets/pcm-processor.worklet.ts:process"
+      }
+    ],
+    "calls": [
+      {
+        "source": "f:scripts/git-analyze.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:add",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:scripts/lib/symbol-table.ts:clear",
+        "target": "fn:scripts/lib/symbol-table.ts:clear",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:walk",
+        "target": "fn:scripts/lib/languages.ts:shouldIgnoreDir",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:walk",
+        "target": "fn:scripts/parse-repo.ts:walk",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:walk",
+        "target": "fn:scripts/lib/languages.ts:getLanguageFromFilename",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:discoverFiles",
+        "target": "fn:scripts/parse-repo.ts:walk",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:discoverFiles",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:add",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:createSymbolTable",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:getGrammar",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:resolveImportPath",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:findEnclosingFunction",
+        "target": "fn:scripts/lib/symbol-table.ts:lookupExact",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:resolveCallTarget",
+        "target": "fn:scripts/lib/symbol-table.ts:lookupExact",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:scripts/parse-repo.ts:resolveCallTarget",
+        "target": "fn:scripts/lib/symbol-table.ts:lookupFuzzy",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:resolveCallTarget",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/parse-repo.ts:findEnclosingFunction",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:clear",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "fn:scripts/lib/symbol-table.ts:getStats",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:server/proxy.test.ts:request",
+        "target": "fn:server/proxy.test.ts:request",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:request",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamOk",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamFail",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamStream",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "fn:server/proxy.test.ts:mockUpstreamNullBody",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:server/proxy.ts",
+        "target": "fn:server/proxy.ts:pump",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/components/AgentStatus.tsx:AgentStatus",
+        "target": "fn:src/lib/utils.ts:cn",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/AgentStatus.tsx:StatusDot",
+        "target": "fn:src/lib/utils.ts:cn",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/components/Graph3D.tsx",
+        "target": "fn:scripts/lib/symbol-table.ts:add",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/components/NodeDetail.tsx:NodeDetail",
+        "target": "fn:src/components/NodeDetail.tsx:extractFilename",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/components/OverlayBar.tsx:OverlayBar",
+        "target": "fn:src/lib/utils.ts:cn",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/QuizPanel.tsx:QuizPanel",
+        "target": "fn:src/lib/utils.ts:cn",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/RepoView.tsx:RepoView",
+        "target": "fn:src/hooks/useKuzu.ts:useKuzu",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/RepoView.tsx:RepoView",
+        "target": "fn:src/hooks/useGraph.ts:useGraph",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/RepoView.tsx:RepoView",
+        "target": "fn:src/hooks/useKnowledge.ts:useKnowledge",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/RepoView.tsx:RepoView",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/RepoView.tsx:RepoView",
+        "target": "fn:src/hooks/useInterview.ts:useInterview",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/VoiceControls.tsx:VoiceControls",
+        "target": "fn:src/hooks/useVoxtralSTT.ts:useVoxtralSTT",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/components/VoiceControls.tsx:VoiceControls",
+        "target": "fn:src/lib/utils.ts:cn",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu",
+        "target": "fn:src/data/sample-graph.ts:nodeInsertCypher",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu",
+        "target": "fn:src/data/sample-graph.ts:linkInsertCypher",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu",
+        "target": "fn:src/data/sample-graph.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:nodeInsertCypher",
+        "target": "fn:src/data/sample-graph.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:linkInsertCypher",
+        "target": "fn:src/data/sample-graph.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:seedKnowledgeData",
+        "target": "fn:src/data/sample-graph.ts:classifyFunction",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/data/sample-graph.ts:seedKnowledgeData",
+        "target": "fn:src/data/sample-graph.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/hooks/useGraph.ts:useGraph",
+        "target": "fn:scripts/lib/symbol-table.ts:add",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/hooks/useGraph.ts:derive",
+        "target": "fn:src/lib/kuzu.ts:deriveVizData",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useGraph.ts:useGraph",
+        "target": "fn:src/hooks/useGraph.ts:derive",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/hooks/useInterview.ts:useInterview",
+        "target": "fn:src/hooks/useVoiceAgent.ts:useVoiceAgent",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useInterview.ts:useInterview",
+        "target": "fn:src/lib/briefing.ts:gatherContext",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useInterview.ts:useInterview",
+        "target": "fn:src/lib/briefing.ts:generateBriefing",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useInterview.ts:useInterview",
+        "target": "fn:src/lib/briefing.ts:composeBriefingPrompt",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKnowledge.ts:useKnowledge",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKnowledge.ts:useKnowledge",
+        "target": "fn:src/lib/kuzu.ts:getQuizCandidates",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKnowledge.ts:useKnowledge",
+        "target": "fn:src/lib/kuzu.ts:esc",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKnowledge.ts:useKnowledge",
+        "target": "fn:src/hooks/useKnowledge.ts:callMistral",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:init",
+        "target": "fn:src/lib/kuzu.ts:initKuzu",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:init",
+        "target": "fn:src/lib/graph-builder.ts:loadGraphFromData",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:init",
+        "target": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:init",
+        "target": "fn:src/lib/git-data.ts:loadGitData",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:init",
+        "target": "fn:src/data/sample-graph.ts:seedKnowledgeData",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:useKuzu",
+        "target": "fn:src/hooks/useKuzu.ts:init",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/hooks/useKuzu.ts:useKuzu",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/hooks/useVoiceAgent.ts:useVoiceAgent",
+        "target": "fn:src/lib/agent-tools.ts:createAgentTools",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/agent-tools.test.ts",
+        "target": "fn:src/lib/agent-tools.test.ts:createMockDeps",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/agent-tools.test.ts",
+        "target": "fn:src/lib/agent-tools.ts:createAgentTools",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/agent-tools.test.ts",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.test.ts:mockFetchOk",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.test.ts:createMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.ts:loadGitData",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "fn:src/lib/git-data.test.ts:mockFetchFail",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/git-data.ts:loadGitData",
+        "target": "fn:src/lib/git-data.ts:safeExec",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/git-data.ts:loadGitData",
+        "target": "fn:src/lib/git-data.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.test.ts:mockFetchOk",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.test.ts:createMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.ts:loadGraphFromJSON",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "fn:src/lib/graph-builder.test.ts:mockFetchFail",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/graph-builder.ts:loadGraphFromData",
+        "target": "fn:src/lib/graph-builder.ts:safeExec",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/graph-builder.ts:loadGraphFromData",
+        "target": "fn:src/lib/graph-builder.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/graph-builder.ts:loadGraphFromJSON",
+        "target": "fn:src/lib/graph-builder.ts:loadGraphFromData",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.ts:parseTable",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.ts:setupSchema",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/data/sample-graph.ts:loadSampleIntoKuzu",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/lib/kuzu.test.ts:createStructureMockConn",
+        "target": "fn:src/lib/kuzu.test.ts:createMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createStructureMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.ts:deriveVizData",
+        "confidence": 0.9,
+        "reason": "import-resolved"
+      },
+      {
+        "source": "fn:src/lib/kuzu.test.ts:createKnowledgeMockConn",
+        "target": "fn:src/lib/kuzu.test.ts:createMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createKnowledgeMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.test.ts:createPeopleMockConn",
+        "target": "fn:src/lib/kuzu.test.ts:createMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "fn:src/lib/kuzu.test.ts:createPeopleMockConn",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:initKuzu",
+        "target": "fn:src/lib/kuzu.ts:setupSchema",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:queryGraph",
+        "target": "fn:src/lib/kuzu.ts:parseTable",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:parseTable",
+        "target": "fn:src/lib/kuzu.ts:isSeparator",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:deriveVizData",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:deriveVizData",
+        "target": "fn:scripts/lib/symbol-table.ts:add",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:deriveVizData",
+        "target": "fn:src/lib/kuzu.ts:discrepancyColor",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:upsertUnderstands",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:upsertUnderstands",
+        "target": "fn:src/lib/kuzu.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:createDiscussion",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:createDiscussion",
+        "target": "fn:src/lib/kuzu.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:getQuizCandidates",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:getQuizCandidates",
+        "target": "fn:src/lib/kuzu.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:getQuizCandidates",
+        "target": "fn:scripts/lib/symbol-table.ts:add",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:getFunctionContext",
+        "target": "fn:src/lib/kuzu.ts:queryGraph",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "fn:src/lib/kuzu.ts:getFunctionContext",
+        "target": "fn:src/lib/kuzu.ts:esc",
+        "confidence": 0.85,
+        "reason": "same-file"
+      },
+      {
+        "source": "f:src/main.tsx",
+        "target": "m:src/components/ErrorBoundary.tsx:render",
+        "confidence": 0.5,
+        "reason": "fuzzy-global"
+      }
+    ],
+    "imports": [
+      {
+        "source": "f:scripts/lib/languages.ts",
+        "target": "f:scripts/lib/queries.ts"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "f:scripts/lib/queries.ts"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "f:scripts/lib/languages.ts"
+      },
+      {
+        "source": "f:scripts/parse-repo.ts",
+        "target": "f:scripts/lib/symbol-table.ts"
+      },
+      {
+        "source": "f:server/proxy.test.ts",
+        "target": "f:server/proxy.ts"
+      },
+      {
+        "source": "f:src/App.tsx",
+        "target": "f:src/components/LandingPage.tsx"
+      },
+      {
+        "source": "f:src/App.tsx",
+        "target": "f:src/components/RepoView.tsx"
+      },
+      {
+        "source": "f:src/components/AgentStatus.tsx",
+        "target": "f:src/lib/utils.ts"
+      },
+      {
+        "source": "f:src/components/Graph3D.tsx",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/components/LandingPage.tsx",
+        "target": "f:src/types/repo.ts"
+      },
+      {
+        "source": "f:src/components/NodeDetail.tsx",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/components/OverlayBar.tsx",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/components/OverlayBar.tsx",
+        "target": "f:src/lib/utils.ts"
+      },
+      {
+        "source": "f:src/components/QuizPanel.tsx",
+        "target": "f:src/lib/utils.ts"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/Layout.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/OverlayBar.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/Graph3D.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/VoiceControls.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/NodeDetail.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/QuizPanel.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/AgentStatus.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/components/ErrorBoundary.tsx"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/hooks/useGraph.ts"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/hooks/useKuzu.ts"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/hooks/useInterview.ts"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/hooks/useKnowledge.ts"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/lib/kuzu.ts"
+      },
+      {
+        "source": "f:src/components/RepoView.tsx",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/components/VoiceControls.tsx",
+        "target": "f:src/lib/utils.ts"
+      },
+      {
+        "source": "f:src/components/VoiceControls.tsx",
+        "target": "f:src/hooks/useInterview.ts"
+      },
+      {
+        "source": "f:src/components/VoiceControls.tsx",
+        "target": "f:src/hooks/useVoxtralSTT.ts"
+      },
+      {
+        "source": "f:src/data/sample-graph.ts",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/hooks/useGraph.ts",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/hooks/useGraph.ts",
+        "target": "f:src/data/sample-graph.ts"
+      },
+      {
+        "source": "f:src/hooks/useGraph.ts",
+        "target": "f:src/lib/kuzu.ts"
+      },
+      {
+        "source": "f:src/hooks/useGraph.ts",
+        "target": "f:src/hooks/useKuzu.ts"
+      },
+      {
+        "source": "f:src/hooks/useInterview.ts",
+        "target": "f:src/hooks/useVoiceAgent.ts"
+      },
+      {
+        "source": "f:src/hooks/useInterview.ts",
+        "target": "f:src/lib/briefing.ts"
+      },
+      {
+        "source": "f:src/hooks/useInterview.ts",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/hooks/useKnowledge.ts",
+        "target": "f:src/lib/kuzu.ts"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "f:src/lib/kuzu.ts"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "f:src/data/sample-graph.ts"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "f:src/lib/graph-builder.ts"
+      },
+      {
+        "source": "f:src/hooks/useKuzu.ts",
+        "target": "f:src/lib/git-data.ts"
+      },
+      {
+        "source": "f:src/hooks/useVoiceAgent.ts",
+        "target": "f:src/lib/agent-tools.ts"
+      },
+      {
+        "source": "f:src/hooks/useVoiceAgent.ts",
+        "target": "f:src/lib/voice-provider.ts"
+      },
+      {
+        "source": "f:src/lib/agent-tools.test.ts",
+        "target": "f:src/lib/agent-tools.ts"
+      },
+      {
+        "source": "f:src/lib/agent-tools.ts",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/lib/git-data.test.ts",
+        "target": "f:src/lib/git-data.ts"
+      },
+      {
+        "source": "f:src/lib/graph-builder.test.ts",
+        "target": "f:src/lib/graph-builder.ts"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "f:src/lib/kuzu.ts"
+      },
+      {
+        "source": "f:src/lib/kuzu.test.ts",
+        "target": "f:src/data/sample-graph.ts"
+      },
+      {
+        "source": "f:src/lib/kuzu.ts",
+        "target": "f:src/types/graph.ts"
+      },
+      {
+        "source": "f:src/main.tsx",
+        "target": "f:src/App.tsx"
+      }
+    ]
+  }
+}

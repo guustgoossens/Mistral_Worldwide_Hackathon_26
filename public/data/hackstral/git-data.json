@@ -1,0 +1,558 @@
+{
+  "repoPath": "/Users/guustgoossens/Desktop/dev/Hackathon/HackStral",
+  "analyzedAt": "2026-03-01T10:10:38.007Z",
+  "stats": {
+    "totalCommits": 44,
+    "totalContributors": 1,
+    "totalFiles": 90
+  },
+  "contributors": [
+    {
+      "id": "p:73305423_guustgoossens@users.noreply.github.com",
+      "name": "Guust Goossens",
+      "email": "73305423+guustgoossens@users.noreply.github.com",
+      "files": [
+        {
+          "filePath": "src/App.tsx",
+          "commits": 9,
+          "linesChanged": 542,
+          "lastTouch": "2026-03-01T11:10:07+01:00"
+        },
+        {
+          "filePath": "src/lib/kuzu.ts",
+          "commits": 8,
+          "linesChanged": 1191,
+          "lastTouch": "2026-03-01T09:24:07+01:00"
+        },
+        {
+          "filePath": "server/proxy.ts",
+          "commits": 7,
+          "linesChanged": 570,
+          "lastTouch": "2026-03-01T00:46:16+01:00"
+        },
+        {
+          "filePath": "src/hooks/useVoiceAgent.ts",
+          "commits": 7,
+          "linesChanged": 112,
+          "lastTouch": "2026-03-01T00:46:16+01:00"
+        },
+        {
+          "filePath": "src/components/VoiceControls.tsx",
+          "commits": 6,
+          "linesChanged": 434,
+          "lastTouch": "2026-03-01T08:22:52+01:00"
+        },
+        {
+          "filePath": "src/components/Graph3D.tsx",
+          "commits": 5,
+          "linesChanged": 367,
+          "lastTouch": "2026-03-01T09:24:07+01:00"
+        },
+        {
+          "filePath": "src/data/sample-graph.ts",
+          "commits": 5,
+          "linesChanged": 627,
+          "lastTouch": "2026-03-01T09:24:07+01:00"
+        },
+        {
+          "filePath": "package.json",
+          "commits": 5,
+          "linesChanged": 73,
+          "lastTouch": "2026-02-28T17:43:11+01:00"
+        },
+        {
+          "filePath": "src/hooks/useKuzu.ts",
+          "commits": 4,
+          "linesChanged": 148,
+          "lastTouch": "2026-03-01T09:24:07+01:00"
+        },
+        {
+          "filePath": "src/components/QuizPanel.tsx",
+          "commits": 4,
+          "linesChanged": 308,
+          "lastTouch": "2026-03-01T08:23:43+01:00"
+        },
+        {
+          "filePath": "src/components/AgentStatus.tsx",
+          "commits": 4,
+          "linesChanged": 154,
+          "lastTouch": "2026-03-01T08:23:26+01:00"
+        },
+        {
+          "filePath": "src/hooks/useGraph.ts",
+          "commits": 4,
+          "linesChanged": 144,
+          "lastTouch": "2026-03-01T08:23:12+01:00"
+        },
+        {
+          "filePath": "src/index.css",
+          "commits": 4,
+          "linesChanged": 104,
+          "lastTouch": "2026-03-01T08:22:52+01:00"
+        },
+        {
+          "filePath": "docs/README.md",
+          "commits": 4,
+          "linesChanged": 40,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/agents/README.md",
+          "commits": 4,
+          "linesChanged": 90,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/agents/voice-conversationalist.md",
+          "commits": 4,
+          "linesChanged": 186,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/architecture/voice-flow.md",
+          "commits": 4,
+          "linesChanged": 406,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "src/components/Layout.tsx",
+          "commits": 3,
+          "linesChanged": 295,
+          "lastTouch": "2026-03-01T08:23:26+01:00"
+        },
+        {
+          "filePath": "src/components/NodeDetail.tsx",
+          "commits": 3,
+          "linesChanged": 185,
+          "lastTouch": "2026-03-01T08:22:52+01:00"
+        },
+        {
+          "filePath": "src/types/graph.ts",
+          "commits": 3,
+          "linesChanged": 134,
+          "lastTouch": "2026-03-01T07:54:58+01:00"
+        },
+        {
+          "filePath": "CLAUDE.md",
+          "commits": 3,
+          "linesChanged": 165,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/agents/background-enricher.md",
+          "commits": 3,
+          "linesChanged": 147,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/agents/graph-reasoner.md",
+          "commits": 3,
+          "linesChanged": 90,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/agents/quiz-master.md",
+          "commits": 3,
+          "linesChanged": 211,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/product/pitch.md",
+          "commits": 3,
+          "linesChanged": 96,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "src/hooks/useKnowledge.ts",
+          "commits": 3,
+          "linesChanged": 687,
+          "lastTouch": "2026-03-01T00:46:16+01:00"
+        },
+        {
+          "filePath": "src/lib/agent-tools.ts",
+          "commits": 3,
+          "linesChanged": 102,
+          "lastTouch": "2026-02-28T23:39:32+01:00"
+        },
+        {
+          "filePath": "vite.config.ts",
+          "commits": 3,
+          "linesChanged": 28,
+          "lastTouch": "2026-02-28T22:11:35+01:00"
+        },
+        {
+          "filePath": "src/lib/kuzu.test.ts",
+          "commits": 3,
+          "linesChanged": 662,
+          "lastTouch": "2026-02-28T20:57:39+01:00"
+        },
+        {
+          "filePath": ".gitignore",
+          "commits": 3,
+          "linesChanged": 34,
+          "lastTouch": "2026-02-28T17:43:11+01:00"
+        },
+        {
+          "filePath": "src/main.tsx",
+          "commits": 2,
+          "linesChanged": 15,
+          "lastTouch": "2026-03-01T11:10:07+01:00"
+        },
+        {
+          "filePath": "public/favicon.svg",
+          "commits": 2,
+          "linesChanged": 13,
+          "lastTouch": "2026-03-01T08:22:52+01:00"
+        },
+        {
+          "filePath": "src/components/ErrorBoundary.tsx",
+          "commits": 2,
+          "linesChanged": 59,
+          "lastTouch": "2026-03-01T08:22:52+01:00"
+        },
+        {
+          "filePath": "docs/architecture/parsing-pipeline.md",
+          "commits": 2,
+          "linesChanged": 92,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/plan/phases.md",
+          "commits": 2,
+          "linesChanged": 96,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "docs/skills/cypher-skill.md",
+          "commits": 2,
+          "linesChanged": 365,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "src/hooks/useInterview.ts",
+          "commits": 2,
+          "linesChanged": 117,
+          "lastTouch": "2026-03-01T00:46:16+01:00"
+        },
+        {
+          "filePath": "src/lib/briefing.ts",
+          "commits": 2,
+          "linesChanged": 270,
+          "lastTouch": "2026-03-01T00:46:16+01:00"
+        },
+        {
+          "filePath": "src/prompts/voice-agent.ts",
+          "commits": 2,
+          "linesChanged": 140,
+          "lastTouch": "2026-02-28T23:39:32+01:00"
+        },
+        {
+          "filePath": "docs/idea/AGENTS_INFRA.md",
+          "commits": 2,
+          "linesChanged": 1177,
+          "lastTouch": "2026-02-28T20:52:51+01:00"
+        },
+        {
+          "filePath": "src/lib/git-data.ts",
+          "commits": 2,
+          "linesChanged": 94,
+          "lastTouch": "2026-02-28T17:42:41+01:00"
+        },
+        {
+          "filePath": "src/lib/graph-builder.ts",
+          "commits": 2,
+          "linesChanged": 157,
+          "lastTouch": "2026-02-28T17:42:41+01:00"
+        },
+        {
+          "filePath": "scripts/git-analyze.ts",
+          "commits": 2,
+          "linesChanged": 224,
+          "lastTouch": "2026-02-28T17:42:34+01:00"
+        },
+        {
+          "filePath": "bun.lock",
+          "commits": 2,
+          "linesChanged": 1121,
+          "lastTouch": "2026-02-28T17:42:28+01:00"
+        },
+        {
+          "filePath": "scripts/parse-repo.ts",
+          "commits": 2,
+          "linesChanged": 530,
+          "lastTouch": "2026-02-28T17:42:28+01:00"
+        },
+        {
+          "filePath": "docs/architecture/graph-data-model.md",
+          "commits": 2,
+          "linesChanged": 232,
+          "lastTouch": "2026-02-28T16:31:03+01:00"
+        },
+        {
+          "filePath": "docs/decisions/README.md",
+          "commits": 2,
+          "linesChanged": 87,
+          "lastTouch": "2026-02-28T16:31:03+01:00"
+        },
+        {
+          "filePath": "docs/getting-started/tech-stack.md",
+          "commits": 2,
+          "linesChanged": 63,
+          "lastTouch": "2026-02-28T16:31:03+01:00"
+        },
+        {
+          "filePath": "tsconfig.app.json",
+          "commits": 2,
+          "linesChanged": 32,
+          "lastTouch": "2026-02-28T15:31:59+01:00"
+        },
+        {
+          "filePath": "src/vite-env.d.ts",
+          "commits": 2,
+          "linesChanged": 9,
+          "lastTouch": "2026-02-28T15:31:51+01:00"
+        },
+        {
+          "filePath": "src/components/LandingPage.tsx",
+          "commits": 1,
+          "linesChanged": 78,
+          "lastTouch": "2026-03-01T11:10:07+01:00"
+        },
+        {
+          "filePath": "src/components/RepoView.tsx",
+          "commits": 1,
+          "linesChanged": 180,
+          "lastTouch": "2026-03-01T11:10:07+01:00"
+        },
+        {
+          "filePath": "src/types/repo.ts",
+          "commits": 1,
+          "linesChanged": 9,
+          "lastTouch": "2026-03-01T11:10:07+01:00"
+        },
+        {
+          "filePath": "vercel.json",
+          "commits": 1,
+          "linesChanged": 12,
+          "lastTouch": "2026-03-01T11:10:07+01:00"
+        },
+        {
+          "filePath": "src/components/OverlayBar.tsx",
+          "commits": 1,
+          "linesChanged": 42,
+          "lastTouch": "2026-03-01T08:23:26+01:00"
+        },
+        {
+          "filePath": "docs/architecture/ARCHITECTURE_CHANGES.md",
+          "commits": 1,
+          "linesChanged": 356,
+          "lastTouch": "2026-03-01T01:03:52+01:00"
+        },
+        {
+          "filePath": "server/proxy.test.ts",
+          "commits": 1,
+          "linesChanged": 282,
+          "lastTouch": "2026-02-28T20:57:39+01:00"
+        },
+        {
+          "filePath": "src/lib/agent-tools.test.ts",
+          "commits": 1,
+          "linesChanged": 212,
+          "lastTouch": "2026-02-28T20:57:39+01:00"
+        },
+        {
+          "filePath": "src/prompts/background-enricher.md",
+          "commits": 1,
+          "linesChanged": 55,
+          "lastTouch": "2026-02-28T20:44:32+01:00"
+        },
+        {
+          "filePath": "src/prompts/graph-reasoner.md",
+          "commits": 1,
+          "linesChanged": 52,
+          "lastTouch": "2026-02-28T20:44:32+01:00"
+        },
+        {
+          "filePath": ".claude/skills/hackstral-cypher/SKILL.md",
+          "commits": 1,
+          "linesChanged": 54,
+          "lastTouch": "2026-02-28T20:43:10+01:00"
+        },
+        {
+          "filePath": "docs/skills/skill-architecture.md",
+          "commits": 1,
+          "linesChanged": 67,
+          "lastTouch": "2026-02-28T20:43:10+01:00"
+        },
+        {
+          "filePath": "src/lib/git-data.test.ts",
+          "commits": 1,
+          "linesChanged": 155,
+          "lastTouch": "2026-02-28T18:26:41+01:00"
+        },
+        {
+          "filePath": "src/lib/graph-builder.test.ts",
+          "commits": 1,
+          "linesChanged": 201,
+          "lastTouch": "2026-02-28T18:26:41+01:00"
+        },
+        {
+          "filePath": "scripts/lib/languages.ts",
+          "commits": 1,
+          "linesChanged": 48,
+          "lastTouch": "2026-02-28T17:42:28+01:00"
+        },
+        {
+          "filePath": "scripts/lib/queries.ts",
+          "commits": 1,
+          "linesChanged": 122,
+          "lastTouch": "2026-02-28T17:42:28+01:00"
+        },
+        {
+          "filePath": "scripts/lib/symbol-table.ts",
+          "commits": 1,
+          "linesChanged": 59,
+          "lastTouch": "2026-02-28T17:42:28+01:00"
+        },
+        {
+          "filePath": "docs/plan/parallel_agents_plan.md",
+          "commits": 1,
+          "linesChanged": 738,
+          "lastTouch": "2026-02-28T17:33:14+01:00"
+        },
+        {
+          "filePath": "docs/idea/GAMEPLAN.md",
+          "commits": 1,
+          "linesChanged": 992,
+          "lastTouch": "2026-02-28T15:30:51+01:00"
+        },
+        {
+          "filePath": "README.md",
+          "commits": 1,
+          "linesChanged": 58,
+          "lastTouch": "2026-02-28T12:24:23+01:00"
+        },
+        {
+          "filePath": "docs/architecture/README.md",
+          "commits": 1,
+          "linesChanged": 49,
+          "lastTouch": "2026-02-28T12:24:23+01:00"
+        },
+        {
+          "filePath": "docs/getting-started/README.md",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2026-02-28T12:24:23+01:00"
+        },
+        {
+          "filePath": "docs/getting-started/commands.md",
+          "commits": 1,
+          "linesChanged": 33,
+          "lastTouch": "2026-02-28T12:24:23+01:00"
+        },
+        {
+          "filePath": "docs/getting-started/setup.md",
+          "commits": 1,
+          "linesChanged": 59,
+          "lastTouch": "2026-02-28T12:24:23+01:00"
+        },
+        {
+          "filePath": "data/.gitkeep",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-28T12:18:59+01:00"
+        },
+        {
+          "filePath": "src/hooks/useTreeSitter.ts",
+          "commits": 1,
+          "linesChanged": 19,
+          "lastTouch": "2026-02-28T12:18:27+01:00"
+        },
+        {
+          "filePath": "src/lib/utils.ts",
+          "commits": 1,
+          "linesChanged": 6,
+          "lastTouch": "2026-02-28T12:18:27+01:00"
+        },
+        {
+          "filePath": ".env.local.example",
+          "commits": 1,
+          "linesChanged": 4,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": ".prettierignore",
+          "commits": 1,
+          "linesChanged": 2,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "eslint.config.js",
+          "commits": 1,
+          "linesChanged": 27,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "index.html",
+          "commits": 1,
+          "linesChanged": 13,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "prettier.config.mjs",
+          "commits": 1,
+          "linesChanged": 8,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "public/grammars/tree-sitter-javascript.wasm",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "public/grammars/tree-sitter-python.wasm",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "public/grammars/tree-sitter-typescript.wasm",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "public/test-kuzu.html",
+          "commits": 1,
+          "linesChanged": 33,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "public/web-tree-sitter.wasm",
+          "commits": 1,
+          "linesChanged": 0,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "serve-test.js",
+          "commits": 1,
+          "linesChanged": 13,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "tsconfig.json",
+          "commits": 1,
+          "linesChanged": 7,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        },
+        {
+          "filePath": "tsconfig.node.json",
+          "commits": 1,
+          "linesChanged": 21,
+          "lastTouch": "2026-02-28T12:15:03+01:00"
+        }
+      ]
+    }
+  ]
+}
