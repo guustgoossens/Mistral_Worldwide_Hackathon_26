@@ -5,11 +5,120 @@ import { spawn } from "child_process";
 import { createServer } from "http";
 import path from "path";
 import fs from "fs";
+import {
+  BedrockRuntimeClient,
+  ConverseCommand,
+  ConverseStreamCommand,
+} from "@aws-sdk/client-bedrock-runtime";
 
 export const app = express();
 const PORT = process.env.PORT ?? 3001;
 const MISTRAL_BASE = "https://api.mistral.ai/v1/chat/completions";
 const DEFAULT_MODEL = "devstral-small-2507";
+
+// ── Bedrock Configuration ──────────────────────────────────────────────
+const INFERENCE_PROVIDER = process.env.INFERENCE_PROVIDER ?? "mistral";
+const AWS_BEARER_TOKEN = process.env.AWS_BEARER_TOKEN_BEDROCK;
+const AWS_REGION = process.env.AWS_BEDROCK_REGION ?? "us-east-1";
+
+/** Map Mistral model names to Bedrock model IDs. */
+const BEDROCK_MODEL_MAP: Record<string, string> = {
+  "devstral-small-2507": "mistral.magistral-small-2509", // DevStral Small not on Bedrock, use Magistral Small
+  "devstral-2507": "mistral.devstral-2-123b-v1:0",
+  "mistral-large": "mistral.mistral-large-2-675b-instruct-v1:0",
+  "magistral-small": "mistral.magistral-small-2509",
+};
+
+function getBedrockClient(): BedrockRuntimeClient | null {
+  if (!AWS_BEARER_TOKEN) return null;
+  return new BedrockRuntimeClient({
+    region: AWS_REGION,
+    credentials: {
+      accessKeyId: "unused",
+      secretAccessKey: "unused",
+      sessionToken: AWS_BEARER_TOKEN,
+    },
+  });
+}
+
+interface BedrockMessage {
+  role: "user" | "assistant";
+  content: Array<{ text: string }>;
+}
+
+/**
+ * Convert OpenAI-style messages to Bedrock Converse format.
+ * - Extracts system messages to top-level system field
+ * - Wraps string content into [{text: "..."}]
+ * - Merges consecutive same-role messages (Bedrock requirement)
+ */
+export function convertToBedrockFormat(messages: Array<Record<string, any>>): {
+  system: Array<{ text: string }>;
+  messages: BedrockMessage[];
+} {
+  const system: Array<{ text: string }> = [];
+  const bedrockMessages: BedrockMessage[] = [];
+
+  for (const msg of messages) {
+    if (msg.role === "system") {
+      const text = typeof msg.content === "string" ? msg.content : JSON.stringify(msg.content);
+      system.push({ text });
+      continue;
+    }
+
+    // Map "tool" role messages to user messages (Bedrock doesn't have tool role in Converse)
+    const role: "user" | "assistant" = msg.role === "assistant" ? "assistant" : "user";
+    const text = typeof msg.content === "string"
+      ? msg.content
+      : JSON.stringify(msg.content);
+
+    const content = [{ text }];
+
+    // Merge consecutive same-role messages
+    const last = bedrockMessages[bedrockMessages.length - 1];
+    if (last && last.role === role) {
+      last.content.push(...content);
+    } else {
+      bedrockMessages.push({ role, content });
+    }
+  }
+
+  // Bedrock requires alternating user/assistant messages starting with user
+  // If first message is assistant, prepend an empty user message
+  if (bedrockMessages.length > 0 && bedrockMessages[0].role === "assistant") {
+    bedrockMessages.unshift({ role: "user", content: [{ text: "(conversation start)" }] });
+  }
+
+  return { system, messages: bedrockMessages };
+}
+
+/**
+ * Convert Bedrock Converse response to OpenAI format.
+ */
+export function bedrockToOpenAI(bedrockResponse: any, model: string): Record<string, any> {
+  const output = bedrockResponse.output?.message;
+  const content = output?.content?.map((c: any) => c.text).join("") ?? "";
+
+  return {
+    id: `chatcmpl-bedrock-${Date.now()}`,
+    object: "chat.completion",
+    created: Math.floor(Date.now() / 1000),
+    model,
+    choices: [{
+      index: 0,
+      message: {
+        role: "assistant",
+        content,
+      },
+      finish_reason: bedrockResponse.stopReason === "end_turn" ? "stop" : "stop",
+    }],
+    usage: {
+      prompt_tokens: bedrockResponse.usage?.inputTokens ?? 0,
+      completion_tokens: bedrockResponse.usage?.outputTokens ?? 0,
+      total_tokens: (bedrockResponse.usage?.inputTokens ?? 0) + (bedrockResponse.usage?.outputTokens ?? 0),
+    },
+  };
+}
 
 /** Pre-computed briefing injected as system message when set. */
 let currentBriefing: string | null = null;
@@ -102,8 +211,11 @@ app.post("/v1/chat/completions", async (req, res) => {
     return fixed;
   });
 
-  // Inject briefing into system message if available
-  if (currentBriefing) {
+  // Inject briefing into system message if available.
+  // Skip injection when tools are present — that's the chat path, not voice.
+  const hasClientTools = req.body.tools?.length > 0;
+  console.log(`[proxy] hasClientTools=${hasClientTools} tools=${req.body.tools?.length ?? 0} briefing=${!!currentBriefing}`);
+  if (currentBriefing && !hasClientTools) {
     const systemIdx = normalizedMessages.findIndex((m: any) => m.role === "system");
     if (systemIdx >= 0) {
       normalizedMessages[systemIdx] = { ...normalizedMessages[systemIdx], content: currentBriefing };
@@ -145,6 +257,113 @@ app.post("/v1/chat/completions", async (req, res) => {
     console.log(`[proxy] ⚡ Tool-result request body:\n${JSON.stringify(body, null, 2).slice(0, 2000)}`);
   }
 
+  // ── Bedrock path ──────────────────────────────────────────────────────
+  if (INFERENCE_PROVIDER === "bedrock") {
+    const bedrockClient = getBedrockClient();
+    if (!bedrockClient) {
+      res.status(500).json({ error: "AWS_BEARER_TOKEN_BEDROCK not set" });
+      return;
+    }
+
+    const bedrockModelId = BEDROCK_MODEL_MAP[model] ?? BEDROCK_MODEL_MAP["devstral-small-2507"]!;
+    console.log(`[proxy] Using Bedrock model: ${bedrockModelId} (from ${model})`);
+
+    const converted = convertToBedrockFormat(normalizedMessages);
+
+    // JSON mode workaround: inject into system prompt
+    if (req.body.response_format?.type === "json_object") {
+      converted.system.push({ text: "IMPORTANT: You must respond with valid JSON only. No markdown, no code blocks, just raw JSON." });
+    }
+
+    try {
+      if (body.stream) {
+        // Streaming via ConverseStream
+        res.setHeader("Content-Type", "text/event-stream");
+        res.setHeader("Cache-Control", "no-cache");
+        res.setHeader("Connection", "keep-alive");
+
+        const command = new ConverseStreamCommand({
+          modelId: bedrockModelId,
+          system: converted.system,
+          messages: converted.messages,
+          inferenceConfig: {
+            maxTokens,
+            ...(req.body.temperature != null && { temperature: req.body.temperature }),
+            ...(req.body.top_p != null && { topP: req.body.top_p }),
+          },
+        });
+
+        const response = await bedrockClient.send(command);
+        let fullContent = "";
+        const streamId = `chatcmpl-bedrock-${Date.now()}`;
+
+        if (response.stream) {
+          for await (const event of response.stream) {
+            if (event.contentBlockDelta?.delta?.text) {
+              const text = event.contentBlockDelta.delta.text;
+              fullContent += text;
+
+              // Convert to OpenAI SSE format
+              const chunk = {
+                id: streamId,
+                object: "chat.completion.chunk",
+                created: Math.floor(Date.now() / 1000),
+                model,
+                choices: [{
+                  index: 0,
+                  delta: { content: text },
+                  finish_reason: null,
+                }],
+              };
+              res.write(`data: ${JSON.stringify(chunk)}\n\n`);
+            }
+
+            if (event.messageStop) {
+              const chunk = {
+                id: streamId,
+                object: "chat.completion.chunk",
+                created: Math.floor(Date.now() / 1000),
+                model,
+                choices: [{
+                  index: 0,
+                  delta: {},
+                  finish_reason: "stop",
+                }],
+              };
+              res.write(`data: ${JSON.stringify(chunk)}\n\n`);
+              res.write("data: [DONE]\n\n");
+            }
+          }
+        }
+
+        console.log(`[proxy] → Bedrock stream complete: "${fullContent.slice(0, 150)}"`);
+        res.end();
+      } else {
+        // Non-streaming via Converse
+        const command = new ConverseCommand({
+          modelId: bedrockModelId,
+          system: converted.system,
+          messages: converted.messages,
+          inferenceConfig: {
+            maxTokens,
+            ...(req.body.temperature != null && { temperature: req.body.temperature }),
+            ...(req.body.top_p != null && { topP: req.body.top_p }),
+          },
+        });
+
+        const response = await bedrockClient.send(command);
+        const openAIResponse = bedrockToOpenAI(response, model);
+        console.log(`[proxy] → Bedrock (non-stream):`, JSON.stringify(openAIResponse).slice(0, 300));
+        res.json(openAIResponse);
+      }
+    } catch (err) {
+      console.error("[proxy] Bedrock error:", err);
+      res.status(502).json({ error: `Bedrock API error: ${String(err)}` });
+    }
+    return;
+  }
+
+  // ── Mistral direct path (default) ──────────────────────────────────
   try {
     const upstream = await fetch(MISTRAL_BASE, {
       method: "POST",
@@ -283,6 +502,12 @@ if (import.meta.main) {
   httpServer.listen(PORT, () => {
     console.log(`[proxy] Listening on http://localhost:${PORT}`);
     console.log(`[proxy] Model: ${DEFAULT_MODEL}`);
-    console.log(`[proxy] API key: ${process.env.MISTRAL_API_KEY ? "set" : "MISSING"}`);
+    console.log(`[proxy] Inference provider: ${INFERENCE_PROVIDER}`);
+    if (INFERENCE_PROVIDER === "bedrock") {
+      console.log(`[proxy] AWS region: ${AWS_REGION}`);
+      console.log(`[proxy] AWS token: ${AWS_BEARER_TOKEN ? "set" : "MISSING"}`);
+    } else {
+      console.log(`[proxy] API key: ${process.env.MISTRAL_API_KEY ? "set" : "MISSING"}`);
+    }
   });
 }
