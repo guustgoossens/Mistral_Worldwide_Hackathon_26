@@ -35,9 +35,20 @@ interface GitDataJSON {
   contributors: Contributor[];
 }
 
-const repoPath = process.argv[2];
+// Parse CLI args
+let repoPath: string | undefined;
+let outputDirOverride: string | undefined;
+
+for (let i = 2; i < process.argv.length; i++) {
+  if (process.argv[i] === '--output' && process.argv[i + 1]) {
+    outputDirOverride = process.argv[++i];
+  } else if (!repoPath) {
+    repoPath = process.argv[i];
+  }
+}
+
 if (!repoPath) {
-  console.error('Usage: bun run git-analyze -- /path/to/repo');
+  console.error('Usage: bun run git-analyze -- /path/to/repo [--output /path/to/output]');
   process.exit(1);
 }
 
@@ -192,7 +203,7 @@ const output: GitDataJSON = {
 };
 
 // Write output
-const outputDir = path.join(absRepoPath, 'public', 'data');
+const outputDir = outputDirOverride ? path.resolve(outputDirOverride) : path.join(absRepoPath, 'public', 'data');
 fs.mkdirSync(outputDir, { recursive: true });
 
 const outputPath = path.join(outputDir, 'git-data.json');

@@ -16,6 +16,12 @@ export const IGNORE_DIRS = new Set([
   '.claude',
   '.vscode',
   '.idea',
+  '.repos',   // cloned sponsor repos — don't recurse into them when parsing hackstral
+  'venv',
+  '.venv',
+  'env',
+  '.eggs',
+  '*.egg-info',
 ]);
 
 /** Skip files larger than 512KB (likely generated/vendored) */
