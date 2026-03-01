@@ -50,7 +50,6 @@ export function useVoiceAgent(deps?: AgentToolDeps): VoiceProvider {
   }, [conversation]);
 
   return {
-    isConnected: conversation.status === "connected",
     isSpeaking: conversation.isSpeaking,
     status: conversation.status as "disconnected" | "connecting" | "connected" | "disconnecting",
     transcript,

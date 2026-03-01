@@ -36,7 +36,7 @@ export function VoiceControls({
   const isVoiceConnected = voiceStatus === "connected";
   const isVoiceTransitioning = voiceStatus === "connecting" || voiceStatus === "disconnecting";
 
-  const [voxtralEnabled, setVoxtralEnabled] = useState(false);
+  const [, setVoxtralEnabled] = useState(false);
   const voxtral = useVoxtralSTT();
 
   const handleVoxtralToggle = async () => {
