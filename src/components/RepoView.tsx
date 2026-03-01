@@ -92,7 +92,7 @@ export function RepoView() {
       <div className="flex h-full w-full flex-col items-center justify-center bg-bg">
         <img src="/favicon.svg" alt="Summa" className="mb-6 h-16 w-16" />
         <div className="spinner-gradient mb-4" />
-        <h2 className="text-lg font-semibold text-text">Loading {repoId ?? "Summa"}</h2>
+        <h2 className="text-lg font-semibold text-text">Loading Summa</h2>
         <p className="mt-2 text-sm text-text-muted">Initializing graph database...</p>
       </div>
     );

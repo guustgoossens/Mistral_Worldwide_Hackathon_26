@@ -166,7 +166,7 @@ export function useChat(deps: UseChatDeps) {
 
         // Tool call loop
         for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-          const response = await fetch(`${deps.proxyUrl}/v1/chat/completions`, {
+          const response = await fetch(`${deps.proxyUrl}/v1/chat/graph`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

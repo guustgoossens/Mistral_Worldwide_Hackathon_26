@@ -67,7 +67,6 @@ const git = simpleGit(absRepoPath);
 const COMMIT_SEP = '---COMMIT_SEP---';
 const logResult = await git.raw([
   'log',
-  '--all',
   '-n', '1000',
   '--numstat',
   `--format=${COMMIT_SEP}%n%H|%ae|%an|%aI`,

@@ -159,6 +159,58 @@ app.get("/v1/models", (_req, res) => {
   res.json({ data: [{ id: "devstral-small-2507", object: "model" }] });
 });
 
+/**
+ * Dedicated graph chat endpoint — completely isolated from voice/briefing.
+ * No briefing injection, no message normalization. Clean passthrough + tools.
+ */
+app.post("/v1/chat/graph", async (req, res) => {
+  const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
+  if (!MISTRAL_API_KEY) {
+    res.status(500).json({ error: "MISTRAL_API_KEY not set" });
+    return;
+  }
+
+  const body = {
+    messages: req.body.messages ?? [],
+    model: req.body.model ?? DEFAULT_MODEL,
+    tools: req.body.tools,
+    max_tokens: req.body.max_tokens ?? 2048,
+    temperature: req.body.temperature ?? 0.3,
+    stream: false,
+    ...(req.body.response_format && { response_format: req.body.response_format }),
+  };
+
+  console.log(`[proxy/graph] ← ${body.messages.length} messages, ${body.tools?.length ?? 0} tools, model=${body.model}`);
+  console.log(`[proxy/graph] system: "${(body.messages[0]?.content ?? "").slice(0, 100)}..."`);
+
+  try {
+    const upstream = await fetch("https://api.mistral.ai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${MISTRAL_API_KEY}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!upstream.ok) {
+      const errText = await upstream.text();
+      console.error(`[proxy/graph] ✗ Mistral ${upstream.status}: ${errText.slice(0, 300)}`);
+      res.status(upstream.status).json({ error: errText.slice(0, 500) });
+      return;
+    }
+
+    const data = await upstream.json();
+    const choice = data.choices?.[0];
+    const toolCalls = choice?.message?.tool_calls?.map((tc: any) => tc.function?.name) ?? [];
+    console.log(`[proxy/graph] → tool_calls=[${toolCalls.join(",")}] content="${(choice?.message?.content ?? "").slice(0, 100)}"`);
+    res.json(data);
+  } catch (err) {
+    console.error("[proxy/graph] Error:", err);
+    res.status(502).json({ error: "Failed to reach Mistral API" });
+  }
+});
+
 app.post("/v1/chat/completions", async (req, res) => {
   const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
   if (!MISTRAL_API_KEY) {
@@ -447,7 +499,9 @@ app.post("/v1/chat/completions", async (req, res) => {
   }
 });
 
-if (import.meta.main) {
+// Start the server. import.meta.main is Bun-only; for tsx/node we check argv.
+const _isMain = import.meta.main ?? process.argv[1]?.endsWith("proxy.ts");
+if (_isMain !== false) {
   const httpServer = createServer(app);
 
   // Voxtral STT WebSocket endpoint
