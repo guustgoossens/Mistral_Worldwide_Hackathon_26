@@ -11,8 +11,10 @@
     "preview": "vite preview",
     "lint": "tsc && eslint .",
     "format": "prettier --write .",
-    "parse": "tsx scripts/parse-repo.ts",
+    "parse": "tsx scripts/parse-all.ts",
+    "parse-repo": "tsx scripts/parse-repo.ts",
     "git-analyze": "tsx scripts/git-analyze.ts",
+    "clone-repos": "tsx scripts/clone-repos.ts",
     "test": "bun test",
     "postinstall": "cp node_modules/@kuzu/kuzu-wasm/dist/kuzu-wasm.wasm public/kuzu-wasm.wasm"
   },
@@ -27,11 +29,13 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-force-graph-3d": "^1.29.1",
+    "react-router-dom": "^7.13.1",
     "simple-git": "^3.32.2",
     "tailwind-merge": "^3.0.2",
     "three": "^0.183.1",
     "tree-sitter-wasms": "^0.1.13",
-    "web-tree-sitter": "^0.26.6"
+    "web-tree-sitter": "^0.26.6",
+    "ws": "^8.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -42,6 +46,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/three": "^0.183.0",
+    "@types/ws": "^8.18.1",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
