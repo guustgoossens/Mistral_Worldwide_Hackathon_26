@@ -109,6 +109,47 @@ Show the detail panel for a specific node.
 }
 ```
 
+## Parallel Voxtral STT
+
+During a voice session, a second STT stream can run in parallel using [voxtral.c](https://github.com/antirez/voxtral.c) — antirez's pure-C inference engine for Mistral's Voxtral Mini 4B Realtime model. It runs locally on Apple Silicon via Metal (MPS) at ~2.5x real-time speed with zero Python/PyTorch dependencies.
+
+```
+Browser mic (MediaStream)
+    │
+    ├── [ElevenLabs] → WebSocket → Cloud STT → DevStral → TTS → Speaker
+    │
+    └── [Voxtral]  → AudioWorklet (PCM16LE 16kHz mono)
+                       │
+                       WebSocket ws://localhost:3001/voxtral/stream
+                       │
+                       proxy spawns: vendor/voxtral.c/voxtral --stdin
+                       │
+                       stdout tokens → WS → browser
+                       │
+                       useVoxtralSTT hook → parallel transcript (orange)
+```
+
+### How it works
+
+1. `src/worklets/pcm-processor.worklet.ts` — AudioWorklet converts Float32 mic audio to PCM16LE binary frames on the audio rendering thread
+2. `src/hooks/useVoxtralSTT.ts` — Connects mic → AudioWorklet → WebSocket, receives text tokens
+3. `server/proxy.ts` — WebSocket endpoint at `/voxtral/stream` spawns a persistent voxtral.c process, pipes PCM stdin, streams text stdout
+4. `src/components/VoiceControls.tsx` — "Voxtral STT" toggle button shows the parallel transcript in Mistral brand orange
+
+### Graceful degradation
+
+If `vendor/voxtral.c/voxtral` binary doesn't exist, the proxy skips WebSocket setup and logs a warning. The Voxtral toggle is hidden in the UI. Everything else works normally.
+
+### VoiceProvider interface
+
+`src/lib/voice-provider.ts` defines a `VoiceProvider` interface that both the current ElevenLabs flow (`useVoiceAgent`) and a future custom pipeline must satisfy. This is the architectural seam for eventually replacing ElevenLabs Conversational AI with:
+
+```
+Voxtral STT → DevStral + tool calls → ElevenLabs TTS (standalone)
+```
+
+This restores real-time Cypher tool calls mid-conversation — the feature the ElevenLabs Custom LLM round-trip broke.
+
 ## Proxy Server
 
 The Express proxy at `server/proxy.ts` handles:
@@ -122,6 +163,7 @@ The Express proxy at `server/proxy.ts` handles:
 | `GET` | `/briefing` | Check if briefing is loaded |
 | `GET` | `/v1/models` | Return available model list |
 | `GET` | `/health` | Health check |
+| `WS` | `/voxtral/stream` | Voxtral STT — PCM audio in, text tokens out (requires voxtral.c binary) |
 
 ### Briefing Injection
 

@@ -38,12 +38,20 @@ Person nodes are **invisible infrastructure** — they exist in KuzuDB for power
 3. **Knowledge** — code nodes colored by knowledge coverage (green=deep, red=gap)
 4. **People** — Person nodes become visible, showing human topology around code
 
+### Voxtral STT (Local Speech-to-Text)
+- [voxtral.c](https://github.com/antirez/voxtral.c) — antirez's pure-C inference engine for Voxtral Mini 4B Realtime
+- Runs locally on Apple Silicon via Metal (MPS), ~2.5x real-time, zero Python dependencies
+- Parallel STT alongside ElevenLabs during voice sessions
+- AudioWorklet captures mic → PCM16LE → WebSocket → voxtral.c → text tokens back to browser
+- `VoiceProvider` interface (`src/lib/voice-provider.ts`) enables future swap to full custom pipeline
+
 ### Proxy Server (Express)
 - `POST /v1/chat/completions` → forwards to Mistral API (streaming or non-streaming)
 - `POST /briefing` → stores pre-computed interview briefing as system message
 - `GET /briefing` → checks if a briefing is loaded
 - `GET /v1/models` → returns available model list
 - `GET /health` → health check
+- `WS /voxtral/stream` → Voxtral STT WebSocket (PCM in, text out; requires `vendor/voxtral.c/voxtral`)
 - Default model: DevStral Small 2 (fast, for voice)
 - No tools injected for voice requests — avoids ElevenLabs Custom LLM round-trip failure
 - Supports `response_format` and `stream: false` passthrough for JSON mode

@@ -63,6 +63,29 @@ Repos are defined in `public/data/repos.json`. The `hackstral` entry (marked `lo
 
 You only need to re-run `clone-repos` if repos are added/updated. Re-run `parse` whenever you want fresh graph data.
 
+## Voxtral STT (Optional — Local Speech-to-Text)
+
+[voxtral.c](https://github.com/antirez/voxtral.c) is antirez's pure-C inference engine for Mistral's Voxtral Mini 4B Realtime model. It enables parallel local STT alongside ElevenLabs during voice sessions. Requires Apple Silicon (Metal/MPS).
+
+```bash
+# Clone into vendor/
+git clone https://github.com/antirez/voxtral.c vendor/voxtral.c
+
+# Build with Metal acceleration
+cd vendor/voxtral.c && make mps
+
+# Download model weights (~9 GB)
+bash download_model.sh
+
+# Verify
+./voxtral -d voxtral-model -i test.wav
+# → should output transcribed text
+
+cd ../..
+```
+
+The proxy auto-detects `vendor/voxtral.c/voxtral` on startup. If present, it enables the `/voxtral/stream` WebSocket endpoint. If absent, the app works normally without it.
+
 ## Running
 
 ```bash

@@ -28,6 +28,7 @@
 |------------|---------|-----------|
 | ElevenLabs React SDK | 0.14 | Conversational AI with client tool support, low-latency voice |
 | Mistral AI API | — | LLM provider (hackathon sponsor). Two-speed architecture: DevStral Small 2 (24B, 200 t/s — voice, quiz) + DevStral 2 (123B, 76 t/s — deep analysis, background enrichment) |
+| [voxtral.c](https://github.com/antirez/voxtral.c) | — | antirez's pure-C inference engine for Voxtral Mini 4B Realtime (Mistral STT). Runs locally on Apple Silicon via Metal at ~2.5x real-time. Parallel transcript alongside ElevenLabs. |
 
 ## Code Analysis
 
@@ -42,6 +43,7 @@
 | Technology | Version | Rationale |
 |------------|---------|-----------|
 | Express | 5 | Lightweight proxy for ElevenLabs → Mistral API forwarding |
+| ws | 8 | WebSocket server for Voxtral STT audio streaming |
 | cors | 2.8 | CORS middleware for cross-origin requests |
 
 ## Dev Tools
