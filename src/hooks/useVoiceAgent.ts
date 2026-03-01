@@ -1,13 +1,16 @@
 /**
  * Voice agent hook wrapping ElevenLabs useConversation() + client tools.
+ * Satisfies the VoiceProvider interface — swap to useCustomVoicePipeline
+ * in useInterview.ts when the custom STT→LLM→TTS pipeline is ready.
  */
 
 import { useState, useCallback, useMemo } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { createAgentTools } from "@/lib/agent-tools";
 import type { AgentToolDeps } from "@/lib/agent-tools";
+import type { VoiceProvider } from "@/lib/voice-provider";
 
-export function useVoiceAgent(deps?: AgentToolDeps) {
+export function useVoiceAgent(deps?: AgentToolDeps): VoiceProvider {
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; content: string }>>([]);
 
   const clientTools = useMemo(

@@ -41,14 +41,11 @@ async function safeExec(conn: KuzuConnection, cypher: string): Promise<boolean> 
   }
 }
 
-export async function loadGraphFromJSON(
+export async function loadGraphFromData(
   conn: KuzuConnection,
-  jsonUrl: string,
+  data: GraphJSON,
 ): Promise<{ nodeCount: number; edgeCount: number }> {
   _failCount = 0;
-  const resp = await fetch(jsonUrl);
-  if (!resp.ok) throw new Error(`Failed to fetch ${jsonUrl}: ${resp.status}`);
-  const data: GraphJSON = await resp.json();
 
   console.log("[graph-builder] Parsed JSON:", {
     files: data.nodes.files.length,
@@ -124,6 +121,17 @@ export async function loadGraphFromJSON(
     edgeCount++;
   }
 
-  console.log(`[graph-builder] Loaded ${nodeCount} nodes, ${edgeCount} edges from ${jsonUrl} (${_failCount} failures)`);
+  console.log(`[graph-builder] Loaded ${nodeCount} nodes, ${edgeCount} edges (${_failCount} failures)`);
   return { nodeCount, edgeCount };
+}
+
+/** Convenience wrapper: fetch URL then load. Prefer loadGraphFromData when you already have the response. */
+export async function loadGraphFromJSON(
+  conn: KuzuConnection,
+  jsonUrl: string,
+): Promise<{ nodeCount: number; edgeCount: number }> {
+  const resp = await fetch(jsonUrl);
+  if (!resp.ok) throw new Error(`Failed to fetch ${jsonUrl}: ${resp.status}`);
+  const data: GraphJSON = await resp.json();
+  return loadGraphFromData(conn, data);
 }

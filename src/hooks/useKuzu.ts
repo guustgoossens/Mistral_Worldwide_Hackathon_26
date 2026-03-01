@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { initKuzu, queryGraph } from "@/lib/kuzu";
 import { loadSampleIntoKuzu, seedKnowledgeData } from "@/data/sample-graph";
-import { loadGraphFromJSON } from "@/lib/graph-builder";
+import { loadGraphFromData } from "@/lib/graph-builder";
 import { loadGitData } from "@/lib/git-data";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,10 +17,10 @@ export interface UseKuzuReturn {
 
 /**
  * React hook managing KuzuDB WASM lifecycle.
- * Initializes KuzuDB on mount, tries loading parsed data (graph.json),
- * falls back to sample data if not available.
+ * Accepts an optional repoId to load per-repo data from /data/{repoId}/.
+ * Reinitializes when repoId changes.
  */
-export function useKuzu(): UseKuzuReturn {
+export function useKuzu(repoId?: string): UseKuzuReturn {
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [dataSource, setDataSource] = useState<"parsed" | "sample" | null>(null);
@@ -29,6 +29,12 @@ export function useKuzu(): UseKuzuReturn {
   useEffect(() => {
     let cancelled = false;
 
+    // Reset state on repoId change
+    setIsReady(false);
+    setError(null);
+    setDataSource(null);
+    connRef.current = null;
+
     async function init() {
       try {
         const { conn } = await initKuzu();
@@ -36,19 +42,24 @@ export function useKuzu(): UseKuzuReturn {
 
         connRef.current = conn;
 
-        // Try loading parsed graph data first
+        const dataPrefix = repoId ? `/data/${repoId}` : "/data";
+        const graphUrl = `${dataPrefix}/graph.json`;
+        const gitUrl = `${dataPrefix}/git-data.json`;
+        console.log(`[useKuzu] Loading data for repo="${repoId ?? "default"}" from ${dataPrefix}/`);
+
+        // Try loading parsed graph data — single fetch, parse JSON ourselves.
+        // Avoids double-fetch races; SyntaxError (HTML fallback) is caught gracefully.
         let usedParsed = false;
         try {
-          const graphResp = await fetch("/data/graph.json", { method: "HEAD" });
-          if (graphResp.ok) {
-            const result = await loadGraphFromJSON(conn, "/data/graph.json");
-            usedParsed = true;
-            console.log("[useKuzu] Loaded parsed graph data:", result);
-          } else {
-            console.log("[useKuzu] graph.json HEAD returned:", graphResp.status);
-          }
+          const graphResp = await fetch(graphUrl);
+          if (!graphResp.ok) throw new Error(`HTTP ${graphResp.status}`);
+          const graphData = await graphResp.json(); // throws SyntaxError if Vite served HTML
+          if (cancelled) return;
+          const result = await loadGraphFromData(conn, graphData);
+          usedParsed = true;
+          console.log(`[useKuzu] Loaded real graph data (${result.nodeCount} nodes, ${result.edgeCount} edges)`);
         } catch (loadErr) {
-          console.error("[useKuzu] Failed to load graph.json:", loadErr);
+          console.log(`[useKuzu] No parsed data at ${graphUrl} — using sample:`, String(loadErr));
         }
 
         if (!usedParsed) {
@@ -58,15 +69,12 @@ export function useKuzu(): UseKuzuReturn {
 
         if (cancelled) return;
 
-        // Try loading git contributor data
+        // Try loading git contributor data (non-critical)
         try {
-          const gitResp = await fetch("/data/git-data.json", { method: "HEAD" });
-          if (gitResp.ok) {
-            await loadGitData(conn, "/data/git-data.json");
-            console.log("[useKuzu] Loaded git contributor data");
-          }
+          await loadGitData(conn, gitUrl);
+          console.log("[useKuzu] Loaded git contributor data");
         } catch {
-          // git-data.json not available — skip
+          // git-data.json not available or not JSON — skip
         }
 
         // Seed knowledge (UNDERSTANDS edges) based on file path classification
@@ -94,7 +102,7 @@ export function useKuzu(): UseKuzuReturn {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [repoId]);
 
   const executeQuery = useCallback(async (cypher: string): Promise<unknown[]> => {
     if (!connRef.current) {
